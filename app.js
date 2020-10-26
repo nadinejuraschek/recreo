@@ -30,6 +30,11 @@ app.get('/', (req, res) => {
   res.render('home');
 });
 
+app.get('/playgrounds', async (req, res) => {
+  const playgrounds = await Playground.find({});
+  res.render('playgrounds/index', { playgrounds });
+})
+
 app.get('/create', async (req, res) => {
   const playground = new Playground({ title: 'My Backyard' });
   await playground.save();

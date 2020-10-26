@@ -21,13 +21,12 @@ const seedDB = async () => {
   await Playground.deleteMany({});
   for (let i = 0; i < 50; i++) {
     const random1000 = Math.floor(Math.random() * 1000);
-    const playground = new Playground({
+    const playgrounds = new Playground({
       location: `${cities[random1000].city}, ${cities[random1000].state}`,
       title: `${sample(descriptors)} ${sample(places)}`,
     });
-    await playground.save();
+    await playgrounds.save();
   };
 };
 
 seedDB();
-
