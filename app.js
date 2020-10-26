@@ -33,7 +33,12 @@ app.get('/', (req, res) => {
 app.get('/playgrounds', async (req, res) => {
   const playgrounds = await Playground.find({});
   res.render('playgrounds/index', { playgrounds });
-})
+});
+
+app.get('/playgrounds/:id', async (req, res) => {
+  const playground = await Playground.findById(req.params.id);
+  res.render('playgrounds/show', { playground });
+});
 
 app.get('/create', async (req, res) => {
   const playground = new Playground({ title: 'My Backyard' });

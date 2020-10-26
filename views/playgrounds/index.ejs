@@ -9,7 +9,7 @@
   <h1>All Playgrounds</h1>
   <ul>
     <% for (let playground of playgrounds) { %>
-      <li><% playground.title %></li>
+      <li><a href='/playgrounds/<%= playground._id %>'><%= playground.title %></a></li>
     <% } %>
   </ul>
 </body>
