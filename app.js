@@ -2,6 +2,7 @@ const express = require('express'),
 mongoose = require('mongoose'),
 dotenv = require('dotenv'),
 path = require('path'),
+methodOverride = require('method-override'),
 Playground = require('./models/Playground');
 
 dotenv.config();
@@ -11,6 +12,7 @@ mongoose.connect('mongodb://localhost:27017/recreo', {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
+  useFindAndModify: false,
 });
 
 const db = mongoose.connection;
@@ -27,6 +29,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // MIDDLEWARE
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 
 
 // ROUTES
@@ -48,10 +51,21 @@ app.get('/playgrounds/:id', async (req, res) => {
   res.render('playgrounds/show', { playground });
 });
 
+app.get('/playgrounds/:id/edit', async (req, res) => {
+  const playground = await Playground.findById(req.params.id);
+  res.render('playgrounds/edit', { playground });
+});
+
 app.post('/playgrounds', async (req, res) => {
   const playground = new Playground(req.body.playground);
   await playground.save();
   res.redirect(`/playgrounds/${playground._id}`);
+});
+
+app.put('/playgrounds/:id', async (req, res) => {
+  const { id } = req.params;
+  await Playground.findByIdAndUpdate(id, { ...req.body.playground });
+  res.redirect(`/playgrounds/${id}`);
 });
 
 app.listen(process.env.PORT, () => {
