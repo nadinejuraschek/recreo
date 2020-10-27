@@ -68,6 +68,12 @@ app.put('/playgrounds/:id', async (req, res) => {
   res.redirect(`/playgrounds/${id}`);
 });
 
+app.delete('/playgrounds/:id', async (req, res) => {
+  const { id } = req.params;
+  await Playground.findByIdAndDelete(id);
+  res.redirect('/playgrounds');
+});
+
 app.listen(process.env.PORT, () => {
   console.log(`App is listening on PORT ${process.env.PORT}.`);
 });

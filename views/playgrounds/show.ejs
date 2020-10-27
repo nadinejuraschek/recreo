@@ -8,6 +8,9 @@
 <body>
   <h1><%= playground.title %></h1>
   <h2><%= playground.location %></h2>
+  <form action="/playgrounds/<%= playground._id %>?_method=DELETE" method="POST">
+    <button>Delete</button>
+  </form>
   <footer>
     <a href="/playgrounds">All Playgrounds</a>
     <a href="/playgrounds/<%= playground._id %>/edit">Edit Playground</a>
