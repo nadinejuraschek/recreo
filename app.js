@@ -4,6 +4,7 @@ const express = require('express'),
   methodOverride = require('method-override'),
   ejsMate = require('ejs-mate'),
   path = require('path'),
+  catchAsync = require('./utils/catchAsync'),
   Playground = require('./models/Playground');
 
 dotenv.config();
@@ -39,41 +40,45 @@ app.get('/', (req, res) => {
   res.render('home');
 });
 
-app.get('/playgrounds', async (req, res) => {
+app.get('/playgrounds', catchAsync(async (req, res) => {
   const playgrounds = await Playground.find({});
   res.render('playgrounds/index', { playgrounds });
-});
+}));
 
 app.get('/playgrounds/new', (req, res) => {
   res.render('playgrounds/new');
 });
 
-app.get('/playgrounds/:id', async (req, res) => {
+app.get('/playgrounds/:id', catchAsync(async (req, res) => {
   const playground = await Playground.findById(req.params.id);
   res.render('playgrounds/show', { playground });
-});
+}));
 
-app.get('/playgrounds/:id/edit', async (req, res) => {
+app.get('/playgrounds/:id/edit', catchAsync(async (req, res) => {
   const playground = await Playground.findById(req.params.id);
   res.render('playgrounds/edit', { playground });
-});
+}));
 
-app.post('/playgrounds', async (req, res) => {
+app.post('/playgrounds', catchAsync(async (req, res, next) => {
   const playground = new Playground(req.body.playground);
   await playground.save();
   res.redirect(`/playgrounds/${playground._id}`);
-});
+}));
 
-app.put('/playgrounds/:id', async (req, res) => {
+app.put('/playgrounds/:id', catchAsync(async (req, res) => {
   const { id } = req.params;
   await Playground.findByIdAndUpdate(id, { ...req.body.playground });
   res.redirect(`/playgrounds/${id}`);
-});
+}));
 
-app.delete('/playgrounds/:id', async (req, res) => {
+app.delete('/playgrounds/:id', catchAsync(async (req, res) => {
   const { id } = req.params;
   await Playground.findByIdAndDelete(id);
   res.redirect('/playgrounds');
+}));
+
+app.use((err, req, res, next) => {
+  res.send("Something went wrong!");
 });
 
 app.listen(process.env.PORT, () => {
