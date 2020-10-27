@@ -21,9 +21,13 @@ const seedDB = async () => {
   await Playground.deleteMany({});
   for (let i = 0; i < 50; i++) {
     const random1000 = Math.floor(Math.random() * 1000);
+    const price = Math.floor(Math.random() * 20) + 10;
     const playgrounds = new Playground({
       location: `${cities[random1000].city}, ${cities[random1000].state}`,
       title: `${sample(descriptors)} ${sample(places)}`,
+      image: 'https://images.pexels.com/photos/571249/pexels-photo-571249.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+      description: 'Helvetica poke tote bag etsy adaptogen authentic knausgaard. +1 meggings direct trade shabby chic aliqua freegan. Pickled knausgaard jianbing asymmetrical everyday carry single-origin coffee. Do tacos mlkshk quis 8-bit ullamco vice cloud bread organic minim hell of fingerstache heirloom tumblr.',
+      price,
     });
     await playgrounds.save();
   };
