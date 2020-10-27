@@ -1,25 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Playground</title>
-</head>
-<body>
-  <form action="/playgrounds/<%= playground._id %>?_method=PUT" method="POST">
-    <div>
-      <label for="title">Title</label>
-      <input type="text" id="title" name="playground[title]" value="<%= playground.title %>">
-    </div>
-    <div>
-      <label for="location">Location</label>
-      <input type="text" id="location" name="playground[location]" value="<%= playground.location %>">
-    </div>
-    <button>Update Playground</button>
-  </form>
-  <footer>
-    <a href="/playgrounds">All Playgrounds</a>
-    <a href="/playgrounds/<%= playground._id %>">Back to Playground</a>
-  </footer>
-</body>
-</html>
+<% layout('layouts/boilerplate') %>
+<form action="/playgrounds/<%= playground._id %>?_method=PUT" method="POST">
+  <div>
+    <label for="title">Title</label>
+    <input
+      type="text"
+      id="title"
+      name="playground[title]"
+      value="<%= playground.title %>"
+    />
+  </div>
+  <div>
+    <label for="location">Location</label>
+    <input
+      type="text"
+      id="location"
+      name="playground[location]"
+      value="<%= playground.location %>"
+    />
+  </div>
+  <button>Update Playground</button>
+</form>
+<footer>
+  <a href="/playgrounds">All Playgrounds</a>
+  <a href="/playgrounds/<%= playground._id %>">Back to Playground</a>
+</footer>
