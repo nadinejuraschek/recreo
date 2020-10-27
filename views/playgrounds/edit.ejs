@@ -3,7 +3,7 @@
 <div class="row">
   <h1 class="text-center">Edit <%= playground.title %></h1>
   <div class="col-6 offset-3">
-    <form action="/playgrounds/<%= playground._id %>?_method=PUT" method="POST">
+    <form class="validatedForm" action="/playgrounds/<%= playground._id %>?_method=PUT" method="POST">
       <div class="mb-3">
         <label class="form-label" for="title">Title</label>
         <input class="form-control" type="text" id="title" name="playground[title]" value="<%= playground.title %>" />
@@ -33,4 +33,3 @@
     </form>
   </div>
 </div>
-

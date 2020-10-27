@@ -3,22 +3,22 @@
 <div class="row">
   <h1 class="text-center">New Playground</h1>
   <div class="col-6 offset-3">
-    <form action="/playgrounds" method="POST">
+    <form class="validatedForm" action="/playgrounds" method="POST" novalidate>
       <div class="mb-3">
         <label class="form-label" for="title">Title</label>
-        <input class="form-control" type="text" id="title" name="playground[title]" />
+        <input class="form-control" type="text" id="title" name="playground[title]" required />
       </div>
       <div class="mb-3">
         <label class="form-label" for="location">Location</label>
-        <input class="form-control" type="text" id="location" name="playground[location]" />
+        <input class="form-control" type="text" id="location" name="playground[location]" required />
       </div>
       <div class="mb-3">
         <label class="form-label" for="image">Image URL</label>
-        <input class="form-control" type="text" id="image" name="playground[image]" />
+        <input class="form-control" type="text" id="image" name="playground[image]" required />
       </div>
       <div class="mb-3">
         <label class="form-label" for="description">Description</label>
-        <textarea class="form-control" type="text" id="description" name="playground[description]"></textarea>
+        <textarea class="form-control" type="text" id="description" name="playground[description]" required ></textarea>
       </div>
       <div>
         <label class="form-label" for="price">Price</label>
