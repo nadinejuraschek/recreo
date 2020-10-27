@@ -1,20 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Playgrounds</title>
-</head>
-<body>
-  <h1>All Playgrounds</h1>
-  <ul>
-    <% for (let playground of playgrounds) { %>
-      <li><a href='/playgrounds/<%= playground._id %>'><%= playground.title %></a></li>
-    <% } %>
-  </ul>
-  <footer>
-    <a href="/playgrounds">All Playgrounds</a>
-    <a href="/playgrounds/new">Create Playground</a>
-  </footer>
-</body>
-</html>
+<% layout('layouts/boilerplate') %>
+
+<h1>All Playgrounds</h1>
+<ul>
+  <% for (let playground of playgrounds) { %>
+  <li>
+    <a href="/playgrounds/<%= playground._id %>"><%= playground.title %></a>
+  </li>
+  <% } %>
+</ul>
+<footer>
+  <a href="/playgrounds">All Playgrounds</a>
+  <a href="/playgrounds/new">Create Playground</a>
+</footer>

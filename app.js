@@ -1,9 +1,10 @@
 const express = require('express'),
-mongoose = require('mongoose'),
-dotenv = require('dotenv'),
-path = require('path'),
-methodOverride = require('method-override'),
-Playground = require('./models/Playground');
+  mongoose = require('mongoose'),
+  dotenv = require('dotenv'),
+  methodOverride = require('method-override'),
+  ejsMate = require('ejs-mate'),
+  path = require('path'),
+  Playground = require('./models/Playground');
 
 dotenv.config();
 
@@ -24,13 +25,14 @@ db.once('open', () => {
 const app = express();
 
 // EJS
+app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
 
 // MIDDLEWARE
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
-
 
 // ROUTES
 app.get('/', (req, res) => {
