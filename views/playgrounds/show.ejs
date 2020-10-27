@@ -1,8 +1,23 @@
 <% layout('layouts/boilerplate') %>
-<h1><%= playground.title %></h1>
-<h2><%= playground.location %></h2>
-<img src="<%= playground.image %>" alt="<%= playground.title %>" />
-<p><%= playground.description %></p>
-<form action="/playgrounds/<%= playground._id %>?_method=DELETE" method="POST">
-  <button>Delete</button>
-</form>
+<div class="row">
+  <div class="col-6 offset-3">
+    <div class="card">
+      <img src="<%= playground.image %>" class="card-img-top" alt="<%= playground.title %>" />
+      <div class="card-body">
+        <h5 class="card-title"><%= playground.title %></h5>
+        <p class="card-text"><%= playground.description %></p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item text-muted"><%= playground.location %></li>
+        <li class="list-group-item">$<%= playground.price %>/day</li>
+      </ul>
+      <div class="card-body">
+        <a href="/playgrounds/<%= playground._id %>/edit" class="card-link btn btn-info">Edit</a>
+          <form class="d-inline" action="/playgrounds/<%= playground._id %>?_method=DELETE" method="POST">
+            <button class="card-link btn btn-danger">Delete</button>
+          </form>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
