@@ -17,9 +17,7 @@
   <body class="d-flex flex-column vh-100">
     <%- include('../partials/navbar') %>
 
-    <main class="container mt-5">
-      <%- body %>
-    </main>
+    <main class="container mt-5"><%- body %></main>
 
     <%- include('../partials/footer') %>
 
@@ -34,5 +32,27 @@
       integrity="sha384-5h4UG+6GOuV9qXh6HqOLwZMY4mnLPraeTrjT5v07o347pj6IkfuoASuGBhfDsp3d"
       crossorigin="anonymous"
     ></script>
+    <script>
+      (function () {
+        'use strict';
+
+        const forms = document.querySelectorAll('.validatedForm');
+
+        Array.from(forms).forEach(function (form) {
+          form.addEventListener(
+            'submit',
+            function (event) {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+
+              form.classList.add('was-validated');
+            },
+            false
+          );
+        });
+      })();
+    </script>
   </body>
 </html>
