@@ -3,11 +3,12 @@ const express = require('express'),
   dotenv = require('dotenv'),
   methodOverride = require('method-override'),
   ejsMate = require('ejs-mate'),
-  Joi = require('joi'),
   path = require('path'),
   catchAsync = require('./utils/catchAsync'),
   ExpressError = require('./utils/ExpressError'),
   Playground = require('./models/Playground');
+
+const { playgroundSchema } = require('./schemas.js');
 
 dotenv.config();
 
@@ -38,16 +39,6 @@ app.use(methodOverride('_method'));
 
 // ERROR HANDLING
 const validatePlayground = (req, res, next) => {
-  // JOI VALIDATION
-  const playgroundSchema = Joi.object({
-    playground: Joi.object({
-      title: Joi.string().required(),
-      price: Joi.number().required().min(0),
-      description: Joi.string().required(),
-      image: Joi.string().required(),
-      location: Joi.string().required(),
-    }).required(),
-  });
   const { error } = playgroundSchema.validate(req.body);
   if (error) {
     const msg = error.details.map(item => item.message).join(',');
