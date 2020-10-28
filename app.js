@@ -79,7 +79,7 @@ app.get('/playgrounds/new', (req, res) => {
 app.get(
   '/playgrounds/:id',
   catchAsync(async (req, res) => {
-    const playground = await Playground.findById(req.params.id);
+    const playground = await Playground.findById(req.params.id).populate('reviews');
     res.render('playgrounds/show', { playground });
   })
 );
