@@ -9,7 +9,7 @@ const express = require('express'),
   Playground = require('./models/Playground'),
   Review = require('./models/Review');
 
-const { playgroundSchema } = require('./schemas.js');
+const { playgroundSchema, reviewSchema } = require('./schemas.js');
 
 dotenv.config();
 
@@ -41,6 +41,16 @@ app.use(methodOverride('_method'));
 // ERROR HANDLING
 const validatePlayground = (req, res, next) => {
   const { error } = playgroundSchema.validate(req.body);
+  if (error) {
+    const msg = error.details.map(item => item.message).join(',');
+    throw new ExpressError(msg, 400);
+  } else {
+    next();
+  };
+};
+
+const validateReview = (req, res, next) => {
+  const { error } = reviewSchema.validate(req.body);
   if (error) {
     const msg = error.details.map(item => item.message).join(',');
     throw new ExpressError(msg, 400);
@@ -110,7 +120,7 @@ app.delete(
 );
 
 // REVIEW ROUTES
-app.post('/playgrounds/:id/review', catchAsync(async (req, res) => {
+app.post('/playgrounds/:id/review', validateReview, catchAsync(async (req, res) => {
   const playground = await Playground.findById(req.params.id);
   const review = new Review(req.body.review);
   playground.reviews.push(review);

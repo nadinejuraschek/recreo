@@ -20,14 +20,14 @@
       </div>
     </div>
     <h2>Leave a Review</h2>
-    <form action="/playgrounds/<%= playground._id %>/review" class="mb-5" method="POST">
+    <form action="/playgrounds/<%= playground._id %>/review" class="validatedForm mb-5" method="POST">
       <div class="mb-3">
         <label class="form-label" for="rating">Rating</label>
         <input class="form-range" type="range" name="review[rating]" id="rating" min="1" max="5" />
       </div>
       <div class="mb-3">
         <label class="form-label" for="body">Review:</label>
-        <textarea class="form-control" name="review[body]" id="review" cols="30" rows="3"></textarea>
+        <textarea class="form-control" name="review[body]" id="review" cols="30" rows="3" required></textarea>
       </div>
       <button class="btn btn-success">Submit</button>
     </form>
