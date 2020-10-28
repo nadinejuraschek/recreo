@@ -6,7 +6,8 @@ const express = require('express'),
   path = require('path'),
   catchAsync = require('./utils/catchAsync'),
   ExpressError = require('./utils/ExpressError'),
-  Playground = require('./models/Playground');
+  Playground = require('./models/Playground'),
+  Review = require('./models/Review');
 
 const { playgroundSchema } = require('./schemas.js');
 
@@ -107,6 +108,16 @@ app.delete(
     res.redirect('/playgrounds');
   })
 );
+
+// REVIEW ROUTES
+app.post('/playgrounds/:id/review', catchAsync(async (req, res) => {
+  const playground = await Playground.findById(req.params.id);
+  const review = new Review(req.body.review);
+  playground.reviews.push(review);
+  await review.save();
+  await playground.save();
+  res.redirect(`/playgrounds/${playground._id}`);
+}));
 
 app.all('*', (req, res, next) => {
   next(new ExpressError('Page Not Found', 404));

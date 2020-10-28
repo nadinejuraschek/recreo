@@ -20,10 +20,10 @@
       </div>
     </div>
     <h2>Leave a Review</h2>
-    <form action="" class="mb-5">
+    <form action="/playgrounds/<%= playground._id %>/review" class="mb-5" method="POST">
       <div class="mb-3">
         <label class="form-label" for="rating">Rating</label>
-        <input class="form-range" type="range" id="rating" min="1" max="5" />
+        <input class="form-range" type="range" name="review[rating]" id="rating" min="1" max="5" />
       </div>
       <div class="mb-3">
         <label class="form-label" for="body">Review:</label>
