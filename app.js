@@ -129,6 +129,13 @@ app.post('/playgrounds/:id/review', validateReview, catchAsync(async (req, res) 
   res.redirect(`/playgrounds/${playground._id}`);
 }));
 
+app.delete('/playgrounds/:id/review/:reviewid', catchAsync(async (req, res) => {
+  const { id, reviewid } = req.params;
+  await Playground.findByIdAndUpdate(id, { $pull: { reviews: reviewid } });
+  await Review.findByIdAndDelete(reviewid);
+  res.redirect(`/playgrounds/${id}`);
+}));
+
 app.all('*', (req, res, next) => {
   next(new ExpressError('Page Not Found', 404));
 });
