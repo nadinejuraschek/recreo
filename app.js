@@ -131,6 +131,7 @@ app.post('/playgrounds/:id/review', validateReview, catchAsync(async (req, res) 
 
 app.delete('/playgrounds/:id/review/:reviewid', catchAsync(async (req, res) => {
   const { id, reviewid } = req.params;
+  // find review connection in playground entry and remove association
   await Playground.findByIdAndUpdate(id, { $pull: { reviews: reviewid } });
   await Review.findByIdAndDelete(reviewid);
   res.redirect(`/playgrounds/${id}`);
