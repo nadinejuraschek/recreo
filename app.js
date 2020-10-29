@@ -3,13 +3,12 @@ const express = require('express'),
   dotenv = require('dotenv'),
   methodOverride = require('method-override'),
   ejsMate = require('ejs-mate'),
+  session = require('express-session'),
+  flash = require('connect-flash'),
   path = require('path'),
-  catchAsync = require('./utils/catchAsync'),
   ExpressError = require('./utils/ExpressError'),
-  Playground = require('./models/Playground'),
-  Review = require('./models/Review');
-
-const { playgroundSchema, reviewSchema } = require('./schemas.js');
+  playgroundRoutes = require('./routes/playgrounds'),
+  reviewRoutes = require('./routes/reviews');
 
 dotenv.config();
 
@@ -37,105 +36,36 @@ app.set('views', path.join(__dirname, 'views'));
 // MIDDLEWARE
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
+app.use(express.static(path.join(__dirname, 'public')));
 
-// ERROR HANDLING
-const validatePlayground = (req, res, next) => {
-  const { error } = playgroundSchema.validate(req.body);
-  if (error) {
-    const msg = error.details.map(item => item.message).join(',');
-    throw new ExpressError(msg, 400);
-  } else {
-    next();
-  };
+// SESSION
+const sessionConfig = {
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+  },
 };
+app.use(session(sessionConfig));
+app.use(flash());
 
-const validateReview = (req, res, next) => {
-  const { error } = reviewSchema.validate(req.body);
-  if (error) {
-    const msg = error.details.map(item => item.message).join(',');
-    throw new ExpressError(msg, 400);
-  } else {
-    next();
-  };
-};
+// FLASH
+app.use((req, res, next) => {
+  res.locals.success = req.flash('success');
+  res.locals.error = req.flash('error');
+  next();
+});
 
 // ROUTES
 app.get('/', (req, res) => {
   res.render('home');
 });
 
-app.get(
-  '/playgrounds',
-  catchAsync(async (req, res) => {
-    const playgrounds = await Playground.find({});
-    res.render('playgrounds/index', { playgrounds });
-  })
-);
-
-app.get('/playgrounds/new', (req, res) => {
-  res.render('playgrounds/new');
-});
-
-app.get(
-  '/playgrounds/:id',
-  catchAsync(async (req, res) => {
-    const playground = await Playground.findById(req.params.id).populate('reviews');
-    res.render('playgrounds/show', { playground });
-  })
-);
-
-app.get(
-  '/playgrounds/:id/edit',
-  catchAsync(async (req, res) => {
-    const playground = await Playground.findById(req.params.id);
-    res.render('playgrounds/edit', { playground });
-  })
-);
-
-app.post(
-  '/playgrounds', validatePlayground,
-  catchAsync(async (req, res, next) => {
-    const playground = new Playground(req.body.playground);
-    await playground.save();
-    res.redirect(`/playgrounds/${playground._id}`);
-  })
-);
-
-app.put(
-  '/playgrounds/:id', validatePlayground,
-  catchAsync(async (req, res) => {
-    const { id } = req.params;
-    await Playground.findByIdAndUpdate(id, { ...req.body.playground });
-    res.redirect(`/playgrounds/${id}`);
-  })
-);
-
-app.delete(
-  '/playgrounds/:id',
-  catchAsync(async (req, res) => {
-    const { id } = req.params;
-    await Playground.findByIdAndDelete(id);
-    res.redirect('/playgrounds');
-  })
-);
-
-// REVIEW ROUTES
-app.post('/playgrounds/:id/review', validateReview, catchAsync(async (req, res) => {
-  const playground = await Playground.findById(req.params.id);
-  const review = new Review(req.body.review);
-  playground.reviews.push(review);
-  await review.save();
-  await playground.save();
-  res.redirect(`/playgrounds/${playground._id}`);
-}));
-
-app.delete('/playgrounds/:id/review/:reviewid', catchAsync(async (req, res) => {
-  const { id, reviewid } = req.params;
-  // find review connection in playground entry and remove association
-  await Playground.findByIdAndUpdate(id, { $pull: { reviews: reviewid } });
-  await Review.findByIdAndDelete(reviewid);
-  res.redirect(`/playgrounds/${id}`);
-}));
+app.use('/playgrounds', playgroundRoutes);
+app.use('/playgrounds/:id/review', reviewRoutes);
 
 app.all('*', (req, res, next) => {
   next(new ExpressError('Page Not Found', 404));
