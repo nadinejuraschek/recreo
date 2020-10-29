@@ -4,6 +4,7 @@ const express = require('express'),
   methodOverride = require('method-override'),
   ejsMate = require('ejs-mate'),
   session = require('express-session'),
+  flash = require('connect-flash'),
   path = require('path'),
   ExpressError = require('./utils/ExpressError'),
   playgroundRoutes = require('./routes/playgrounds'),
@@ -42,8 +43,21 @@ const sessionConfig = {
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+  },
 };
 app.use(session(sessionConfig));
+app.use(flash());
+
+// FLASH
+app.use((req, res, next) => {
+  res.locals.success = req.flash('success');
+  res.locals.error = req.flash('error');
+  next();
+});
 
 // ROUTES
 app.get('/', (req, res) => {

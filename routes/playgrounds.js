@@ -18,6 +18,7 @@ const validatePlayground = (req, res, next) => {
   };
 };
 
+// READ
 router.get(
   '/',
   catchAsync(async (req, res) => {
@@ -48,31 +49,37 @@ router.get(
   })
 );
 
+// CREATE
 router.post(
   '/',
   validatePlayground,
   catchAsync(async (req, res, next) => {
     const playground = new Playground(req.body.playground);
     await playground.save();
+    req.flash('success', 'Successfully added a new playground!');
     res.redirect(`/playgrounds/${playground._id}`);
   })
 );
 
+// UPDATE
 router.put(
   '/:id',
   validatePlayground,
   catchAsync(async (req, res) => {
     const { id } = req.params;
     await Playground.findByIdAndUpdate(id, { ...req.body.playground });
+    req.flash('success', 'Successfully updated this playground!');
     res.redirect(`/playgrounds/${id}`);
   })
 );
 
+// DELETE
 router.delete(
   '/:id',
   catchAsync(async (req, res) => {
     const { id } = req.params;
     await Playground.findByIdAndDelete(id);
+    req.flash('success', 'The playground has been removed.');
     res.redirect('/playgrounds');
   })
 );

@@ -25,6 +25,7 @@ router.post('/', validateReview, catchAsync(async (req, res) => {
   playground.reviews.push(review);
   await review.save();
   await playground.save();
+  req.flash('success', 'Your review was created!');
   res.redirect(`/playgrounds/${playground._id}`);
 }));
 
@@ -33,6 +34,7 @@ router.delete('/:reviewid', catchAsync(async (req, res) => {
   // find review connection in playground entry and remove association
   await Playground.findByIdAndUpdate(id, { $pull: { reviews: reviewid } });
   await Review.findByIdAndDelete(reviewid);
+  req.flash('success', 'Your review has been removed.');
   res.redirect(`/playgrounds/${id}`);
 }));
 
