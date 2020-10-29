@@ -37,6 +37,10 @@ router.get(
     const playground = await Playground.findById(req.params.id).populate(
       'reviews'
     );
+    if (!playground) {
+      req.flash('error', 'This playground cannot be found.');
+      return res.redirect('/playgrounds');
+    };
     res.render('playgrounds/show', { playground });
   })
 );
