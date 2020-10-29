@@ -44,7 +44,9 @@ router.post('/login', passport.authenticate('local', {
   failureRedirect: '/login',
 }), catchAsync(async (req, res) => {
   req.flash('success', 'Welcome back!');
-  res.redirect('/playgrounds');
+  const redirectUrl = req.session.returnTo || '/playgrounds';
+  delete req.session.returnTo;
+  res.redirect(redirectUrl);
 }));
 
 // REGISTER
