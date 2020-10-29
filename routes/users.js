@@ -53,8 +53,11 @@ router.post('/register', catchAsync(async (req, res) => {
     const { username, email, password } = req.body;
     const user = new User({ email, username });
     const registeredUser = await User.register(user, password);
-    req.flash('success', "Welcome to Recreo!");
-    res.redirect('/playgrounds');
+    req.login(registeredUser, err => {
+      if (err) return next(err);
+      req.flash('success', "Welcome to Recreo!");
+      res.redirect('/playgrounds');
+    });
   } catch(err) {
     req.flash('error', err.message);
     res.redirect('/playgrounds');
