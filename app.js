@@ -6,9 +6,10 @@ const express = require('express'),
   path = require('path'),
   catchAsync = require('./utils/catchAsync'),
   ExpressError = require('./utils/ExpressError'),
-  Playground = require('./models/Playground');
+  Playground = require('./models/Playground'),
+  Review = require('./models/Review');
 
-const { playgroundSchema } = require('./schemas.js');
+const { playgroundSchema, reviewSchema } = require('./schemas.js');
 
 dotenv.config();
 
@@ -48,6 +49,16 @@ const validatePlayground = (req, res, next) => {
   };
 };
 
+const validateReview = (req, res, next) => {
+  const { error } = reviewSchema.validate(req.body);
+  if (error) {
+    const msg = error.details.map(item => item.message).join(',');
+    throw new ExpressError(msg, 400);
+  } else {
+    next();
+  };
+};
+
 // ROUTES
 app.get('/', (req, res) => {
   res.render('home');
@@ -68,7 +79,7 @@ app.get('/playgrounds/new', (req, res) => {
 app.get(
   '/playgrounds/:id',
   catchAsync(async (req, res) => {
-    const playground = await Playground.findById(req.params.id);
+    const playground = await Playground.findById(req.params.id).populate('reviews');
     res.render('playgrounds/show', { playground });
   })
 );
@@ -107,6 +118,24 @@ app.delete(
     res.redirect('/playgrounds');
   })
 );
+
+// REVIEW ROUTES
+app.post('/playgrounds/:id/review', validateReview, catchAsync(async (req, res) => {
+  const playground = await Playground.findById(req.params.id);
+  const review = new Review(req.body.review);
+  playground.reviews.push(review);
+  await review.save();
+  await playground.save();
+  res.redirect(`/playgrounds/${playground._id}`);
+}));
+
+app.delete('/playgrounds/:id/review/:reviewid', catchAsync(async (req, res) => {
+  const { id, reviewid } = req.params;
+  // find review connection in playground entry and remove association
+  await Playground.findByIdAndUpdate(id, { $pull: { reviews: reviewid } });
+  await Review.findByIdAndDelete(reviewid);
+  res.redirect(`/playgrounds/${id}`);
+}));
 
 app.all('*', (req, res, next) => {
   next(new ExpressError('Page Not Found', 404));
