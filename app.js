@@ -5,8 +5,12 @@ const express = require('express'),
   ejsMate = require('ejs-mate'),
   session = require('express-session'),
   flash = require('connect-flash'),
+  passport = require('passport'),
+  LocalStrategy = require('passport-local'),
   path = require('path'),
   ExpressError = require('./utils/ExpressError'),
+  User = require('./models/User'),
+  userRoutes = require('./routes/users'),
   playgroundRoutes = require('./routes/playgrounds'),
   reviewRoutes = require('./routes/reviews');
 
@@ -50,10 +54,19 @@ const sessionConfig = {
   },
 };
 app.use(session(sessionConfig));
-app.use(flash());
 
 // FLASH
+app.use(flash());
+
+// PASSPORT
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
   next();
@@ -64,6 +77,7 @@ app.get('/', (req, res) => {
   res.render('home');
 });
 
+app.use('/', userRoutes);
 app.use('/playgrounds', playgroundRoutes);
 app.use('/playgrounds/:id/review', reviewRoutes);
 
