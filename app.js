@@ -3,6 +3,7 @@ const express = require('express'),
   dotenv = require('dotenv'),
   methodOverride = require('method-override'),
   ejsMate = require('ejs-mate'),
+  session = require('express-session'),
   path = require('path'),
   ExpressError = require('./utils/ExpressError'),
   playgroundRoutes = require('./routes/playgrounds'),
@@ -35,6 +36,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+// SESSION
+const sessionConfig = {
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true,
+};
+app.use(session(sessionConfig));
 
 // ROUTES
 app.get('/', (req, res) => {
