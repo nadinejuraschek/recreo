@@ -1,4 +1,5 @@
 const express = require('express'),
+  passport = require('passport'),
   catchAsync = require('../utils/catchAsync'),
   ExpressError = require('../utils/ExpressError'),
   User = require('../models/User'),
@@ -22,6 +23,9 @@ const validateUser = (req, res, next) => {
 
 // READ
 // LOGIN
+router.get('/login', (req, res) => {
+  res.render('users/login');
+});
 
 // REGISTER
 router.get('/register', (req, res) => {
@@ -30,9 +34,11 @@ router.get('/register', (req, res) => {
 
 // CREATE
 // LOGIN
-router.post('/login', catchAsync(async (req, res) => {
-  const user = new User();
-  const newUser = await User.register(user, '');
+router.post('/login', passport.authenticate('local', {
+  failureFlash: true,
+  failureRedirect: '/login',
+}), catchAsync(async (req, res) => {
+  req.flash('success', 'Welcome back!');
   res.redirect('/playgrounds');
 }));
 
