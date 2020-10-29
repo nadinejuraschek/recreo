@@ -7,6 +7,9 @@ const express = require('express'),
 // VALIDATION
 const { playgroundSchema } = require('../schemas.js');
 
+// AUTHORIZATION
+const { isLoggedIn } = require('../middleware');
+
 // ERROR HANDLING
 const validatePlayground = (req, res, next) => {
   const { error } = playgroundSchema.validate(req.body);
@@ -27,7 +30,7 @@ router.get(
   })
 );
 
-router.get('/new', (req, res) => {
+router.get('/new', isLoggedIn, (req, res) => {
   res.render('playgrounds/new');
 });
 
@@ -47,6 +50,7 @@ router.get(
 
 router.get(
   '/:id/edit',
+  isLoggedIn,
   catchAsync(async (req, res) => {
     const playground = await Playground.findById(req.params.id);
     res.render('playgrounds/edit', { playground });
@@ -56,6 +60,7 @@ router.get(
 // CREATE
 router.post(
   '/',
+  isLoggedIn,
   validatePlayground,
   catchAsync(async (req, res, next) => {
     const playground = new Playground(req.body.playground);
@@ -68,6 +73,7 @@ router.post(
 // UPDATE
 router.put(
   '/:id',
+  isLoggedIn,
   validatePlayground,
   catchAsync(async (req, res) => {
     const { id } = req.params;

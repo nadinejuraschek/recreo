@@ -1,25 +1,23 @@
 const express = require('express'),
   passport = require('passport'),
   catchAsync = require('../utils/catchAsync'),
-  ExpressError = require('../utils/ExpressError'),
+  // ExpressError = require('../utils/ExpressError'),
   User = require('../models/User'),
-  Playground = require('../models/Playground'),
-  Review = require('../models/Review'),
   router = express.Router({ mergeParams: true });
 
 // VALIDATION
-const { userSchema } = require('../schemas.js');
+// const { userSchema } = require('../schemas.js');
 
 // ERROR HANDLING
-const validateUser = (req, res, next) => {
-  const { error } = reviewSchema.validate(req.body);
-  if (error) {
-    const msg = error.details.map(item => item.message).join(',');
-    throw new ExpressError(msg, 400);
-  } else {
-    next();
-  };
-};
+// const validateUser = (req, res, next) => {
+//   const { error } = reviewSchema.validate(req.body);
+//   if (error) {
+//     const msg = error.details.map(item => item.message).join(',');
+//     throw new ExpressError(msg, 400);
+//   } else {
+//     next();
+//   };
+// };
 
 // READ
 // LOGIN
