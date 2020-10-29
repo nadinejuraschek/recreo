@@ -30,6 +30,13 @@ router.get('/register', (req, res) => {
   res.render('users/register');
 });
 
+// LOGOUT
+router.get('/logout', (req, res) => {
+  req.logout();
+  req.flash('success', 'See you again soon!');
+  res.redirect('/');
+});
+
 // CREATE
 // LOGIN
 router.post('/login', passport.authenticate('local', {
