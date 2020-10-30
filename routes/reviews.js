@@ -5,11 +5,12 @@ const express = require('express'),
   router = express.Router({ mergeParams: true });
 
 // MIDDLEWARE
-const { validateReview, isAuthor } = require('../middleware');
+const { validateReview, isLoggedIn, isAuthor } = require('../middleware');
 
-router.post('/', validateReview, catchAsync(async (req, res) => {
+router.post('/', isLoggedIn, validateReview, catchAsync(async (req, res) => {
   const playground = await Playground.findById(req.params.id);
   const review = new Review(req.body.review);
+  review.author = req.user._id;
   playground.reviews.push(review);
   await review.save();
   await playground.save();
@@ -17,7 +18,7 @@ router.post('/', validateReview, catchAsync(async (req, res) => {
   res.redirect(`/playgrounds/${playground._id}`);
 }));
 
-router.delete('/:reviewid', catchAsync(async (req, res) => {
+router.delete('/:reviewid', isLoggedIn, catchAsync(async (req, res) => {
   const { id, reviewid } = req.params;
   // find review connection in playground entry and remove association
   await Playground.findByIdAndUpdate(id, { $pull: { reviews: reviewid } });

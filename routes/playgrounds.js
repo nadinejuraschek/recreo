@@ -23,7 +23,12 @@ router.get(
   '/:id',
   catchAsync(async (req, res) => {
     const playground = await Playground.findById(req.params.id)
-      .populate('reviews')
+      .populate({
+        path: 'reviews',
+        populate: {
+          path: 'author',
+        },
+      })
       .populate('author');
     if (!playground) {
       req.flash('error', 'This playground cannot be found.');
