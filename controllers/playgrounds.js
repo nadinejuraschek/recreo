@@ -38,12 +38,16 @@ module.exports.create = async (req, res, next) => {
 
 module.exports.edit = async (req, res) => {
   const { id } = req.params;
-  const editedPlayground = await Playground.findByIdAndUpdate(id, {
+  const playground = await Playground.findByIdAndUpdate(id, {
     ...req.body.playground,
   });
   const newImages = req.files.map(file => ({ url: file.path, filename: file.filename }));
-  editedPlayground.images.push(...newImages);
-  await editedPlayground.save();
+  playground.images.push(...newImages);
+  await playground.save();
+  if (req.body.deleteImages) {
+    await playground.updateOne({ $pull: { images: { filename: {$in: req.body.deleteImages } } } });
+    console.log(playground);
+  };
   req.flash('success', 'Successfully updated this playground!');
   res.redirect(`/playgrounds/${id}`);
 };

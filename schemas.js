@@ -5,9 +5,10 @@ module.exports.playgroundSchema = Joi.object({
     title: Joi.string().required(),
     price: Joi.number().required().min(0),
     description: Joi.string().required(),
-    images: Joi.array().required(),
+    // images: Joi.array().required(),
     location: Joi.string().required(),
   }).required(),
+  deleteImages: Joi.array(),
 });
 
 module.exports.reviewSchema = Joi.object({
