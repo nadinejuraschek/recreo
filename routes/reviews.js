@@ -4,8 +4,8 @@ const express = require('express'),
   Review = require('../models/Review'),
   router = express.Router({ mergeParams: true });
 
-// VALIDATION
-const { validateReview } = require('../middleware');
+// MIDDLEWARE
+const { validateReview, isAuthor } = require('../middleware');
 
 router.post('/', validateReview, catchAsync(async (req, res) => {
   const playground = await Playground.findById(req.params.id);

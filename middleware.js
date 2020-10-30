@@ -1,10 +1,10 @@
 // VALIDATION
-const ExpressError = require('./utils/ExpressError');
+const ExpressError = require('./utils/ExpressError'),
+  Playground = require('./models/Playground');
 const { playgroundSchema, reviewSchema } = require('./schemas.js');
 
 // CHECK IF USER IS LOGGED IN
 module.exports.isLoggedIn = (req, res, next) => {
-  console.log('REQ.USER: ', req.user);
   if (!req.isAuthenticated()) {
     req.session.returnTo = req.originalUrl;
     req.flash('error', 'You must log in to use this feature.');

@@ -38,7 +38,7 @@ router.get(
   isLoggedIn,
   isAuthor,
   catchAsync(async (req, res) => {
-    const editedPlayground = await Playground.findById(req.params.id);
+    const playground = await Playground.findById(req.params.id);
     res.render('playgrounds/edit', { playground });
   })
 );
