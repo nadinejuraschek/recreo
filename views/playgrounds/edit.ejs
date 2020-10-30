@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="mb-3">
-        <label class="form-label">Upload Image(s)</label>
+        <label class="form-label">Add new image(s)...</label>
         <div class="form-file custom-file">
           <input type="file" class="form-file-input" id="image" name="image" multiple>
           <label class="form-file-label" for="image">
@@ -35,7 +35,7 @@
       </div>
       <div class="mb-3">
         <% playground.images.forEach((image, index) => { %>
-          <img class="img-thumbnail" src="<%= image.url %>" alt="<%= playground.title %>">
+          <img class="img-thumbnail" src="<%= image.thumbnail %>" alt="<%= playground.title %>">
           <div class="form-check-inline">
             <input type="checkbox" id="image-<%= index %>" name="deleteImages[]" value="<%= image.filename %>">
           </div>
