@@ -41,6 +41,9 @@ module.exports.edit = async (req, res) => {
   const editedPlayground = await Playground.findByIdAndUpdate(id, {
     ...req.body.playground,
   });
+  const newImages = req.files.map(file => ({ url: file.path, filename: file.filename }));
+  editedPlayground.images.push(...newImages);
+  await editedPlayground.save();
   req.flash('success', 'Successfully updated this playground!');
   res.redirect(`/playgrounds/${id}`);
 };

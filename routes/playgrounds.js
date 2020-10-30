@@ -29,6 +29,7 @@ router
   .put(
     isLoggedIn,
     isAuthor,
+    upload.array('image'),
     validatePlayground,
     catchAsync(playgroundController.edit)
   )
