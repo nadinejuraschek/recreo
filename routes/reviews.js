@@ -1,23 +1,11 @@
 const express = require('express'),
   catchAsync = require('../utils/catchAsync'),
-  ExpressError = require('../utils/ExpressError'),
   Playground = require('../models/Playground'),
   Review = require('../models/Review'),
   router = express.Router({ mergeParams: true });
 
 // VALIDATION
-const { reviewSchema } = require('../schemas.js');
-
-// ERROR HANDLING
-const validateReview = (req, res, next) => {
-  const { error } = reviewSchema.validate(req.body);
-  if (error) {
-    const msg = error.details.map(item => item.message).join(',');
-    throw new ExpressError(msg, 400);
-  } else {
-    next();
-  };
-};
+const { validateReview } = require('../middleware');
 
 router.post('/', validateReview, catchAsync(async (req, res) => {
   const playground = await Playground.findById(req.params.id);
