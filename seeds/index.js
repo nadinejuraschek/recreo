@@ -26,7 +26,7 @@ const seedDB = async () => {
       author: '5f9b17c121bdc058e1ea4895',
       location: `${cities[random1000].city}, ${cities[random1000].state}`,
       title: `${sample(descriptors)} ${sample(places)}`,
-      image: 'https://images.pexels.com/photos/571249/pexels-photo-571249.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+      images: [{ url: 'https://images.pexels.com/photos/571249/pexels-photo-571249.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260', filename: 'example image'}],
       description: 'Helvetica poke tote bag etsy adaptogen authentic knausgaard. +1 meggings direct trade shabby chic aliqua freegan. Pickled knausgaard jianbing asymmetrical everyday carry single-origin coffee. Do tacos mlkshk quis 8-bit ullamco vice cloud bread organic minim hell of fingerstache heirloom tumblr.',
       price,
     });
