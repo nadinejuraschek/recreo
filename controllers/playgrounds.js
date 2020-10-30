@@ -29,7 +29,9 @@ module.exports.showEditForm = async (req, res) => {
 module.exports.create = async (req, res, next) => {
   const playground = new Playground(req.body.playground);
   playground.author = req.user._id;
+  playground.images = req.files.map(file => ({ url: file.path, filename: file.filename }));
   await playground.save();
+  console.log(playground);
   req.flash('success', 'Successfully added a new playground!');
   res.redirect(`/playgrounds/${playground._id}`);
 };

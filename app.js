@@ -1,6 +1,9 @@
+if (process.env.NODE_ENV !== "production") {
+  require('dotenv').config();
+};
+
 const express = require('express'),
   mongoose = require('mongoose'),
-  dotenv = require('dotenv'),
   methodOverride = require('method-override'),
   ejsMate = require('ejs-mate'),
   session = require('express-session'),
@@ -13,8 +16,6 @@ const express = require('express'),
   userRoutes = require('./routes/users'),
   playgroundRoutes = require('./routes/playgrounds'),
   reviewRoutes = require('./routes/reviews');
-
-dotenv.config();
 
 // DATABASE
 mongoose.connect('mongodb://localhost:27017/recreo', {
