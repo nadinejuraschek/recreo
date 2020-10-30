@@ -18,7 +18,7 @@ const validatePlayground = (req, res, next) => {
     throw new ExpressError(msg, 400);
   } else {
     next();
-  };
+  }
 };
 
 // READ
@@ -37,13 +37,13 @@ router.get('/new', isLoggedIn, (req, res) => {
 router.get(
   '/:id',
   catchAsync(async (req, res) => {
-    const playground = await Playground.findById(req.params.id).populate(
-      'reviews'
-    );
+    const playground = await Playground.findById(req.params.id)
+      .populate('reviews')
+      .populate('author');
     if (!playground) {
       req.flash('error', 'This playground cannot be found.');
       return res.redirect('/playgrounds');
-    };
+    }
     res.render('playgrounds/show', { playground });
   })
 );
@@ -64,6 +64,7 @@ router.post(
   validatePlayground,
   catchAsync(async (req, res, next) => {
     const playground = new Playground(req.body.playground);
+    playground.author = req.user._id;
     await playground.save();
     req.flash('success', 'Successfully added a new playground!');
     res.redirect(`/playgrounds/${playground._id}`);
