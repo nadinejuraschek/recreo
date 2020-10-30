@@ -1,6 +1,8 @@
 const express = require('express'),
+  multer = require('multer'),
   catchAsync = require('../utils/catchAsync'),
   playgroundController = require('../controllers/playgrounds'),
+  upload = multer({ dest: 'uploads/' }),
   router = express.Router();
 
 // MIDDLEWARE
@@ -9,11 +11,14 @@ const { isLoggedIn, isAuthor, validatePlayground } = require('../middleware');
 router
   .route('/')
   .get(catchAsync(playgroundController.getPlaygrounds))
-  .post(
-    isLoggedIn,
-    validatePlayground,
-    catchAsync(playgroundController.create)
-  );
+  // .post(
+  //   isLoggedIn,
+  //   validatePlayground,
+  //   catchAsync(playgroundController.create)
+  // );
+  .post(upload.array('image'), (req, res) => {
+    console.log(req.body, req.files);
+  });
 
 router.get('/new', isLoggedIn, (req, res) => {
   res.render('playgrounds/new');
