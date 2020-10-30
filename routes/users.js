@@ -4,28 +4,29 @@ const express = require('express'),
   userController = require('../controllers/users'),
   router = express.Router({ mergeParams: true });
 
-// READ
 // LOGIN
-router.get('/login', (req, res) => {
-  res.render('users/login');
-});
+router
+  .route('/login')
+  .get((req, res) => {
+    res.render('users/login');
+  })
+  .post(
+    passport.authenticate('local', {
+      failureFlash: true,
+      failureRedirect: '/login',
+    }),
+    catchAsync(userController.login)
+  );
 
 // REGISTER
-router.get('/register', (req, res) => {
-  res.render('users/register');
-});
+router
+  .route('/register')
+  .get((req, res) => {
+    res.render('users/register');
+  })
+  .post(catchAsync(userController.register));
 
 // LOGOUT
 router.get('/logout', userController.logout);
-
-// CREATE
-// LOGIN
-router.post('/login', passport.authenticate('local', {
-  failureFlash: true,
-  failureRedirect: '/login',
-}), catchAsync(userController.login));
-
-// REGISTER
-router.post('/register', catchAsync(userController.register));
 
 module.exports = router;

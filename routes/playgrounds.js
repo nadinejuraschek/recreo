@@ -6,51 +6,35 @@ const express = require('express'),
 // MIDDLEWARE
 const { isLoggedIn, isAuthor, validatePlayground } = require('../middleware');
 
-// READ
-router.get(
-  '/',
-  catchAsync(playgroundController.getPlaygrounds)
-);
+router
+  .route('/')
+  .get(catchAsync(playgroundController.getPlaygrounds))
+  .post(
+    isLoggedIn,
+    validatePlayground,
+    catchAsync(playgroundController.create)
+  );
 
 router.get('/new', isLoggedIn, (req, res) => {
   res.render('playgrounds/new');
 });
 
-router.get(
-  '/:id',
-  catchAsync(playgroundController.getSinglePlayground)
-);
+router
+  .route('/:id')
+  .get(catchAsync(playgroundController.getSinglePlayground))
+  .put(
+    isLoggedIn,
+    isAuthor,
+    validatePlayground,
+    catchAsync(playgroundController.edit)
+  )
+  .delete(isLoggedIn, isAuthor, catchAsync(playgroundController.delete));
 
 router.get(
   '/:id/edit',
   isLoggedIn,
   isAuthor,
   catchAsync(playgroundController.showEditForm)
-);
-
-// CREATE
-router.post(
-  '/',
-  isLoggedIn,
-  validatePlayground,
-  catchAsync(playgroundController.create)
-);
-
-// UPDATE
-router.put(
-  '/:id',
-  isLoggedIn,
-  isAuthor,
-  validatePlayground,
-  catchAsync(playgroundController.edit)
-);
-
-// DELETE
-router.delete(
-  '/:id',
-  isLoggedIn,
-  isAuthor,
-  catchAsync(playgroundController.delete)
 );
 
 module.exports = router;
