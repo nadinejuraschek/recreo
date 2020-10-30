@@ -53,6 +53,15 @@ router.get(
   isLoggedIn,
   catchAsync(async (req, res) => {
     const playground = await Playground.findById(req.params.id);
+    if (!playground) {
+      req.flash('error', 'Sorry, this playground could not be found.');
+      return res.redirect('/playgrounds');
+    };
+    if (!playground.author.equals(req.user._id)) {
+      req.flash('error', 'You do not have permission to edit this playground.');
+      return res.redirect(`/playgrounds/${req.params.id}`);
+    };
+    const editedPlayground = await Playground.findById(req.params.id);
     res.render('playgrounds/edit', { playground });
   })
 );
@@ -78,7 +87,12 @@ router.put(
   validatePlayground,
   catchAsync(async (req, res) => {
     const { id } = req.params;
-    await Playground.findByIdAndUpdate(id, { ...req.body.playground });
+    const playground = await Playground.findById(id);
+    if (!playground.author.equals(req.user._id)) {
+      req.flash('error', 'You do not have permission to edit this playground.');
+      return res.redirect(`/playgrounds/${id}`);
+    };
+    const editedPlayground = await Playground.findByIdAndUpdate(id, { ...req.body.playground });
     req.flash('success', 'Successfully updated this playground!');
     res.redirect(`/playgrounds/${id}`);
   })
@@ -89,7 +103,16 @@ router.delete(
   '/:id',
   catchAsync(async (req, res) => {
     const { id } = req.params;
-    await Playground.findByIdAndDelete(id);
+    const playground = await Playground.findById(id);
+    if (!playground) {
+      req.flash('error', 'Sorry, this playground could not be found.');
+      return res.redirect('/playgrounds');
+    };
+    if (!playground.author.equals(req.user._id)) {
+      req.flash('error', 'You do not have permission to delete this playground.');
+      return res.redirect(`/playgrounds/${id}`);
+    };
+    const deletedPlayground = await Playground.findByIdAndDelete(id);
     req.flash('success', 'The playground has been removed.');
     res.redirect('/playgrounds');
   })
