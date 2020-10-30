@@ -1,27 +1,16 @@
 const express = require('express'),
   catchAsync = require('../utils/catchAsync'),
-  ExpressError = require('../utils/ExpressError'),
   Playground = require('../models/Playground'),
   Review = require('../models/Review'),
   router = express.Router({ mergeParams: true });
 
-// VALIDATION
-const { reviewSchema } = require('../schemas.js');
+// MIDDLEWARE
+const { validateReview, isLoggedIn, isReviewAuthor } = require('../middleware');
 
-// ERROR HANDLING
-const validateReview = (req, res, next) => {
-  const { error } = reviewSchema.validate(req.body);
-  if (error) {
-    const msg = error.details.map(item => item.message).join(',');
-    throw new ExpressError(msg, 400);
-  } else {
-    next();
-  };
-};
-
-router.post('/', validateReview, catchAsync(async (req, res) => {
+router.post('/', isLoggedIn, validateReview, catchAsync(async (req, res) => {
   const playground = await Playground.findById(req.params.id);
   const review = new Review(req.body.review);
+  review.author = req.user._id;
   playground.reviews.push(review);
   await review.save();
   await playground.save();
@@ -29,7 +18,7 @@ router.post('/', validateReview, catchAsync(async (req, res) => {
   res.redirect(`/playgrounds/${playground._id}`);
 }));
 
-router.delete('/:reviewid', catchAsync(async (req, res) => {
+router.delete('/:reviewid', isLoggedIn, isReviewAuthor, catchAsync(async (req, res) => {
   const { id, reviewid } = req.params;
   // find review connection in playground entry and remove association
   await Playground.findByIdAndUpdate(id, { $pull: { reviews: reviewid } });
