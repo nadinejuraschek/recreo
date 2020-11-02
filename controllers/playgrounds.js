@@ -37,13 +37,12 @@ module.exports.create = async (req, res, next) => {
     query: req.body.playground.location,
     limit: 1,
   }).send();
-  
-  res.send(geoData.body.features[0].geometry);
-  // const playground = new Playground(req.body.playground);
-  // playground.author = req.user._id;
-  // await playground.save();
-  // req.flash('success', 'Successfully added a new playground!');
-  // res.redirect(`/playgrounds/${playground._id}`);
+  const playground = new Playground(req.body.playground);
+  playground.geometry = geoData.body.features[0].geometry;
+  playground.author = req.user._id;
+  await playground.save();
+  req.flash('success', 'Successfully added a new playground!');
+  res.redirect(`/playgrounds/${playground._id}`);
 };
 
 module.exports.edit = async (req, res) => {
