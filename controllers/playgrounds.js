@@ -1,4 +1,10 @@
-const Playground = require('../models/Playground');
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding'),
+  dotenv = require('dotenv'),
+  Playground = require('../models/Playground');
+
+dotenv.config();
+
+const geocoder = mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN });
 
 module.exports.getPlaygrounds = async (req, res) => {
   const playgrounds = await Playground.find({});
@@ -27,7 +33,12 @@ module.exports.showEditForm = async (req, res) => {
 };
 
 module.exports.create = async (req, res, next) => {
+  const geoData = await geocoder.forwardGeocode({
+    query: req.body.playground.location,
+    limit: 1,
+  }).send();
   const playground = new Playground(req.body.playground);
+  playground.geometry = geoData.body.features[0].geometry;
   playground.author = req.user._id;
   await playground.save();
   req.flash('success', 'Successfully added a new playground!');
