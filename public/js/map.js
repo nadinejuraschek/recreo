@@ -13,6 +13,6 @@ const map = new mapboxgl.Map({
 const marker = new mapboxgl.Marker()
   .setLngLat(coordinates)
   .setPopup(
-    new mapboxgl.Popup({ offset: 25 }).setHTML(`<h6>${name}</h6>`)
+    new mapboxgl.Popup({ offset: 25 }).setHTML(`<h6>${name}</h6><p>${address}</p>`)
   )
   .addTo(map);
