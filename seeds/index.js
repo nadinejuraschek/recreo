@@ -26,7 +26,7 @@ const seedDB = async () => {
       author: '5f9b17c121bdc058e1ea4895',
       geometry: {
         type: "Point",
-        coordinates: [-70.8967155, 42.51954],
+        coordinates: [cities[random1000].longitude, cities[random1000].latitude],
       },
       location: `${cities[random1000].city}, ${cities[random1000].state}`,
       title: `${sample(descriptors)} ${sample(places)}`,
