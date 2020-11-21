@@ -123,3 +123,6 @@ map.on('load', function () {
     map.getCanvas().style.cursor = '';
   });
 });
+
+// add zoom and rotation controls to the map
+map.addControl(new mapboxgl.NavigationControl());

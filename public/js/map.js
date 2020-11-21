@@ -10,9 +10,15 @@ const map = new mapboxgl.Map({
   zoom: 10,
 });
 
+// show marker and popup
 const marker = new mapboxgl.Marker()
   .setLngLat(coordinates)
   .setPopup(
-    new mapboxgl.Popup({ offset: 25 }).setHTML(`<h6>${name}</h6><p>${address}</p>`)
+    new mapboxgl.Popup({ offset: 25 }).setHTML(
+      `<h6>${name}</h6><p>${address}</p>`
+    )
   )
   .addTo(map);
+
+// add zoom and rotation controls to the map
+map.addControl(new mapboxgl.NavigationControl());
