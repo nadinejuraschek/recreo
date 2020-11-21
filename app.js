@@ -1,4 +1,5 @@
 const express = require('express'),
+  mongoSanitize = require('express-mongo-sanitize'),
   mongoose = require('mongoose'),
   dotenv = require('dotenv'),
   methodOverride = require('method-override'),
@@ -42,6 +43,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// MONGO SANITIZE
+app.use(mongoSanitize());
+
 // SESSION
 const sessionConfig = {
   secret: process.env.SECRET,
@@ -66,6 +70,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
+  console.log(req.query);
   res.locals.currentUser = req.user;
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
