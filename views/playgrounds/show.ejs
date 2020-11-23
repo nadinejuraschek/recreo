@@ -2,19 +2,14 @@
 <link rel="stylesheet" href="/css/starability.css">
 
 <div class="row">
-  <div class="col-6">
+  <h2 class="card-title"><%= playground.title %></h2>
+  <div class="text-muted"><%= playground.location %></div>
+  <div class="">$<%= playground.price %>/day</div>
+</div>
+<div class="row mt-4">
+  <div class="col-md-4">
     <div id="map"></div>
-    <div class="card">
-      <img src="<%= playground.image %>" class="card-img-top" alt="<%= playground.title %>" />
-      <div class="card-body">
-        <h5 class="card-title"><%= playground.title %></h5>
-        <p class="card-text"><%= playground.description %></p>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item text-muted"><%= playground.location %></li>
-        <li class="list-group-item">$<%= playground.price %>/day</li>
-      </ul>
-      <% if (currentUser && playground.author.equals(currentUser._id)) { %>
+    <% if (currentUser && playground.author.equals(currentUser._id)) { %>
       <div class="card-body">
         <a href="/playgrounds/<%= playground._id %>/edit" class="card-link btn btn-info">Edit</a>
           <form class="d-inline" action="/playgrounds/<%= playground._id %>?_method=DELETE" method="POST">
@@ -22,34 +17,23 @@
           </form>
         </a>
       </div>
-      <% } %>
-    </div>
-  </div>
-  <div class="col-6">
-    <% if (currentUser) { %>
-    <h2>Leave a Review</h2>
-    <form action="/playgrounds/<%= playground._id %>/review" class="validatedForm mb-5" method="POST">
-      <fieldset class="starability-grow mb-3">
-        <legend>Rating:</legend>
-        <input type="radio" id="first-rate1" name="review[rating]" checked value="1" />
-        <label for="first-rate1" title="Terrible">1 star</label>
-        <input type="radio" id="first-rate2" name="review[rating]" value="2" />
-        <label for="first-rate2" title="Not good">2 stars</label>
-        <input type="radio" id="first-rate3" name="review[rating]" value="3" />
-        <label for="first-rate3" title="Average">3 stars</label>
-        <input type="radio" id="first-rate4" name="review[rating]" value="4" />
-        <label for="first-rate4" title="Very good">4 stars</label>
-        <input type="radio" id="first-rate5" name="review[rating]" value="5" />
-        <label for="first-rate5" title="Amazing">5 stars</label>
-      </fieldset>
-      <div class="mb-3">
-        <label class="form-label" for="body">Review:</label>
-        <textarea class="form-control" name="review[body]" id="review" cols="30" rows="3" required></textarea>
-      </div>
-      <button class="btn btn-success">Submit</button>
     <% } %>
-    </form>
-      <% for (let review of playground.reviews) { %>
+  </div>
+  <div class="col-md-8">
+    <img src="<%= playground.image %>" class="card-img-top" alt="<%= playground.title %>" />
+  </div>
+</div>
+<div class="row mt-4">
+  <div class="col-md-8">
+    <h3 class="card-title">Description</h3>
+    <p class="card-text"><%= playground.description %></p>
+  </div>
+  <div class="col-md-4">
+    <h3 class="card-title">Amenities</h3>
+  </div>
+</div>
+<div class="row mt-4">
+    <% for (let review of playground.reviews) { %>
         <div class="card mb-3">
           <div class="card-body">
             <p class="starability-result" data-rating="<%= review.rating %>">
@@ -67,7 +51,29 @@
           </div>
         </div>
     <% } %>
-  </div>
+    <% if (currentUser) { %>
+      <h3>Leave a Review</h3>
+      <form action="/playgrounds/<%= playground._id %>/review" class="validatedForm mb-5" method="POST">
+        <fieldset class="starability-grow mb-3">
+          <legend>Rating:</legend>
+          <input type="radio" id="first-rate1" name="review[rating]" checked value="1" />
+          <label for="first-rate1" title="Terrible">1 star</label>
+          <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+          <label for="first-rate2" title="Not good">2 stars</label>
+          <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+          <label for="first-rate3" title="Average">3 stars</label>
+          <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+          <label for="first-rate4" title="Very good">4 stars</label>
+          <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+          <label for="first-rate5" title="Amazing">5 stars</label>
+        </fieldset>
+        <div class="mb-3">
+          <label class="form-label" for="body">Review:</label>
+          <textarea class="form-control" name="review[body]" id="review" cols="30" rows="3" required></textarea>
+        </div>
+        <button class="btn btn-success">Submit</button>
+      </form>
+    <% } %>
 </div>
 
 <script>
