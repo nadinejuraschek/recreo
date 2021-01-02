@@ -6,6 +6,10 @@
 
     <title>Recreo</title>
 
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+
     <!-- STYLESHEETS -->
     <link
       rel="stylesheet"
@@ -16,31 +20,33 @@
     <link rel="stylesheet" href="/css/home.css">
 
   </head>
-  <body class="d-flex text-center text-white bg-dark">
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-      <header class="mb-auto">
-        <div>
-          <h3 class="float-md-left mb-0">RECREO</h3>
-          <nav class="nav nav-masthead justify-content-center float-md-right">
-            <a href="/" aria-current="page" class="nav-link active">Home</a>
-            <a href="/playgrounds" class="nav-link">Playgrounds</a>
-            <% if(!currentUser) { %>
-              <a class="nav-link" href="/register">Register</a>
-              <a class="nav-link" href="/login">Log In</a>
-            <% } else { %>
-              <a class="nav-link" href="/logout">Log Out</a>
-            <% } %>
-          </nav>
+  <body>
+    <div class="bg-img"></div>
+    <div class="bg-wave">
+      <img src="/assets/wave.svg" alt="Wave" />
+    </div>
+    <div class="cover-container d-flex flex-column">
+      <nav class="nav d-flex">
+        <h3 class="nav-logo float-md-left mb-0">recreo</h3>
+        <div class="nav-links d-flex">
+          <a href="/" aria-current="page" class="nav-link active">Home</a>
+          <a href="/playgrounds" class="nav-link">Playgrounds</a>
+          <% if(!currentUser) { %>
+            <a class="nav-link" href="/register">Register</a>
+            <a class="nav-link" href="/login">Log In</a>
+          <% } else { %>
+            <a class="nav-link" href="/logout">Log Out</a>
+          <% } %>
         </div>
-      </header>
+      </nav>
 
-      <main class="px-3">
-        <h1>RECREO</h1>
-        <p class="lead">Welcome to Recreo! <br /> Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
-        <a href="/playgrounds" class="btn btn-lg btn-secondary font-weight-bold bg-white">Browse Playgrounds</a>
+      <main class="d-flex flex-column">
+        <h1 class="home-logo">recreo</h1>
+        <p class="lead">Find your next playground location.</p>
+        <a href="/playgrounds" class="d-flex btn btn-lg btn-secondary font-weight-bold">Let's Go!</a>
       </main>
 
-      <footer class="mt-auto text-white-50">
+      <footer class="footer mt-auto">
         <p>&copy; <%= new Date().getFullYear() %> Nadine Juraschek</p>
       </footer>
     </div>
