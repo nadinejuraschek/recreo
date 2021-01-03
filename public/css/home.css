@@ -7,6 +7,8 @@
 **/
 
 body {
+  font-family: 'Open Sans', 'Helvetica', sans-serif;
+  font-weight: 300;
   color: #3D405B;
 }
 
@@ -23,6 +25,8 @@ body {
   right: 0;
 
   background-image: linear-gradient(#ffffff40, #ffffff40), url('https://images.unsplash.com/photo-1552537595-b30edb7afd9d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80');
+  background-position: center 35%;
+
   width: 60vw;
   z-index: -2;
 }
@@ -56,7 +60,7 @@ body {
 
 .nav-logo,
 .home-logo {
-  font-family: 'Carter One', 'Arial', sans-serif;
+  font-family: 'Carter One', 'Helvetica', sans-serif;
 }
 
 .nav-links:not(:last-child) {
@@ -66,7 +70,7 @@ body {
 .nav-link {
   border-bottom: 0.25rem solid transparent;
   color: #ffffff;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .nav-link:hover {
@@ -81,12 +85,37 @@ body {
 
 main {
   height: calc(100vh - 130px);
+  padding: 60px;
 
   justify-content: center;
 }
 
-main > *:not(:last-child) {
-  margin-bottom: 3rem;
+.home-logo {
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+
+.lead {
+  font-size: 3.25rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  position: relative;
+
+  width: 40%;
+}
+
+.lead-line::after {
+  position: absolute;
+  left: 0;
+  bottom: 15px;
+
+  background-color: #F2CC8F;
+  border-radius: 5px;
+  content: '';
+  height: 15px;
+  width: 317px;
+  z-index: -1;
 }
 
 .btn-secondary {
@@ -98,7 +127,7 @@ main > *:not(:last-child) {
   justify-content: center;
 
   height: 60px;
-  width: 50%;
+  width: 47%;
 }
 
 .btn-secondary:hover {
