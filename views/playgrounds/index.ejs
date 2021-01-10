@@ -5,33 +5,34 @@
 <h1>All Playgrounds</h1>
 <div class="row">
   <% for (let playground of playgrounds) { %>
-  <div class="col-md-6 card mb-3">
-    <div class="row">
-      <div class="col-md-4">
-        <% if (playground.image) { %>
-        <img
-          class="img-fluid"
-          src="<%= playground.image %>"
-          alt="<%= playground.title %>"
-        />
-        <% } else { %>
-        <img class="img-fluid" src="" alt="<%= playground.title %>" />
-        <% } %>
+  <a class="place-card-link" href="/playgrounds/<%= playground._id %>">
+    <div class="place-card">
+      <% if (playground.image) { %>
+      <img
+        class="place-img"
+        src="<%= playground.image %>"
+        alt="<%= playground.title %>"
+      />
+      <% } else { %>
+      <img class="place-img" src="" alt="<%= playground.title %>" />
+      <% } %>
+      <div class="place-body">
+        <h5 class="place-title"><%= playground.title %></h5>
+        <p class="place-location">
+          <span class="location-icon">
+            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="map-marker-alt" class="svg-inline--fa fa-map-marker-alt fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path></svg>
+          </span>
+          <small class="location-text"><%= playground.location %></small>
+        </p>
       </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title"><%= playground.title %></h5>
-          <p class="card-text"><%= playground.description %></p>
-          <p class="card-text">
-            <small class="text-muted"><%= playground.location %></small>
-          </p>
-          <a class="btn btn-primary" href="/playgrounds/<%= playground._id %>"
-            >View Playground</a
-          >
-        </div>
+      <div class="place-rating">
+        <span class="rating-icon">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="svg-inline--fa fa-star fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
+        </span>
+        <small class="rating-text"><%= playground.rating || 4.2 %></small>
       </div>
     </div>
-  </div>
+  </a>
   <% } %>
 </div>
 

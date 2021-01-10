@@ -8,6 +8,9 @@
   --orange: #E07A5F;
   --blue__dark: #3D405B;
   --green: #81B29A;
+
+  --shadow__sm: #3D405B20;
+  --shadow__lg: #3D405B40;
 }
 
 /*******************************************
@@ -30,6 +33,10 @@ body {
   font-family: 'Open Sans', 'Helvetica', sans-serif;
   font-weight: 300;
   color: var(--blue__dark);
+}
+
+h1 {
+  font-weight: bold;
 }
 
 .nav {
@@ -75,4 +82,89 @@ body {
 .menu-icon {
   height: 4rem;
   fill: var(--blue__dark);
+}
+
+/*******************************************
+ PLACE CARD
+*******************************************/
+.place-card-link {
+  color: var(--blue__dark);
+  text-decoration: none;
+  translate: all 5s;
+
+  height: 25rem;
+  width: 20rem;
+}
+
+.place-card-link:hover {
+  color: var(--blue__dark);
+}
+
+.place-card-link:hover .place-card {
+  box-shadow: 0 2px 10px var(--shadow__lg);
+}
+
+.place-card {
+  border: none;
+  border-radius: 1.5rem;
+  box-shadow: 0 2px 6px var(--shadow__sm);
+  padding: 1.2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  justify-content: center;
+
+  height: 25rem;
+  width: 20rem;
+}
+
+.place-img {
+  border: none;
+  border-radius: 1.5rem;
+
+  object-fit: cover;
+  height: 12rem;
+  width: 100%;
+}
+
+.place-body {
+  height: 8.75rem;
+  padding: 1rem 0;
+}
+
+.place-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.place-location, .place-rating {
+  display: flex;
+  align-items: center;
+}
+
+.location-icon svg {
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.location-text {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.rating-icon {
+  color: var(--yellow);
+}
+
+.rating-icon svg {
+  height: 2.25rem;
+  width: 2.25rem;
+  margin-right: 0.7rem;
+}
+
+.rating-text {
+  font-size: 1.5rem;
 }
