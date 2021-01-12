@@ -27,7 +27,7 @@
 }
 
 /*******************************************
- NAVBAR
+ GENERAL
 *******************************************/
 body {
   font-family: 'Open Sans', 'Helvetica', sans-serif;
@@ -35,10 +35,24 @@ body {
   color: var(--blue__dark);
 }
 
+main {
+  max-width: 1400px;
+  padding: 24px;
+}
+
+@media screen and (min-width: 900px) {
+  main {
+    padding: 40px;
+  }
+}
+
 h1 {
   font-weight: bold;
 }
 
+/*******************************************
+ NAVBAR
+*******************************************/
 .nav {
   height: 80px;
   width: 100%;
@@ -50,6 +64,12 @@ h1 {
 .nav .container-fluid {
   background-color: var(--white);
   padding: 0 24px;
+}
+
+@media screen and (min-width: 900px) {
+  .nav .container-fluid {
+    padding: 0 40px;
+  }
 }
 
 .nav .navbar-brand {
@@ -85,15 +105,24 @@ h1 {
 }
 
 /*******************************************
- PLACE CARD
+ PLACE CARDS
 *******************************************/
+.index-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 380px));
+  grid-template-rows: auto;
+  grid-gap: 2rem;
+  justify-content: center;
+
+  width: 100%;
+}
+
 .place-card-link {
   color: var(--blue__dark);
   text-decoration: none;
   translate: all 5s;
 
-  height: 25rem;
-  width: 20rem;
+  height: 24rem;
 }
 
 .place-card-link:hover {
@@ -115,8 +144,7 @@ h1 {
   align-items: space-between;
   justify-content: center;
 
-  height: 25rem;
-  width: 20rem;
+  height: 24rem;
 }
 
 .place-img {
@@ -167,4 +195,16 @@ h1 {
 
 .rating-text {
   font-size: 1.5rem;
+}
+
+.index-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-num {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin: 0 1.5rem;
 }
