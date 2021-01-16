@@ -210,3 +210,32 @@ h1 {
   font-weight: bold;
   margin: 0 1.5rem;
 }
+
+/*******************************************
+ FOOTER
+*******************************************/
+footer {
+  color: var(--blue__dark);
+  height: 50px;
+  padding: 0 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (min-width: 900px) {
+  footer {
+    padding: 0 40px;
+  }
+}
+
+footer a, footer a:visited {
+  color: var(--blue__dark);
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--blue__dark);
+  text-decoration: none;
+}
