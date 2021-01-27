@@ -63,6 +63,26 @@ body {
   font-family: 'Carter One', 'Helvetica', sans-serif;
 }
 
+.nav-menu {
+
+}
+
+@media only screen and (min-width: 900px) {
+  .nav-menu {
+    display: none;
+  }
+}
+
+.nav-links {
+  display: none;
+}
+
+@media only screen and (min-width: 900px) {
+  .nav-links {
+    display: flex;
+  }
+}
+
 .nav-links:not(:last-child) {
   margin-right: 1rem;
 }
@@ -85,9 +105,23 @@ body {
 
 main {
   height: calc(100vh - 130px);
-  padding: 60px;
+  padding: 24px 0;
 
-  justify-content: center;
+  justify-content: flex-start;
+}
+
+@media only screen and (min-width: 768px) {
+  main {
+    justify-content: center;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  main {
+    padding: 60px;
+
+    justify-content: center;
+  }
 }
 
 .home-logo {
@@ -97,12 +131,26 @@ main {
 }
 
 .lead {
-  font-size: 3.25rem;
+  font-size: 2.75rem;
   font-weight: 600;
   margin-bottom: 2rem;
   position: relative;
 
-  width: 40%;
+  width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  .lead {
+    font-size: 3rem;
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .lead {
+    font-size: 3.25rem;
+    width: 40%;
+  }
 }
 
 .lead-line::after {
@@ -138,6 +186,12 @@ main {
 
 .footer {
   height: 50px;
+}
+
+@media only screen and (min-width: 900px) {
+  .footer, .footer a {
+    font-size: 1rem;
+  }
 }
 
 .footer a {
