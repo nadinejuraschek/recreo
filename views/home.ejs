@@ -18,6 +18,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/nav.css">
 
   </head>
   <body>
@@ -29,7 +30,17 @@
       <nav class="nav d-flex">
         <h3 class="nav-logo float-md-left mb-0">recreo</h3>
         <!-- MOBILE MENU -->
-        <div class="nav-menu">M</div>
+        <div id="nav-button" class="nav-menu">M</div>
+        <div id="nav-dropdown" class="nav-menu-dropdown hidden">
+          <a class="nav-menu-link active" href="/">Home</a>
+          <a class="nav-menu-link" href="/playgrounds">Playgrounds</a>
+          <% if(!currentUser) { %>
+            <a class="nav-menu-link" href="/register">Register</a>
+            <a class="nav-menu-link" href="/login">Log In</a>
+          <% } else { %>
+            <a class="nav-menu-link" href="/logout">Log Out</a>
+          <% } %>
+        </div>
 
         <!-- DESKTOP MENU -->
         <div class="nav-links">
@@ -66,5 +77,6 @@
       integrity="sha384-5h4UG+6GOuV9qXh6HqOLwZMY4mnLPraeTrjT5v07o347pj6IkfuoASuGBhfDsp3d"
       crossorigin="anonymous"
     ></script>
+    <script src="/js/nav.js"></script>
   </body>
 </html>
