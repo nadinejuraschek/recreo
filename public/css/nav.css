@@ -1,5 +1,16 @@
+.nav-menu {
+  height: 50px;
+  width: 50px;
+}
+
 .nav-menu:hover {
   cursor: pointer;
+}
+
+.nav-menu img {
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
 }
 
 .nav-menu-dropdown {
