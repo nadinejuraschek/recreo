@@ -17,6 +17,12 @@ body {
     display: none;
   }
 
+.bg-img-mobile img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
 @media only screen and (min-width: 768px) {
   .bg-img-desktop,
   .bg-wave-desktop {
@@ -161,17 +167,23 @@ main {
   }
 }
 
-.lead-line::after {
-  position: absolute;
-  left: 0;
-  bottom: 15px;
+.lead-line {
+  display: block;
+}
 
-  background-color: #F2CC8F;
-  border-radius: 5px;
-  content: '';
-  height: 15px;
-  width: 317px;
-  z-index: -1;
+@media only screen and (min-width: 900px) {
+  .lead-line::after {
+    position: absolute;
+    left: 0;
+    bottom: 15px;
+
+    background-color: #F2CC8F;
+    border-radius: 5px;
+    content: '';
+    height: 15px;
+    width: 317px;
+    z-index: -1;
+  }
 }
 
 .btn-secondary {

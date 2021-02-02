@@ -105,6 +105,34 @@ h1 {
 }
 
 /*******************************************
+ AUTH
+*******************************************/
+.auth-wrapper {
+  margin: 0 auto;
+}
+
+.auth-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 3rem;
+}
+
+.auth-btn {
+  margin-top: 3rem;
+}
+
+@media screen and (min-width: 900px) {
+  .auth-wrapper {
+    max-width: 60%;
+  }
+
+  .auth-btn {
+    margin: 3rem auto 0;
+    width: 250px;
+  }
+}
+
+/*******************************************
  PLACE CARDS
 *******************************************/
 .index-grid {
