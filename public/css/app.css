@@ -7,7 +7,12 @@
   --yellow__light: #F4F1DE;
   --orange: #E07A5F;
   --blue__dark: #3D405B;
+
+  --red: #e0685f;
+  --red__light: #e0685f50;
+
   --green: #81B29A;
+  --green__light: #81B29A50;
 
   --shadow__sm: #3D405B20;
   --shadow__lg: #3D405B40;
@@ -102,6 +107,37 @@ h1 {
 .menu-icon {
   height: 4rem;
   fill: var(--blue__dark);
+}
+
+/*******************************************
+ FLASH MESSAGES
+*******************************************/
+.alert-success,
+  .alert-danger {
+    color: var(--blue__dark);
+    margin-bottom: 24px;
+  }
+
+.alert-success {
+  background-color: var(--green__light);
+  border-color: var(--green);
+}
+
+.alert-success .btn-close,
+.alert-danger .btn-close {
+  color: var(--blue__dark);
+}
+
+.alert-danger {
+  background-color: var(--red__light);
+  border-color: var(--red);
+}
+
+@media screen and (min-width: 900px) {
+  .alert-success,
+  .alert-danger {
+    margin-bottom: 40px;
+  }
 }
 
 /*******************************************
