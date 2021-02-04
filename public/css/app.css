@@ -169,6 +169,33 @@ h1 {
 }
 
 /*******************************************
+ BUTTONS
+*******************************************/
+.btn-secondary {
+  background-color: #E07A5F;
+  border: none;
+  text-shadow: none;
+
+  align-items: center;
+  justify-content: center;
+
+  height: 50px;
+  width: 100%;
+}
+
+.btn-secondary:hover {
+  background-color: #e7886d;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+@media screen and (min-width: 900px) {
+  .btn-secondary {
+    width: 300px;
+  }
+}
+
+/*******************************************
  PLACE CARDS
 *******************************************/
 .index-grid {
