@@ -155,16 +155,13 @@ h1 {
 
 .auth-btn {
   margin-top: 3rem;
+  display: flex;
+  justify-content: center;
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 600px) {
   .auth-wrapper {
-    max-width: 60%;
-  }
-
-  .auth-btn {
-    margin: 3rem auto 0;
-    width: 250px;
+    max-width: 400px;
   }
 }
 
@@ -189,7 +186,7 @@ h1 {
   text-shadow: none;
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 768px) {
   .btn-secondary {
     width: 300px;
   }
