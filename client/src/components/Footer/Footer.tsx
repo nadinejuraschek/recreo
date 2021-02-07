@@ -1,7 +1,8 @@
 // STYLED COMPONENTS
 
+interface FooterProps {}
 
-const Footer = () => {
+const Footer: React.FC<FooterProps> = () => {
   return (
     <div>
 

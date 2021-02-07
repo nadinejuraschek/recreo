@@ -2,16 +2,16 @@
 import {
   Container,
   NavItem,
-  NavLink,
+  StyledNavLink,
 } from '../styles/Sidenav';
 
-const Sidenav = () => {
+interface SidenavProps {}
+
+const Sidenav: React.FC<SidenavProps> = () => {
   return (
     <Container>
       <NavItem>
-        <NavLink>
-          
-        </NavLink>
+        <StyledNavLink></StyledNavLink>
       </NavItem>
     </Container>
   );
