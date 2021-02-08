@@ -1,6 +1,9 @@
 // DEPENDENCIES
 import styled, { css } from 'styled-components';
 
+// COMPONENTS
+import { Link } from 'react-router-dom';
+
 type ButtonProps = {
   disabled?: boolean;
   filled?: boolean;
@@ -9,7 +12,7 @@ type ButtonProps = {
   rounded?: boolean;
 };
 
-export const Link = styled.a.attrs(() => ({
+export const StyledLink = styled(Link).attrs(() => ({
   className: 'button-link',
 }))<ButtonProps>`
   display: flex;
@@ -20,7 +23,7 @@ export const Link = styled.a.attrs(() => ({
   font-size: 1.25rem;
   font-weight: 700;
   padding: 0.5rem 1rem;
-  text-transform: none;
+  text-decoration: none;
 
   height: 50px;
   min-width: 140px;
@@ -36,17 +39,17 @@ export const Link = styled.a.attrs(() => ({
   ${({ filled }) =>
     filled &&
     css`
-      background-color: #e07a5f;
-      border: 2px solid #e07a5f;
-      color: #ffffff;
+      background-color: var(--orange);
+      border: 2px solid var(--orange);
+      color: var(--white);
     `}
 
   ${({ outlined }) =>
     outlined &&
     css`
-      background-color: #ffffff;
-      border: 2px solid #e07a5f;
-      color: #e07a5f;
+      background-color: var(--white);
+      border: 2px solid var(--orange);
+      color: var(--orange);
     `}
 
   ${({ rounded }) =>
@@ -73,14 +76,16 @@ export const Link = styled.a.attrs(() => ({
     ${({ filled }) =>
       filled &&
       css`
-        box-shadow: 3px 3px 6px #00000025;
+        box-shadow: 3px 3px 6px var(--shadow__lg);
+        color: var(--white);
         transform: translateX(-2px) translateY(-2px);
       `}
 
     ${({ outlined }) =>
       outlined &&
       css`
-        box-shadow: 3px 3px 6px #00000025;
+        box-shadow: 3px 3px 6px var(--shadow__lg);
+        color: var(--orange);
         transform: translateX(-2px) translateY(-2px);
       `}
   }
@@ -97,7 +102,6 @@ export const StyledButton = styled.button.attrs(() => ({
   font-size: 1.25rem;
   font-weight: 700;
   padding: 0.5rem 1rem;
-  text-transform: none;
 
   height: 50px;
   min-width: 140px;
@@ -113,17 +117,17 @@ export const StyledButton = styled.button.attrs(() => ({
   ${({ filled }) =>
     filled &&
     css`
-      background-color: #e07a5f;
-      border: 2px solid #e07a5f;
-      color: #ffffff;
+      background-color: var(--orange);
+      border: 2px solid var(--orange);
+      color: var(--white);
     `}
 
   ${({ outlined }) =>
     outlined &&
     css`
-      background-color: #ffffff;
-      border: 2px solid #e07a5f;
-      color: #e07a5f;
+      background-color: var(--white);
+      border: 2px solid var(--orange);
+      color: var(--orange);
     `}
 
   ${({ rounded }) =>
@@ -150,14 +154,14 @@ export const StyledButton = styled.button.attrs(() => ({
     ${({ filled }) =>
       filled &&
       css`
-        box-shadow: 3px 3px 6px #00000025;
+        box-shadow: 3px 3px 6px var(--shadow__lg);
         transform: translateX(-2px) translateY(-2px);
       `}
 
     ${({ outlined }) =>
       outlined &&
       css`
-        box-shadow: 3px 3px 6px #00000025;
+        box-shadow: 3px 3px 6px var(--shadow__lg);
         transform: translateX(-2px) translateY(-2px);
       `}
   }

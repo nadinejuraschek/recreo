@@ -1,24 +1,24 @@
 // DEPENDENCIES
 
 // STYLED COMPONENTS
-import { Link, StyledButton } from './styles/Button';
+import { StyledLink, StyledButton } from './styles/Button';
 
 interface ButtonProps {
   disabled?: boolean;
   filled?: boolean;
   fullWidth?: boolean;
-  link?: boolean;
+  link?: string;
   outlined?: boolean;
   rounded?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, disabled, fullWidth, link, outlined, filled, rounded }) => {
+const Button: React.FC<ButtonProps> = ({ children, disabled, filled, fullWidth, link, outlined, rounded }) => {
   return (
     <>
       {link ? (
-        <Link disabled={disabled} filled={filled} fullWidth={fullWidth} outlined={outlined} rounded={rounded}>
+        <StyledLink disabled={disabled} filled={filled} fullWidth={fullWidth} outlined={outlined} rounded={rounded} to={link}>
           {children}
-        </Link>
+        </StyledLink>
       ) : (
         <StyledButton disabled={disabled} filled={filled} fullWidth={fullWidth} outlined={outlined} rounded={rounded}>
           {children}
