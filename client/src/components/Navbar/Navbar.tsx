@@ -1,12 +1,19 @@
 // STYLED COMPONENTS
-import { Container, NavItem, StyledNavLink } from './styles/Navbar';
+import { Logo } from './styles/Logo';
+import { Container, NavList, NavItem, StyledNavLink } from './styles/Navbar';
 
 const Navbar = () => {
   return (
     <Container>
-      <NavItem>
-        <StyledNavLink></StyledNavLink>
-      </NavItem>
+      <Logo>recreo</Logo>
+      <NavList>
+        <NavItem>
+          <StyledNavLink to="/login">Login</StyledNavLink>
+        </NavItem>
+        <NavItem>
+          <StyledNavLink to="/register">Register</StyledNavLink>
+        </NavItem>
+      </NavList>
     </Container>
   );
 };
