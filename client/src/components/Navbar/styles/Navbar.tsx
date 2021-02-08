@@ -34,19 +34,18 @@ export const NavList = styled.div.attrs(() => ({
   }
 `;
 
-export const NavItem = styled.div.attrs(() => ({
-  className: 'nav-item',
-}))`
-  font-size: 1rem;
-`;
-
 export const StyledNavLink = styled(NavLink).attrs(() => ({
   className: 'nav-link',
 }))`
   color: var(--blue__dark);
+  font-size: 1rem;
   font-weight: 600;
 
   &:hover {
+    color: var(--yellow);
+  }
+
+  &.active {
     color: var(--yellow);
   }
 `;
@@ -65,5 +64,9 @@ export const MenuBtn = styled.div.attrs(() => ({
     object-fit: contain;
     height: 100%;
     width: 100%;
+  }
+
+  @media screen and (min-width: 900px) {
+    display: none;
   }
 `;

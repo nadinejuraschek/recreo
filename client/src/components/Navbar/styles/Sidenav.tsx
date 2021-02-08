@@ -39,4 +39,9 @@ export const NavItem = styled(NavLink).attrs(() => ({
   &:hover {
     cursor: pointer;
   }
+
+  &.active {
+    background-color: var(--orange__light);
+    color: var(--blue__dark);
+  }
 `;
