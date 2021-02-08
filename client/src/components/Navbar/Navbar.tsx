@@ -6,9 +6,6 @@ import { Logo } from './styles/Logo';
 import { Container, NavList, StyledNavLink, MenuBtn } from './styles/Navbar';
 import Sidenav from './components/Sidenav';
 
-// ICONS
-import menu from 'assets/menu.svg';
-
 const Navbar = () => {
   const [openSidenav, setOpenSidenav] = useState(false);
 
@@ -20,9 +17,7 @@ const Navbar = () => {
         <StyledNavLink to="/register">Register</StyledNavLink>
       </NavList>
 
-      <MenuBtn onClick={() => setOpenSidenav(!openSidenav)}>
-        <img src={menu} alt="Menu Icon" />
-      </MenuBtn>
+      <MenuBtn onClick={() => setOpenSidenav(!openSidenav)} />
       {openSidenav && <Sidenav />}
     </Container>
   );
