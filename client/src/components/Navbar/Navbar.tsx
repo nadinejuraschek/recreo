@@ -1,19 +1,29 @@
+// REACT
+import { useState } from 'react';
+
 // STYLED COMPONENTS
 import { Logo } from './styles/Logo';
-import { Container, NavList, NavItem, StyledNavLink } from './styles/Navbar';
+import { Container, NavList, StyledNavLink, MenuBtn } from './styles/Navbar';
+import Sidenav from './components/Sidenav';
+
+// ICONS
+import menu from 'assets/menu.svg';
 
 const Navbar = () => {
+  const [openSidenav, setOpenSidenav] = useState(false);
+
   return (
     <Container>
       <Logo>recreo</Logo>
       <NavList>
-        <NavItem>
-          <StyledNavLink to="/login">Login</StyledNavLink>
-        </NavItem>
-        <NavItem>
-          <StyledNavLink to="/register">Register</StyledNavLink>
-        </NavItem>
+        <StyledNavLink to="/login">Login</StyledNavLink>
+        <StyledNavLink to="/register">Register</StyledNavLink>
       </NavList>
+
+      <MenuBtn onClick={() => setOpenSidenav(!openSidenav)}>
+        <img src={menu} alt="Menu Icon" />
+      </MenuBtn>
+      {openSidenav && <Sidenav />}
     </Container>
   );
 };

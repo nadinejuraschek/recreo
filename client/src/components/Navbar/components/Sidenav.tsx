@@ -1,20 +1,13 @@
 // STYLED COMPONENTS
-import {
-  Container,
-  NavItem,
-  StyledNavLink,
-} from '../styles/Sidenav';
+import { Container, NavItem } from '../styles/Sidenav';
 
-interface SidenavProps {}
-
-const Sidenav: React.FC<SidenavProps> = () => {
+const Sidenav = () => {
   return (
     <Container>
-      <NavItem>
-        <StyledNavLink></StyledNavLink>
-      </NavItem>
+      <NavItem to="/login">Login</NavItem>
+      <NavItem to="/register">Register</NavItem>
     </Container>
   );
-}
+};
 
 export default Sidenav;

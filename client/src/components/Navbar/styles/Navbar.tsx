@@ -26,8 +26,12 @@ export const Container = styled.nav.attrs(() => ({
 export const NavList = styled.div.attrs(() => ({
   className: 'nav-list',
 }))`
-  display: flex;
-  align-items: center;
+  display: none;
+
+  @media screen and (min-width: 900px) {
+    display: flex;
+    align-items: center;
+  }
 `;
 
 export const NavItem = styled.div.attrs(() => ({
@@ -44,5 +48,22 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
 
   &:hover {
     color: var(--yellow);
+  }
+`;
+
+export const MenuBtn = styled.div.attrs(() => ({
+  className: 'nav-menu-button',
+}))`
+  height: 50px;
+  width: 50px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  & img {
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
   }
 `;
