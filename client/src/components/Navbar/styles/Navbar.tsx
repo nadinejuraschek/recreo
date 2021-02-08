@@ -4,6 +4,9 @@ import styled from 'styled-components';
 // COMPONENTS
 import { NavLink } from 'react-router-dom';
 
+// ICONS
+import { ReactComponent as MenuIcon } from 'assets/menu.svg';
+
 export const Container = styled.nav.attrs(() => ({
   className: 'nav-container',
 }))`
@@ -50,7 +53,7 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
   }
 `;
 
-export const MenuBtn = styled.div.attrs(() => ({
+export const MenuBtn = styled(MenuIcon).attrs(() => ({
   className: 'nav-menu-button',
 }))`
   height: 50px;
@@ -58,12 +61,6 @@ export const MenuBtn = styled.div.attrs(() => ({
 
   &:hover {
     cursor: pointer;
-  }
-
-  & img {
-    object-fit: contain;
-    height: 100%;
-    width: 100%;
   }
 
   @media screen and (min-width: 900px) {
