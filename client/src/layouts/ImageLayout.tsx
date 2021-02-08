@@ -1,7 +1,12 @@
 // COMPONENTS
+import Button from 'components/Button/Button';
 
 const ImageLayout = () => {
-  return <div />;
+  return (
+    <Button filled rounded>
+      Hello
+    </Button>
+  );
 };
 
 export default ImageLayout;

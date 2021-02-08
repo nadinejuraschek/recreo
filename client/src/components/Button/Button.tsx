@@ -4,30 +4,26 @@
 import { Link, StyledButton } from './styles/Button';
 
 interface ButtonProps {
-  fullWidth: boolean;
-  link: boolean;
-  outlined: boolean;
-  primary: boolean;
-  rounded: boolean;
-  secondary: boolean;
-};
+  disabled?: boolean;
+  filled?: boolean;
+  fullWidth?: boolean;
+  link?: boolean;
+  outlined?: boolean;
+  rounded?: boolean;
+}
 
-const Button: React.FC<ButtonProps> = ({
-  fullWidth,
-  link,
-  outlined,
-  primary,
-  rounded,
-  secondary,
-}) => {
+const Button: React.FC<ButtonProps> = ({ children, disabled, fullWidth, link, outlined, filled, rounded }) => {
   return (
     <>
-      {
-        link ?
-        <Link></Link>
-        :
-        <StyledButton primary={primary}></StyledButton>
-      }
+      {link ? (
+        <Link disabled={disabled} filled={filled} fullWidth={fullWidth} outlined={outlined} rounded={rounded}>
+          {children}
+        </Link>
+      ) : (
+        <StyledButton disabled={disabled} filled={filled} fullWidth={fullWidth} outlined={outlined} rounded={rounded}>
+          {children}
+        </StyledButton>
+      )}
     </>
   );
 };
