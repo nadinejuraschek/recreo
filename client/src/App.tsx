@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Navbar from 'components/Navbar/Navbar';
 
 // LAYOUTS
-import DefaultLayout from 'layouts/DefaultLayout';
-import ImageLayout from 'layouts/ImageLayout';
+import DefaultLayout from 'layouts/DefaultLayout/DefaultLayout';
+import ImageLayout from 'layouts/ImageLayout/ImageLayout';
 
 const App = () => {
   return (
