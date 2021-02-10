@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 export const HorizontalImage = styled.div.attrs(() => ({
-  className: 'bg-image-horizontal',
+  className: 'bg-image__horizontal',
 }))`
   position: absolute;
   bottom: 0;
@@ -22,7 +22,7 @@ export const HorizontalImage = styled.div.attrs(() => ({
 `;
 
 export const HorizontalWave = styled.div.attrs(() => ({
-  className: 'bg-image-horizontal',
+  className: 'bg-image__horizontal',
 }))`
   position: absolute;
   bottom: 0;
@@ -42,7 +42,7 @@ export const HorizontalWave = styled.div.attrs(() => ({
 `;
 
 export const VerticalImage = styled.div.attrs(() => ({
-  className: 'bg-wave-vertical',
+  className: 'bg-wave__vertical',
 }))`
   display: none;
   position: absolute;
@@ -64,7 +64,7 @@ export const VerticalImage = styled.div.attrs(() => ({
 `;
 
 export const VerticalWave = styled.div.attrs(() => ({
-  className: 'bg-wave-vertical',
+  className: 'bg-wave__vertical',
 }))`
   display: none;
 
@@ -83,5 +83,21 @@ export const VerticalWave = styled.div.attrs(() => ({
 
   @media only screen and (min-width: 768px) {
     display: block;
+  }
+`;
+
+export const Main = styled.main.attrs(() => ({
+  className: 'with-image__main',
+}))`
+  max-height: 55%;
+  max-width: 100%;
+
+  padding: 24px;
+
+  @media only screen and (min-width: 900px) {
+    max-height: 100%;
+    max-width: 40vw;
+
+    padding: 40px;
   }
 `;

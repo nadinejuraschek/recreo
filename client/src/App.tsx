@@ -8,6 +8,9 @@ import Navbar from 'components/Navbar/Navbar';
 import DefaultLayout from 'layouts/DefaultLayout/DefaultLayout';
 import ImageLayout from 'layouts/ImageLayout/ImageLayout';
 
+// VIEWS
+import Login from 'views/Login/Login';
+
 const App = () => {
   return (
     <Router>
@@ -17,7 +20,7 @@ const App = () => {
       <Route exact path="/" component={ImageLayout} />
 
       {/* Auth */}
-      <Route exact path="/login" component={ImageLayout} />
+      <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={ImageLayout} />
 
       {/* Home */}

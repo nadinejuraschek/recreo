@@ -1,7 +1,7 @@
 // COMPONENTS
 
 // STYLED COMPONENTS
-import { HorizontalImage, HorizontalWave, VerticalImage, VerticalWave } from './styles/ImageLayout';
+import { HorizontalImage, HorizontalWave, VerticalImage, VerticalWave, Main } from './styles/ImageLayout';
 
 // ICONS, IMAGES
 import horizontalWave from 'assets/wave-horizontal.svg';
@@ -22,7 +22,7 @@ const ImageLayout: React.FC<ImageLayoutProps> = ({ children }) => {
       <VerticalWave>
         <img src={verticalWave} alt="Wave" />
       </VerticalWave>
-      <main>{children}</main>
+      <Main>{children}</Main>
     </>
   );
 };
