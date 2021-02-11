@@ -7,12 +7,26 @@ interface ButtonProps {
   disabled?: boolean;
   filled?: boolean;
   fullWidth?: boolean;
+  handleClick?: () => void;
+  handleSubmit?: () => void;
   link?: string;
   outlined?: boolean;
   rounded?: boolean;
+  type?: any;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, disabled, filled, fullWidth, link, outlined, rounded }) => {
+const Button: React.FC<ButtonProps> = ({
+  children,
+  disabled,
+  filled,
+  fullWidth,
+  handleClick,
+  handleSubmit,
+  link,
+  outlined,
+  rounded,
+  type,
+}) => {
   return (
     <>
       {link ? (
@@ -20,7 +34,16 @@ const Button: React.FC<ButtonProps> = ({ children, disabled, filled, fullWidth, 
           {children}
         </StyledLink>
       ) : (
-        <StyledButton disabled={disabled} filled={filled} fullWidth={fullWidth} outlined={outlined} rounded={rounded}>
+        <StyledButton
+          disabled={disabled}
+          filled={filled}
+          fullWidth={fullWidth}
+          onClick={handleClick}
+          onSubmit={handleSubmit}
+          outlined={outlined}
+          rounded={rounded}
+          type={type}
+        >
           {children}
         </StyledButton>
       )}

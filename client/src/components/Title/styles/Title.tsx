@@ -6,6 +6,7 @@ export const LargeTitle = styled.h1.attrs(() => ({
 }))`
   font-size: 2.5rem;
   font-weight: bold;
+  margin-bottom: 2rem;
 
   ${({ color }) =>
     color &&
@@ -19,6 +20,7 @@ export const MediumTitle = styled.h2.attrs(() => ({
 }))`
   font-size: 2rem;
   font-weight: bold;
+  margin-bottom: 1.5rem;
 
   ${({ color }) =>
     color &&
@@ -32,6 +34,7 @@ export const SmallTitle = styled.h3.attrs(() => ({
 }))`
   font-size: 1.5rem;
   font-weight: bold;
+  margin-bottom: 1.25rem;
 
   ${({ color }) =>
     color &&
