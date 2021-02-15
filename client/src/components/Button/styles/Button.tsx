@@ -20,15 +20,21 @@ export const StyledLink = styled(Link).attrs(() => ({
   justify-content: center;
 
   border-radius: 0.5rem;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 700;
   padding: 0.5rem 1rem;
   text-decoration: none;
 
-  height: 50px;
-  min-width: 140px;
+  height: 40px;
+  min-width: 120px;
 
   transition: all 0.3s;
+
+  @media only screen and (min-width: 900px) {
+    font-size: 1.25rem;
+    height: 50px;
+    min-width: 140px;
+  }
 
   ${({ disabled }) =>
     disabled &&
@@ -99,14 +105,20 @@ export const StyledButton = styled.button.attrs(() => ({
   justify-content: center;
 
   border-radius: 0.5rem;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 700;
   padding: 0.5rem 1rem;
 
-  height: 50px;
-  min-width: 140px;
+  height: 40px;
+  min-width: 120px;
 
   transition: all 0.3s;
+
+  @media only screen and (min-width: 900px) {
+    font-size: 1.25rem;
+    height: 50px;
+    min-width: 140px;
+  }
 
   ${({ disabled }) =>
     disabled &&

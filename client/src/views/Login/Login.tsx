@@ -4,6 +4,9 @@ import * as Yup from 'yup';
 // LAYOUTS
 import ImageLayout from 'layouts/ImageLayout/ImageLayout';
 
+// STYLED COMPONENTS
+import { Wrapper } from './styles/Login';
+
 // COMPONENTS
 import Button from 'components/Button/Button';
 import Divider from 'components/Divider/Divider';
@@ -27,12 +30,14 @@ const initialValues = {
 const Login = () => {
   return (
     <ImageLayout>
-      <Title size="large">Log In</Title>
-      <Form initialValues={initialValues} validationSchema={validationSchema} />
-      <Divider text="or" />
-      <Button link="/login" outlined fullWidth>
-        Register
-      </Button>
+      <Wrapper>
+        <Title size="large">Log In</Title>
+        <Form initialValues={initialValues} validationSchema={validationSchema} />
+        <Divider text="or" />
+        <Button link="/login" outlined fullWidth>
+          Register
+        </Button>
+      </Wrapper>
     </ImageLayout>
   );
 };

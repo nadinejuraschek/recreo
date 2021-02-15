@@ -13,6 +13,7 @@ export const Wrapper = styled.div.attrs(() => ({
   justify-content: center;
 
   margin: 1rem 0;
+  width: 100%;
 `;
 
 export const Label = styled.label.attrs(() => ({
@@ -25,20 +26,29 @@ export const Label = styled.label.attrs(() => ({
 export const StyledInput = styled.input.attrs(() => ({
   className: 'input',
 }))<InputProps>`
+  background-color: transparent;
   border: none;
   border-bottom: 1px solid var(--blue__dark);
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: normal;
   margin-bottom: 0.75rem;
-  padding: 0 0.75rem;
+  padding: 0 0 0 0.75rem;
 
-  height: 50px;
-  min-width: 140px;
+  height: 40px;
+
+  @media only screen and (min-width: 900px) {
+    height: 50px;
+    font-size: 1.25rem;
+  }
 
   ${({ withIcon }) =>
     withIcon &&
     css`
-      padding: 0 3rem;
+      padding: 0 0 0 2.25rem;
+
+      @media only screen and (min-width: 900px) {
+        padding: 0 0 0 3rem;
+      }
     `}
 
   &::placeholder {
