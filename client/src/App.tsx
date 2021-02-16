@@ -27,7 +27,9 @@ const App = () => {
       <Route exact path="/playgrounds" component={DefaultLayout} />
 
       {/* Single Playground */}
+      <Route exact path="/playgrounds/new" component={DefaultLayout} />
       <Route exact path="/playgrounds/:id" component={DefaultLayout} />
+      <Route exact path="/playgrounds/:id/edit" component={DefaultLayout} />
     </Router>
   );
 };
