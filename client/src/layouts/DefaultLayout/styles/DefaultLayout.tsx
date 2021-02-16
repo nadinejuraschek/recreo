@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Main = styled.main.attrs(() => ({
   className: 'default__main',
 }))`
-  height: calc(100vh - 80px);
+  height: calc(100vh - 130px);
   max-width: 1400px;
 
   padding: 24px;

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // COMPONENTS
 import Navbar from 'components/Navbar/Navbar';
+import Footer from 'components/Footer/Footer';
 
 // LAYOUTS
 import DefaultLayout from 'layouts/DefaultLayout/DefaultLayout';
@@ -30,6 +31,8 @@ const App = () => {
       <Route exact path="/playgrounds/new" component={DefaultLayout} />
       <Route exact path="/playgrounds/:id" component={DefaultLayout} />
       <Route exact path="/playgrounds/:id/edit" component={DefaultLayout} />
+
+      <Footer />
     </Router>
   );
 };
