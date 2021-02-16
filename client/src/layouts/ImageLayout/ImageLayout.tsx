@@ -1,5 +1,3 @@
-// COMPONENTS
-
 // STYLED COMPONENTS
 import { HorizontalImage, HorizontalWave, VerticalImage, VerticalWave, Main } from './styles/ImageLayout';
 

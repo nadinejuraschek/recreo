@@ -1,7 +1,12 @@
-// COMPONENTS
+// STYLED COMPONENTS
+import { Main } from './styles/DefaultLayout';
 
-const Defaultlayout = () => {
-  return <div />;
+interface DefaultLayoutProps {
+  children: any;
+}
+
+const Defaultlayout: React.FC<DefaultLayoutProps> = ({ children }) => {
+  return <Main>{children}</Main>;
 };
 
 export default Defaultlayout;
