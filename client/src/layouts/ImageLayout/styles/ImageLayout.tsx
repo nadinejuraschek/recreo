@@ -89,13 +89,14 @@ export const VerticalWave = styled.div.attrs(() => ({
 export const Main = styled.main.attrs(() => ({
   className: 'with-image__main',
 }))`
-  max-height: 55%;
+  // max-height: 55%;
   max-width: 100%;
+  height: calc(100vh - 130px);
 
   padding: 24px;
 
   @media only screen and (min-width: 900px) {
-    max-height: 100%;
+    // max-height: 100%;
     max-width: 40vw;
 
     padding: 40px;

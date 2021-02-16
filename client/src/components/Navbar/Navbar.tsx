@@ -15,6 +15,11 @@ const Navbar = () => {
       <NavList>
         <StyledNavLink to="/login">Login</StyledNavLink>
         <StyledNavLink to="/register">Register</StyledNavLink>
+
+        <StyledNavLink to="/logout">Logout</StyledNavLink>
+
+        <StyledNavLink to="/playgrounds">Playgrounds</StyledNavLink>
+        <StyledNavLink to="/playgrounds/new">New Playground</StyledNavLink>
       </NavList>
 
       <MenuBtn onClick={() => setOpenSidenav(!openSidenav)} />
