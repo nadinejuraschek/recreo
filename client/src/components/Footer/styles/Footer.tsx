@@ -1,20 +1,43 @@
 // DEPENDENCIES
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+type ContainerProps = {
+  navFooter?: boolean;
+};
 
 export const Container = styled.footer.attrs(() => ({
   className: 'footer',
-}))`
-  display: flex;
+}))<ContainerProps>`
+  display: none;
   align-items: center;
   justify-content: space-between;
 
   padding: 0 24px;
-
-  height: 50px;
+  width: 100vw;
 
   @media only screen and (min-width: 900px) {
+    display: flex;
+    height: 50px;
     padding: 0 40px;
   }
+
+  ${({ navFooter }) =>
+    navFooter &&
+    css`
+      display: flex;
+      justify-content: center;
+
+      position: absolute;
+      bottom: 10px;
+
+      z-index: 11;
+
+      .footer-link,
+      .footer-link a {
+        color: var(--white);
+        font-weight: bold;
+      }
+    `}
 `;
 
 export const Link = styled.div.attrs(() => ({

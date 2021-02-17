@@ -15,15 +15,24 @@ export const Container = styled.div.attrs(() => ({
   display: flex;
   flex-direction: column;
 
+  height: calc(100vh - 80px);
   z-index: 10;
 
-  background-color: var(--white);
+  background-color: var(--blue__overlay);
   box-shadow: 0 3px 9px var(--shadow__lg);
+`;
+
+export const NavList = styled.ul.attrs(() => ({
+  className: 'sidenav-list',
+}))`
+  padding: 0;
+  width: 100vw;
 `;
 
 export const NavItem = styled(NavLink).attrs(() => ({
   className: 'sidenav-item',
 }))`
+  background-color: var(--white);
   border-bottom: 1px solid var(--shadow__lg);
   box-shadow: 0 2px 6px var(--shadow__sm);
   color: var(--blue__dark);
@@ -36,12 +45,19 @@ export const NavItem = styled(NavLink).attrs(() => ({
   display: flex;
   align-items: center;
 
+  &:last-child {
+    box-shadow: 4px 6px 8px var(--shadow__lg);
+  }
+
   &:hover {
+    color: var(--blue__dark);
     cursor: pointer;
   }
 
   &.active {
-    background-color: var(--orange__light);
+    // background-color: var(--orange__light);
+    // color: var(--blue__dark);
+    background-color: var(--yellow);
     color: var(--blue__dark);
   }
 `;

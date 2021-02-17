@@ -1,9 +1,13 @@
 // STYLED COMPONENTS
 import { Container, Link } from './styles/Footer';
 
-const Footer = () => {
+interface FooterProps {
+  navFooter?: boolean;
+}
+
+const Footer: React.FC<FooterProps> = ({ navFooter }) => {
   return (
-    <Container>
+    <Container navFooter={navFooter}>
       <Link>
         © {new Date().getFullYear()}{' '}
         <a href="https://github.com/nadinejuraschek" rel="noreferrer" target="_blank">

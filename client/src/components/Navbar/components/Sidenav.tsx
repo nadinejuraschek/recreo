@@ -1,16 +1,21 @@
 // STYLED COMPONENTS
-import { Container, NavItem } from '../styles/Sidenav';
+import { Container, NavList, NavItem } from '../styles/Sidenav';
+import Footer from 'components/Footer/Footer';
 
 const Sidenav = () => {
   return (
     <Container>
-      <NavItem to="/login">Login</NavItem>
-      <NavItem to="/register">Register</NavItem>
+      <NavList>
+        <NavItem to="/login">Login</NavItem>
+        <NavItem to="/register">Register</NavItem>
 
-      <NavItem to="/logout">Logout</NavItem>
+        <NavItem to="/logout">Logout</NavItem>
 
-      <NavItem to="/playgrounds">Playgrounds</NavItem>
-      <NavItem to="/playgrounds/new">New Playground</NavItem>
+        <NavItem to="/playgrounds">Playgrounds</NavItem>
+        <NavItem to="/playgrounds/new">New Playground</NavItem>
+      </NavList>
+
+      <Footer navFooter />
     </Container>
   );
 };

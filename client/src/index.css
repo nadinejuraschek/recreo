@@ -5,10 +5,13 @@
   --white: #ffffff;
   --yellow: #F2CC8F;
   --yellow__light: #F4F1DE;
+
   --orange: #E07A5F;
-  --orange__light: #E07A5F60;
-  --blue__medium: #595d8590;
+  --orange__light: #fd9b80;
+
+  --blue__medium: #595d85;
   --blue__dark: #3D405B;
+  --blue__overlay: #3D405B90;
 
   --red: #e0685f;
   --red__light: #e0685f50;
