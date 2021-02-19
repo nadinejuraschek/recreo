@@ -1,7 +1,7 @@
 // DEPENDENCIES
 
 // STYLED COMPONENTS
-import { Body, Container, Image, Location, LocationIcon, Rating, RatingIcon, Title } from './styles/Card';
+import { Body, Container, Distance, Image, Location, LocationIcon, Name, Rating, RatingIcon } from './styles/Card';
 
 const Card = () => {
   return (
@@ -11,7 +11,8 @@ const Card = () => {
         alt="replace with title"
       />
       <Body>
-        <Title>Playground</Title>
+        <Distance>25km</Distance>
+        <Name>Playground</Name>
         <Location>
           <LocationIcon /> Location
         </Location>

@@ -19,10 +19,19 @@ export const Container = styled.div.attrs(() => ({
   align-items: space-between;
   justify-content: center;
 
-  height: 24rem;
-
   &:hover {
     box-shadow: 0 2px 10px var(--shadow__lg);
+  }
+
+  @media only screen and (min-width: 600px) {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  @media only screen and (min-width: 768px) {
+  }
+
+  @media only screen and (min-width: 900px) {
   }
 `;
 
@@ -33,26 +42,48 @@ export const Image = styled.img.attrs(() => ({
   border-radius: 1.5rem;
 
   object-fit: cover;
-  height: 12rem;
+  height: 10rem;
   width: 100%;
+
+  @media only screen and (min-width: 600px) {
+    height: 10rem;
+    width: 10rem;
+  }
+
+  @media only screen and (min-width: 768px) {
+    height: 100%;
+    width: 35%;
+  }
 `;
 
 export const Body = styled.div.attrs(() => ({
   className: 'card-body',
 }))`
-  height: 8.75rem;
-  padding: 1rem 0;
+  margin-top: 1.2rem;
+  padding: 0;
+
+  @media only screen and (min-width: 600px) {
+    height: 100%;
+    margin-top: 0;
+    margin-left: 1.2rem;
+  }
 `;
 
-export const Title = styled.div.attrs(() => ({
-  className: 'card-title',
+export const Distance = styled.p.attrs(() => ({
+  className: 'card-distance',
+}))`
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+`;
+
+export const Name = styled.h3.attrs(() => ({
+  className: 'card-name',
 }))`
   font-size: 1.6rem;
-  font-weight: bold;
   margin-bottom: 1rem;
 `;
 
-export const Location = styled.div.attrs(() => ({
+export const Location = styled.p.attrs(() => ({
   className: 'card-location',
 }))`
   display: flex;
@@ -71,7 +102,7 @@ export const LocationIcon = styled(LocationSvg).attrs(() => ({
   margin-right: 0.5rem;
 `;
 
-export const Rating = styled.div.attrs(() => ({
+export const Rating = styled.p.attrs(() => ({
   className: 'card-rating',
 }))`
   display: flex;

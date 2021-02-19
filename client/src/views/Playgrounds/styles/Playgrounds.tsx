@@ -12,12 +12,16 @@ export const Grid = styled.div.attrs(() => ({
   className: 'playgrounds-grid',
 }))`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 380px));
+  grid-template-columns: 1fr;
   grid-template-rows: auto;
   grid-gap: 2rem;
   justify-content: center;
 
   width: 100%;
+
+  @media only screen and (min-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 export const EmptyState = styled.div.attrs(() => ({

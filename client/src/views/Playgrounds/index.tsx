@@ -16,6 +16,7 @@ const Playgrounds = () => {
   return (
     <DefaultLayout>
       <Map />
+      <Section>Filter</Section>
       <Section>
         <Title>Playgrounds Near You</Title>
         <EmptyState>
