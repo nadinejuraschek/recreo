@@ -15,14 +15,14 @@ export const Container = styled.nav.attrs(() => ({
   justify-content: space-between;
 
   background-color: var(--white);
-  padding: 0 24px;
+  padding: 0 2.4rem;
 
-  height: 80px;
+  height: 8rem;
   width: 100%;
   z-index: 1;
 
   @media screen and (min-width: 900px) {
-    padding: 0 40px;
+    padding: 0 4rem;
   }
 `;
 
@@ -43,6 +43,7 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
   color: var(--blue__dark);
   font-size: 1.6rem;
   font-weight: 600;
+  padding: 0 1.5rem;
 
   &:hover {
     color: var(--yellow);
@@ -60,8 +61,8 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
 export const MenuBtn = styled(MenuIcon).attrs(() => ({
   className: 'nav-menu-button',
 }))`
-  height: 50px;
-  width: 50px;
+  height: 5rem;
+  width: 5rem;
 
   &:hover {
     cursor: pointer;

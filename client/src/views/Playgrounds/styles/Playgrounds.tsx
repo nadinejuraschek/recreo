@@ -21,6 +21,7 @@ export const Grid = styled.div.attrs(() => ({
 
   @media only screen and (min-width: 1024px) {
     grid-template-columns: repeat(2, 1fr);
+    grid-gap: 3rem;
   }
 `;
 

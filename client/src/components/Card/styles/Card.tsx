@@ -7,6 +7,7 @@ import { ReactComponent as RatingSvg } from 'assets/star.svg';
 export const Container = styled.div.attrs(() => ({
   className: 'card-container',
 }))`
+  background-color: var(--white__off);
   border: none;
   border-radius: 2.4rem;
   box-shadow: 0 2px 6px var(--shadow__sm);

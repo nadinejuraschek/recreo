@@ -12,13 +12,13 @@ export const Container = styled.footer.attrs(() => ({
   align-items: center;
   justify-content: space-between;
 
-  padding: 0 24px;
+  padding: 0 2.4rem;
   width: 100vw;
 
   @media only screen and (min-width: 900px) {
     display: flex;
-    height: 50px;
-    padding: 0 40px;
+    height: 5rem;
+    padding: 0 4rem;
   }
 
   ${({ navFooter }) =>
@@ -28,7 +28,7 @@ export const Container = styled.footer.attrs(() => ({
       justify-content: center;
 
       position: absolute;
-      bottom: 10px;
+      bottom: 1rem;
 
       z-index: 11;
 
@@ -44,7 +44,7 @@ export const Link = styled.div.attrs(() => ({
   className: 'footer-link',
 }))`
   color: var(--blue__dark);
-  font-size: 14px;
+  font-size: 1.4rem;
 
   a {
     color: var(--blue__dark);
