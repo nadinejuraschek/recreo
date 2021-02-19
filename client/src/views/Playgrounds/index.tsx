@@ -1,7 +1,8 @@
-// DEPENDENCIES
+// COMPONENTS
+import Button from 'components/Button';
 
 // STYLED COMPONENTS
-import { Grid, Section } from './styles/Playgrounds';
+import { EmptyState, Grid, Section } from './styles/Playgrounds';
 
 // LAYOUT
 import DefaultLayout from 'layouts/DefaultLayout';
@@ -17,15 +18,18 @@ const Playgrounds = () => {
       <Map />
       <Section>
         <Title>Playgrounds Near You</Title>
-        <Grid>
-          <Card />
-          <Card />
-          <Card />
-        </Grid>
+        <EmptyState>
+          <p>We couldn&apos;t find any playgrounds near you.</p>
+          <Button link="/playgrounds/new" filled>
+            Add a Playground
+          </Button>
+        </EmptyState>
       </Section>
       <Section>
         <Title>All Playgrounds</Title>
         <Grid>
+          <Card />
+          <Card />
           <Card />
         </Grid>
       </Section>

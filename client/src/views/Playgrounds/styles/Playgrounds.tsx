@@ -19,3 +19,22 @@ export const Grid = styled.div.attrs(() => ({
 
   width: 100%;
 `;
+
+export const EmptyState = styled.div.attrs(() => ({
+  className: 'playgrounds-empty',
+}))`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: 14rem;
+  width: 100%;
+
+  p {
+    color: var(--blue__dark);
+    font-size: 1.25rem;
+    font-weight: normal;
+    margin-bottom: 1.5rem;
+  }
+`;

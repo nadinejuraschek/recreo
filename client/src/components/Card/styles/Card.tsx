@@ -11,6 +11,7 @@ export const Container = styled.div.attrs(() => ({
   border: none;
   border-radius: 1.5rem;
   box-shadow: 0 2px 6px var(--shadow__sm);
+  color: var(--blue__dark);
   padding: 1.2rem;
 
   display: flex;

@@ -82,17 +82,15 @@ export const StyledLink = styled(Link).attrs(() => ({
     ${({ filled }) =>
       filled &&
       css`
-        box-shadow: 3px 3px 6px var(--shadow__lg);
+        box-shadow: 0 3px 8px var(--shadow__lg);
         color: var(--white);
-        transform: translateX(-2px) translateY(-2px);
       `}
 
     ${({ outlined }) =>
       outlined &&
       css`
-        box-shadow: 3px 3px 6px var(--shadow__lg);
+        box-shadow: 0 3px 8px var(--shadow__lg);
         color: var(--orange);
-        transform: translateX(-2px) translateY(-2px);
       `}
   }
 `;
