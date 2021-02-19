@@ -32,13 +32,18 @@ export const EmptyState = styled.div.attrs(() => ({
   align-items: center;
   justify-content: center;
 
-  height: 14rem;
+  height: 24rem;
   width: 100%;
 
   p {
     color: var(--blue__dark);
-    font-size: 1.25rem;
+    font-size: 2rem;
     font-weight: normal;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+
+    @media only screen and (min-width: 768px) {
+      font-size: 2.2rem;
+    }
   }
 `;

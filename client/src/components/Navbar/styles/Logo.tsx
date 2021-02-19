@@ -10,7 +10,7 @@ export const Logo = styled(Link).attrs(() => ({
 }))`
   color: var(--blue__dark);
   font-family: 'Carter One', 'Helvetica', sans-serif;
-  font-size: 1.5rem;
+  font-size: 3rem;
   font-weight: 300;
   margin-right: 2rem;
   text-decoration: none;

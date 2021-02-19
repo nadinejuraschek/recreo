@@ -1,5 +1,9 @@
 // DEPENDENCIES
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+type LineProps = {
+  color?: string;
+};
 
 export const Wrapper = styled.div.attrs(() => ({
   className: 'divider-wrapper',
@@ -21,7 +25,7 @@ export const Wrapper = styled.div.attrs(() => ({
 
 export const Line = styled.span.attrs(() => ({
   className: 'divider-line',
-}))`
+}))<LineProps>`
   background-color: var(--blue__dark);
 
   position: absolute;
@@ -30,6 +34,12 @@ export const Line = styled.span.attrs(() => ({
 
   height: 1px;
   width: 100%;
+
+  ${({ color }) =>
+    color &&
+    css`
+      background-color: ${color};
+    `}
 
   @media only screen and (min-width: 900px) {
     top: 1.2rem;

@@ -5,6 +5,7 @@ export const Main = styled.main.attrs(() => ({
   className: 'default__main',
 }))`
   min-height: calc(100vh - 80px);
+  margin: 0 auto;
   max-width: 1400px;
 
   padding: 24px;

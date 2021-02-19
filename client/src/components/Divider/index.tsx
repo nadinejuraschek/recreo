@@ -2,13 +2,14 @@
 import { Line, Text, Wrapper } from './styles/Divider';
 
 interface DividerProps {
+  color?: string;
   text?: string;
 }
 
-const Divider: React.FC<DividerProps> = ({ text }) => {
+const Divider: React.FC<DividerProps> = ({ color = 'var(--blue__dark)', text }) => {
   return (
     <Wrapper>
-      <Line />
+      <Line color={color} />
       {text ? <Text>{text}</Text> : null}
     </Wrapper>
   );

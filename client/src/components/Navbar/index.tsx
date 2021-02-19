@@ -23,7 +23,7 @@ const Navbar = () => {
       </NavList>
 
       <MenuBtn onClick={() => setOpenSidenav(!openSidenav)} />
-      {openSidenav && <Sidenav />}
+      {openSidenav && <Sidenav handleClose={() => setOpenSidenav(false)} />}
     </Container>
   );
 };

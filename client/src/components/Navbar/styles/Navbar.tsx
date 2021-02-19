@@ -41,7 +41,7 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
   className: 'nav-link',
 }))`
   color: var(--blue__dark);
-  font-size: 1rem;
+  font-size: 1.6rem;
   font-weight: 600;
 
   &:hover {
@@ -50,6 +50,10 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
 
   &.active {
     color: var(--yellow);
+  }
+
+  @media only screen and (min-width: 900px) {
+    font-size: 1.8rem;
   }
 `;
 

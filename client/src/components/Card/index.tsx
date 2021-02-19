@@ -1,7 +1,10 @@
 // DEPENDENCIES
 
 // STYLED COMPONENTS
-import { Body, Container, Distance, Image, Location, LocationIcon, Name, Rating, RatingIcon } from './styles/Card';
+import { Amenities, Body, Container, Image, Location, Name, Rating, RatingIcon } from './styles/Card';
+
+// COMPONENTS
+import Divider from 'components/Divider';
 
 const Card = () => {
   return (
@@ -11,11 +14,10 @@ const Card = () => {
         alt="replace with title"
       />
       <Body>
-        <Distance>25km</Distance>
+        <Location>Location</Location>
         <Name>Playground</Name>
-        <Location>
-          <LocationIcon /> Location
-        </Location>
+        <Divider color="var(--blue__opaque)" />
+        <Amenities />
         <Rating>
           <RatingIcon /> Rating
         </Rating>

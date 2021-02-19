@@ -37,7 +37,7 @@ export const NavItem = styled(NavLink).attrs(() => ({
   box-shadow: 0 2px 6px var(--shadow__sm);
   color: var(--blue__dark);
   height: 80px;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: bold;
   padding: 0 24px;
   text-decoration: none;
