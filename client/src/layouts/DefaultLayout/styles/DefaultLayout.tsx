@@ -7,6 +7,7 @@ export const Main = styled.main.attrs(() => ({
   height: calc(100vh - 80px);
   max-width: 1400px;
 
+  overflow-y: scroll;
   padding: 24px;
 
   @media only screen and (min-width: 900px) {
