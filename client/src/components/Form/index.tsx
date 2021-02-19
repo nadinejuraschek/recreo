@@ -5,8 +5,8 @@ import { useState } from 'react';
 import { Formik } from 'formik';
 
 // COMPONENTS
-import Button from 'components/Button/Button';
-import Input from 'components/Input/Input';
+import Button from 'components/Button';
+import Input from 'components/Input';
 
 // STYLED COMPONENTS
 import { Container } from './styles/Form';

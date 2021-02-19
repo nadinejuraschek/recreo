@@ -1,6 +1,6 @@
 // STYLED COMPONENTS
 import { Container, NavList, NavItem } from '../styles/Sidenav';
-import Footer from 'components/Footer/Footer';
+import Footer from 'components/Footer';
 
 const Sidenav = () => {
   return (

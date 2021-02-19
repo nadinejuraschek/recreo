@@ -2,16 +2,16 @@
 import * as Yup from 'yup';
 
 // LAYOUTS
-import ImageLayout from 'layouts/ImageLayout/ImageLayout';
+import ImageLayout from 'layouts/ImageLayout';
 
 // STYLED COMPONENTS
 import { Wrapper } from './styles/Login';
 
 // COMPONENTS
-import Button from 'components/Button/Button';
-import Divider from 'components/Divider/Divider';
-import Form from 'components/Form/Form';
-import Title from 'components/Title/Title';
+import Button from 'components/Button';
+import Divider from 'components/Divider';
+import Form from 'components/Form';
+import Title from 'components/Title';
 
 // VALIDATION
 const validationSchema = Yup.object().shape({

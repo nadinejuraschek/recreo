@@ -2,15 +2,16 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // COMPONENTS
-import Navbar from 'components/Navbar/Navbar';
-import Footer from 'components/Footer/Footer';
+import Navbar from 'components/Navbar';
+import Footer from 'components/Footer';
 
 // LAYOUTS
-import DefaultLayout from 'layouts/DefaultLayout/DefaultLayout';
-import ImageLayout from 'layouts/ImageLayout/ImageLayout';
+import DefaultLayout from 'layouts/DefaultLayout';
+import ImageLayout from 'layouts/ImageLayout';
 
 // VIEWS
-import Login from 'views/Login/Login';
+import Login from 'views/Login';
+import Playgrounds from 'views/Playgrounds';
 
 const App = () => {
   return (
@@ -25,7 +26,7 @@ const App = () => {
       <Route exact path="/register" component={ImageLayout} />
 
       {/* Home */}
-      <Route exact path="/playgrounds" component={DefaultLayout} />
+      <Route exact path="/playgrounds" component={Playgrounds} />
 
       {/* Single Playground */}
       <Route exact path="/playgrounds/new" component={DefaultLayout} />
