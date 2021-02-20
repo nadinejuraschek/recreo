@@ -21,17 +21,12 @@ export const Container = styled.div.attrs(() => ({
 
   &:hover {
     box-shadow: 0 2px 10px var(--shadow__lg);
+    cursor: pointer;
   }
 
   @media only screen and (min-width: 600px) {
     flex-direction: row;
     align-items: center;
-  }
-
-  @media only screen and (min-width: 768px) {
-  }
-
-  @media only screen and (min-width: 900px) {
   }
 `;
 
@@ -67,11 +62,11 @@ export const Body = styled.div.attrs(() => ({
 export const Name = styled.h3.attrs(() => ({
   className: 'card-name',
 }))`
-  font-size: 2.6rem;
+  font-size: 2rem;
   font-weight: bold;
 
   @media only screen and (min-width: 600px) {
-    font-size: 3rem;
+    font-size: 2.25rem;
   }
 `;
 

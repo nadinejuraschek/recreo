@@ -24,7 +24,7 @@ const Sidenav: React.FC<SidenavProps> = ({ handleClose }) => {
         <NavItem to="/playgrounds" onClick={handleClose}>
           Playgrounds
         </NavItem>
-        <NavItem to="/playgrounds/new" onClick={handleClose}>
+        <NavItem to="/create" onClick={handleClose}>
           New Playground
         </NavItem>
       </NavList>

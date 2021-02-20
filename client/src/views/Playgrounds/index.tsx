@@ -1,6 +1,3 @@
-// COMPONENTS
-import Button from 'components/Button';
-
 // STYLED COMPONENTS
 import { EmptyState, Grid, Section } from './styles/Playgrounds';
 
@@ -8,6 +5,7 @@ import { EmptyState, Grid, Section } from './styles/Playgrounds';
 import DefaultLayout from 'layouts/DefaultLayout';
 
 // COMPONENTS
+import Button from 'components/Button';
 import Card from 'components/Card';
 import Map from 'components/Map';
 import Title from 'components/Title';

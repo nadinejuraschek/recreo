@@ -22,6 +22,7 @@ export const Container = styled.nav.attrs(() => ({
   z-index: 1;
 
   @media screen and (min-width: 900px) {
+    height: 6rem;
     padding: 0 4rem;
   }
 `;

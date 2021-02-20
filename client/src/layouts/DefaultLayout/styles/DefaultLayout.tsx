@@ -11,7 +11,7 @@ export const Main = styled.main.attrs(() => ({
   padding: 2.4rem;
 
   @media only screen and (min-width: 900px) {
-    min-height: calc(100vh - 13rem);
+    min-height: calc(100vh - 11rem);
     padding: 4rem;
   }
 `;

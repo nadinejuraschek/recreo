@@ -19,7 +19,7 @@ const Navbar = () => {
         <StyledNavLink to="/logout">Logout</StyledNavLink>
 
         <StyledNavLink to="/playgrounds">Playgrounds</StyledNavLink>
-        <StyledNavLink to="/playgrounds/new">New Playground</StyledNavLink>
+        <StyledNavLink to="/create">New Playground</StyledNavLink>
       </NavList>
 
       <MenuBtn onClick={() => setOpenSidenav(!openSidenav)} />

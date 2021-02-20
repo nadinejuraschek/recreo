@@ -97,7 +97,7 @@ export const Main = styled.main.attrs(() => ({
 
   @media only screen and (min-width: 900px) {
     // max-height: 100%;
-    height: calc(100vh - 13rem);
+    height: calc(100vh - 11rem);
     max-width: 40vw;
 
     padding: 4rem;

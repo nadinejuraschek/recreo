@@ -12,6 +12,7 @@ import ImageLayout from 'layouts/ImageLayout';
 // VIEWS
 import Login from 'views/Login';
 import Playgrounds from 'views/Playgrounds';
+import SinglePlayground from 'views/SinglePlayground';
 
 const App = () => {
   return (
@@ -29,8 +30,8 @@ const App = () => {
       <Route exact path="/playgrounds" component={Playgrounds} />
 
       {/* Single Playground */}
-      <Route exact path="/playgrounds/new" component={DefaultLayout} />
-      <Route exact path="/playgrounds/:id" component={DefaultLayout} />
+      <Route exact path="/create" component={DefaultLayout} />
+      <Route exact path="/playgrounds/:id" component={SinglePlayground} />
       <Route exact path="/playgrounds/:id/edit" component={DefaultLayout} />
 
       <Footer />

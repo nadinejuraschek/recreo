@@ -13,7 +13,7 @@
   --blue__medium: #595d85;
   --blue__dark: #3D405B;
   --blue__overlay: #3D405B90;
-  --blue__opaque: #3D405B40;
+  --blue__opaque: #3D405B50;
 
   --red: #e0685f;
   --red__light: #e0685f50;
@@ -51,8 +51,9 @@ time, mark, audio, video {
 }
 
 body {
-  margin: 0;
+  color: var(--blue__dark);
   font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
