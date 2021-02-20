@@ -33,7 +33,7 @@ export const Content = styled.div.attrs(() => ({
   padding: 2.4rem;
 
   @media only screen and (min-width: 900px) {
-    background-color: var(--white__off);
+    background-color: var(--white);
     border-radius: 0 2.4rem 2.4rem 0;
     box-shadow: 2px 0 6px var(--shadow__sm);
     padding: 4rem;
@@ -44,7 +44,7 @@ export const Content = styled.div.attrs(() => ({
 
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: calc(60% - 3rem) 40%;
+    grid-template-rows: 2rem auto 40rem;
     grid-gap: 3rem;
 
     height: 100%;

@@ -1,5 +1,10 @@
 // STYLED COMPONENTS
-import { Amenities, BackButton, Info, Preview, Section } from './styles/SinglePlayground';
+import { Section } from './styles/SinglePlayground';
+
+// COMPONENTS
+import Comments from './components/Comments';
+import Info from './components/Info';
+import Preview from './components/Preview';
 
 // LAYOUT
 import MapLayout from 'layouts/MapLayout';
@@ -9,20 +14,11 @@ import MapLayout from 'layouts/MapLayout';
 const SinglePlayground = () => {
   return (
     <MapLayout>
-      <BackButton>Back</BackButton>
       <Section>
-        <Amenities>Amenities</Amenities>
-        <Info>
-          <p>Name</p>
-          <p>Location, Distance</p>
-          <p>Description</p>
-          <p>Favorite</p>
-          <p>Forward</p>
-          <p>Review Average</p>
-          <p>Reviews / Commentaries</p>
-        </Info>
+        <Comments />
+        <Info />
       </Section>
-      <Preview>Images</Preview>
+      <Preview />
     </MapLayout>
   );
 };
