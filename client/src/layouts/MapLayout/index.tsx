@@ -11,11 +11,9 @@ interface MapLayoutProps {
 const MapLayout: React.FC<MapLayoutProps> = ({ children }) => {
   return (
     <Main>
+      <BackButton />
       <MapWrapper />
-      <Content>
-        <BackButton />
-        {children}
-      </Content>
+      <Content>{children}</Content>
     </Main>
   );
 };

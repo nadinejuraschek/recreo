@@ -1,10 +1,12 @@
 // STYLED COMPONENTS
-import { Section } from './styles/SinglePlayground';
+import { Content, Header, Section } from './styles/SinglePlayground';
 
 // COMPONENTS
 import Comments from './components/Comments';
 import Info from './components/Info';
 import Preview from './components/Preview';
+import Tabs from 'components/Tabs';
+import Title from 'components/Title';
 
 // LAYOUT
 import MapLayout from 'layouts/MapLayout';
@@ -14,11 +16,18 @@ import MapLayout from 'layouts/MapLayout';
 const SinglePlayground = () => {
   return (
     <MapLayout>
-      <Section>
+      <Content>
+        <Header>
+          <Title size="small">Playground Name</Title>
+          {/* TODO: Favorite, Forward */}
+        </Header>
+        <Section>
+          <Info />
+          <Tabs options={[{ label: 'Images' }, { label: 'Reviews' }]} />
+        </Section>
+        <Preview />
         <Comments />
-        <Info />
-      </Section>
-      <Preview />
+      </Content>
     </MapLayout>
   );
 };

@@ -11,6 +11,7 @@ export const Wrapper = styled.section.attrs(() => ({
   grid-template-rows: 1fr;
   grid-gap: 1rem;
 
+  height: 100%;
   width: 100%;
 `;
 
@@ -24,7 +25,7 @@ export const ImageList = styled.section.attrs(() => ({
   overflow: hidden;
   overflow-y: scroll;
 
-  max-height: 32rem;
+  height: 100%;
   width: 100%;
 
   img:not(:last-child) {
@@ -36,7 +37,6 @@ export const ImagePreview = styled.img.attrs(() => ({
   className: 'single-playground__preview-image',
 }))`
   background-position: center center;
-  background-repeat: none;
   background-size: contain;
   border: none;
   border-radius: 2.4rem;
@@ -45,11 +45,11 @@ export const ImagePreview = styled.img.attrs(() => ({
   width: 13rem;
 
   &:hover {
-    border: 2px solid pink;
+    border: 4px solid var(--orange);
   }
 
   &.active {
-    border: 2px solid hotpink;
+    border: 2px solid var(--orange);
   }
 `;
 
@@ -57,11 +57,9 @@ export const ImageActive = styled.img.attrs(() => ({
   className: 'single-playground__preview-image-active',
 }))`
   background-position: center center;
-  background-repeat: none;
   background-size: contain;
   border: none;
   border-radius: 2.4rem;
 
-  max-height: 32rem;
   width: 100%;
 `;

@@ -36,16 +36,11 @@ export const Content = styled.div.attrs(() => ({
     background-color: var(--white);
     border-radius: 0 2.4rem 2.4rem 0;
     box-shadow: 2px 0 6px var(--shadow__sm);
-    padding: 4rem;
+    padding: 2.4rem 4rem;
 
     position: absolute;
     top: 0;
     left: 0;
-
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 2rem auto 40rem;
-    grid-gap: 3rem;
 
     height: 100%;
     width: 70%;
