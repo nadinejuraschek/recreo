@@ -12,11 +12,17 @@ const Info = () => {
       </Subtitle>
       <Subtitle>⭐⭐⭐⭐⭐</Subtitle>
       <AmenitiesList>
-        <Amenity />
-        <Amenity />
-        <Amenity />
-        <Amenity />
-        <Amenity />
+        <Amenity hoverText="Toddler Safe" icon="toddler" />
+        <Amenity hoverText="Slide" icon="slide" />
+        <Amenity hoverText="Swings" icon="swing" />
+        <Amenity hoverText="Sandbox" icon="sandbox" />
+        <Amenity hoverText="Monkey Bars" icon="monkeyBars" />
+        <Amenity hoverText="Climbing Wall or Structure" icon="climbingWall" />
+        <Amenity hoverText="Seating or Picnic Area" icon="bench" />
+        <Amenity hoverText="Sun Protection" icon="sun" />
+        <Amenity hoverText="Sprinklers" icon="sprinkler" />
+        <Amenity hoverText="Restrooms" icon="restrooms" />
+        <Amenity hoverText="Drinking Fountain" icon="drinkingFountain" />
       </AmenitiesList>
       <Description>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -24,19 +30,6 @@ const Info = () => {
         reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
         in culpa qui officia deserunt mollit anim id est laborum.
       </Description>
-      {/* <div>
-        <p>Toddler Safe</p>
-        <p>Slide</p>
-        <p>Swings</p>
-        <p>Sandbox</p>
-        <p>Monkey Bars</p>
-        <p>Climbing Wall</p>
-        <p>Seating / Picnic Area</p>
-        <p>Sun Protection</p>
-        <p>Sprinklers</p>
-        <p>Restrooms</p>
-        <p>Drinking Fountain</p>
-      </div> */}
     </Wrapper>
   );
 };

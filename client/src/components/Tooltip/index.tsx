@@ -6,15 +6,16 @@ import { HoverItem, Wrapper } from './styles/Tooltip';
 
 interface TooltipProps {
   children?: any;
+  text: string;
 }
 
-const Tooltip: React.FC<TooltipProps> = ({ children }) => {
+const Tooltip: React.FC<TooltipProps> = ({ children, text }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
     <Wrapper onMouseOver={() => setHovered(true)} onMouseOut={() => setHovered(false)}>
       {children}
-      {hovered && <HoverItem>This is a hover text.</HoverItem>}
+      {hovered && <HoverItem>{text}</HoverItem>}
     </Wrapper>
   );
 };

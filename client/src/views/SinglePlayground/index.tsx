@@ -1,5 +1,5 @@
 // STYLED COMPONENTS
-import { Content, Header, Section } from './styles/SinglePlayground';
+import { Content, Header, Section, TabContent } from './styles/SinglePlayground';
 
 // COMPONENTS
 import Comments from './components/Comments';
@@ -25,8 +25,8 @@ const SinglePlayground = () => {
           <Info />
           <Tabs options={[{ label: 'Images' }, { label: 'Reviews' }]} />
         </Section>
-        <Preview />
-        <Comments />
+        <TabContent>{/* <Preview />
+          <Comments /> */}</TabContent>
       </Content>
     </MapLayout>
   );
