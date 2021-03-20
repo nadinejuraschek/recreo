@@ -4,26 +4,26 @@
 :root {
   --white: #ffffff;
   --white__off: #f9f9f9;
-  --yellow: #F2CC8F;
-  --yellow__light: #F4F1DE;
+  --yellow: #f2cc8f;
+  --yellow__light: #f4f1de;
 
-  --orange: #E07A5F;
+  --orange: #e07a5f;
   --orange__light: #fd9b80;
   --orange__opaque: #fd9b8040;
 
   --blue__medium: #595d85;
-  --blue__dark: #3D405B;
-  --blue__overlay: #3D405B90;
-  --blue__opaque: #3D405B50;
+  --blue__dark: #3d405b;
+  --blue__overlay: #3d405b90;
+  --blue__opaque: #3d405b50;
 
   --red: #e0685f;
   --red__light: #e0685f50;
 
-  --green: #81B29A;
-  --green__light: #81B29A50;
+  --green: #81b29a;
+  --green__light: #81b29a50;
 
-  --shadow__sm: #3D405B25;
-  --shadow__lg: #3D405B50;
+  --shadow__sm: #3d405b25;
+  --shadow__lg: #3d405b50;
 }
 
 html {
@@ -31,24 +31,91 @@ html {
   scroll-behavior: smooth;
 }
 
-body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font: inherit;
-	vertical-align: baseline;
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
 }
 
 body {
@@ -59,34 +126,47 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 
 body {
   font-family: 'Roboto', 'Helvetica Neue', sans-serif;
-	line-height: 1;
+  line-height: 1;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
 
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
 
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
 }
 
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }

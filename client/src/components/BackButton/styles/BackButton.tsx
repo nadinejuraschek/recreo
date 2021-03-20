@@ -15,7 +15,6 @@ export const Wrapper = styled.button.attrs(() => ({
   color: var(--blue__dark);
 
   height: 2rem;
-  width: 14rem;
 
   &:hover {
     color: var(--orange);

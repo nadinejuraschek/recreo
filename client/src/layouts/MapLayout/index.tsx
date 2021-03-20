@@ -1,6 +1,3 @@
-// COMPONENTS
-import BackButton from 'components/BackButton';
-
 // STYLED COMPONENTS
 import { Content, Main, MapWrapper } from './styles/MapLayout';
 
@@ -11,9 +8,8 @@ interface MapLayoutProps {
 const MapLayout: React.FC<MapLayoutProps> = ({ children }) => {
   return (
     <Main>
-      <BackButton />
-      <MapWrapper />
       <Content>{children}</Content>
+      <MapWrapper />
     </Main>
   );
 };

@@ -9,13 +9,16 @@ interface TabsProps {
 }
 
 const Tabs: React.FC<TabsProps> = ({ options }) => {
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(options[0].name);
 
   return (
     <Container>
-      {options.map((item: any, index: number) => {
-        <Tab key={index}>{item.label}</Tab>;
-      })}
+      {/* {options.map((item: any, index: number) => (
+        <Tab key={index} onClick={() => setActive(item.name)}>
+          {item.label}
+        </Tab>
+      ))} */}
+      Tabs
     </Container>
   );
 };

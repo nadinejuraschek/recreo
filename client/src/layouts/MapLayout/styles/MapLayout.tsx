@@ -5,25 +5,13 @@ export const Main = styled.main.attrs(() => ({
   className: 'map-layout__main',
 }))`
   min-height: calc(100vh - 8rem);
-  position: relative;
 
   @media only screen and (min-width: 900px) {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-template-rows: 1fr;
+
     min-height: calc(100vh - 11rem);
-  }
-`;
-
-export const MapWrapper = styled.div.attrs(() => ({
-  className: 'map-layout__map-wrapper',
-}))`
-  @media only screen and (min-width: 900px) {
-    background-color: #bbb;
-
-    position: absolute;
-    top: 0;
-    right: 0;
-
-    height: 100%;
-    width: 40%;
   }
 `;
 
@@ -33,17 +21,21 @@ export const Content = styled.div.attrs(() => ({
   padding: 2.4rem;
 
   @media only screen and (min-width: 900px) {
-    background-color: var(--white);
-    border-radius: 0 2.4rem 2.4rem 0;
-    box-shadow: 2px 0 6px var(--shadow__sm);
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+
     padding: 2.4rem 4rem;
+  }
+`;
 
-    position: absolute;
-    top: 0;
-    left: 0;
+export const MapWrapper = styled.div.attrs(() => ({
+  className: 'map-layout__map-wrapper',
+}))`
+  @media only screen and (min-width: 900px) {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
 
-    height: 100%;
-    width: 70%;
-    z-index: 1;
+    background-color: #bbb;
+    border-radius: 2.4rem 0 0 2.4rem;
   }
 `;

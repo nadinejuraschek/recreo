@@ -15,16 +15,6 @@ export const Content = styled.div.attrs(() => ({
   }
 `;
 
-export const Header = styled.div.attrs(() => ({
-  className: 'single-playground__header',
-}))`
-  grid-row: 1 / 2;
-
-  display: flex;
-
-  height: 100%;
-`;
-
 export const Section = styled.section.attrs(() => ({
   className: 'single-playground__section',
 }))`
