@@ -1,9 +1,3 @@
-// DEPENDENCIES
-// import { useState } from 'react';
-
-// COMPONENTS
-import Tooltip from 'components/Tooltip';
-
 // STYLED COMPONENTS
 import { Icon, Container } from './styles/Amenity';
 
@@ -23,11 +17,10 @@ import { ReactComponent as Swing } from 'assets/swing.svg';
 import { ReactComponent as Toddler } from 'assets/toddler.svg';
 
 interface AmenityProps {
-  hoverText: string;
   icon: string;
 }
 
-const Amenity: React.FC<AmenityProps> = ({ hoverText, icon }) => {
+const Amenity: React.FC<AmenityProps> = ({ icon }) => {
   let iconToDisplay;
   switch (icon) {
     case 'bench':
@@ -71,11 +64,9 @@ const Amenity: React.FC<AmenityProps> = ({ hoverText, icon }) => {
   }
 
   return (
-    <Tooltip text={hoverText}>
-      <Container>
-        <Icon>{iconToDisplay}</Icon>
-      </Container>
-    </Tooltip>
+    <Container>
+      <Icon>{iconToDisplay}</Icon>
+    </Container>
   );
 };
 

@@ -7,7 +7,7 @@ export const Content = styled.div.attrs(() => ({
   @media only screen and (min-width: 900px) {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 4rem max-content auto;
+    grid-template-rows: 4rem max-content 4rem auto;
     grid-gap: 2.4rem;
 
     height: 100%;
@@ -15,21 +15,8 @@ export const Content = styled.div.attrs(() => ({
   }
 `;
 
-export const Section = styled.section.attrs(() => ({
-  className: 'single-playground__section',
-}))`
-  grid-row: 2 / 3;
-
-  margin-bottom: 3rem;
-
-  height: 100%;
-  width: 100%;
-`;
-
 export const TabContent = styled.section.attrs(() => ({
   className: 'single-playground__tab-content',
 }))`
-  grid-row: 3 / 4;
-
-  background-color: lightblue;
+  grid-row: 4 / 5;
 `;

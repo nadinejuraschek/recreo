@@ -7,20 +7,29 @@ import { ReactComponent as PinIcon } from 'assets/location.svg';
 export const Wrapper = styled.div.attrs(() => ({
   className: 'single-playground__info-wrapper',
 }))`
-  grid-row: 1 / 2;
+  grid-row: 2 / 3;
 
   height: 100%;
+  width: 100%;
 `;
 
-export const Subtitle = styled.h4.attrs(() => ({
+export const Subtitle = styled.div.attrs(() => ({
   className: 'single-playground__info-subtitle',
 }))`
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   font-size: 1.8rem;
   line-height: 2rem;
   margin: 1rem 0;
+`;
+
+export const Location = styled.div.attrs(() => ({
+  className: 'single-playground__info-location-icon',
+}))`
+  display: flex;
+  align-items: center;
 `;
 
 export const LocationIcon = styled(PinIcon).attrs(() => ({

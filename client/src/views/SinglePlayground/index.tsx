@@ -1,7 +1,11 @@
+// DEPENDENCIES
+import { useState } from 'react';
+
 // STYLED COMPONENTS
-import { Content, Section, TabContent } from './styles/SinglePlayground';
+import { Content, TabContent } from './styles/SinglePlayground';
 
 // COMPONENTS
+import Amenities from './components/Amenities';
 import Comments from './components/Comments';
 import Info from './components/Info';
 import Header from './components/Header';
@@ -12,21 +16,24 @@ import Tabs from 'components/Tabs';
 import MapLayout from 'layouts/MapLayout';
 
 const SinglePlayground = () => {
+  const tabOptions = [
+    { label: 'Images', name: 'images' },
+    { label: 'Features', name: 'features' },
+    { label: 'Reviews', name: 'reviews' },
+  ];
+  const [activeTab, setActiveTab] = useState(tabOptions[0].name);
+
   return (
     <MapLayout>
       <Content>
         <Header />
-        <Section>
-          <Info />
-          <Tabs
-            options={[
-              { label: 'Images', name: 'images' },
-              { label: 'Reviews', name: 'reviews' },
-            ]}
-          />
-        </Section>
-        <TabContent>{/* <Preview />
-          <Comments /> */}</TabContent>
+        <Info />
+        <Tabs active={activeTab} handleClick={setActiveTab} options={tabOptions} />
+        <TabContent>
+          {activeTab === 'images' && <Preview />}
+          {activeTab === 'features' && <Amenities />}
+          {activeTab === 'reviews' && <Comments />}
+        </TabContent>
       </Content>
     </MapLayout>
   );
