@@ -3,6 +3,8 @@ import { HeaderWrapper, HeaderLeft, HeaderRight, HeaderTitle } from '../styles/H
 
 // COMPONENTS
 import BackButton from 'components/BackButton';
+import FavoriteButton from 'components/FavoriteButton';
+import ShareButton from 'components/ShareButton';
 
 const Header = () => {
   return (
@@ -11,7 +13,10 @@ const Header = () => {
         <BackButton />
         <HeaderTitle>Playground Name</HeaderTitle>
       </HeaderLeft>
-      <HeaderRight>Favorite, Forward</HeaderRight>
+      <HeaderRight>
+        <FavoriteButton />
+        <ShareButton />
+      </HeaderRight>
     </HeaderWrapper>
   );
 };

@@ -34,6 +34,10 @@ export const HeaderRight = styled.div.attrs(() => ({
   align-items: center;
 
   height: 100%;
+
+  .favorite-icon {
+    margin-right: 1.5rem;
+  }
 `;
 
 export const HeaderTitle = styled.h3.attrs(() => ({
