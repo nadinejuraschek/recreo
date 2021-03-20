@@ -35,7 +35,7 @@ export const MapWrapper = styled.div.attrs(() => ({
     grid-column: 2 / 3;
     grid-row: 1 / 2;
 
-    background-color: #bbb;
+    background-color: var(--blue__overlay);
     border-radius: 2.4rem 0 0 2.4rem;
   }
 `;

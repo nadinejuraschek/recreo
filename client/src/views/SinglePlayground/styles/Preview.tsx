@@ -25,7 +25,7 @@ export const ImageList = styled.section.attrs(() => ({
   overflow: hidden;
   overflow-y: scroll;
 
-  height: 100%;
+  height: 34rem;
   width: 100%;
 
   img:not(:last-child) {
@@ -53,13 +53,19 @@ export const ImagePreview = styled.img.attrs(() => ({
   }
 `;
 
-export const ImageActive = styled.img.attrs(() => ({
+export const ImageActive = styled.div.attrs(() => ({
   className: 'single-playground__preview-image-active',
 }))`
-  background-position: center center;
-  background-size: contain;
   border: none;
   border-radius: 2.4rem;
+  overflow: hidden;
 
+  height: 100%;
   width: 100%;
+
+  img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
 `;
