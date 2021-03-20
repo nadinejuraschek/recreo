@@ -19,7 +19,7 @@ export const Wrapper = styled.div.attrs(() => ({
 export const Label = styled.label.attrs(() => ({
   className: 'input-label',
 }))`
-  font-size: 1.25rem;
+  font-size: 1.6rem;
   font-weight: bold;
 `;
 
@@ -29,7 +29,7 @@ export const StyledInput = styled.input.attrs(() => ({
   background-color: transparent;
   border: none;
   border-bottom: 1px solid var(--blue__dark);
-  font-size: 1rem;
+  font-size: 1.6rem;
   font-weight: normal;
   margin-bottom: 0.75rem;
   padding: 0 0 0 0.75rem;
@@ -38,7 +38,6 @@ export const StyledInput = styled.input.attrs(() => ({
 
   @media only screen and (min-width: 900px) {
     height: 50px;
-    font-size: 1.25rem;
   }
 
   ${({ withIcon }) =>

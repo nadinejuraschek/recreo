@@ -50,14 +50,14 @@ export const Text = styled.span.attrs(() => ({
   className: 'divider-text',
 }))`
   background-color: var(--white);
-  font-size: 1rem;
+  font-size: 1.4rem;
   line-height: 2rem;
   padding: 0 1rem;
 
   z-index: 2;
 
   @media only screen and (min-width: 900px) {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     line-height: 2.4rem;
   }
 `;

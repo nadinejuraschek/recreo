@@ -110,19 +110,26 @@ export const StyledButton = styled.button.attrs(() => ({
   justify-content: center;
 
   border-radius: 0.5rem;
-  font-size: 1.1rem;
+  font-size: 1.6rem;
   font-weight: 700;
   padding: 0.5rem 1rem;
 
-  height: 40px;
+  height: 5rem;
   min-width: 120px;
 
   transition: all 0.3s;
 
+  @media only screen and (min-width: 768px) {
+    font-size: 1.8rem;
+    padding: 1rem 2.25rem;
+    min-width: 14rem;
+  }
+
   @media only screen and (min-width: 900px) {
-    font-size: 1.25rem;
-    height: 50px;
-    min-width: 140px;
+    font-size: 2rem;
+    height: 6rem;
+    padding: 1rem 3rem;
+    min-width: 16rem;
   }
 
   ${({ disabled }) =>
