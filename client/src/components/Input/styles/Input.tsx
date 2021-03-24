@@ -60,6 +60,33 @@ export const StyledInput = styled.input.attrs(() => ({
   }
 `;
 
+export const StyledTextarea = styled.input.attrs(() => ({
+  className: 'textarea',
+}))`
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--blue__dark);
+  font-size: 1.6rem;
+  font-weight: normal;
+  margin-bottom: 0.75rem;
+  padding: 0 0 0 0.75rem;
+
+  height: 12rem;
+
+  @media only screen and (min-width: 900px) {
+    height: 12rem;
+  }
+
+  &::placeholder {
+    color: var(--blue__medium);
+  }
+
+  &:focus {
+    border-bottom: 3px solid var(--yellow);
+    outline: none;
+  }
+`;
+
 export const Validation = styled.div.attrs(() => ({
   className: 'input-validation',
 }))`

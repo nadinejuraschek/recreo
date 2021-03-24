@@ -32,7 +32,7 @@ const Login = () => {
     <ImageLayout>
       <Wrapper>
         <Title size="large">Log In</Title>
-        <Form initialValues={initialValues} validationSchema={validationSchema} />
+        <Form initialValues={initialValues} login validationSchema={validationSchema} />
         <Divider text="or" />
         <Button link="/login" outlined fullWidth>
           Register

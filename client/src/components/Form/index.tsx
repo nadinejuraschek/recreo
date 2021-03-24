@@ -5,18 +5,22 @@ import { useState } from 'react';
 import { Formik } from 'formik';
 
 // COMPONENTS
-import Button from 'components/Button';
-import Input from 'components/Input';
+import CommentsForm from './components/Comments';
+import LoginForm from './components/Login';
+import RegisterForm from './components/Register';
 
 // STYLED COMPONENTS
 import { Container } from './styles/Form';
 
 interface FormProps {
+  comment?: boolean;
   initialValues: any;
+  login?: boolean;
+  register?: boolean;
   validationSchema: any;
 }
 
-const Form: React.FC<FormProps> = ({ initialValues, validationSchema }) => {
+const Form: React.FC<FormProps> = ({ comment, initialValues, login, register, validationSchema }) => {
   const [formData, setFormData] = useState({});
 
   return (
@@ -29,11 +33,9 @@ const Form: React.FC<FormProps> = ({ initialValues, validationSchema }) => {
       }}
       render={({ errors, isValid, setFieldValue, values }) => (
         <Container>
-          <Input placeholder="Username" type="text" icon handleChange={setFieldValue} error={errors.username} />
-          <Input placeholder="Password" type="password" icon handleChange={setFieldValue} error={errors.password} />
-          <Button filled fullWidth disabled={isValid} type="submit">
-            Login
-          </Button>
+          {comment && <CommentsForm errors={errors} isValid={isValid} setFieldValue={setFieldValue} />}
+          {login && <LoginForm errors={errors} isValid={isValid} setFieldValue={setFieldValue} />}
+          {register && <RegisterForm errors={errors} isValid={isValid} setFieldValue={setFieldValue} />}
         </Container>
       )}
     />

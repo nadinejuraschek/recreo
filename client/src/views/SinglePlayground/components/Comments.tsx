@@ -1,8 +1,9 @@
 // COMPONENTS
 import Comment from 'components/Comment';
+import Form from 'components/Form';
 
 // STYLED COMPONENTS
-import { Container } from '../styles/Comments';
+import { Container, FormContainer } from '../styles/Comments';
 
 const Comments = () => {
   return (
@@ -12,7 +13,9 @@ const Comments = () => {
       <Comment />
       <Comment />
       <Comment />
-      <Comment />
+      <FormContainer>
+        <Form comment initialValues={{}} validationSchema={{}} />
+      </FormContainer>
     </Container>
   );
 };
