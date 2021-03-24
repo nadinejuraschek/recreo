@@ -1,11 +1,18 @@
-// STYLED components
+// COMPONENTS
+import Comment from 'components/Comment';
+
+// STYLED COMPONENTS
 import { Container } from '../styles/Comments';
 
 const Comments = () => {
   return (
     <Container>
-      <div>Comment</div>
-      <div>Comment</div>
+      <Comment />
+      <Comment />
+      <Comment />
+      <Comment />
+      <Comment />
+      <Comment />
     </Container>
   );
 };

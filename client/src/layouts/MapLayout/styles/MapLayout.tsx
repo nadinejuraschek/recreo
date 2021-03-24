@@ -24,7 +24,7 @@ export const Content = styled.div.attrs(() => ({
     grid-column: 1 / 2;
     grid-row: 1 / 2;
 
-    padding: 2.4rem 4rem;
+    padding: 1.2rem 4rem 0;
   }
 `;
 
