@@ -1,16 +1,8 @@
 // DEPENDENCIES
 import styled from 'styled-components';
 
-export const Container = styled.div.attrs(() => ({
-  className: 'single-playground__comments-container',
-}))`
-  grid-row: 1 / 2;
-
-  height: 100%;
-`;
-
 export const Avatar = styled.div.attrs(() => ({
-  className: 'single-playground__comments-avatar',
+  className: 'comments-avatar',
 }))`
   height: 8rem;
   width: 8rem;
@@ -33,8 +25,8 @@ export const Avatar = styled.div.attrs(() => ({
   }
 `;
 
-export const Comment = styled.div.attrs(() => ({
-  className: 'single-playground__comments-item',
+export const Container = styled.div.attrs(() => ({
+  className: 'comments-item',
 }))`
   display: grid;
   grid-template-columns: 8rem auto;
@@ -51,7 +43,7 @@ export const Comment = styled.div.attrs(() => ({
 `;
 
 export const Name = styled.div.attrs(() => ({
-  className: 'single-playground__comments-name',
+  className: 'comments-name',
 }))`
   font-size: 1.8rem;
   font-weight: bold;
@@ -60,7 +52,7 @@ export const Name = styled.div.attrs(() => ({
 `;
 
 export const TimePosted = styled.div.attrs(() => ({
-  className: 'single-playground__comments-time-posted',
+  className: 'comments-time-posted',
 }))`
   color: var(--blue__opaque);
   font-size: 1.4rem;
@@ -69,7 +61,7 @@ export const TimePosted = styled.div.attrs(() => ({
 `;
 
 export const Text = styled.div.attrs(() => ({
-  className: 'single-playground__comments-text',
+  className: 'comments-text',
 }))`
   font-size: 1.6rem;
   line-height: 2.2rem;

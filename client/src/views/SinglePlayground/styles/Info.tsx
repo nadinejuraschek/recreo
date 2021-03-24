@@ -45,7 +45,7 @@ export const Description = styled.p.attrs(() => ({
   className: 'single-playground__info-description',
 }))`
   font-size: 1.6rem;
-  line-height: 1.8rem;
+  line-height: 2.2rem;
   margin: 1.5rem 0;
 `;
 
