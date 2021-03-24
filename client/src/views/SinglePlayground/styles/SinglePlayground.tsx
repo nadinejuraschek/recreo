@@ -6,7 +6,7 @@ export const Content = styled.div.attrs(() => ({
 }))`
   @media only screen and (min-width: 900px) {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 100%;
     grid-template-rows: 4rem max-content 4rem auto;
     grid-gap: 2.4rem;
 
