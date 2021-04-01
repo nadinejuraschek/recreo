@@ -33,3 +33,10 @@ export const PlaygroundWrapper = styled.div.attrs(() => ({
   padding: 1.2rem 2.4rem 0;
   width: 100%;
 `;
+
+export const StyledSelectSearch = styled.div.attrs(() => ({
+  className: 'playground-form-selecter',
+}))`
+  padding: 1.2rem 2.4rem 0;
+  width: 100%;
+`;
