@@ -15,12 +15,7 @@ const CommentsForm: React.FC<CommentsFormProps> = ({ errors, isValid, setFieldVa
   return (
     <>
       <Rating>⭐⭐⭐⭐⭐</Rating>
-      <Input
-        placeholder="Tell us about your playground experience..."
-        type="textarea"
-        handleChange={setFieldValue}
-        error={errors.username}
-      />
+      <Input placeholder="Tell us about your playground experience..." type="textarea" handleChange={setFieldValue} error={errors.text} />
       <ButtonWrapper>
         <Button disabled={isValid} filled small type="submit">
           Add Comment

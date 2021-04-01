@@ -26,8 +26,9 @@ export const Label = styled.label.attrs(() => ({
 export const StyledInput = styled.input.attrs(() => ({
   className: 'input',
 }))<InputProps>`
-  background-color: transparent;
+  background-color: #f8f8f8;
   border: none;
+  border-radius: 8px 8px 0 0;
   border-bottom: 1px solid var(--blue__dark);
   font-size: 1.6rem;
   font-weight: normal;
@@ -63,8 +64,9 @@ export const StyledInput = styled.input.attrs(() => ({
 export const StyledTextarea = styled.input.attrs(() => ({
   className: 'textarea',
 }))`
-  background-color: transparent;
+  background-color: #f8f8f8;
   border: none;
+  border-radius: 8px 8px 0 0;
   border-bottom: 1px solid var(--blue__dark);
   font-size: 1.6rem;
   font-weight: normal;

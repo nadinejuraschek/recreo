@@ -1,6 +1,3 @@
-// DEPENDENCIES
-import { useState } from 'react';
-
 // ROUTER
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -34,7 +31,6 @@ const App = () => {
       <Route exact path="/playgrounds" component={Playgrounds} />
 
       {/* Single Playground */}
-      <Route exact path="/create" component={DefaultLayout} />
       <Route exact path="/playgrounds/:id" component={SinglePlayground} />
       <Route exact path="/playgrounds/:id/edit" component={DefaultLayout} />
 

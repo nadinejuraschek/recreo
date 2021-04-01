@@ -7,6 +7,7 @@ import { Formik } from 'formik';
 // COMPONENTS
 import CommentsForm from './components/Comments';
 import LoginForm from './components/Login';
+import PlaygroundForm from './components/Playground';
 import RegisterForm from './components/Register';
 
 // STYLED COMPONENTS
@@ -16,11 +17,12 @@ interface FormProps {
   comment?: boolean;
   initialValues: any;
   login?: boolean;
+  playground?: boolean;
   register?: boolean;
   validationSchema: any;
 }
 
-const Form: React.FC<FormProps> = ({ comment, initialValues, login, register, validationSchema }) => {
+const Form: React.FC<FormProps> = ({ comment, initialValues, login, playground, register, validationSchema }) => {
   const [formData, setFormData] = useState({});
 
   return (
@@ -35,6 +37,7 @@ const Form: React.FC<FormProps> = ({ comment, initialValues, login, register, va
         <Container>
           {comment && <CommentsForm errors={errors} isValid={isValid} setFieldValue={setFieldValue} />}
           {login && <LoginForm errors={errors} isValid={isValid} setFieldValue={setFieldValue} />}
+          {playground && <PlaygroundForm errors={errors} isValid={isValid} setFieldValue={setFieldValue} />}
           {register && <RegisterForm errors={errors} isValid={isValid} setFieldValue={setFieldValue} />}
         </Container>
       )}

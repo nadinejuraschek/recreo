@@ -10,7 +10,7 @@ export const Container = styled.form.attrs(() => ({
 `;
 
 export const Rating = styled.div.attrs(() => ({
-  className: 'comment-rating',
+  className: 'comment-form-rating',
 }))`
   font-size: 2rem;
   padding-top: 1rem;
@@ -18,11 +18,18 @@ export const Rating = styled.div.attrs(() => ({
 `;
 
 export const ButtonWrapper = styled.div.attrs(() => ({
-  className: 'comment-button-wrapper',
+  className: 'comment-form-button-wrapper',
 }))`
   display: flex;
   align-items: center;
   justify-content: flex-end;
 
+  width: 100%;
+`;
+
+export const PlaygroundWrapper = styled.div.attrs(() => ({
+  className: 'playground-form',
+}))`
+  padding: 1.2rem 2.4rem 0;
   width: 100%;
 `;

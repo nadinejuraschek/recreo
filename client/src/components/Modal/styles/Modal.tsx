@@ -4,16 +4,16 @@ import styled from 'styled-components';
 export const Overlay = styled.div.attrs(() => ({
   className: 'modal-overlay',
 }))`
-  position: absolute;
+  position: fixed;
   top: 0;
+  bottom: 0;
   left: 0;
+  right: 0;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  height: 100vh;
-  width: 100vw;
   z-index: 2;
 
   background-color: var(--blue__overlay);
@@ -45,11 +45,13 @@ export const Body = styled.div.attrs(() => ({
   className: 'modal-body',
 }))`
   height: 100%;
+  padding: 0;
 `;
 
 export const Footer = styled.div.attrs(() => ({
   className: 'modal-footer',
 }))`
+  border: none;
   height: 8rem;
   padding: 0 2.4rem;
 `;

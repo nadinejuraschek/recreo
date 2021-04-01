@@ -1,10 +1,11 @@
 // DEPENDENCIES
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 // ICONS
 import { ReactComponent as RatingSvg } from 'assets/star.svg';
 
-export const Container = styled.div.attrs(() => ({
+export const Container = styled(Link).attrs(() => ({
   className: 'card-container',
 }))`
   background-color: var(--white__off);
@@ -13,6 +14,7 @@ export const Container = styled.div.attrs(() => ({
   box-shadow: 0 2px 6px var(--shadow__sm);
   color: var(--blue__dark);
   overflow: hidden;
+  text-decoration: none;
 
   display: flex;
   flex-direction: column;
@@ -21,6 +23,7 @@ export const Container = styled.div.attrs(() => ({
 
   &:hover {
     box-shadow: 0 2px 10px var(--shadow__lg);
+    color: var(--blue__dark);
     cursor: pointer;
   }
 
