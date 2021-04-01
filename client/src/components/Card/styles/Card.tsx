@@ -12,7 +12,7 @@ export const Container = styled.div.attrs(() => ({
   border-radius: 2.4rem;
   box-shadow: 0 2px 6px var(--shadow__sm);
   color: var(--blue__dark);
-  padding: 2rem;
+  overflow: hidden;
 
   display: flex;
   flex-direction: column;
@@ -33,15 +33,12 @@ export const Container = styled.div.attrs(() => ({
 export const Image = styled.img.attrs(() => ({
   className: 'card-image',
 }))`
-  border: none;
-  border-radius: 2.4rem;
-
   object-fit: cover;
   height: 10rem;
   width: 100%;
 
   @media only screen and (min-width: 600px) {
-    height: 21rem;
+    height: 100%;
     width: 21rem;
   }
 `;
@@ -49,13 +46,11 @@ export const Image = styled.img.attrs(() => ({
 export const Body = styled.div.attrs(() => ({
   className: 'card-body',
 }))`
-  margin-top: 2rem;
-  padding: 0;
+  padding: 2rem;
 
   @media only screen and (min-width: 600px) {
     height: 100%;
-    margin-top: 0;
-    margin-left: 2rem;
+    margin: 0;
   }
 `;
 
