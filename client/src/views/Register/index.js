@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import ImageLayout from 'layouts/ImageLayout';
 
 // STYLED COMPONENTS
-import { Wrapper } from './styles/Login';
+import { Wrapper } from './styles/Register';
 
 // COMPONENTS
 import Button from 'components/Button';
@@ -27,19 +27,19 @@ const initialValues = {
   password: '',
 };
 
-const Login = () => {
+const Register = () => {
   return (
     <ImageLayout>
       <Wrapper>
-        <Title size="large">Log In</Title>
-        <Form initialValues={initialValues} login validationSchema={validationSchema} />
+        <Title size="large">Register</Title>
+        <Form initialValues={initialValues} register validationSchema={validationSchema} />
         <Divider text="or" />
-        <Button link="/register" outlined fullWidth>
-          Register
+        <Button link="/login" outlined fullWidth>
+          Log In
         </Button>
       </Wrapper>
     </ImageLayout>
   );
 };
 
-export default Login;
+export default Register;

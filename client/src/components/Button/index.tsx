@@ -12,7 +12,8 @@ interface ButtonProps {
   link?: string;
   outlined?: boolean;
   rounded?: boolean;
-  type?: any;
+  small?: boolean;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -25,6 +26,7 @@ const Button: React.FC<ButtonProps> = ({
   link,
   outlined,
   rounded,
+  small,
   type,
 }) => {
   return (
@@ -42,6 +44,7 @@ const Button: React.FC<ButtonProps> = ({
           onSubmit={handleSubmit}
           outlined={outlined}
           rounded={rounded}
+          small={small}
           type={type}
         >
           {children}

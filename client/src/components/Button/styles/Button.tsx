@@ -10,6 +10,7 @@ type ButtonProps = {
   fullWidth?: boolean;
   outlined?: boolean;
   rounded?: boolean;
+  small?: boolean;
 };
 
 export const StyledLink = styled(Link).attrs(() => ({
@@ -42,6 +43,14 @@ export const StyledLink = styled(Link).attrs(() => ({
     padding: 1rem 3rem;
     min-width: 16rem;
   }
+
+  ${({ small }) =>
+    small &&
+    css`
+      font-size: 1.6rem;
+      height: 4rem;
+      min-width: 12rem;
+    `}
 
   ${({ disabled }) =>
     disabled &&
@@ -131,6 +140,24 @@ export const StyledButton = styled.button.attrs(() => ({
     padding: 1rem 3rem;
     min-width: 16rem;
   }
+
+  ${({ small }) =>
+    small &&
+    css`
+      font-size: 1.4rem;
+      padding: 0.5rem 1rem;
+
+      height: 4rem;
+      min-width: 100px;
+
+      @media only screen and (min-width: 900px) {
+        font-size: 1.6rem;
+        padding: 0.5rem 1rem;
+
+        height: 4rem;
+        min-width: 100px;
+      }
+    `}
 
   ${({ disabled }) =>
     disabled &&

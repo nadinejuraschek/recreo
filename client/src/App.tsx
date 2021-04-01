@@ -15,6 +15,7 @@ import ImageLayout from 'layouts/ImageLayout';
 // VIEWS
 import Login from 'views/Login';
 import Playgrounds from 'views/Playgrounds';
+import Register from 'views/Register';
 import SinglePlayground from 'views/SinglePlayground';
 
 const App = () => {
@@ -27,7 +28,7 @@ const App = () => {
 
       {/* Auth */}
       <Route exact path="/login" component={Login} />
-      <Route exact path="/register" component={ImageLayout} />
+      <Route exact path="/register" component={Register} />
 
       {/* Home */}
       <Route exact path="/playgrounds" component={Playgrounds} />
