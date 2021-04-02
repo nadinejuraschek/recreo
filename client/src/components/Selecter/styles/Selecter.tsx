@@ -9,9 +9,14 @@ export const StyledSelectSearch = styled.div.attrs(() => ({
  */
   .select-search {
     box-sizing: border-box;
+    color: var(--blue__dark);
     position: relative;
 
-    width: 50%;
+    width: 75%;
+
+    @media only screen and (min-width: 900px) {
+      width: 50%;
+    }
   }
 
   .select-search *,
@@ -42,10 +47,11 @@ export const StyledSelectSearch = styled.div.attrs(() => ({
  * Input
  */
   .select-search__input {
+    color: var(--blue__dark);
     display: block;
     height: 36px;
     width: 100%;
-    padding: 0 16px;
+    padding: 0 4rem 0 0.75rem;
     background: #f8f8f8;
     border: 1px solid transparent;
     box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);

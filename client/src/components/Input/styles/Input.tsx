@@ -30,6 +30,7 @@ export const StyledInput = styled.input.attrs(() => ({
   border: none;
   border-radius: 8px 8px 0 0;
   border-bottom: 1px solid var(--blue__dark);
+  box-shadow: 0 0.0625rem 0.125rem rgb(0 0 0 / 15%);
   font-size: 1.6rem;
   font-weight: normal;
   margin-bottom: 0.75rem;
@@ -68,6 +69,7 @@ export const StyledTextarea = styled.input.attrs(() => ({
   border: none;
   border-radius: 8px 8px 0 0;
   border-bottom: 1px solid var(--blue__dark);
+  box-shadow: 0 0.0625rem 0.125rem rgb(0 0 0 / 15%);
   font-size: 1.6rem;
   font-weight: normal;
   margin-bottom: 0.75rem;
