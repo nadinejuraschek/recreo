@@ -176,11 +176,9 @@ export const StyledSelectSearch = styled.div.attrs(() => ({
   }
 
   .select-search--multiple .select-search__input {
-    cursor: initial;
-  }
-
-  .select-search--multiple .select-search__input {
     border-radius: 3px 3px 0 0;
+    color: var(--blue__dark);
+    cursor: initial;
   }
 
   .select-search--multiple:not(.select-search--search) .select-search__input {
@@ -208,6 +206,7 @@ export const StyledSelectSearch = styled.div.attrs(() => ({
     max-height: 260px;
     border-top: 1px solid #eee;
     border-radius: 0 0 3px 3px;
+    color: var(--blue__dark);
   }
 
   .select-search__not-found {

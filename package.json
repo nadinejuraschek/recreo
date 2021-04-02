@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "new": "nodemon src/app.js --exec babel-node"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,8 @@
   "homepage": "https://github.com/nadinejuraschek/recreo#readme",
   "dependencies": {
     "@mapbox/mapbox-sdk": "^0.11.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "connect-flash": "^0.1.1",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
@@ -26,6 +29,7 @@
     "express": "^4.17.1",
     "express-mongo-sanitize": "^2.0.2",
     "express-session": "^1.17.1",
+    "graphql-yoga": "^1.16.7",
     "helmet": "^4.4.1",
     "joi": "^17.3.0",
     "method-override": "^3.0.0",
