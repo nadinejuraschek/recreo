@@ -2,7 +2,7 @@
 import { GraphQLServer } from 'graphql-yoga';
 import uuidv4 from 'uuid/v4';
 
-const users = [
+let users = [
   {
     email: 'user@test.com',
     id: '1',
@@ -20,7 +20,7 @@ const users = [
   }
 ];
 
-const playgrounds = [
+let playgrounds = [
   {
     id: "p1",
     name: "Playground #1",
@@ -65,7 +65,7 @@ const playgrounds = [
   }
 ];
 
-const reviews = [
+let reviews = [
   {
     id: "r1",
     body: "Pharetra sit amet aliquam id diam maecenas ultricies. Amet risus nullam eget felis eget nunc lobortis. Volutpat blandit aliquam etiam erat velit. Amet nulla facilisi morbi tempus. Semper eget duis at tellus at urna.",
@@ -99,8 +99,11 @@ const typeDefs = `
 
   type Mutation {
     createUser(data: CreateUserInput): User!
+    deleteUser(id: ID!): User!
     createPlayground(data: CreatePlaygroundInput): Playground!
+    deletePlayground(id: ID!): Playground!
     createReview(data: CreateReviewInput): Review!
+    deleteReview(id: ID!): Review!
   }
 
   input CreateUserInput {
@@ -204,6 +207,29 @@ const resolvers = {
 
       return user;
     },
+    deleteUser(parent, args, ctx, info) {
+      const userIndex = users.findIndex(user => user.id === args.id);
+
+      if (userIndex === -1) {
+        throw new Error('User not found.');
+      }
+
+      const deletedUsers = users.splice(userIndex, 1);
+
+      playgrounds = playgrounds.filter(playground => {
+        const match = playground.author === args.id;
+
+        if (match) {
+          reviews = reviews.filter(review => review.playground !== playground.id)
+        }
+
+        return !match;
+      });
+
+      reviews = reviews.filter(review => review.author !== args.id);
+
+      return deletedUsers[0];
+    },
     createPlayground(parent, args, ctx, info) {
       const userExists = users.some(user => user.id === args.data.author);
       const playgroundExists = playgrounds.some(playground => playground.name === args.data.name);
@@ -224,6 +250,19 @@ const resolvers = {
 
       return playground;
     },
+    deletePlayground(parent, args, ctx, info) {
+      const playgroundIndex = playgrounds.findIndex(playground => playground.id === args.id);
+
+      if (playgroundIndex === -1) {
+        throw new Error('Playground not found.');
+      }
+
+      const deletedPlaygrounds = playgrounds.splice(playgroundIndex, 1);
+
+      reviews = reviews.filter(review => review.playground !== args.id);
+
+      return deletedPlaygrounds[0];
+    },
     createReview(parent, args, ctx, info) {
       const userExists = users.some(user => user.id === args.data.author.id);
       const playgroundExists = playgrounds.some(playground => playground.id === args.data.playground.id);
@@ -243,6 +282,17 @@ const resolvers = {
       reviews.push(review);
 
       return review;
+    },
+    deleteReview(parent, args, ctx, info) {
+      const reviewIndex = reviews.findIndex(review => review.id === args.id);
+
+      if (reviewIndex === -1) {
+        throw new Error('Review not found.');
+      }
+
+      const deletedReviews = reviews.splice(reviewIndex, 1);
+
+      return deletedReviews[0];
     }
   },
   User: {
