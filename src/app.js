@@ -1,5 +1,6 @@
 // DEPENDENCIES
 import { GraphQLServer } from 'graphql-yoga';
+import uuidv4 from 'uuid/v4';
 
 const users = [
   {
@@ -96,6 +97,12 @@ const typeDefs = `
     reviews(query: String): [Review!]!
   }
 
+  type Mutation {
+    createUser(email: String!, username: String!): User!
+    createPlayground(name: String!, image: String, price: Float, description: String!, location: String!, author: ID!): Playground!
+    createReview(body: String!, rating: Float!): Review!
+  }
+
   type User {
     id: ID!
     email: String!
@@ -107,8 +114,8 @@ const typeDefs = `
   type Playground {
     id: ID!
     name: String!
-    image: String!
-    geometry: Geometry!
+    image: String
+    geometry: Geometry
     price: Float
     description: String!
     location: String!
@@ -159,6 +166,69 @@ const resolvers = {
       return reviews.filter(review => {
         return review.body.toLowerCase().includes(args.query.toLowerCase());
       });
+    }
+  },
+  Mutation: {
+    createUser(parent, args, ctx, info) {
+      const userTaken = users.some(user => user.email === args.email || user.username === args.username);
+
+      if (userTaken) {
+        throw new Error('User already exists.');
+      };
+
+      const user = {
+        id: uuidv4(),
+        email: args.email,
+        username: args.username,
+      };
+
+      users.push(user);
+
+      return user;
+    },
+    createPlayground(parent, args, ctx, info) {
+      const userExists = users.some(user => user.id === args.author);
+
+      if (!userExists) {
+        throw new Error('User not found.');
+      };
+
+      const playground = {
+        id: uuidv4(),
+        name: args.name,
+        image: args.image,
+        price: args.price,
+        description: args.description,
+        location: args.location,
+        author: args.author,
+      };
+
+      playgrounds.push(playground);
+
+      return playground;
+    },
+    createReview(parent, args, ctx, info) {
+      const userExists = users.some(user => user.id === args.author.id);
+      const playgroundExists = playgrounds.some(playground => playground.id === args.playground.id);
+
+      if (!userExists) {
+        throw new Error('User not found.');
+      }
+      if (!playgroundExists) {
+        throw new Error('Playground not found.');
+      }
+
+      const review = {
+        id: uuidv4(),
+        body: args.body,
+        rating: args.rating,
+        author: args.author,
+        playground: args.playground,
+      };
+
+      reviews.push(review);
+
+      return review;
     }
   },
   User: {
