@@ -98,9 +98,28 @@ const typeDefs = `
   }
 
   type Mutation {
-    createUser(email: String!, username: String!): User!
-    createPlayground(name: String!, image: String, price: Float, description: String!, location: String!, author: ID!): Playground!
-    createReview(body: String!, rating: Float!): Review!
+    createUser(data: CreateUserInput): User!
+    createPlayground(data: CreatePlaygroundInput): Playground!
+    createReview(data: CreateReviewInput): Review!
+  }
+
+  input CreateUserInput {
+    email: String!
+    username: String!
+  }
+
+  input CreatePlaygroundInput {
+    name: String!
+    image: String
+    price: Float
+    description: String!
+    location: String!
+    author: ID!
+  }
+
+  input CreateReviewInput {
+    body: String!
+    rating: Float!
   }
 
   type User {
@@ -170,7 +189,7 @@ const resolvers = {
   },
   Mutation: {
     createUser(parent, args, ctx, info) {
-      const userTaken = users.some(user => user.email === args.email || user.username === args.username);
+      const userTaken = users.some(user => user.email === data.args.email || user.username === data.args.username);
 
       if (userTaken) {
         throw new Error('User already exists.');
@@ -178,8 +197,7 @@ const resolvers = {
 
       const user = {
         id: uuidv4(),
-        email: args.email,
-        username: args.username,
+        ...data.args,
       };
 
       users.push(user);
@@ -187,20 +205,19 @@ const resolvers = {
       return user;
     },
     createPlayground(parent, args, ctx, info) {
-      const userExists = users.some(user => user.id === args.author);
+      const userExists = users.some(user => user.id === args.data.author);
+      const playgroundExists = playgrounds.some(playground => playground.name === args.data.name);
 
       if (!userExists) {
         throw new Error('User not found.');
-      };
+      }
+      if (playgroundExists) {
+        throw new Error('Playground already exists.');
+      }
 
       const playground = {
         id: uuidv4(),
-        name: args.name,
-        image: args.image,
-        price: args.price,
-        description: args.description,
-        location: args.location,
-        author: args.author,
+        ...args.data,
       };
 
       playgrounds.push(playground);
@@ -208,8 +225,8 @@ const resolvers = {
       return playground;
     },
     createReview(parent, args, ctx, info) {
-      const userExists = users.some(user => user.id === args.author.id);
-      const playgroundExists = playgrounds.some(playground => playground.id === args.playground.id);
+      const userExists = users.some(user => user.id === args.data.author.id);
+      const playgroundExists = playgrounds.some(playground => playground.id === args.data.playground.id);
 
       if (!userExists) {
         throw new Error('User not found.');
@@ -220,10 +237,7 @@ const resolvers = {
 
       const review = {
         id: uuidv4(),
-        body: args.body,
-        rating: args.rating,
-        author: args.author,
-        playground: args.playground,
+        ...args.data,
       };
 
       reviews.push(review);
