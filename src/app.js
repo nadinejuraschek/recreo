@@ -22,7 +22,7 @@ const users = [
 const playgrounds = [
   {
     id: "p1",
-    title: "Playground #1",
+    name: "Playground #1",
     image: "https://images.unsplash.com/photo-1575783970733-1aaedde1db74?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1955&q=80",
     geometry: {
       type: "Point",
@@ -34,11 +34,11 @@ const playgrounds = [
     price: 0,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     location: "Roseville, CA",
-    author: "2",
+    author: "2"
   },
   {
     id: "p2",
-    title: "Playground #2",
+    name: "Playground #2",
     image: "https://images.unsplash.com/photo-1593103916129-87e179a70c1f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
     geometry: {
       type: "Point",
@@ -51,7 +51,7 @@ const playgrounds = [
   },
   {
     id: "p3",
-    title: "Playground #3",
+    name: "Playground #3",
     image: "https://images.unsplash.com/flagged/photo-1551398766-dd525d7c6175?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
     geometry: {
       type: "Point",
@@ -64,13 +64,36 @@ const playgrounds = [
   }
 ];
 
+const reviews = [
+  {
+    id: "r1",
+    body: "Pharetra sit amet aliquam id diam maecenas ultricies. Amet risus nullam eget felis eget nunc lobortis. Volutpat blandit aliquam etiam erat velit. Amet nulla facilisi morbi tempus. Semper eget duis at tellus at urna.",
+    rating: 3.8,
+    author: "1",
+    playground: "p1"
+  },
+  {
+    id: "r2",
+    body: "Sit amet dictum sit amet justo donec enim diam. Amet justo donec enim diam. Ornare arcu odio ut sem nulla pharetra diam sit. Orci porta non pulvinar neque laoreet.",
+    rating: 4.6,
+    author: "1",
+    playground: "p2"
+  },
+  {
+    id: "r3",
+    body: "Id volutpat lacus laoreet non curabitur gravida. In egestas erat imperdiet sed euismod. Suscipit adipiscing bibendum est ultricies integer quis.",
+    rating: 2.4,
+    author: "2",
+    playground: "p3"
+  }
+];
+
 // Type Definitions
 const typeDefs = `
   type Query {
     users(query: String): [User!]!
     playgrounds(query: String): [Playground!]!
-    review: Review!
-    geometry: Geometry!
+    reviews(query: String): [Review!]!
   }
 
   type User {
@@ -83,7 +106,7 @@ const typeDefs = `
 
   type Playground {
     id: ID!
-    title: String!
+    name: String!
     image: String!
     geometry: Geometry!
     price: Float
@@ -98,6 +121,7 @@ const typeDefs = `
     body: String!
     rating: Float!
     author: User!
+    playground: Playground!
   }
 
   type Geometry {
@@ -124,28 +148,53 @@ const resolvers = {
       }
 
       return playgrounds.filter(playground => {
-        return playground.title.toLowerCase().includes(args.query.toLowerCase()) || playground.location.toLowerCase().includes(args.query.toLowerCase());
+        return playground.name.toLowerCase().includes(args.query.toLowerCase()) || playground.location.toLowerCase().includes(args.query.toLowerCase());
       });
     },
-    review() {
-      return {
-            body: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum!',
-            rating: 3.8,
-            author: {
-              email: 'author@test.com',
-              id: '123456',
-              username: 'author'
-            }
-          }
-    },
-    geometry() {
-      return {
-        type: 'Point',
-        coordinates: [
-          -121.2930079,
-          38.891565
-        ]
+    reviews(parent, args, ctx, info) {
+      if (!args.query) {
+        return reviews;
       }
+
+      return reviews.filter(review => {
+        return review.body.toLowerCase().includes(args.query.toLowerCase());
+      });
+    }
+  },
+  User: {
+    playgrounds(parent, args, ctx, info) {
+      return playgrounds.filter(playground => {
+        return playground.author === parent.id;
+      });
+    },
+    reviews(parent, args, ctx, info) {
+      return reviews.filter(review => {
+        return review.author === parent.id;
+      });
+    }
+  },
+  Playground: {
+    author(parent, args, ctx, info) {
+      return users.find(user => {
+        return user.id === parent.author;
+      });
+    },
+    reviews(parent, args, ctx, info) {
+      return reviews.filter(review => {
+        return review.playground === parent.id;
+      });
+    }
+  },
+  Review: {
+    author(parent, args, ctx, info) {
+      return users.find(user => {
+        return user.id === parent.author;
+      });
+    },
+    playground(parent, args, ctx, info) {
+      return playgrounds.find(playground => {
+        return playground.id === parent.playground;
+      });
     }
   }
 };
