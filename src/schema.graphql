@@ -5,17 +5,23 @@ type Query {
 }
 
 type Mutation {
-  createUser(data: CreateUserInput): User!
+  createUser(data: CreateUserInput!): User!
   deleteUser(id: ID!): User!
-  createPlayground(data: CreatePlaygroundInput): Playground!
+  updateUser(id: ID!, data: UpdateUserInput!): User!
+  createPlayground(data: CreatePlaygroundInput!): Playground!
   deletePlayground(id: ID!): Playground!
-  createReview(data: CreateReviewInput): Review!
+  createReview(data: CreateReviewInput!): Review!
   deleteReview(id: ID!): Review!
 }
 
 input CreateUserInput {
   email: String!
   username: String!
+}
+
+input UpdateUserInput {
+  email: String
+  username: String
 }
 
 input CreatePlaygroundInput {

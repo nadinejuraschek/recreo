@@ -41,6 +41,29 @@ const Mutation = {
 
     return deletedUsers[0];
   },
+  updateUser(parent, args, { db }, info) {
+    const user = db.users.find(user => user.id === args.id);
+
+    if (!user) {
+      throw new Error('User not found.');
+    }
+
+    if (typeof data.email === 'string') {
+      const emailTaken = db.users.some(user => user.email === data.email);
+
+      if (emailTaken) {
+        throw new Error('Email in use.');
+      }
+
+      user.email = data.email;
+    }
+
+    if (typeof data.name === 'string') {
+      user.name = data.name;
+    }
+
+    return user;
+  },
   createPlayground(parent, args, { db }, info) {
     const userExists = db.users.some(user => user.id === args.data.author);
     const playgroundExists = db.playgrounds.some(playground => playground.name === args.data.name);
