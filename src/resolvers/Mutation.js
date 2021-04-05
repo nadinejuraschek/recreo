@@ -87,22 +87,33 @@ const Mutation = {
     };
 
     db.playgrounds.push(playground);
-    pubsub.publish('PLAYGROUND', { playground });
+    pubsub.publish('PLAYGROUND', {
+      playground: {
+        mutation: "CREATED",
+        data: playground,
+      },
+    });
 
     return playground;
   },
-  deletePlayground(parent, args, { db }, info) {
+  deletePlayground(parent, args, { db, pubsub }, info) {
     const playgroundIndex = db.playgrounds.findIndex(playground => playground.id === args.id);
 
     if (playgroundIndex === -1) {
       throw new Error('Playground not found.');
     }
 
-    const deletedPlaygrounds = db.playgrounds.splice(playgroundIndex, 1);
+    const [playground] = db.playgrounds.splice(playgroundIndex, 1);
 
     db.reviews = db.reviews.filter(review => review.playground !== args.id);
+    pubsub.publish('PLAYGROUND', {
+      playground: {
+        mutation: 'DELETED',
+        data: playground,
+      },
+    });
 
-    return deletedPlaygrounds[0];
+    return playground;
   },
   updatePlayground(parent, args, { db }, info) {
     const playground = db.playgrounds.find(playground => playground.id === args.id);
@@ -137,6 +148,13 @@ const Mutation = {
       playground.location = data.location;
     }
 
+    pubsub.publish('PLAYGROUND', {
+      playground: {
+        mutation: 'UPDATED',
+        data: playground,
+      },
+    });
+
     return playground;
   },
   createReview(parent, args, { db, pubsub }, info) {
@@ -156,22 +174,33 @@ const Mutation = {
     };
 
     db.reviews.push(review);
-    pubsub.publish(`REVIEW FOR ${args.data.playground}`, { review });
+    pubsub.publish(`REVIEW FOR ${args.data.playground}`, {
+      review: {
+        mutation: 'CREATED',
+        data: review,
+      }
+    });
 
     return review;
   },
-  deleteReview(parent, args, { db }, info) {
+  deleteReview(parent, args, { db, pubsub }, info) {
     const reviewIndex = db.reviews.findIndex(review => review.id === args.id);
 
     if (reviewIndex === -1) {
       throw new Error('Review not found.');
     }
 
-    const deletedReviews = db.reviews.splice(reviewIndex, 1);
+    const [review] = db.reviews.splice(reviewIndex, 1);
+    pubsub.publish(`REVIEW FOR ${args.data.playground}`, {
+      review: {
+        mutation: 'DELETED',
+        data: review,
+      }
+    });
 
-    return deletedReviews[0];
+    return review;
   },
-  updateReview(parent, args, { db }, info) {
+  updateReview(parent, args, { db, pubsub }, info) {
     const review = db.reviews.find(review => review.id === args.id);
 
     if (!review) {
@@ -185,6 +214,13 @@ const Mutation = {
     if (typeof data.rating === 'number') {
       review.rating = data.rating;
     }
+
+    pubsub.publish(`REVIEW FOR ${args.data.playground}`, {
+      review: {
+        mutation: 'UPDATED',
+        data: review,
+      }
+    });
 
     return review;
   },

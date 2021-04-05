@@ -17,8 +17,8 @@ type Mutation {
 }
 
 type Subscription {
-  playground: Playground!
-  review(playgroundId: ID!): Review!
+  playground: PlaygroundSubscriptionPayload!
+  review(playgroundId: ID!): ReviewSubscriptionPayload!
 }
 
 input CreateUserInput {
@@ -91,4 +91,20 @@ type Review {
 type Geometry {
   type: String!
   coordinates: [Float!]
+}
+
+enum MutationType {
+  CREATED
+  DELETED
+  UPDATED
+}
+
+type PlaygroundSubscriptionPayload {
+  mutation: MutationType!
+  data: Playground!
+}
+
+type ReviewSubscriptionPayload {
+  mutation: MutationType!
+  data: Review!
 }
