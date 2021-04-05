@@ -17,6 +17,7 @@ type Mutation {
 }
 
 type Subscription {
+  playground(authorId: ID!): Playground!
   review(playgroundId: ID!): Review!
 }
 

@@ -70,7 +70,7 @@ const Mutation = {
 
     return user;
   },
-  createPlayground(parent, args, { db }, info) {
+  createPlayground(parent, args, { db, pubsub }, info) {
     const userExists = db.users.some(user => user.id === args.data.author);
     const playgroundExists = db.playgrounds.some(playground => playground.name === args.data.name);
 
@@ -87,6 +87,7 @@ const Mutation = {
     };
 
     db.playgrounds.push(playground);
+    pubsub.publish(`PLAYGROUND BY ${args.data.author}`, { playground });
 
     return playground;
   },
@@ -155,7 +156,7 @@ const Mutation = {
     };
 
     db.reviews.push(review);
-    pubsub.publish(`REVIEW #${args.data.playground}`, { review });
+    pubsub.publish(`REVIEW FOR ${args.data.playground}`, { review });
 
     return review;
   },
