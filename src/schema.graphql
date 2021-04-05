@@ -1,0 +1,110 @@
+type Query {
+  users(query: String): [User!]!
+  playgrounds(query: String): [Playground!]!
+  reviews(query: String): [Review!]!
+}
+
+type Mutation {
+  createUser(data: CreateUserInput!): User!
+  deleteUser(id: ID!): User!
+  updateUser(id: ID!, data: UpdateUserInput!): User!
+  createPlayground(data: CreatePlaygroundInput!): Playground!
+  deletePlayground(id: ID!): Playground!
+  updatePlayground(id: ID!, data: UpdatePlaygroundInput!): Playground!
+  createReview(data: CreateReviewInput!): Review!
+  deleteReview(id: ID!): Review!
+  updateReview(id: ID!, data: UpdateReviewInput!): Review!
+}
+
+type Subscription {
+  playground: PlaygroundSubscriptionPayload!
+  review(playgroundId: ID!): ReviewSubscriptionPayload!
+}
+
+input CreateUserInput {
+  email: String!
+  username: String!
+}
+
+input UpdateUserInput {
+  email: String
+  username: String
+}
+
+input CreatePlaygroundInput {
+  name: String!
+  image: String
+  price: Float
+  description: String!
+  location: String!
+  author: ID!
+}
+
+input UpdatePlaygroundInput {
+  name: String
+  image: String
+  price: Float
+  description: String
+  location: String
+}
+
+input CreateReviewInput {
+  body: String!
+  rating: Float!
+  author: ID!
+  playground: ID!
+}
+
+input UpdateReviewInput {
+  body: String
+  rating: Float
+}
+
+type User {
+  id: ID!
+  email: String!
+  username: String!
+  playgrounds: [Playground!]!
+  reviews: [Review!]!
+}
+
+type Playground {
+  id: ID!
+  name: String!
+  image: String
+  geometry: Geometry
+  price: Float
+  description: String!
+  location: String!
+  author: User!
+  reviews: [Review!]!
+}
+
+type Review {
+  id: ID!
+  body: String!
+  rating: Float!
+  author: User!
+  playground: Playground!
+}
+
+type Geometry {
+  type: String!
+  coordinates: [Float!]
+}
+
+enum MutationType {
+  CREATED
+  DELETED
+  UPDATED
+}
+
+type PlaygroundSubscriptionPayload {
+  mutation: MutationType!
+  data: Playground!
+}
+
+type ReviewSubscriptionPayload {
+  mutation: MutationType!
+  data: Review!
+}
