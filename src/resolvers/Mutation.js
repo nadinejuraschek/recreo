@@ -87,7 +87,7 @@ const Mutation = {
     };
 
     db.playgrounds.push(playground);
-    pubsub.publish(`PLAYGROUND BY ${args.data.author}`, { playground });
+    pubsub.publish('PLAYGROUND', { playground });
 
     return playground;
   },

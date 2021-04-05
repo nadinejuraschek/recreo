@@ -1,13 +1,7 @@
 const Subscription = {
   playground: {
-    subscribe(parent, { authorId }, { db, pubsub }, info) {
-      const userExists = db.users.find(user => user.id === authorId);
-
-      if (!userExists) {
-        throw new Error('User not found.');
-      }
-
-      return pubsub.asyncIterator(`PLAYGROUND BY ${authorId}`);
+    subscribe(parent, args, { db, pubsub }, info) {
+      return pubsub.asyncIterator('PLAYGROUND');
     }
   },
   review: {
