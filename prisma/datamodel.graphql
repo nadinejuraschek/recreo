@@ -1,0 +1,31 @@
+type User {
+  id: ID! @unique
+  username: String! @unique
+  email: String! @unique
+  playgrounds: [Playground!]!
+}
+
+type Playground {
+  id: ID! @unique
+  name: String! @unique
+  image: String
+  geometry: Geometry
+  price: Float
+  description: String!
+  location: String!
+  author: User!
+  reviews: [Review!]!
+}
+
+type Review {
+  id: ID! @unique
+  body: String!
+  rating: Float!
+  author: User!
+  playground: Playground!
+}
+
+type Geometry {
+  type: String!
+  coordinates: [Float!]
+}
