@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import ImageLayout from 'layouts/ImageLayout';
 
 // STYLED COMPONENTS
-import { Wrapper } from './styles/Login';
+import { FormWrapper, Wrapper } from './styles/Login';
 
 // COMPONENTS
 import Button from 'components/Button';
@@ -27,16 +27,20 @@ const initialValues = {
   password: '',
 };
 
-const Login = () => {
+const Login = (): JSX.Element => {
   return (
     <ImageLayout>
       <Wrapper>
-        <Title size="large">Log In</Title>
-        <Form initialValues={initialValues} login validationSchema={validationSchema} />
-        <Divider text="or" />
-        <Button link="/register" outlined fullWidth>
-          Register
-        </Button>
+        <Title marginBottom={5} size="large">
+          Log In
+        </Title>
+        <FormWrapper>
+          <Form initialValues={initialValues} login validationSchema={validationSchema} />
+          <Divider text="or" />
+          <Button link="/register" outlined fullWidth>
+            Register
+          </Button>
+        </FormWrapper>
       </Wrapper>
     </ImageLayout>
   );

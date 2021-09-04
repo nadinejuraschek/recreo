@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import ImageLayout from 'layouts/ImageLayout';
 
 // STYLED COMPONENTS
-import { Wrapper } from './styles/Register';
+import { FormWrapper, Wrapper } from './styles/Register';
 
 // COMPONENTS
 import Button from 'components/Button';
@@ -32,11 +32,13 @@ const Register = () => {
     <ImageLayout>
       <Wrapper>
         <Title size="large">Register</Title>
-        <Form initialValues={initialValues} register validationSchema={validationSchema} />
-        <Divider text="or" />
-        <Button link="/login" outlined fullWidth>
-          Log In
-        </Button>
+        <FormWrapper>
+          <Form initialValues={initialValues} register validationSchema={validationSchema} />
+          <Divider text="or" />
+          <Button link="/login" outlined fullWidth>
+            Log In
+          </Button>
+        </FormWrapper>
       </Wrapper>
     </ImageLayout>
   );
