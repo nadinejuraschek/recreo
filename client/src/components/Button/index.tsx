@@ -1,34 +1,22 @@
-// DEPENDENCIES
-
 // STYLED COMPONENTS
 import { StyledLink, StyledButton } from './styles/Button';
 
-interface ButtonProps {
-  disabled?: boolean;
-  filled?: boolean;
-  fullWidth?: boolean;
-  handleClick?: () => void;
-  handleSubmit?: () => void;
-  link?: string;
-  outlined?: boolean;
-  rounded?: boolean;
-  small?: boolean;
-  type?: 'button' | 'submit' | 'reset';
-}
+// INTERFACES
+import { ButtonProps } from './types';
 
-const Button: React.FC<ButtonProps> = ({
+const Button = ({
   children,
-  disabled,
-  filled,
-  fullWidth,
+  disabled = false,
+  filled = true,
+  fullWidth = false,
   handleClick,
   handleSubmit,
-  link,
-  outlined,
-  rounded,
-  small,
-  type,
-}) => {
+  link = undefined,
+  outlined = false,
+  rounded = false,
+  small = true,
+  type = 'button',
+}: ButtonProps): JSX.Element => {
   return (
     <>
       {link ? (

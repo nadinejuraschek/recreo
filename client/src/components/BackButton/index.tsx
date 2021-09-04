@@ -4,11 +4,10 @@ import { useHistory } from 'react-router-dom';
 // STYLED COMPONENTS
 import { Wrapper, Icon, Label } from './styles/BackButton';
 
-interface BackButtonProps {
-  label?: boolean;
-}
+// INTERFACES
+import { BackButtonProps } from './types';
 
-const BackButton: React.FC<BackButtonProps> = ({ label }) => {
+const BackButton = ({ label = false }: BackButtonProps): JSX.Element => {
   const history = useHistory();
 
   return (

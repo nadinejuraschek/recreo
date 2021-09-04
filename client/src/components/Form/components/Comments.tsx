@@ -5,17 +5,14 @@ import Input from 'components/Input';
 // STYLED COMPONENTS
 import { ButtonWrapper, Rating } from '../styles/Form';
 
-interface CommentsFormProps {
-  errors: any;
-  isValid: boolean;
-  setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
-}
+// INTERFACES
+import { InnerFormProps } from '../types';
 
-const CommentsForm: React.FC<CommentsFormProps> = ({ errors, isValid, setFieldValue }) => {
+const CommentsForm = ({ errors, isValid, setFieldValue }: InnerFormProps): JSX.Element => {
   return (
     <>
       <Rating>⭐⭐⭐⭐⭐</Rating>
-      <Input placeholder="Tell us about your playground experience..." type="textarea" handleChange={setFieldValue} error={errors.text} />
+      <Input placeholder="Tell us about your playground experience..." type="textarea" handleChange={setFieldValue} error={errors?.text} />
       <ButtonWrapper>
         <Button disabled={isValid} filled small type="submit">
           Add Comment

@@ -4,7 +4,7 @@ import Amenity from 'components/Amenity';
 // STYLED COMPONENTS
 import { List, Item } from '../styles/Amenities';
 
-const Amenities = () => {
+const Amenities = (): JSX.Element => {
   return (
     <List>
       <Item>

@@ -6,7 +6,7 @@ import BackButton from 'components/BackButton';
 import FavoriteButton from 'components/FavoriteButton';
 import ShareButton from 'components/ShareButton';
 
-const Header = () => {
+const Header = (): JSX.Element => {
   return (
     <HeaderWrapper>
       <HeaderLeft>

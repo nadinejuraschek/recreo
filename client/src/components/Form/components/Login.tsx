@@ -6,16 +6,13 @@ import Input from 'components/Input';
 import lock from 'assets/lock.svg';
 import user from 'assets/user.svg';
 
-interface LoginFormProps {
-  errors: any;
-  isValid: boolean;
-  setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
-}
+// INTERFACES
+import { InnerFormProps } from '../types';
 
-const LoginForm: React.FC<LoginFormProps> = ({ errors, isValid, setFieldValue }) => {
+const LoginForm = ({ errors, isValid, setFieldValue }: InnerFormProps): JSX.Element => {
   return (
     <>
-      <Input placeholder="Username" type="text" icon={user} iconName="User Icon" handleChange={setFieldValue} error={errors.username} />
+      <Input placeholder="Username" type="text" icon={user} iconName="User Icon" handleChange={setFieldValue} error={errors?.username} />
       <Input placeholder="Password" type="password" icon={lock} iconName="Lock Icon" handleChange={setFieldValue} error={errors.password} />
       <Button filled fullWidth disabled={isValid} type="submit">
         Log In

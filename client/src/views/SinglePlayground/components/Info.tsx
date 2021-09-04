@@ -1,7 +1,7 @@
 // STYLED COMPONENTS
 import { Description, Location, LocationIcon, Subtitle, Wrapper } from '../styles/Info';
 
-const Info = () => {
+const Info = (): JSX.Element => {
   return (
     <Wrapper>
       <Subtitle>

@@ -1,16 +1,14 @@
 // STYLED COMPONENTS
 import { Line, Text, Wrapper } from './styles/Divider';
 
-interface DividerProps {
-  color?: string;
-  text?: string;
-}
+// INTERFACES
+import { DividerProps } from './types';
 
-const Divider: React.FC<DividerProps> = ({ color = 'var(--blue__dark)', text }) => {
+const Divider = ({ color = 'var(--blue__dark)', text = undefined }: DividerProps): JSX.Element => {
   return (
     <Wrapper>
       <Line color={color} />
-      {text ? <Text>{text}</Text> : null}
+      {text && <Text>{text}</Text>}
     </Wrapper>
   );
 };

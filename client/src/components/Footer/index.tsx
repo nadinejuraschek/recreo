@@ -1,11 +1,10 @@
 // STYLED COMPONENTS
 import { Container, Link } from './styles/Footer';
 
-interface FooterProps {
-  navFooter?: boolean;
-}
+// INTERFACES
+import { FooterProps } from './types';
 
-const Footer: React.FC<FooterProps> = ({ navFooter }) => {
+const Footer = ({ navFooter = false }: FooterProps): JSX.Element => {
   return (
     <Container navFooter={navFooter}>
       <Link>

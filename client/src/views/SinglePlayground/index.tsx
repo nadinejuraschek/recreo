@@ -15,7 +15,7 @@ import Tabs from 'components/Tabs';
 // LAYOUT
 import MapLayout from 'layouts/MapLayout';
 
-const SinglePlayground = () => {
+const SinglePlayground = (): JSX.Element => {
   const tabOptions = [
     { label: 'Images', name: 'images' },
     { label: 'Features', name: 'features' },

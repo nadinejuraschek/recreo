@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const ColorButton = () => {
+const ColorButton = (): JSX.Element => {
   const [color, setColor] = useState('red');
   const newButtonColor = color === 'red' ? 'blue' : 'red';
   return (

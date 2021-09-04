@@ -4,7 +4,7 @@ import { Amenities, Body, Container, Image, Location, Name, Rating, RatingIcon }
 // COMPONENTS
 import Divider from 'components/Divider';
 
-const Card = () => {
+const Card = (): JSX.Element => {
   return (
     <Container to="/playgrounds/new">
       <Image

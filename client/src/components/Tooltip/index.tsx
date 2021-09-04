@@ -4,12 +4,10 @@ import { useState } from 'react';
 // STYLED COMPONENTS
 import { HoverItem, Wrapper } from './styles/Tooltip';
 
-interface TooltipProps {
-  children?: any;
-  text: string;
-}
+// INTERFACES
+import { TooltipProps } from './types';
 
-const Tooltip: React.FC<TooltipProps> = ({ children, text }) => {
+const Tooltip = ({ children, text = '' }: TooltipProps): JSX.Element => {
   const [hovered, setHovered] = useState(false);
 
   return (

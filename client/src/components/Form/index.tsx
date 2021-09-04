@@ -13,16 +13,17 @@ import RegisterForm from './components/Register';
 // STYLED COMPONENTS
 import { Container } from './styles/Form';
 
-interface FormProps {
-  comment?: boolean;
-  initialValues: any;
-  login?: boolean;
-  playground?: boolean;
-  register?: boolean;
-  validationSchema: any;
-}
+// INTERFACES
+import { FormProps } from './types';
 
-const Form: React.FC<FormProps> = ({ comment, initialValues, login, playground, register, validationSchema }) => {
+const Form = ({
+  comment = false,
+  initialValues,
+  login = false,
+  playground = false,
+  register = false,
+  validationSchema,
+}: FormProps): JSX.Element => {
   const [formData, setFormData] = useState({});
 
   return (

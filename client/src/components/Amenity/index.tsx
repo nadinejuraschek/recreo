@@ -1,6 +1,9 @@
 // STYLED COMPONENTS
 import { Icon, Container } from './styles/Amenity';
 
+// INTERFACES
+import { AmenityProps } from './types';
+
 // ICONS
 import { ReactComponent as Bench } from 'assets/bench.svg';
 import { ReactComponent as ClimbingWall } from 'assets/climbingWall.svg';
@@ -16,11 +19,7 @@ import { ReactComponent as Sun } from 'assets/sun.svg';
 import { ReactComponent as Swing } from 'assets/swing.svg';
 import { ReactComponent as Toddler } from 'assets/toddler.svg';
 
-interface AmenityProps {
-  icon: string;
-}
-
-const Amenity: React.FC<AmenityProps> = ({ icon }) => {
+const Amenity = ({ icon }: AmenityProps): JSX.Element => {
   let iconToDisplay;
   switch (icon) {
     case 'bench':
