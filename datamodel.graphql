@@ -3,6 +3,7 @@ type User {
   username: String! @unique
   email: String! @unique
   playgrounds: [Playground!]!
+  reviews: [Review!]!
 }
 
 type Playground {

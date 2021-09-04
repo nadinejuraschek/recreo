@@ -15,6 +15,7 @@ export const Container = styled(Link).attrs(() => ({
   color: var(--blue__dark);
   overflow: hidden;
   text-decoration: none;
+  transition: all 0.3s;
 
   display: flex;
   flex-direction: column;
