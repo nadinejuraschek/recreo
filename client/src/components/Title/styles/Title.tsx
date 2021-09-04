@@ -1,71 +1,53 @@
 // DEPENDENCIES
 import styled, { css } from 'styled-components';
 
-export const LargeTitle = styled.h1.attrs(() => ({
-  className: 'title__large',
-}))`
-  font-size: 4rem;
+// INTERFACES
+import { StyledTitleProps } from '../types';
+
+export const StyledTitle = styled.h1.attrs(() => ({
+  className: 'title',
+}))<StyledTitleProps>`
   font-weight: bold;
-  margin-bottom: 2rem;
+  color: ${({ color }) => color};
 
-  @media only screen and (min-width: 768px) {
-    font-size: 4.5rem;
-  }
-
+  margin-bottom: ${({ marginBottom }) => `${marginBottom}rem`};
   @media only screen and (min-width: 900px) {
-    font-size: 5.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: ${({ marginBottom }) => `${marginBottom + 1}rem`};
   }
 
-  ${({ color }) =>
-    color &&
-    css`
-      color: ${color};
-    `}
-`;
+  ${({ size }) =>
+    size === 'large'
+      ? css`
+          font-size: 4rem;
+          @media only screen and (min-width: 768px) {
+            font-size: 4.5rem;
+          }
 
-export const MediumTitle = styled.h2.attrs(() => ({
-  className: 'title__medium',
-}))`
-  font-size: 3.25rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
+          @media only screen and (min-width: 900px) {
+            font-size: 5.5rem;
+          }
+        `
+      : size === 'medium'
+      ? css`
+          font-size: 3.25rem;
 
-  @media only screen and (min-width: 768px) {
-    font-size: 3.75rem;
-  }
+          @media only screen and (min-width: 768px) {
+            font-size: 3.75rem;
+          }
 
-  @media only screen and (min-width: 900px) {
-    font-size: 4.75rem;
-    margin-bottom: 3rem;
-  }
+          @media only screen and (min-width: 900px) {
+            font-size: 4.75rem;
+          }
+        `
+      : css`
+          font-size: 2.5rem;
 
-  ${({ color }) =>
-    color &&
-    css`
-      color: ${color};
-    `}
-`;
+          @media only screen and (min-width: 768px) {
+            font-size: 3rem;
+          }
 
-export const SmallTitle = styled.h3.attrs(() => ({
-  className: 'title__small',
-}))`
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
-
-  @media only screen and (min-width: 768px) {
-    font-size: 3rem;
-  }
-
-  @media only screen and (min-width: 900px) {
-    font-size: 3.75rem;
-    margin-bottom: 3rem;
-  }
-
-  ${({ color }) =>
-    color &&
-    css`
-      color: ${color};
-    `}
+          @media only screen and (min-width: 900px) {
+            font-size: 3.75rem;
+          }
+        `}
 `;

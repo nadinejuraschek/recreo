@@ -1,19 +1,14 @@
 // STYLED COMPONENTS
-import { LargeTitle, MediumTitle, SmallTitle } from './styles/Title';
+import { StyledTitle } from './styles/Title';
 
-interface TitleProps {
-  children: any;
-  color?: string;
-  size?: string;
-}
+// INTERFACES
+import { TitleProps } from './types';
 
-const Title: React.FC<TitleProps> = ({ children, color = 'var(--blue__dark)', size = 'medium' }) => {
+const Title = ({ children, color = 'var(--blue__dark)', size = 'medium', marginBottom = 2 }: TitleProps): JSX.Element => {
   return (
-    <>
-      {size === 'large' && <LargeTitle color={color}>{children}</LargeTitle>}
-      {size === 'medium' && <MediumTitle color={color}>{children}</MediumTitle>}
-      {size === 'small' && <SmallTitle color={color}>{children}</SmallTitle>}
-    </>
+    <StyledTitle color={color} marginBottom={marginBottom} size={size}>
+      {children}
+    </StyledTitle>
   );
 };
 

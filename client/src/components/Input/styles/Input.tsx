@@ -5,14 +5,21 @@ type InputProps = {
   withIcon: boolean;
 };
 
-export const Wrapper = styled.div.attrs(() => ({
-  className: 'input-wrapper',
+export const Container = styled.div.attrs(() => ({
+  className: 'input-container',
 }))`
   display: flex;
   flex-direction: column;
   justify-content: center;
 
   margin: 1rem 0;
+  width: 100%;
+`;
+
+export const Wrapper = styled.div.attrs(() => ({
+  className: 'input-wrapper',
+}))`
+  position: relative;
   width: 100%;
 `;
 
@@ -23,34 +30,40 @@ export const Label = styled.label.attrs(() => ({
   font-weight: bold;
 `;
 
+export const Icon = styled.img.attrs(() => ({
+  className: 'input-icon',
+}))`
+  position: absolute;
+  margin-left: 1rem;
+  margin-top: 1rem;
+
+  @media only screen and (min-width: 900px) {
+    margin-top: 1.5rem;
+  }
+
+  object-fit: contain;
+  height: 2rem;
+  width: 2rem;
+`;
+
 export const StyledInput = styled.input.attrs(() => ({
   className: 'input',
 }))<InputProps>`
-  background-color: #f8f8f8;
+  background-color: #f8f8f880;
   border: none;
   border-radius: 8px 8px 0 0;
-  border-bottom: 1px solid var(--blue__dark);
-  box-shadow: 0 0.0625rem 0.125rem rgb(0 0 0 / 15%);
+  box-shadow: 0 0.0625rem 0.125rem #00000015;
   font-size: 1.6rem;
   font-weight: normal;
   margin-bottom: 0.75rem;
-  padding: 0 0 0 0.75rem;
+  padding-left: ${({ withIcon }) => (withIcon ? '4rem' : '0.75rem')};
 
   height: 40px;
+  width: 100%;
 
   @media only screen and (min-width: 900px) {
     height: 50px;
   }
-
-  ${({ withIcon }) =>
-    withIcon &&
-    css`
-      padding: 0 0 0 2.25rem;
-
-      @media only screen and (min-width: 900px) {
-        padding: 0 0 0 3rem;
-      }
-    `}
 
   &::placeholder {
     color: var(--blue__medium);
@@ -65,11 +78,10 @@ export const StyledInput = styled.input.attrs(() => ({
 export const StyledTextarea = styled.input.attrs(() => ({
   className: 'textarea',
 }))`
-  background-color: #f8f8f8;
+  background-color: #f8f8f880;
   border: none;
   border-radius: 8px 8px 0 0;
-  border-bottom: 1px solid var(--blue__dark);
-  box-shadow: 0 0.0625rem 0.125rem rgb(0 0 0 / 15%);
+  box-shadow: 0 0.0625rem 0.125rem #00000015;
   font-size: 1.6rem;
   font-weight: normal;
   margin-bottom: 0.75rem;
