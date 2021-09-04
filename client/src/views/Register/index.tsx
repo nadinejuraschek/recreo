@@ -27,7 +27,7 @@ const initialValues = {
   password: '',
 };
 
-const Register = () => {
+const Register = (): JSX.Element => {
   return (
     <ImageLayout>
       <Wrapper>

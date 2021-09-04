@@ -1,13 +1,10 @@
 // STYLED COMPONENTS
 import { CloseButton, Header, Title } from '../styles/ModalHeader';
 
-interface ModalHeaderProps {
-  close?: boolean;
-  handleClose: (open: boolean) => void;
-  title?: string;
-}
+// INTERFACES
+import { ModalHeaderProps } from '../types';
 
-const ModalHeader: React.FC<ModalHeaderProps> = ({ close, handleClose, title }) => {
+const ModalHeader = ({ close, handleClose, title }: ModalHeaderProps): JSX.Element => {
   return (
     <Header>
       <Title>{title}</Title>

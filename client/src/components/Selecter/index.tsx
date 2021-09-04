@@ -5,17 +5,12 @@ import SelectSearch from 'react-select-search';
 import { StyledSelectSearch } from './styles/Selecter';
 
 // INTERFACES
-import { PlaygroundFeature } from 'interfaces';
+import { SelecterProps } from './types';
 
 // UTILS
 import { fuzzySearch } from 'utils/fuzzySearch';
 
-interface SelecterProps {
-  options: PlaygroundFeature[];
-  placeholder: string;
-}
-
-const Selecter: React.FC<SelecterProps> = ({ options, placeholder }) => {
+const Selecter = ({ options, placeholder }: SelecterProps): JSX.Element => {
   return (
     <StyledSelectSearch>
       <SelectSearch

@@ -5,7 +5,7 @@ import Form from 'components/Form';
 // STYLED COMPONENTS
 import { Container, FormContainer } from '../styles/Comments';
 
-const Comments = () => {
+const Comments = (): JSX.Element => {
   return (
     <Container>
       <Comment />

@@ -1,13 +1,10 @@
 // STYLED COMPONENTS
 import { Container, Tab } from './styles/Tabs';
 
-interface TabsProps {
-  active: string;
-  handleClick: (clickedTab: string) => void;
-  options: any;
-}
+// INTERFACES
+import { TabsProps } from './types';
 
-const Tabs: React.FC<TabsProps> = ({ active, handleClick, options }) => {
+const Tabs = ({ active, handleClick, options }: TabsProps): JSX.Element => {
   return (
     <Container>
       {options.map((item: any, index: number) => (

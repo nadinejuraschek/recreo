@@ -5,13 +5,10 @@ import Input from 'components/Input';
 // STYLED COMPONENTS
 import { ButtonWrapper, Rating } from '../styles/Form';
 
-interface CommentsFormProps {
-  errors: any;
-  isValid: boolean;
-  setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
-}
+// INTERFACES
+import { CommentsFormProps } from '../types';
 
-const CommentsForm: React.FC<CommentsFormProps> = ({ errors, isValid, setFieldValue }) => {
+const CommentsForm = ({ errors, isValid, setFieldValue }: CommentsFormProps): JSX.Element => {
   return (
     <>
       <Rating>⭐⭐⭐⭐⭐</Rating>

@@ -15,7 +15,7 @@ import Map from 'components/Map';
 import Modal from 'components/Modal';
 import Title from 'components/Title';
 
-const Playgrounds = () => {
+const Playgrounds = (): JSX.Element => {
   const [openAddPlaygroundModal, setOpenAddPlaygroundModal] = useState<boolean>(false);
 
   return (

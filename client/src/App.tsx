@@ -15,7 +15,7 @@ import Playgrounds from 'views/Playgrounds';
 import Register from 'views/Register';
 import SinglePlayground from 'views/SinglePlayground';
 
-const App = () => {
+const App = (): JSX.Element => {
   return (
     <Router>
       <Navbar />

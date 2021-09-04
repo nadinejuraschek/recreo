@@ -7,7 +7,7 @@ import { Wrapper, ImageActive } from '../styles/Preview';
 // STYLES
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-const Info = () => {
+const Info = (): JSX.Element => {
   return (
     <Wrapper>
       <Carousel

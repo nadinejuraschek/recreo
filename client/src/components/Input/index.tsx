@@ -1,17 +1,10 @@
 // STYLED COMPONENTS
 import { Container, Icon, Label, StyledInput, StyledTextarea, Validation, Wrapper } from './styles/Input';
 
-interface InputProps {
-  error: any;
-  handleChange: any;
-  label?: string;
-  icon?: string;
-  iconName?: string;
-  placeholder?: string;
-  type?: string;
-}
+// INTERFACES
+import { InputProps } from './types';
 
-const Input: React.FC<InputProps> = ({ error, handleChange, label, icon, iconName = '', placeholder = '', type = 'text' }) => {
+const Input = ({ error, handleChange, label, icon, iconName = '', placeholder = '', type = 'text' }: InputProps): JSX.Element => {
   const withIcon = icon ? true : false;
 
   return (

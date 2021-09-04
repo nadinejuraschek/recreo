@@ -1,7 +1,7 @@
 // STYLED COMPONENTS
 import { Avatar, Container, Name, Text, TimePosted } from './styles/Comment';
 
-const Comment = () => {
+const Comment = (): JSX.Element => {
   return (
     <Container>
       <Avatar>

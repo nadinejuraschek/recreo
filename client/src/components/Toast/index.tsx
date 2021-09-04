@@ -1,13 +1,10 @@
 // STYLED COMPONENTS
 import { CloseBtn, Container } from './styles/Toast';
 
-interface ToastProps {
-  danger?: boolean;
-  handleClose: () => void;
-  success?: boolean;
-}
+// INTERFACES
+import { ToastProps } from './types';
 
-const Toast: React.FC<ToastProps> = ({ children, danger, handleClose, success }) => {
+const Toast = ({ children, danger, handleClose, success }: ToastProps): JSX.Element => {
   return (
     <Container danger={danger} success={success}>
       <CloseBtn onClick={handleClose} />

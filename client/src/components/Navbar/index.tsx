@@ -6,7 +6,7 @@ import { Logo } from './styles/Logo';
 import { Container, NavList, StyledNavLink, MenuBtn } from './styles/Navbar';
 import Sidenav from './components/Sidenav';
 
-const Navbar = () => {
+const Navbar = (): JSX.Element => {
   const [openSidenav, setOpenSidenav] = useState(false);
 
   return (

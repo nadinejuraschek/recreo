@@ -6,13 +6,10 @@ import Input from 'components/Input';
 import lock from 'assets/lock.svg';
 import user from 'assets/user.svg';
 
-interface RegisterFormProps {
-  errors: any;
-  isValid: boolean;
-  setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
-}
+// INTERFACES
+import { RegisterFormProps } from '../types';
 
-const RegisterForm: React.FC<RegisterFormProps> = ({ errors, isValid, setFieldValue }) => {
+const RegisterForm = ({ errors, isValid, setFieldValue }: RegisterFormProps): JSX.Element => {
   return (
     <>
       <Input placeholder="Username" type="text" icon={user} iconName="User Icon" handleChange={setFieldValue} error={errors.username} />

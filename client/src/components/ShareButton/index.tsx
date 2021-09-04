@@ -8,7 +8,7 @@ import ShareModal from './components/ShareModal';
 // STYLED COMPONENTS
 import { Icon } from './styles/ShareButton';
 
-const ShareButton = () => {
+const ShareButton = (): JSX.Element => {
   const [openModal, setOpenModal] = useState<boolean>(false);
 
   return (

@@ -2,11 +2,10 @@
 import { Container, NavList, NavItem } from '../styles/Sidenav';
 import Footer from 'components/Footer';
 
-interface SidenavProps {
-  handleClose: () => void;
-}
+// INTERFACES
+import { SidenavProps } from '../types';
 
-const Sidenav: React.FC<SidenavProps> = ({ handleClose }) => {
+const Sidenav = ({ handleClose }: SidenavProps): JSX.Element => {
   return (
     <Container>
       <NavList>

@@ -4,15 +4,10 @@ import ModalHeader from './components/ModalHeader';
 // STYLED COMPONENTS
 import { Body, Container, Footer, Overlay } from './styles/Modal';
 
-interface ModalProps {
-  children: React.ReactNode;
-  closeButton?: boolean;
-  footer?: React.ReactNode;
-  title?: string;
-  toggleModal: (open: boolean) => void;
-}
+// INTERFACES
+import { ModalProps } from './types';
 
-const Modal: React.FC<ModalProps> = ({ children, closeButton, footer, title, toggleModal }) => {
+const Modal = ({ children, closeButton, footer, title, toggleModal }: ModalProps): JSX.Element => {
   return (
     <Overlay>
       <Container>
