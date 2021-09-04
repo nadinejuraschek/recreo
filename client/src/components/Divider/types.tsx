@@ -1,4 +1,4 @@
 export interface DividerProps {
   color?: string;
-  text?: string;
+  text?: string | undefined;
 }

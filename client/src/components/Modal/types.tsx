@@ -2,12 +2,12 @@ export interface ModalProps {
   children: React.ReactNode;
   closeButton?: boolean;
   footer?: React.ReactNode;
-  title?: string;
+  title?: string | undefined;
   toggleModal: (open: boolean) => void;
 }
 
 export interface ModalHeaderProps {
-  close?: boolean;
+  close: boolean;
   handleClose: (open: boolean) => void;
-  title?: string;
+  title?: string | undefined;
 }

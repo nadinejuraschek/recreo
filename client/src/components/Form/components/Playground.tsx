@@ -7,7 +7,7 @@ import { PlaygroundWrapper } from '../styles/Form';
 
 // INTERFACES
 import { PlaygroundFeature } from 'interfaces';
-import { PlaygroundFormProps } from '../types';
+import { InnerFormProps } from '../types';
 
 const features: PlaygroundFeature[] = [
   { name: 'Basketball Court', value: 'basketball' },
@@ -26,7 +26,7 @@ const features: PlaygroundFeature[] = [
   { name: 'Toddler Safe', value: 'toddlerSafe' },
 ];
 
-const PlaygroundForm = ({ errors, isValid, setFieldValue }: PlaygroundFormProps): JSX.Element => {
+const PlaygroundForm = ({ errors, isValid, setFieldValue }: InnerFormProps): JSX.Element => {
   return (
     <PlaygroundWrapper>
       <Input placeholder="Name" type="text" handleChange={setFieldValue} error={errors.name} />

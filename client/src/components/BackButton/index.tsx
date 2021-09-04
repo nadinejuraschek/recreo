@@ -7,7 +7,7 @@ import { Wrapper, Icon, Label } from './styles/BackButton';
 // INTERFACES
 import { BackButtonProps } from './types';
 
-const BackButton = ({ label }: BackButtonProps): JSX.Element => {
+const BackButton = ({ label = false }: BackButtonProps): JSX.Element => {
   const history = useHistory();
 
   return (

@@ -4,7 +4,15 @@ import { Container, Icon, Label, StyledInput, StyledTextarea, Validation, Wrappe
 // INTERFACES
 import { InputProps } from './types';
 
-const Input = ({ error, handleChange, label, icon, iconName = '', placeholder = '', type = 'text' }: InputProps): JSX.Element => {
+const Input = ({
+  error,
+  handleChange,
+  label = undefined,
+  icon = undefined,
+  iconName = '',
+  placeholder = '',
+  type = 'text',
+}: InputProps): JSX.Element => {
   const withIcon = icon ? true : false;
 
   return (

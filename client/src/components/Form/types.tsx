@@ -7,25 +7,7 @@ export interface FormProps {
   validationSchema: any;
 }
 
-export interface CommentsFormProps {
-  errors: any;
-  isValid: boolean;
-  setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
-}
-
-export interface LoginFormProps {
-  errors: any;
-  isValid: boolean;
-  setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
-}
-
-export interface PlaygroundFormProps {
-  errors: any;
-  isValid: boolean;
-  setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
-}
-
-export interface RegisterFormProps {
+export interface InnerFormProps {
   errors: any;
   isValid: boolean;
   setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;

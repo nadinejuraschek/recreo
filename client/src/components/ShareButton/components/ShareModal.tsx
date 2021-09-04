@@ -4,7 +4,7 @@ import { FacebookShareButton, TwitterShareButton, WhatsappShareButton, EmailShar
 // STYLED COMPONENTS
 import { Content, FacebookIcon, MailIcon, TwitterIcon, WhatsappIcon } from '../styles/ShareModal';
 
-const ShareModal = () => {
+const ShareModal = (): JSX.Element => {
   return (
     <Content>
       <FacebookShareButton url="https://www.example.com" quote="Playground" hashtag="#playground">

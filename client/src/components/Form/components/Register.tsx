@@ -7,9 +7,9 @@ import lock from 'assets/lock.svg';
 import user from 'assets/user.svg';
 
 // INTERFACES
-import { RegisterFormProps } from '../types';
+import { InnerFormProps } from '../types';
 
-const RegisterForm = ({ errors, isValid, setFieldValue }: RegisterFormProps): JSX.Element => {
+const RegisterForm = ({ errors, isValid, setFieldValue }: InnerFormProps): JSX.Element => {
   return (
     <>
       <Input placeholder="Username" type="text" icon={user} iconName="User Icon" handleChange={setFieldValue} error={errors.username} />

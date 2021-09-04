@@ -11,7 +11,7 @@ const Button = ({
   fullWidth = false,
   handleClick,
   handleSubmit,
-  link,
+  link = undefined,
   outlined = false,
   rounded = false,
   small = true,

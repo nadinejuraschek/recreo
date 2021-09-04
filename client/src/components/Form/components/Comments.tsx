@@ -6,13 +6,13 @@ import Input from 'components/Input';
 import { ButtonWrapper, Rating } from '../styles/Form';
 
 // INTERFACES
-import { CommentsFormProps } from '../types';
+import { InnerFormProps } from '../types';
 
-const CommentsForm = ({ errors, isValid, setFieldValue }: CommentsFormProps): JSX.Element => {
+const CommentsForm = ({ errors, isValid, setFieldValue }: InnerFormProps): JSX.Element => {
   return (
     <>
       <Rating>⭐⭐⭐⭐⭐</Rating>
-      <Input placeholder="Tell us about your playground experience..." type="textarea" handleChange={setFieldValue} error={errors.text} />
+      <Input placeholder="Tell us about your playground experience..." type="textarea" handleChange={setFieldValue} error={errors?.text} />
       <ButtonWrapper>
         <Button disabled={isValid} filled small type="submit">
           Add Comment

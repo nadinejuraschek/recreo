@@ -7,7 +7,7 @@ import { Body, Container, Footer, Overlay } from './styles/Modal';
 // INTERFACES
 import { ModalProps } from './types';
 
-const Modal = ({ children, closeButton, footer, title, toggleModal }: ModalProps): JSX.Element => {
+const Modal = ({ children, closeButton = true, footer = false, title = undefined, toggleModal }: ModalProps): JSX.Element => {
   return (
     <Overlay>
       <Container>

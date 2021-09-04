@@ -8,7 +8,7 @@ export interface ButtonProps {
   fullWidth?: boolean;
   handleClick?: () => void;
   handleSubmit?: () => void;
-  link?: string;
+  link?: string | undefined;
   outlined?: boolean;
   rounded?: boolean;
   small?: boolean;
