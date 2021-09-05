@@ -1,11 +1,10 @@
 // STYLED COMPONENTS
 import { Content, Main, MapWrapper } from './styles/MapLayout';
 
-interface MapLayoutProps {
-  children: any;
-}
+// INTERFACES
+import { MapLayoutProps } from './types';
 
-const MapLayout: React.FC<MapLayoutProps> = ({ children }) => {
+const MapLayout = ({ children }: MapLayoutProps): JSX.Element => {
   return (
     <Main>
       <Content>{children}</Content>

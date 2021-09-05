@@ -1,11 +1,10 @@
 // STYLED COMPONENTS
 import { Main } from './styles/DefaultLayout';
 
-interface DefaultLayoutProps {
-  children: any;
-}
+// INTERFACES
+import { DefaultLayoutProps } from './types';
 
-const Defaultlayout: React.FC<DefaultLayoutProps> = ({ children }) => {
+const Defaultlayout = ({ children }: DefaultLayoutProps): JSX.Element => {
   return <Main>{children}</Main>;
 };
 

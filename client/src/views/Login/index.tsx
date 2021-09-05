@@ -1,6 +1,3 @@
-// DEPENDENCIES
-import * as Yup from 'yup';
-
 // LAYOUTS
 import ImageLayout from 'layouts/ImageLayout';
 
@@ -14,13 +11,7 @@ import Form from 'components/Form';
 import Title from 'components/Title';
 
 // VALIDATION
-const validationSchema = Yup.object().shape({
-  username: Yup.string().required('Please choose a username.'),
-  password: Yup.string()
-    .min(6, 'Password has to be at least 6 characters long.')
-    .max(30, 'Password can not exceed 30 characters.')
-    .required('Password is required.'),
-});
+import { validationSchema } from 'schemas';
 
 const initialValues = {
   username: '',

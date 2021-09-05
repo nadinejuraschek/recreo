@@ -1,9 +1,6 @@
-// DEPENDENCIES
-import { FormikErrors } from 'formik';
-
 export interface InputProps {
   error: any;
-  handleChange: any;
+  handleChange: () => void;
   label?: string | undefined;
   icon?: string | undefined;
   iconName?: string;
