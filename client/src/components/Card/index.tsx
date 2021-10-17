@@ -4,16 +4,16 @@ import { Amenities, Body, Container, Image, Location, Name, Rating, RatingIcon }
 // COMPONENTS
 import Divider from 'components/Divider';
 
-const Card = (): JSX.Element => {
+// INTERFACES
+import { CardProps } from './types';
+
+const Card = ({ id, imageSrc, location, name }: CardProps): JSX.Element => {
   return (
-    <Container to="/playgrounds/new">
-      <Image
-        src="https://images.pexels.com/photos/571249/pexels-photo-571249.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-        alt="replace with title"
-      />
+    <Container to={`/playgrounds/${id}`}>
+      <Image src={imageSrc} alt={name} />
       <Body>
-        <Location>Location</Location>
-        <Name>Playground</Name>
+        <Location>{location}</Location>
+        <Name>{name}</Name>
         <Divider color="var(--blue__opaque)" />
         <Amenities />
         <Rating>

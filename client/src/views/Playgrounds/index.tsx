@@ -1,5 +1,5 @@
 // DEPENDENCIES
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 // STYLED COMPONENTS
 import { EmptyState, Grid, Section } from './styles/Playgrounds';
@@ -15,8 +15,12 @@ import Map from 'components/Map';
 import Modal from 'components/Modal';
 import Title from 'components/Title';
 
+// CONTEXT
+import { usePlayground } from 'hooks/usePlayground';
+
 const Playgrounds = (): JSX.Element => {
   const [openAddPlaygroundModal, setOpenAddPlaygroundModal] = useState<boolean>(false);
+  const { playgrounds } = usePlayground();
 
   return (
     <DefaultLayout>
@@ -34,10 +38,10 @@ const Playgrounds = (): JSX.Element => {
       <Section>
         <Title>All Playgrounds</Title>
         <Grid>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {playgrounds.map((playground) => {
+            const { _id, image, location, title } = playground;
+            return <Card id={_id} imageSrc={image} key={_id} location={location} name={title} />;
+          })}
         </Grid>
       </Section>
 

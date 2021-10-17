@@ -5,6 +5,25 @@ module.exports.login = async (req, res) => {
   const redirectUrl = req.session.returnTo || '/playgrounds';
   delete req.session.returnTo;
   res.redirect(redirectUrl);
+
+  // console.log(req.body);
+  const user = await db.User.findOne({ email: req.body.email });
+  if (!user) {
+    res.json({ message: 'No User found.' });
+    return;
+  }
+  console.log(user);
+  const valid = await bcrypt.compare(req.body.password, user.password);
+  if (!valid) {
+    res.json({ message: 'Entered e-mail and password do not match!' });
+    return;
+  }
+  const token = jwt.sign({ id: user.id }, process.env.APP_SECRET);
+  res.cookie('token', token, {
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24 * 365,
+  });
+  res.json(user);
 };
 
 module.exports.logout = (req, res) => {

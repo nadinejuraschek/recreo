@@ -16,7 +16,7 @@ router
   );
 
 router.get('/new', isLoggedIn, (req, res) => {
-  res.render('playgrounds/new');
+  res.send('User is Logged In');
 });
 
 router

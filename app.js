@@ -3,7 +3,6 @@ const express = require('express'),
   mongoose = require('mongoose'),
   dotenv = require('dotenv'),
   methodOverride = require('method-override'),
-  ejsMate = require('ejs-mate'),
   session = require('express-session'),
   helmet = require('helmet'),
   flash = require('connect-flash'),
@@ -18,7 +17,7 @@ const express = require('express'),
 
 dotenv.config();
 
-// DATABASE
+// DATABASE ================================================================
 mongoose.connect('mongodb://localhost:27017/recreo', {
   useNewUrlParser: true,
   useCreateIndex: true,
@@ -34,17 +33,12 @@ db.once('open', () => {
 
 const app = express();
 
-// EJS
-app.engine('ejs', ejsMate);
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-
-// MIDDLEWARE
+// MIDDLEWARE ==============================================================
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// SECURITY
+// SECURITY ================================================================
 app.use(mongoSanitize());
 app.use(helmet());
 
@@ -97,8 +91,7 @@ app.use(
   })
 );
 
-
-// SESSION
+// SESSION ===============================================================
 const sessionConfig = {
   name: 'welcome',
   secret: process.env.SECRET,
@@ -112,10 +105,10 @@ const sessionConfig = {
 };
 app.use(session(sessionConfig));
 
-// FLASH
+// FLASH =================================================================
 app.use(flash());
 
-// PASSPORT
+// PASSPORT ==============================================================
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -123,32 +116,43 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
-  // console.log(req.query);
   res.locals.currentUser = req.user;
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
   next();
 });
 
-// ROUTES
+// ROUTES ================================================================
 app.get('/', (req, res) => {
-  res.render('home');
+  res.send('Backend started.');
 });
 
-app.use('/', userRoutes);
-app.use('/playgrounds', playgroundRoutes);
-app.use('/playgrounds/:id/review', reviewRoutes);
+app.use('/api', userRoutes);
+app.use('/api/playgrounds', playgroundRoutes);
+app.use('/api/playgrounds/:id/review', reviewRoutes);
 
 app.all('*', (req, res, next) => {
   next(new ExpressError('Page Not Found', 404));
 });
 
+// DEPLOYMENT
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
+
+// If no API routes are hit, send the React app
+app.use((req, res) =>
+  res.sendFile(path.join(__dirname, './client/build/index.html'))
+);
+
+// ERROR
 app.use((err, req, res, next) => {
   const { statusCode = 500 } = err;
   if (!err.message) err.message = 'Something went wrong!';
   res.status(statusCode).render('error', { err });
 });
 
+// SERVER
 app.listen(process.env.PORT, () => {
   console.log(`App is listening on PORT ${process.env.PORT}.`);
 });

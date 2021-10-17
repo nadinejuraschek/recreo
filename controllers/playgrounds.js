@@ -7,8 +7,13 @@ dotenv.config();
 const geocoder = mbxGeocoding({ accessToken: process.env.MAPBOX_TOKEN });
 
 module.exports.getPlaygrounds = async (req, res) => {
-  const playgrounds = await Playground.find({});
-  res.render('playgrounds/index', { playgrounds });
+  await Playground.find({})
+    .then(playgrounds => {
+      res.status(200).json(playgrounds);
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
 };
 
 module.exports.getSinglePlayground = async (req, res) => {
