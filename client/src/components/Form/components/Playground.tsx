@@ -6,10 +6,10 @@ import Selecter from 'components/Selecter';
 import { PlaygroundWrapper } from '../styles/Form';
 
 // INTERFACES
-import { PlaygroundFeature } from 'interfaces';
+import { Amenity } from 'types';
 import { InnerFormProps } from '../types';
 
-const features: PlaygroundFeature[] = [
+const features: Amenity[] = [
   { name: 'Basketball Court', value: 'basketball' },
   { name: 'Climbing Wall or Structure', value: 'climbingWall' },
   { name: 'Drinking Fountain', value: 'drinkingFountain' },

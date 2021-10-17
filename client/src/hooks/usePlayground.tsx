@@ -6,37 +6,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 // INTERFACES
-export type Playground = {
-  author: Author;
-  description: string;
-  geometry: Geometry;
-  image: string;
-  location: string;
-  price: number;
-  reviews: Review[];
-  title: string;
-  _id: string;
-};
-
-export type Geometry = {
-  coordinates: number[];
-  type: string;
-};
-
-export type Review = {
-  author: Author;
-  body: string;
-  rating: number;
-  _id: string;
-  __v: number;
-};
-
-export type Author = {
-  email: string;
-  username: string;
-  _id: string;
-  __v: number;
-};
+import { Playground } from 'types';
 
 export const usePlayground = () => {
   const { id } = useParams<{ id: string }>();

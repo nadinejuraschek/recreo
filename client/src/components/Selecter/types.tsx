@@ -1,7 +1,7 @@
 // INTERFACES
-import { PlaygroundFeature } from 'interfaces';
+import { Amenity } from 'types';
 
 export interface SelecterProps {
-  options: PlaygroundFeature[];
+  options: Amenity[];
   placeholder: string;
 }

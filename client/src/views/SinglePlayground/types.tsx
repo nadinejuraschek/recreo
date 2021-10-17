@@ -1,3 +1,6 @@
+// TYPES
+import { Review } from 'types';
+
 export interface HeaderProps {
   name?: string;
 }
@@ -16,18 +19,3 @@ export interface PreviewProps {
 export interface CommentsProps {
   reviews?: Review[];
 }
-
-export type Review = {
-  author: Author;
-  body: string;
-  rating: number;
-  _id: string;
-  __v: number;
-};
-
-export type Author = {
-  email: string;
-  username: string;
-  _id: string;
-  __v: number;
-};
