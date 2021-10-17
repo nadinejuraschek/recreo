@@ -12,8 +12,8 @@ import Header from './components/Header';
 import Preview from './components/Preview';
 import Tabs from 'components/Tabs';
 
-// LAYOUT
-import MapLayout from 'layouts/MapLayout';
+// HOOKS
+import { usePlayground } from 'hooks/usePlayground';
 
 const SinglePlayground = (): JSX.Element => {
   const tabOptions = [
@@ -23,19 +23,30 @@ const SinglePlayground = (): JSX.Element => {
   ];
   const [activeTab, setActiveTab] = useState<string>(tabOptions[0].name);
 
+  const { isLoading, error, playground } = usePlayground();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  // TODO: Add Ratings to Playground
+  // TODO: Add Multiple Images
+
   return (
-    <MapLayout>
-      <Content>
-        <Header />
-        <Info />
-        <Tabs active={activeTab} handleClick={setActiveTab} options={tabOptions} />
-        <TabContent>
-          {activeTab === 'images' && <Preview />}
-          {activeTab === 'features' && <Amenities />}
-          {activeTab === 'reviews' && <Comments />}
-        </TabContent>
-      </Content>
-    </MapLayout>
+    <Content>
+      <Header name={playground?.title} />
+      <Info description={playground?.description} location={playground?.location} />
+      <Tabs active={activeTab} handleClick={setActiveTab} options={tabOptions} />
+      <TabContent>
+        {activeTab === 'images' && <Preview name={playground?.title} />}
+        {activeTab === 'features' && <Amenities />}
+        {activeTab === 'reviews' && <Comments reviews={playground?.reviews} />}
+      </TabContent>
+    </Content>
   );
 };
 

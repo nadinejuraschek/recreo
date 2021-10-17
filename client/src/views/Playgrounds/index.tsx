@@ -1,11 +1,8 @@
 // DEPENDENCIES
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 
 // STYLED COMPONENTS
 import { EmptyState, Grid, Section } from './styles/Playgrounds';
-
-// LAYOUT
-import DefaultLayout from 'layouts/DefaultLayout';
 
 // COMPONENTS
 import Button from 'components/Button';
@@ -15,35 +12,50 @@ import Map from 'components/Map';
 import Modal from 'components/Modal';
 import Title from 'components/Title';
 
-// CONTEXT
-import { usePlayground } from 'hooks/usePlayground';
+// HOOKS
+import { usePlaygrounds } from 'hooks/usePlaygrounds';
 
 const Playgrounds = (): JSX.Element => {
   const [openAddPlaygroundModal, setOpenAddPlaygroundModal] = useState<boolean>(false);
-  const { playgrounds } = usePlayground();
+  const [showAllPlaygrounds, setShowAllPlaygrounds] = useState<boolean>(false);
+  const { isLoading, error, playgrounds } = usePlaygrounds();
+
+  const displayError = error && !showAllPlaygrounds;
+  const displayPlaygrounds = !error || showAllPlaygrounds;
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <DefaultLayout>
+    <>
       <Map />
       <Section>Filter</Section>
-      <Section>
-        <Title>Playgrounds Near You</Title>
-        <EmptyState>
-          <p>We couldn&apos;t find any playgrounds near you.</p>
-          <Button filled handleClick={() => setOpenAddPlaygroundModal(true)}>
-            Add a Playground
-          </Button>
-        </EmptyState>
-      </Section>
-      <Section>
-        <Title>All Playgrounds</Title>
-        <Grid>
-          {playgrounds.map((playground) => {
-            const { _id, image, location, title } = playground;
-            return <Card id={_id} imageSrc={image} key={_id} location={location} name={title} />;
-          })}
-        </Grid>
-      </Section>
+      {displayError && (
+        <Section>
+          <Title>Playgrounds Near You</Title>
+          <EmptyState>
+            <p>We couldn&apos;t find any playgrounds near you.</p>
+            <Button filled handleClick={() => setOpenAddPlaygroundModal(true)}>
+              Add a Playground
+            </Button>
+            <Button filled handleClick={() => setShowAllPlaygrounds(true)}>
+              Browse All Playgrounds
+            </Button>
+          </EmptyState>
+        </Section>
+      )}
+      {displayPlaygrounds && (
+        <Section>
+          <Title>All Playgrounds</Title>
+          <Grid>
+            {playgrounds.map((playground) => {
+              const { _id, image, location, title } = playground;
+              return <Card id={_id} imageSrc={image} key={_id} location={location} name={title} />;
+            })}
+          </Grid>
+        </Section>
+      )}
 
       {openAddPlaygroundModal && (
         <Modal
@@ -59,7 +71,7 @@ const Playgrounds = (): JSX.Element => {
           <Form playground initialValues={{}} validationSchema={{}} />
         </Modal>
       )}
-    </DefaultLayout>
+    </>
   );
 };
 

@@ -17,19 +17,25 @@ module.exports.getPlaygrounds = async (req, res) => {
 };
 
 module.exports.getSinglePlayground = async (req, res) => {
-  const playground = await Playground.findById(req.params.id)
+  await Playground.findById(req.params.id)
     .populate({
       path: 'reviews',
       populate: {
         path: 'author',
       },
     })
-    .populate('author');
-  if (!playground) {
-    req.flash('error', 'This playground cannot be found.');
-    return res.redirect('/playgrounds');
-  }
-  res.render('playgrounds/show', { playground });
+    .populate('author')
+    .then(playground => {
+      res.status(200).json(playground);
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
+  // if (!playground) {
+  //   req.flash('error', 'This playground cannot be found.');
+  //   return res.redirect('/playgrounds');
+  // }
+  // res.render('playgrounds/show', { playground });
 };
 
 module.exports.showEditForm = async (req, res) => {

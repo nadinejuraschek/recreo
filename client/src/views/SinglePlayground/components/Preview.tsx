@@ -7,7 +7,10 @@ import { Wrapper, ImageActive } from '../styles/Preview';
 // STYLES
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-const Info = (): JSX.Element => {
+// INTERFACES
+import { PreviewProps } from '../types';
+
+const Preview = ({ images = [], name = '' }: PreviewProps): JSX.Element => {
   return (
     <Wrapper>
       <Carousel
@@ -22,7 +25,7 @@ const Info = (): JSX.Element => {
         <ImageActive>
           <img
             src="https://images.unsplash.com/photo-1586250127208-8218b38ff1cd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
-            alt=""
+            alt={`${name} Image #1`}
           />
         </ImageActive>
         <ImageActive>
@@ -72,4 +75,4 @@ const Info = (): JSX.Element => {
   );
 };
 
-export default Info;
+export default Preview;

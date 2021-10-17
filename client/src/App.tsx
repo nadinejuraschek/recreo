@@ -8,9 +8,7 @@ import Footer from 'components/Footer';
 // LAYOUTS
 import DefaultLayout from 'layouts/DefaultLayout';
 import ImageLayout from 'layouts/ImageLayout';
-
-// PROVIDERS
-import { PlaygroundProvider } from 'context/Playground/PlaygroundContext';
+import MapLayout from 'layouts/MapLayout';
 
 // VIEWS
 import Login from 'views/Login';
@@ -32,13 +30,17 @@ const App = (): JSX.Element => {
 
       {/* Home */}
       <Route exact path="/playgrounds">
-        <PlaygroundProvider>
+        <DefaultLayout>
           <Playgrounds />
-        </PlaygroundProvider>
+        </DefaultLayout>
       </Route>
 
       {/* Single Playground */}
-      <Route exact path="/playgrounds/:id" component={SinglePlayground} />
+      <Route exact path="/playgrounds/:id">
+        <MapLayout>
+          <SinglePlayground />
+        </MapLayout>
+      </Route>
       <Route exact path="/playgrounds/:id/edit" component={DefaultLayout} />
 
       <Footer />
