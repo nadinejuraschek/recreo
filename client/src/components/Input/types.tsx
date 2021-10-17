@@ -1,6 +1,6 @@
 export interface InputProps {
   error: any;
-  handleChange: () => void;
+  handleChange: any;
   label?: string | undefined;
   icon?: string | undefined;
   iconName?: string;

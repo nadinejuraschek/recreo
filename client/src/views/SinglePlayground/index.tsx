@@ -21,7 +21,7 @@ const SinglePlayground = (): JSX.Element => {
     { label: 'Features', name: 'features' },
     { label: 'Reviews', name: 'reviews' },
   ];
-  const [activeTab, setActiveTab] = useState(tabOptions[0].name);
+  const [activeTab, setActiveTab] = useState<string>(tabOptions[0].name);
 
   return (
     <MapLayout>
