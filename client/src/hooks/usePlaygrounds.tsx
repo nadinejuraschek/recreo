@@ -24,6 +24,7 @@ export const usePlaygrounds = (): Props => {
   }, []);
 
   const getPlaygrounds = () => {
+    setIsLoading(true);
     axios({
       url: '/api/playgrounds',
       method: 'GET',
@@ -31,6 +32,7 @@ export const usePlaygrounds = (): Props => {
       .then((res: any): void => {
         // console.log(res.data);
         setPlaygrounds(res.data);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.error(err);

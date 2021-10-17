@@ -7,8 +7,9 @@ import { Content, TabContent } from './styles/SinglePlayground';
 // COMPONENTS
 import Amenities from './components/Amenities';
 import Comments from './components/Comments';
-import Info from './components/Info';
 import Header from './components/Header';
+import Info from './components/Info';
+import LoadingSpinner from 'components/LoadingSpinner';
 import Preview from './components/Preview';
 import Tabs from 'components/Tabs';
 
@@ -26,7 +27,7 @@ const SinglePlayground = (): JSX.Element => {
   const { isLoading, error, playground } = usePlayground();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner containerHeight="100%" containerWidth="100%" />;
   }
 
   if (error) {

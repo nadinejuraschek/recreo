@@ -11,6 +11,7 @@ import { Section } from './styles/Playgrounds';
 // COMPONENTS
 import Button from 'components/Button';
 import Form from 'components/Form';
+import LoadingSpinner from 'components/LoadingSpinner';
 import Map from 'components/Map';
 import Modal from 'components/Modal';
 
@@ -26,7 +27,7 @@ const Playgrounds = (): JSX.Element => {
   const displayPlaygrounds = !error || showAllPlaygrounds;
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner containerHeight="100%" containerWidth="100%" />;
   }
 
   return (
