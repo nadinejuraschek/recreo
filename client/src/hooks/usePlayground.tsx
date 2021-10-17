@@ -5,15 +5,23 @@ import { useParams } from 'react-router-dom';
 // AXIOS
 import axios from 'axios';
 
-// INTERFACES
-import { Playground } from 'types';
+// TYPES
+import { Playground, Review } from 'types';
 
-export const usePlayground = () => {
-  const { id } = useParams<{ id: string }>();
+interface Props {
+  error: string;
+  isLoading: boolean;
+  playground: Playground | undefined;
+  rating: number;
+}
+
+export const usePlayground = (id?: string): Props => {
+  const { id: paramId } = useParams<{ id: string }>();
 
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [playground, setPlayground] = useState<Playground>();
+  const [rating, setRating] = useState<number>(0);
 
   // GET
   useEffect(() => {
@@ -23,13 +31,17 @@ export const usePlayground = () => {
   const getSinglePlayground = (): void => {
     setIsLoading(true);
     axios({
-      url: `/api/playgrounds/${id}`,
+      url: `/api/playgrounds/${id || paramId}`,
       method: 'GET',
     })
       .then((res: any): void => {
+        const totalRating = getRating(res.data.reviews);
+        isNaN(totalRating) ? setRating(0) : setRating(totalRating);
+        setPlayground({
+          ...res.data,
+          rating: isNaN(totalRating) ? 0 : totalRating,
+        });
         setIsLoading(false);
-        // console.log(res.data);
-        setPlayground(res.data);
       })
       .catch((err) => {
         setError(err);
@@ -37,9 +49,19 @@ export const usePlayground = () => {
       });
   };
 
+  const getRating = (reviews: Review[]): number => {
+    const ratings = reviews.map((review) => review.rating);
+    let sum = 0;
+    for (let i = 0; i < ratings.length; i++) {
+      sum = sum + ratings[i];
+    }
+    return Math.round(sum / ratings.length);
+  };
+
   return {
     error,
     isLoading,
     playground,
+    rating,
   };
 };

@@ -4,7 +4,16 @@ import { useEffect, useState } from 'react';
 // AXIOS
 import axios from 'axios';
 
-export const usePlaygrounds = () => {
+// TYPES
+import { Playground } from 'types';
+
+interface Props {
+  error: string;
+  isLoading: boolean;
+  playgrounds: Playground[] | [];
+}
+
+export const usePlaygrounds = (): Props => {
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [playgrounds, setPlaygrounds] = useState([]);

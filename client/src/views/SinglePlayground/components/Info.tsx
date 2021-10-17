@@ -1,6 +1,9 @@
 // STYLED COMPONENTS
 import { Description, Location, LocationIcon, Subtitle, Wrapper } from '../styles/Info';
 
+// COMPONENTS
+import Rating from 'components/Rating';
+
 // INTERFACES
 import { InfoProps } from '../types';
 
@@ -11,7 +14,7 @@ const Info = ({ description = '', location = '', rating }: InfoProps): JSX.Eleme
         <Location>
           <LocationIcon /> {location}, 18km
         </Location>
-        {rating ? '⭐⭐⭐⭐⭐' : null}
+        {rating ? <Rating rating={rating} /> : null}
       </Subtitle>
       <Description>{description}</Description>
     </Wrapper>

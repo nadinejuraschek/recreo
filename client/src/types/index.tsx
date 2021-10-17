@@ -7,7 +7,7 @@ export type Author = {
   email: string;
   username: string;
   _id: string;
-  __v: number;
+  __v?: number;
 };
 
 export type Geometry = {
@@ -22,9 +22,11 @@ export type Playground = {
   image: string;
   location: string;
   price: number;
+  rating?: number;
   reviews: Review[];
   title: string;
   _id: string;
+  __v?: number;
 };
 
 export type Review = {
@@ -32,5 +34,5 @@ export type Review = {
   body: string;
   rating: number;
   _id: string;
-  __v: number;
+  __v?: number;
 };

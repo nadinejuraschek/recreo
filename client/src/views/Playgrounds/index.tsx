@@ -1,16 +1,18 @@
 // DEPENDENCIES
 import { useState } from 'react';
 
+// COMPONENTS
+import ErrorState from './components/ErrorState';
+import PlaygroundsList from './components/PlaygroundsList';
+
 // STYLED COMPONENTS
-import { EmptyState, Grid, Section } from './styles/Playgrounds';
+import { Section } from './styles/Playgrounds';
 
 // COMPONENTS
 import Button from 'components/Button';
-import Card from 'components/Card';
 import Form from 'components/Form';
 import Map from 'components/Map';
 import Modal from 'components/Modal';
-import Title from 'components/Title';
 
 // HOOKS
 import { usePlaygrounds } from 'hooks/usePlaygrounds';
@@ -31,31 +33,8 @@ const Playgrounds = (): JSX.Element => {
     <>
       <Map />
       <Section>Filter</Section>
-      {displayError && (
-        <Section>
-          <Title>Playgrounds Near You</Title>
-          <EmptyState>
-            <p>We couldn&apos;t find any playgrounds near you.</p>
-            <Button filled handleClick={() => setOpenAddPlaygroundModal(true)}>
-              Add a Playground
-            </Button>
-            <Button filled handleClick={() => setShowAllPlaygrounds(true)}>
-              Browse All Playgrounds
-            </Button>
-          </EmptyState>
-        </Section>
-      )}
-      {displayPlaygrounds && (
-        <Section>
-          <Title>All Playgrounds</Title>
-          <Grid>
-            {playgrounds.map((playground) => {
-              const { _id, image, location, title } = playground;
-              return <Card id={_id} imageSrc={image} key={_id} location={location} name={title} />;
-            })}
-          </Grid>
-        </Section>
-      )}
+      {displayError && <ErrorState setOpenAddPlaygroundModal={setOpenAddPlaygroundModal} setShowAllPlaygrounds={setShowAllPlaygrounds} />}
+      {displayPlaygrounds && <PlaygroundsList playgrounds={playgrounds} />}
 
       {openAddPlaygroundModal && (
         <Modal

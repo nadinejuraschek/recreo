@@ -33,13 +33,12 @@ const SinglePlayground = (): JSX.Element => {
     return <div>{error}</div>;
   }
 
-  // TODO: Add Ratings to Playground
   // TODO: Add Multiple Images
 
   return (
     <Content>
       <Header name={playground?.title} />
-      <Info description={playground?.description} location={playground?.location} />
+      <Info description={playground?.description} location={playground?.location} rating={playground?.rating} />
       <Tabs active={activeTab} handleClick={setActiveTab} options={tabOptions} />
       <TabContent>
         {activeTab === 'images' && <Preview name={playground?.title} />}

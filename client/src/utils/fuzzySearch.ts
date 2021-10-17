@@ -1,7 +1,7 @@
 // DEPENDENCIES
 import Fuse from 'fuse.js';
 
-export function fuzzySearch(options: any) {
+export const fuzzySearch = (options: any) => {
   const fuse = new Fuse(options, {
     keys: ['name', 'groupName'],
     threshold: 0.3,
@@ -14,4 +14,4 @@ export function fuzzySearch(options: any) {
 
     return fuse.search(value);
   };
-}
+};
