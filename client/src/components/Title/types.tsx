@@ -1,5 +1,5 @@
 export interface TitleProps {
-  children: any;
+  children: React.ReactNode;
   color?: string;
   marginBottom?: number;
   size?: string;

@@ -1,5 +1,5 @@
 // DEPENDENCIES
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 type InputProps = {
   withIcon: boolean;

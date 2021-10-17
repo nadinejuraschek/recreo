@@ -5,11 +5,10 @@ import { HorizontalImage, HorizontalWave, VerticalImage, VerticalWave, Main } fr
 import horizontalWave from 'assets/wave-horizontal.svg';
 import verticalWave from 'assets/wave-vertical.svg';
 
-interface ImageLayoutProps {
-  children: any;
-}
+// INTERFACES
+import { ImageLayoutProps } from './types';
 
-const ImageLayout: React.FC<ImageLayoutProps> = ({ children }) => {
+const ImageLayout = ({ children }: ImageLayoutProps): JSX.Element => {
   return (
     <>
       <HorizontalImage />
