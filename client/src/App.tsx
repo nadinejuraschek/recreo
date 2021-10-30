@@ -16,34 +16,47 @@ import Playgrounds from 'views/Playgrounds';
 import Register from 'views/Register';
 import SinglePlayground from 'views/SinglePlayground';
 
+// CONTEXT
+import { UserProvider } from 'context/UserContext';
+
 const App = (): JSX.Element => {
   return (
     <Router>
-      <Navbar />
+      <UserProvider>
+        <Navbar />
 
-      {/* Landing */}
-      <Route exact path="/" component={ImageLayout} />
+        {/* Landing */}
+        <Route exact path="/" component={ImageLayout} />
 
-      {/* Auth */}
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/register" component={Register} />
+        {/* Auth */}
+        <Route exact path="/login">
+          <ImageLayout>
+            <Login />
+          </ImageLayout>
+        </Route>
+        <Route exact path="/register">
+          <ImageLayout>
+            <Register />
+          </ImageLayout>
+        </Route>
 
-      {/* Home */}
-      <Route exact path="/playgrounds">
-        <DefaultLayout>
-          <Playgrounds />
-        </DefaultLayout>
-      </Route>
+        {/* Home */}
+        <Route exact path="/playgrounds">
+          <DefaultLayout>
+            <Playgrounds />
+          </DefaultLayout>
+        </Route>
 
-      {/* Single Playground */}
-      <Route exact path="/playgrounds/:id">
-        <MapLayout>
-          <SinglePlayground />
-        </MapLayout>
-      </Route>
-      <Route exact path="/playgrounds/:id/edit" component={DefaultLayout} />
+        {/* Single Playground */}
+        <Route exact path="/playgrounds/:id">
+          <MapLayout>
+            <SinglePlayground />
+          </MapLayout>
+        </Route>
+        <Route exact path="/playgrounds/:id/edit" component={DefaultLayout} />
 
-      <Footer />
+        <Footer />
+      </UserProvider>
     </Router>
   );
 };

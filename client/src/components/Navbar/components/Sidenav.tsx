@@ -1,11 +1,23 @@
+// REACT
+import { useContext } from 'react';
+
 // STYLED COMPONENTS
 import { Container, NavList, NavItem } from '../styles/Sidenav';
 import Footer from 'components/Footer';
+
+// CONTEXT
+import { UserContext } from 'context/UserContext';
 
 // INTERFACES
 import { SidenavProps } from '../types';
 
 const Sidenav = ({ handleClose }: SidenavProps): JSX.Element => {
+  const { logoutUser } = useContext(UserContext);
+
+  const handleLogout = (): void => {
+    if (logoutUser) logoutUser();
+  };
+
   return (
     <Container>
       <NavList>
@@ -16,9 +28,7 @@ const Sidenav = ({ handleClose }: SidenavProps): JSX.Element => {
           Register
         </NavItem>
 
-        <NavItem to="/logout" onClick={handleClose}>
-          Logout
-        </NavItem>
+        <button onClick={() => handleLogout()}>Logout</button>
 
         <NavItem to="/playgrounds" onClick={handleClose}>
           Playgrounds

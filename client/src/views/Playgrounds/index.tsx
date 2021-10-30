@@ -2,18 +2,16 @@
 import { useState } from 'react';
 
 // COMPONENTS
+import AddPlaygroundForm from './components/AddPlaygroundForm';
+import Button from 'components/Button';
 import ErrorState from './components/ErrorState';
+import LoadingSpinner from 'components/LoadingSpinner';
+import Map from 'components/Map';
+import Modal from 'components/Modal';
 import PlaygroundsList from './components/PlaygroundsList';
 
 // STYLED COMPONENTS
 import { Section } from './styles/Playgrounds';
-
-// COMPONENTS
-import Button from 'components/Button';
-import Form from 'components/Form';
-import LoadingSpinner from 'components/LoadingSpinner';
-import Map from 'components/Map';
-import Modal from 'components/Modal';
 
 // HOOKS
 import { usePlaygrounds } from 'hooks/usePlaygrounds';
@@ -41,14 +39,14 @@ const Playgrounds = (): JSX.Element => {
         <Modal
           closeButton
           footer={
-            <Button filled small>
+            <Button $filled $small>
               Add Playground
             </Button>
           }
           title="New Playground"
           toggleModal={setOpenAddPlaygroundModal}
         >
-          <Form playground initialValues={{}} validationSchema={{}} />
+          <AddPlaygroundForm />
         </Modal>
       )}
     </>

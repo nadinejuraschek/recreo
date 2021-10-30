@@ -1,5 +1,8 @@
 // REACT
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+
+// CONTEXT
+import { UserContext } from 'context/UserContext';
 
 // STYLED COMPONENTS
 import { Logo } from './styles/Logo';
@@ -9,6 +12,12 @@ import Sidenav from './components/Sidenav';
 const Navbar = (): JSX.Element => {
   const [openSidenav, setOpenSidenav] = useState(false);
 
+  const { logoutUser } = useContext(UserContext);
+
+  const handleLogout = (): void => {
+    if (logoutUser) logoutUser();
+  };
+
   return (
     <Container>
       <Logo>recreo</Logo>
@@ -16,7 +25,7 @@ const Navbar = (): JSX.Element => {
         <StyledNavLink to="/login">Login</StyledNavLink>
         <StyledNavLink to="/register">Register</StyledNavLink>
 
-        <StyledNavLink to="/logout">Logout</StyledNavLink>
+        <button onClick={() => handleLogout()}>Logout</button>
 
         <StyledNavLink to="/playgrounds">Playgrounds</StyledNavLink>
       </NavList>

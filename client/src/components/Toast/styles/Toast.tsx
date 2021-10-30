@@ -4,39 +4,61 @@ import styled, { css } from 'styled-components';
 // ICONS
 import { ReactComponent as CloseSvg } from 'assets/close.svg';
 
-type ToastProps = {
-  danger?: boolean;
-  success?: boolean;
-};
+// INTERFACES
+import { ContainerProps, TimeoutBarProps } from '../types';
 
 export const Container = styled.div.attrs(() => ({
   className: 'toast-container',
-}))<ToastProps>`
+}))<ContainerProps>`
   border: 1px solid;
   border-radius: 0.5rem;
+  box-shadow: 0 3px 8px var(--shadow__sm);
   color: var(--blue__dark);
-  font-size: 1rem;
-  margin: 0 auto 24px;
+  font-size: 1.4rem;
+  margin: 10px;
   padding: 1rem;
 
   height: 6rem;
-  width: 80%;
+  width: auto;
+  z-index: 100;
 
-  position: relative;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
 
-  ${({ danger }) =>
-    danger &&
-    css`
-      background-color: var(--red__light);
-      border-color: var(--red);
-    `}
+  position: absolute;
+  top: 0;
+  right: 0;
 
-  ${({ success }) =>
-    success &&
-    css`
-      background-color: var(--green__light);
-      border-color: var(--green);
-    `}
+  ${({ type }) =>
+    type === 'danger'
+      ? css`
+          background-color: #ffe4e4;
+          border-color: #b12c1c;
+          color: #b12c1c;
+
+          .toast-close-button {
+            stroke: #b12c1c;
+          }
+
+          .toast-timeout-bar {
+            background-color: #b12c1c;
+          }
+        `
+      : css`
+          background-color: #d7e7df;
+          border-color: #4b7053;
+          color: #4b7053;
+
+          .toast-close-button {
+            stroke: #4b7053;
+          }
+
+          .toast-timeout-bar {
+            background-color: #4b7053;
+          }
+        `};
 
   @media screen and (min-width: 900px) {
     margin-bottom: 40px;
@@ -48,11 +70,18 @@ export const CloseBtn = styled(CloseSvg).attrs(() => ({
 }))`
   stroke: var(--blue__dark);
 
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-
   &:hover {
     cursor: pointer;
   }
+`;
+
+export const TimeoutBar = styled.div.attrs(() => ({
+  className: 'toast-timeout-bar',
+}))<TimeoutBarProps>`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  height: 0.3rem;
+  width: ${({ width }) => (width ? `${width}%` : 0)};
 `;

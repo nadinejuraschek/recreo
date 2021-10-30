@@ -20,6 +20,24 @@ export const FormContainer = styled.div.attrs(() => ({
   }
 `;
 
+export const Rating = styled.div.attrs(() => ({
+  className: 'comment-form-rating',
+}))`
+  font-size: 2rem;
+  padding-top: 1rem;
+  width: 100%;
+`;
+
+export const ButtonWrapper = styled.div.attrs(() => ({
+  className: 'comment-form-button-wrapper',
+}))`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  width: 100%;
+`;
+
 export const Name = styled.div.attrs(() => ({
   className: 'single-playground__comments-name',
 }))``;

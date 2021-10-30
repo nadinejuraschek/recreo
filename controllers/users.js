@@ -1,12 +1,12 @@
 const User = require('../models/User');
 
 module.exports.login = async (req, res) => {
-  req.flash('success', 'Welcome back!');
-  const redirectUrl = req.session.returnTo || '/playgrounds';
-  delete req.session.returnTo;
-  res.redirect(redirectUrl);
+  // req.flash('success', 'Welcome back!');
+  // const redirectUrl = req.session.returnTo || '/playgrounds';
+  // delete req.session.returnTo;
+  // res.redirect(redirectUrl);
 
-  // console.log(req.body);
+  console.log(req.body);
   const user = await db.User.findOne({ email: req.body.email });
   if (!user) {
     res.json({ message: 'No User found.' });
@@ -28,8 +28,9 @@ module.exports.login = async (req, res) => {
 
 module.exports.logout = (req, res) => {
   req.logout();
-  req.flash('success', 'See you again soon!');
-  res.redirect('/');
+  res.send('success', 'See you again soon!');
+  // req.flash('success', 'See you again soon!');
+  // res.redirect('/');
 };
 
 module.exports.register = async (req, res) => {
@@ -39,12 +40,13 @@ module.exports.register = async (req, res) => {
     const registeredUser = await User.register(user, password);
     req.login(registeredUser, err => {
       if (err) return next(err);
-      req.flash('success', "Welcome to Recreo!");
-      res.redirect('/playgrounds');
+      // req.flash('success', "Welcome to Recreo!");
+      // res.redirect('/playgrounds');
     });
   } catch(err) {
-    req.flash('error', err.message);
-    res.redirect('/playgrounds');
+    res.send('error', err.message);
+    // req.flash('error', err.message);
+    // res.redirect('/playgrounds');
   };
 };
 

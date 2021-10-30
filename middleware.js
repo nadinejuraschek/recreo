@@ -8,8 +8,9 @@ const { playgroundSchema, reviewSchema } = require('./schemas.js');
 module.exports.isLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
     req.session.returnTo = req.originalUrl;
-    req.flash('error', 'You must log in to use this feature.');
-    return res.redirect('/login');
+    return res.send('error', 'You must log in to use this feature.')
+    // req.flash('error', 'You must log in to use this feature.');
+    // return res.redirect('/login');
   };
   next();
 };
@@ -40,12 +41,14 @@ module.exports.isAuthor = async (req, res, next) => {
   const { id } = req.params;
   const playground = await Playground.findById(id);
   if (!playground) {
-    req.flash('error', 'Sorry, this playground could not be found.');
-    return res.redirect('/playgrounds');
+    return res.send('error', 'Sorry, this playground could not be found.');
+    // req.flash('error', 'Sorry, this playground could not be found.');
+    // return res.redirect('/playgrounds');
   }
   if (!playground.author.equals(req.user._id)) {
-    req.flash('error', 'You do not have permission to edit this playground.');
-    return res.redirect(`/playgrounds/${id}`);
+    return res.send('error', 'You do not have permission to edit this playground.');
+    // req.flash('error', 'You do not have permission to edit this playground.');
+    // return res.redirect(`/playgrounds/${id}`);
   }
   next();
 };
@@ -54,8 +57,9 @@ module.exports.isReviewAuthor = async (req, res, next) => {
   const { id, reviewid } = req.params;
   const review = await Review.findById(reviewid);
   if (!review.author.equals(req.user._id)) {
-    req.flash('error', 'You do not have permission to edit this review.');
-    return res.redirect(`/playgrounds/${id}`);
+    return res.send('error', 'You do not have permission to edit this review.');
+    // req.flash('error', 'You do not have permission to edit this review.');
+    // return res.redirect(`/playgrounds/${id}`);
   }
   next();
 };

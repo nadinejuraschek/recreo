@@ -6,11 +6,12 @@ import { InputProps } from './types';
 
 const Input = ({
   error,
-  handleChange,
   label = undefined,
   icon = undefined,
   iconName = '',
+  name,
   placeholder = '',
+  register,
   type = 'text',
 }: InputProps): JSX.Element => {
   const withIcon = icon ? true : false;
@@ -19,11 +20,11 @@ const Input = ({
     <Container>
       {label && <Label>{label}</Label>}
       {type === 'textarea' ? (
-        <StyledTextarea onChange={handleChange} placeholder={placeholder} type={type} />
+        <StyledTextarea placeholder={placeholder} {...register(name)} type={type} />
       ) : (
         <Wrapper>
           {icon && <Icon alt={iconName} src={icon} />}
-          <StyledInput onChange={handleChange} placeholder={placeholder} type={type} withIcon={withIcon} />
+          <StyledInput autoComplete="off" placeholder={placeholder} type={type} {...register(name)} withIcon={withIcon} />
         </Wrapper>
       )}
       {error && <Validation>{error}</Validation>}

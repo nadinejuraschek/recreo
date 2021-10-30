@@ -17,6 +17,7 @@ module.exports.delete = async (req, res) => {
   // find review connection in playground entry and remove association
   await Playground.findByIdAndUpdate(id, { $pull: { reviews: reviewid } });
   await Review.findByIdAndDelete(reviewid);
-  req.flash('success', 'Your review has been removed.');
-  res.redirect(`/playgrounds/${id}`);
+  res.send('success', 'Your review has been removed.');
+  // req.flash('success', 'Your review has been removed.');
+  // res.redirect(`/playgrounds/${id}`);
 };

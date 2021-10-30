@@ -14,10 +14,10 @@ const ErrorState = ({ setOpenAddPlaygroundModal, setShowAllPlaygrounds }: ErrorS
       <Title>Playgrounds Near You</Title>
       <EmptyState>
         <p>We couldn&apos;t find any playgrounds near you.</p>
-        <Button filled handleClick={() => setOpenAddPlaygroundModal(true)}>
+        <Button $filled handleClick={() => setOpenAddPlaygroundModal(true)}>
           Add a Playground
         </Button>
-        <Button filled handleClick={() => setShowAllPlaygrounds(true)}>
+        <Button $filled handleClick={() => setShowAllPlaygrounds(true)}>
           Browse All Playgrounds
         </Button>
       </EmptyState>

@@ -36,3 +36,9 @@ export type Review = {
   _id: string;
   __v?: number;
 };
+
+export type User = {
+  email: string;
+  password: string;
+  username: string;
+};

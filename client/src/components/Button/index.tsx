@@ -6,36 +6,37 @@ import { ButtonProps } from './types';
 
 const Button = ({
   children,
-  disabled = false,
-  filled = true,
-  fullWidth = false,
+  $disabled = false,
+  $filled = true,
+  $fullWidth = false,
   handleClick,
   handleSubmit,
+  loading = false,
   link = undefined,
-  outlined = false,
-  rounded = false,
-  small = true,
+  $outlined = false,
+  $rounded = false,
+  $small = true,
   type = 'button',
 }: ButtonProps): JSX.Element => {
   return (
     <>
       {link ? (
-        <StyledLink disabled={disabled} filled={filled} fullWidth={fullWidth} outlined={outlined} rounded={rounded} to={link}>
+        <StyledLink $disabled={$disabled} $filled={$filled} $fullWidth={$fullWidth} $outlined={$outlined} $rounded={$rounded} to={link}>
           {children}
         </StyledLink>
       ) : (
         <StyledButton
-          disabled={disabled}
-          filled={filled}
-          fullWidth={fullWidth}
+          $disabled={$disabled}
+          $filled={$filled}
+          $fullWidth={$fullWidth}
           onClick={handleClick}
           onSubmit={handleSubmit}
-          outlined={outlined}
-          rounded={rounded}
-          small={small}
+          $outlined={$outlined}
+          $rounded={$rounded}
+          $small={$small}
           type={type}
         >
-          {children}
+          {loading ? 'Loading...' : children}
         </StyledButton>
       )}
     </>
