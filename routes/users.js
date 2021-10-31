@@ -1,5 +1,4 @@
 const express = require('express'),
-  catchAsync = require('../utils/catchAsync'),
   userController = require('../controllers/users'),
   router = express.Router({ mergeParams: true });
 

@@ -6,13 +6,9 @@ const express = require('express'),
   session = require('express-session'),
   helmet = require('helmet'),
   cookieParser = require('cookie-parser'),
-  // flash = require('connect-flash'),
   passport = require('passport'),
-  LocalStrategy = require('passport-local'),
   path = require('path'),
   cors = require('cors'),
-  ExpressError = require('./utils/ExpressError'),
-  User = require('./models/User'),
   userRoutes = require('./routes/users'),
   playgroundRoutes = require('./routes/playgrounds'),
   reviewRoutes = require('./routes/reviews');
@@ -47,56 +43,56 @@ app.use(cors({
 
 // SECURITY ================================================================
 app.use(mongoSanitize());
-// app.use(helmet());
+app.use(helmet());
 
-// const scriptSrcUrls = [
-//   "https://stackpath.bootstrapcdn.com/",
-//   "https://api.tiles.mapbox.com/",
-//   "https://api.mapbox.com/",
-//   "https://kit.fontawesome.com/",
-//   "https://cdnjs.cloudflare.com/",
-//   "https://cdn.jsdelivr.net",
-// ];
-// const styleSrcUrls = [
-//   "https://kit-free.fontawesome.com/",
-//   "https://stackpath.bootstrapcdn.com/",
-//   "https://api.mapbox.com/",
-//   "https://api.tiles.mapbox.com/",
-//   "https://fonts.googleapis.com/",
-//   "https://use.fontawesome.com/",
-// ];
-// const connectSrcUrls = [
-//   "https://api.mapbox.com/",
-//   "https://a.tiles.mapbox.com/",
-//   "https://b.tiles.mapbox.com/",
-//   "https://events.mapbox.com/",
-// ];
-// const fontSrcUrls = [
-//   "https://fonts.gstatic.com/",
-//   "https://fonts.googleapis.com/",
-// ];
+const scriptSrcUrls = [
+  "https://stackpath.bootstrapcdn.com/",
+  "https://api.tiles.mapbox.com/",
+  "https://api.mapbox.com/",
+  "https://kit.fontawesome.com/",
+  "https://cdnjs.cloudflare.com/",
+  "https://cdn.jsdelivr.net",
+];
+const styleSrcUrls = [
+  "https://kit-free.fontawesome.com/",
+  "https://stackpath.bootstrapcdn.com/",
+  "https://api.mapbox.com/",
+  "https://api.tiles.mapbox.com/",
+  "https://fonts.googleapis.com/",
+  "https://use.fontawesome.com/",
+];
+const connectSrcUrls = [
+  "https://api.mapbox.com/",
+  "https://a.tiles.mapbox.com/",
+  "https://b.tiles.mapbox.com/",
+  "https://events.mapbox.com/",
+];
+const fontSrcUrls = [
+  "https://fonts.gstatic.com/",
+  "https://fonts.googleapis.com/",
+];
 
-// app.use(
-//   helmet.contentSecurityPolicy({
-//       directives: {
-//           defaultSrc: [],
-//           connectSrc: ["'self'", ...connectSrcUrls],
-//           scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
-//           styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
-//           workerSrc: ["'self'", "blob:"],
-//           objectSrc: [],
-//           imgSrc: [
-//               "'self'",
-//               "blob:",
-//               "data:",
-//               "https://res.cloudinary.com/nadinejwebdev/",
-//               "https://images.unsplash.com/",
-//               "https://images.pexels.com/",
-//           ],
-//           fontSrc: ["'self'", ...fontSrcUrls],
-//       },
-//   })
-// );
+app.use(
+  helmet.contentSecurityPolicy({
+      directives: {
+          defaultSrc: [],
+          connectSrc: ["'self'", ...connectSrcUrls],
+          scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+          styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+          workerSrc: ["'self'", "blob:"],
+          objectSrc: [],
+          imgSrc: [
+              "'self'",
+              "blob:",
+              "data:",
+              "https://res.cloudinary.com/nadinejwebdev/",
+              "https://images.unsplash.com/",
+              "https://images.pexels.com/",
+          ],
+          fontSrc: ["'self'", ...fontSrcUrls],
+      },
+  })
+);
 
 // SESSION ===============================================================
 const sessionConfig = {
@@ -108,14 +104,10 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 app.use(cookieParser(process.env.SECRET));
 
-// FLASH =================================================================
-// app.use(flash());
-
 // PASSPORT ==============================================================
 app.use(passport.initialize());
 app.use(passport.session());
 require('./passportConfig')(passport);
-
 
 // ROUTES ================================================================
 app.get('/', (req, res) => {
@@ -126,10 +118,6 @@ app.use('/api', userRoutes);
 app.use('/api/playgrounds', playgroundRoutes);
 app.use('/api/playgrounds/:id/review', reviewRoutes);
 
-// app.all('*', (req, res, next) => {
-//   next(new ExpressError('Page Not Found', 404));
-// });
-
 // DEPLOYMENT
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
@@ -139,13 +127,6 @@ if (process.env.NODE_ENV === 'production') {
 app.use((req, res) =>
   res.sendFile(path.join(__dirname, './client/build/index.html'))
 );
-
-// ERROR
-// app.use((err, req, res, next) => {
-//   const { statusCode = 500 } = err;
-//   if (!err.message) err.message = 'Something went wrong!';
-//   res.status(statusCode).send('error', { err });
-// });
 
 // SERVER
 app.listen(process.env.PORT, () => {

@@ -1,40 +1,36 @@
 const express = require('express'),
-  catchAsync = require('../utils/catchAsync'),
   playgroundController = require('../controllers/playgrounds'),
   router = express.Router();
 
 // MIDDLEWARE
-const { isLoggedIn, isAuthor, validatePlayground } = require('../middleware');
+const { isAuthor, validatePlayground } = require('../middleware');
 
 router
   .route('/')
-  .get(catchAsync(playgroundController.getPlaygrounds))
+  .get(playgroundController.getPlaygrounds)
   .post(
-    isLoggedIn,
     validatePlayground,
-    catchAsync(playgroundController.create)
+    playgroundController.create
   );
 
-router.get('/new', isLoggedIn, (req, res) => {
+router.get('/new', (req, res) => {
   res.send('User is Logged In');
 });
 
 router
   .route('/:id')
-  .get(catchAsync(playgroundController.getSinglePlayground))
+  .get(playgroundController.getSinglePlayground)
   .put(
-    isLoggedIn,
     isAuthor,
     validatePlayground,
-    catchAsync(playgroundController.edit)
+    playgroundController.edit
   )
-  .delete(isLoggedIn, isAuthor, catchAsync(playgroundController.delete));
+  .delete(isAuthor, playgroundController.delete);
 
 router.get(
   '/:id/edit',
-  isLoggedIn,
   isAuthor,
-  catchAsync(playgroundController.showEditForm)
+  playgroundController.showEditForm
 );
 
 module.exports = router;
