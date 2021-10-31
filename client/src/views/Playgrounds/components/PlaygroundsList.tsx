@@ -1,5 +1,6 @@
 // COMPONENTS
 import Card from 'components/Card';
+import ErrorState from './ErrorState';
 import Title from 'components/Title';
 
 // STYLED COMPONENTS

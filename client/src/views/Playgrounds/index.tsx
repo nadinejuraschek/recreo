@@ -21,18 +21,27 @@ const Playgrounds = (): JSX.Element => {
   const [showAllPlaygrounds, setShowAllPlaygrounds] = useState<boolean>(false);
   const { isLoading, error, playgrounds } = usePlaygrounds();
 
-  const displayError = error && !showAllPlaygrounds;
-  const displayPlaygrounds = !error || showAllPlaygrounds;
+  const noPlaygrounds = playgrounds.length === 0;
+
+  const displayError = (error && !showAllPlaygrounds) || noPlaygrounds;
+  const displayPlaygrounds = !displayError || showAllPlaygrounds;
 
   if (isLoading) {
     return <LoadingSpinner containerHeight="100%" containerWidth="100%" />;
   }
 
+  const renderErrorState = () => {
+    if (noPlaygrounds) {
+      return <ErrorState setOpenAddPlaygroundModal={setOpenAddPlaygroundModal} />;
+    }
+    return <ErrorState setOpenAddPlaygroundModal={setOpenAddPlaygroundModal} setShowAllPlaygrounds={setShowAllPlaygrounds} />;
+  };
+
   return (
     <>
       <Map />
       <Section>Filter</Section>
-      {displayError && <ErrorState setOpenAddPlaygroundModal={setOpenAddPlaygroundModal} setShowAllPlaygrounds={setShowAllPlaygrounds} />}
+      {displayError && renderErrorState()}
       {displayPlaygrounds && <PlaygroundsList playgrounds={playgrounds} />}
 
       {openAddPlaygroundModal && (

@@ -13,10 +13,6 @@ router
     playgroundController.create
   );
 
-router.get('/new', (req, res) => {
-  res.send('User is Logged In');
-});
-
 router
   .route('/:id')
   .get(playgroundController.getSinglePlayground)

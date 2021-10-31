@@ -17,9 +17,11 @@ const ErrorState = ({ setOpenAddPlaygroundModal, setShowAllPlaygrounds }: ErrorS
         <Button $filled handleClick={() => setOpenAddPlaygroundModal(true)}>
           Add a Playground
         </Button>
-        <Button $filled handleClick={() => setShowAllPlaygrounds(true)}>
-          Browse All Playgrounds
-        </Button>
+        {setShowAllPlaygrounds && (
+          <Button $filled handleClick={() => setShowAllPlaygrounds(true)}>
+            Browse All Playgrounds
+          </Button>
+        )}
       </EmptyState>
     </Section>
   );
