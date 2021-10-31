@@ -12,27 +12,34 @@ import { UserContext } from 'context/UserContext';
 import { SidenavProps } from '../types';
 
 const Sidenav = ({ handleClose }: SidenavProps): JSX.Element => {
-  const { logoutUser } = useContext(UserContext);
+  const { logoutUser, user } = useContext(UserContext);
 
   const handleLogout = (): void => {
     if (logoutUser) logoutUser();
+    handleClose();
   };
 
   return (
     <Container>
       <NavList>
-        <NavItem to="/login" onClick={handleClose}>
-          Login
-        </NavItem>
-        <NavItem to="/register" onClick={handleClose}>
-          Register
-        </NavItem>
-
-        <button onClick={() => handleLogout()}>Logout</button>
-
+        {!user && (
+          <>
+            <NavItem to="/login" onClick={handleClose}>
+              Login
+            </NavItem>
+            <NavItem to="/register" onClick={handleClose}>
+              Register
+            </NavItem>
+          </>
+        )}
         <NavItem to="/playgrounds" onClick={handleClose}>
           Playgrounds
         </NavItem>
+        {user && (
+          <NavItem onClick={handleLogout} to="/logout">
+            Logout
+          </NavItem>
+        )}
       </NavList>
 
       <Footer navFooter />

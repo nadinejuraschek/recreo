@@ -26,24 +26,27 @@ import { registerSchema } from 'schemas';
 const Register = (): JSX.Element => {
   const { loading, error, registerUser } = useContext(UserContext);
 
+  const defaultValues = {
+    password: '',
+    username: '',
+  };
+
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting, isValid },
+    reset,
   } = useForm<any>({
-    defaultValues: {
-      password: '',
-      email: '',
-    },
+    defaultValues,
     resolver: yupResolver(registerSchema),
     mode: 'onChange',
   });
 
-  const onSubmit = (formData: { email: string; password: string }) => {
-    console.log('submitted register data: ', formData);
+  const onSubmit = (formData: { username: string; password: string }) => {
     if (registerUser) {
       registerUser(formData);
     }
+    reset();
   };
 
   return (
@@ -52,13 +55,13 @@ const Register = (): JSX.Element => {
       <FormWrapper>
         <Form handleSubmit={handleSubmit(onSubmit)}>
           <Input
-            name="email"
+            name="username"
             placeholder="Username"
             type="text"
             icon={user}
             iconName="User Icon"
             register={register}
-            error={errors?.email?.message}
+            error={errors?.username?.message}
           />
           <Input
             name="password"

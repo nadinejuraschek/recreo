@@ -74,14 +74,3 @@ export const CloseBtn = styled(CloseSvg).attrs(() => ({
     cursor: pointer;
   }
 `;
-
-export const TimeoutBar = styled.div.attrs(() => ({
-  className: 'toast-timeout-bar',
-}))<TimeoutBarProps>`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-
-  height: 0.3rem;
-  width: ${({ width }) => (width ? `${width}%` : 0)};
-`;

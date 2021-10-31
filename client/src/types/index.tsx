@@ -4,7 +4,6 @@ export type Amenity = {
 };
 
 export type Author = {
-  email: string;
   username: string;
   _id: string;
   __v?: number;
@@ -38,7 +37,11 @@ export type Review = {
 };
 
 export type User = {
-  email: string;
   password: string;
+  username: string;
+};
+
+export type AuthenticatedUser = {
+  id: string;
   username: string;
 };

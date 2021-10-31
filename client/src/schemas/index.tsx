@@ -19,7 +19,7 @@ const features = [
 ];
 
 export const loginSchema = Yup.object().shape({
-  email: Yup.string()
+  username: Yup.string()
     .min(3, 'Username has to be at least 3 characters long.')
     .max(30, 'Username can not exceed 30 characters.')
     .required('Please choose a username.'),
@@ -30,7 +30,7 @@ export const loginSchema = Yup.object().shape({
 });
 
 export const registerSchema = Yup.object().shape({
-  email: Yup.string()
+  username: Yup.string()
     .min(3, 'Username has to be at least 3 characters long.')
     .max(30, 'Username can not exceed 30 characters.')
     .required('Please choose a username.'),

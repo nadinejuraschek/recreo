@@ -21,11 +21,11 @@ import { loginSchema } from 'schemas';
 import { UserContext } from 'context/UserContext';
 
 // ICONS
-import lock from 'assets/lock.svg';
-import user from 'assets/user.svg';
+import lockIcon from 'assets/lock.svg';
+import userIcon from 'assets/user.svg';
 
 const Login = (): JSX.Element => {
-  const { loading, error, loginUser } = useContext(UserContext);
+  const { error, loading, loginUser, user } = useContext(UserContext);
 
   const {
     register,
@@ -34,14 +34,13 @@ const Login = (): JSX.Element => {
   } = useForm<any>({
     defaultValues: {
       password: '',
-      email: '',
+      username: '',
     },
     resolver: yupResolver(loginSchema),
-    mode: 'onBlur',
+    mode: 'onChange',
   });
 
-  const onSubmit = (formData: { email: string; password: string }) => {
-    console.log('submitted login data: ', formData);
+  const onSubmit = (formData: { username: string; password: string }) => {
     if (loginUser) {
       loginUser(formData);
     }
@@ -55,19 +54,19 @@ const Login = (): JSX.Element => {
       <FormWrapper>
         <Form handleSubmit={handleSubmit(onSubmit)}>
           <Input
-            name="email"
+            name="username"
             placeholder="Username"
             type="text"
-            icon={user}
+            icon={userIcon}
             iconName="User Icon"
             register={register}
-            error={errors?.email?.message}
+            error={errors?.username?.message}
           />
           <Input
             name="password"
             placeholder="Password"
             type="password"
-            icon={lock}
+            icon={lockIcon}
             iconName="Lock Icon"
             register={register}
             error={errors?.password?.message}
@@ -81,14 +80,12 @@ const Login = (): JSX.Element => {
           Register
         </Button>
       </FormWrapper>
-      <Toast type="success" open={Boolean(error)}>
-        Some error message displays here.
-      </Toast>
       {error && (
         <Toast type="danger" open={Boolean(error)}>
           {error}
         </Toast>
       )}
+      {user && <div>{user.username}</div>}
     </Wrapper>
   );
 };

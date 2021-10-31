@@ -1,5 +1,4 @@
 const express = require('express'),
-  passport = require('passport'),
   catchAsync = require('../utils/catchAsync'),
   userController = require('../controllers/users'),
   router = express.Router({ mergeParams: true });
@@ -7,21 +6,17 @@ const express = require('express'),
 // LOGIN
 router
   .route('/login')
-  .post(
-    // passport.authenticate('local', {
-    //   failureFlash: true,
-    //   failureRedirect: '/login',
-    // }),
-    passport.authenticate('local'),
-    catchAsync(userController.login)
-  );
+  .post(userController.login);
 
 // REGISTER
 router
   .route('/register')
-  .post(catchAsync(userController.register));
+  .post(userController.register);
 
 // LOGOUT
 router.get('/logout', userController.logout);
+
+// GET USER
+router.get('/user', userController.getUser);
 
 module.exports = router;

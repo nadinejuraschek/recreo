@@ -45,7 +45,7 @@ const AddPlaygroundForm = (): JSX.Element => {
       features: [],
     },
     resolver: yupResolver(playgroundSchema),
-    mode: 'onBlur',
+    mode: 'onChange',
   });
 
   const onSubmit = (formData: { name: string; description: string; features: string[] }): void => {
