@@ -33,24 +33,19 @@ module.exports.getSinglePlayground = async (req, res) => {
     });
 };
 
-module.exports.showEditForm = async (req, res) => {
-  const playground = await Playground.findById(req.params.id);
-  res.send('Should show edit form for playground.');
-  // res.render('playgrounds/edit', { playground });
-};
-
 module.exports.create = async (req, res, next) => {
   const geoData = await geocoder.forwardGeocode({
-    query: req.body.playground.location,
+    query: req.body.location,
     limit: 1,
   }).send();
-  const playground = new Playground(req.body.playground);
+
+  const playground = new Playground(req.body);
+  playground.location = geoData.body.features[0].place_name;
   playground.geometry = geoData.body.features[0].geometry;
-  playground.author = req.user._id;
+
   await playground.save();
-  res.send('success', 'Successfully added a new playground!');
-  // req.flash('success', 'Successfully added a new playground!');
-  // res.redirect(`/playgrounds/${playground._id}`);
+  res.json(playground);
+
 };
 
 module.exports.edit = async (req, res) => {
@@ -59,14 +54,10 @@ module.exports.edit = async (req, res) => {
     ...req.body.playground,
   });
   res.send('success', 'Successfully updated this playground!');
-  // req.flash('success', 'Successfully updated this playground!');
-  // res.redirect(`/playgrounds/${id}`);
 };
 
 module.exports.delete = async (req, res) => {
   const { id } = req.params;
   const deletedPlayground = await Playground.findByIdAndDelete(id);
   res.send('success', 'The playground has been removed.');
-  // req.flash('success', 'The playground has been removed.');
-  // res.redirect('/playgrounds');
 };

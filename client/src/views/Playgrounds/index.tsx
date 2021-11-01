@@ -3,15 +3,10 @@ import { useState } from 'react';
 
 // COMPONENTS
 import AddPlaygroundForm from './components/AddPlaygroundForm';
-import Button from 'components/Button';
 import ErrorState from './components/ErrorState';
 import LoadingSpinner from 'components/LoadingSpinner';
 import Map from 'components/Map';
-import Modal from 'components/Modal';
 import PlaygroundsList from './components/PlaygroundsList';
-
-// STYLED COMPONENTS
-import { Section } from './styles/Playgrounds';
 
 // HOOKS
 import { usePlaygrounds } from 'hooks/usePlaygrounds';
@@ -40,24 +35,11 @@ const Playgrounds = (): JSX.Element => {
   return (
     <>
       <Map />
-      <Section>Filter</Section>
+      {/* FILTER DISPLAYS HERE <Section></Section> */}
       {displayError && renderErrorState()}
       {displayPlaygrounds && <PlaygroundsList playgrounds={playgrounds} />}
 
-      {openAddPlaygroundModal && (
-        <Modal
-          closeButton
-          footer={
-            <Button $filled $small>
-              Add Playground
-            </Button>
-          }
-          title="New Playground"
-          toggleModal={setOpenAddPlaygroundModal}
-        >
-          <AddPlaygroundForm />
-        </Modal>
-      )}
+      {openAddPlaygroundModal && <AddPlaygroundForm setOpenAddPlaygroundModal={setOpenAddPlaygroundModal} />}
     </>
   );
 };

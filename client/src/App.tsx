@@ -17,6 +17,7 @@ import Register from 'views/Register';
 import SinglePlayground from 'views/SinglePlayground';
 
 // CONTEXT
+import { PlaygroundProvider } from 'context/PlaygroundContext';
 import { UserProvider } from 'context/UserContext';
 
 const App = (): JSX.Element => {
@@ -41,19 +42,21 @@ const App = (): JSX.Element => {
         </Route>
 
         {/* Home */}
-        <Route exact path="/playgrounds">
-          <DefaultLayout>
-            <Playgrounds />
-          </DefaultLayout>
-        </Route>
+        <PlaygroundProvider>
+          <Route exact path="/playgrounds">
+            <DefaultLayout>
+              <Playgrounds />
+            </DefaultLayout>
+          </Route>
 
-        {/* Single Playground */}
-        <Route exact path="/playgrounds/:id">
-          <MapLayout>
-            <SinglePlayground />
-          </MapLayout>
-        </Route>
-        <Route exact path="/playgrounds/:id/edit" component={DefaultLayout} />
+          {/* Single Playground */}
+          <Route exact path="/playgrounds/:id">
+            <MapLayout>
+              <SinglePlayground />
+            </MapLayout>
+          </Route>
+          <Route exact path="/playgrounds/:id/edit" component={DefaultLayout} />
+        </PlaygroundProvider>
 
         <Footer />
       </UserProvider>

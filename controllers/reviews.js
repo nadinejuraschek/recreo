@@ -18,6 +18,4 @@ module.exports.delete = async (req, res) => {
   await Playground.findByIdAndUpdate(id, { $pull: { reviews: reviewid } });
   await Review.findByIdAndDelete(reviewid);
   res.send('success', 'Your review has been removed.');
-  // req.flash('success', 'Your review has been removed.');
-  // res.redirect(`/playgrounds/${id}`);
 };

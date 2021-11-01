@@ -5,8 +5,14 @@ const express = require('express'),
 // MIDDLEWARE
 const { validateReview, isReviewAuthor } = require('../middleware');
 
-router.post('/', validateReview, reviewController.create);
+router.post('/',
+  // validateReview,
+  reviewController.create
+);
 
-router.delete('/:reviewid', isReviewAuthor, reviewController.delete);
+router.delete('/:reviewid',
+  // isReviewAuthor,
+  reviewController.delete
+);
 
 module.exports = router;

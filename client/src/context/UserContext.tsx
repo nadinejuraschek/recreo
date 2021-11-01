@@ -22,8 +22,9 @@ export const UserContext = createContext<Partial<UserContextType>>({});
 export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
   const [error, setError] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
-  const history = useHistory();
   const [user, setUser] = useState<AuthenticatedUser>();
+
+  const history = useHistory();
 
   useEffect(() => {
     getUser();
@@ -92,7 +93,6 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
       })
       .catch((err) => {
         // console.error('Error: ', err);
-        setError('No user logged in.');
       });
   };
 

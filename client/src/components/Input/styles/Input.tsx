@@ -12,7 +12,7 @@ export const Container = styled.div.attrs(() => ({
   flex-direction: column;
   justify-content: center;
 
-  margin: 1rem 0;
+  margin: 1rem 0 2rem;
   width: 100%;
 `;
 
@@ -28,6 +28,7 @@ export const Label = styled.label.attrs(() => ({
 }))`
   font-size: 1.6rem;
   font-weight: bold;
+  margin-bottom: 0.75rem;
 `;
 
 export const Icon = styled.img.attrs(() => ({

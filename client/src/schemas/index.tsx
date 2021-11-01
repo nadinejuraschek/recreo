@@ -45,6 +45,9 @@ export const playgroundSchema = Yup.object().shape({
     .min(3, 'Name has to be at least 3 characters long.')
     .max(50, 'Name can not exceed 50 characters.')
     .required("Please enter the playground's name."),
+  location: Yup.string().required("Please enter the playground's location."),
+  // lat: Yup.number(),
+  // long: Yup.number(),
   description: Yup.string().max(120, 'Description can not exceed 120 characters.').required('Description can not be empty.'),
   features: Yup.array().of(Yup.string().oneOf(features)),
 });

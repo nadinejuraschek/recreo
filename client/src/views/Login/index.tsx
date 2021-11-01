@@ -25,7 +25,7 @@ import lockIcon from 'assets/lock.svg';
 import userIcon from 'assets/user.svg';
 
 const Login = (): JSX.Element => {
-  const { error, loading, loginUser, user } = useContext(UserContext);
+  const { error, loading, loginUser } = useContext(UserContext);
 
   const {
     register,
@@ -85,7 +85,6 @@ const Login = (): JSX.Element => {
           {error}
         </Toast>
       )}
-      {user && <div>{user.username}</div>}
     </Wrapper>
   );
 };

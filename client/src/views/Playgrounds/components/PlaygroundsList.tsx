@@ -19,6 +19,7 @@ const PlaygroundsList = ({ playgrounds }: PlaygroundsListProps): JSX.Element => 
           return <Card id={_id} imageSrc={image} key={_id} location={location} name={title} />;
         })}
       </Grid>
+      {/* PAGINATION DISPLAYS HERE */}
     </Section>
   );
 };

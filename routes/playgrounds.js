@@ -9,7 +9,7 @@ router
   .route('/')
   .get(playgroundController.getPlaygrounds)
   .post(
-    validatePlayground,
+    // validatePlayground,
     playgroundController.create
   );
 
@@ -17,16 +17,10 @@ router
   .route('/:id')
   .get(playgroundController.getSinglePlayground)
   .put(
-    isAuthor,
-    validatePlayground,
+    // isAuthor,
+    // validatePlayground,
     playgroundController.edit
   )
   .delete(isAuthor, playgroundController.delete);
-
-router.get(
-  '/:id/edit',
-  isAuthor,
-  playgroundController.showEditForm
-);
 
 module.exports = router;

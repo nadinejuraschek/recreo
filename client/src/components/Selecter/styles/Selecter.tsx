@@ -12,11 +12,7 @@ export const StyledSelectSearch = styled.div.attrs(() => ({
     color: var(--blue__dark);
     position: relative;
 
-    width: 75%;
-
-    @media only screen and (min-width: 900px) {
-      width: 50%;
-    }
+    width: 100%;
   }
 
   .select-search *,
@@ -49,19 +45,24 @@ export const StyledSelectSearch = styled.div.attrs(() => ({
   .select-search__input {
     color: var(--blue__dark);
     display: block;
-    height: 36px;
+    height: 4rem;
     width: 100%;
+    margin-bottom: 0.75rem;
     padding: 0 4rem 0 0.75rem;
-    background: #f8f8f8;
+    background: #f8f8f880;
     border: 1px solid transparent;
-    box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);
-    border-radius: 3px;
+    box-shadow: 0 0.0625rem 0.125rem #00000015;
+    border-radius: 0.3rem;
     outline: none;
-    font-size: 14px;
+    font-size: 1.6rem;
     text-align: left;
     text-overflow: ellipsis;
-    line-height: 36px;
+    line-height: 4rem;
     -webkit-appearance: none;
+
+    &::placeholder {
+      color: var(--blue__medium);
+    }
   }
 
   .select-search__input::-webkit-search-decoration,
