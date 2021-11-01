@@ -12,6 +12,7 @@ export interface ErrorStateProps {
 
 export interface PlaygroundsListProps {
   playgrounds: Playground[];
+  setOpenAddPlaygroundModal: (state: boolean) => void;
 }
 
 export type AddPlaygroundInputs = {

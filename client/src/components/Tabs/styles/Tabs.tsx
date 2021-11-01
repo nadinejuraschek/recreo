@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 
 interface TabProps {
   isActive?: boolean;
+  tabNum: number;
 }
 
 export const Container = styled.div.attrs(() => ({
@@ -12,6 +13,7 @@ export const Container = styled.div.attrs(() => ({
   align-items: center;
 
   height: 5rem;
+  width: 100%;
 `;
 
 export const Tab = styled.button.attrs(() => ({
@@ -19,16 +21,16 @@ export const Tab = styled.button.attrs(() => ({
 }))<TabProps>`
   background-color: transparent;
   border: none;
-  border-bottom: 2px solid var(--blue__opaque);
+  border-bottom: 4px solid var(--blue__opaque);
   font-size: 1.6rem;
 
   height: 5rem;
-  width: 12rem;
+  width: ${({ tabNum }) => tabNum && `calc(100% / ${tabNum})`};
 
   ${({ isActive }) =>
     isActive &&
     css`
-      border-bottom: 3px solid var(--orange);
+      border-bottom: 4px solid var(--orange);
       color: var(--orange);
       font-weight: bold;
     `}

@@ -7,6 +7,7 @@ import { Content, TabContent } from './styles/SinglePlayground';
 // COMPONENTS
 import Amenities from './components/Amenities';
 import Comments from './components/Comments';
+import ErrorState from './components/ErrorState';
 import Header from './components/Header';
 import Info from './components/Info';
 import LoadingSpinner from 'components/LoadingSpinner';
@@ -31,7 +32,7 @@ const SinglePlayground = (): JSX.Element => {
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <ErrorState />;
   }
 
   // TODO: Add Multiple Images

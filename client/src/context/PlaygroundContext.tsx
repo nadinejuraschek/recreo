@@ -1,5 +1,6 @@
 // REACT
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 // AXIOS
 import axios from 'axios';
@@ -24,6 +25,8 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [playgrounds, setPlaygrounds] = useState<Playground[]>();
 
+  const history = useHistory();
+
   const { user } = useContext(UserContext);
 
   useEffect(() => {
@@ -37,12 +40,11 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
       method: 'GET',
     })
       .then((res: any): void => {
-        console.log(res.data);
         setPlaygrounds(res.data);
         setIsLoading(false);
       })
       .catch((err) => {
-        console.error(err);
+        // console.error(err);
         setError(err);
         setIsLoading(false);
       });
@@ -72,11 +74,12 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
     })
       .then((res) => {
         setIsLoading(false);
-        console.log('playground query FE res: ', res);
+        const addedPlayground = res.data as Playground;
+        history.push(`/playgrounds/${addedPlayground._id}`);
       })
       .catch((error) => {
         setIsLoading(false);
-        console.log('Error: ', error.response);
+        // console.log('Error: ', error.response);
         setError('Something went wrong. Please try again later.');
       });
   };

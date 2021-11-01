@@ -8,6 +8,17 @@ export const Section = styled.section.attrs(() => ({
   width: 100%;
 `;
 
+export const ButtonWrapper = styled.section.attrs(() => ({
+  className: 'playgrounds-section-button',
+}))`
+  margin: 3rem 0;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: right;
+`;
+
 export const Grid = styled.div.attrs(() => ({
   className: 'playgrounds-grid',
 }))`

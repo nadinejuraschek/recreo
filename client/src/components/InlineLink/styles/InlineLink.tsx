@@ -7,14 +7,14 @@ import { Link } from 'react-router-dom';
 export const InAppLink = styled(Link).attrs(() => ({
   className: 'inlineLink-inAppLink',
 }))`
-  color: var(--yellow);
+  color: var(--orange);
   font-family: inherit;
   font-size: inherit;
   font-weight: normal;
   text-decoration: none;
 
   &:hover {
-    color: var(--yellow);
+    color: var(--orange);
     font-weight: bold;
   }
 `;
@@ -22,14 +22,14 @@ export const InAppLink = styled(Link).attrs(() => ({
 export const ExternalLink = styled.a.attrs(() => ({
   className: 'inlineLink-inAppLink',
 }))`
-  color: var(--yellow);
+  color: var(--orange);
   font-family: inherit;
   font-size: inherit;
   font-weight: normal;
   text-decoration: none;
 
   &:hover {
-    color: var(--yellow);
+    color: var(--orange);
     font-weight: bold;
   }
 `;

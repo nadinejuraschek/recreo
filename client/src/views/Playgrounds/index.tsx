@@ -1,5 +1,5 @@
 // DEPENDENCIES
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 // COMPONENTS
 import AddPlaygroundForm from './components/AddPlaygroundForm';
@@ -8,13 +8,13 @@ import LoadingSpinner from 'components/LoadingSpinner';
 import Map from 'components/Map';
 import PlaygroundsList from './components/PlaygroundsList';
 
-// HOOKS
-import { usePlaygrounds } from 'hooks/usePlaygrounds';
+// CONTEXT
+import { PlaygroundContext } from 'context/PlaygroundContext';
 
 const Playgrounds = (): JSX.Element => {
   const [openAddPlaygroundModal, setOpenAddPlaygroundModal] = useState<boolean>(false);
   const [showAllPlaygrounds, setShowAllPlaygrounds] = useState<boolean>(false);
-  const { isLoading, error, playgrounds } = usePlaygrounds();
+  const { isLoading, error, playgrounds = [] } = useContext(PlaygroundContext);
 
   const noPlaygrounds = playgrounds.length === 0;
 
@@ -37,7 +37,7 @@ const Playgrounds = (): JSX.Element => {
       <Map />
       {/* FILTER DISPLAYS HERE <Section></Section> */}
       {displayError && renderErrorState()}
-      {displayPlaygrounds && <PlaygroundsList playgrounds={playgrounds} />}
+      {displayPlaygrounds && <PlaygroundsList playgrounds={playgrounds} setOpenAddPlaygroundModal={setOpenAddPlaygroundModal} />}
 
       {openAddPlaygroundModal && <AddPlaygroundForm setOpenAddPlaygroundModal={setOpenAddPlaygroundModal} />}
     </>

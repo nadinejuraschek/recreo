@@ -38,6 +38,13 @@ export const ButtonWrapper = styled.div.attrs(() => ({
   width: 100%;
 `;
 
+export const EmptyComments = styled.div.attrs(() => ({
+  className: 'single-playground__comments-empty',
+}))`
+  font-size: 1.8rem;
+  margin: 2.4rem 0;
+`;
+
 export const Name = styled.div.attrs(() => ({
   className: 'single-playground__comments-name',
 }))``;
