@@ -19,7 +19,7 @@ import { ReactComponent as Sun } from 'assets/sun.svg';
 import { ReactComponent as Swing } from 'assets/swing.svg';
 import { ReactComponent as Toddler } from 'assets/toddler.svg';
 
-const Amenity = ({ icon }: AmenityProps): JSX.Element => {
+export const Amenity = ({ icon }: AmenityProps): JSX.Element => {
   let iconToDisplay;
   switch (icon) {
     case 'bench':
@@ -68,5 +68,3 @@ const Amenity = ({ icon }: AmenityProps): JSX.Element => {
     </Container>
   );
 };
-
-export default Amenity;

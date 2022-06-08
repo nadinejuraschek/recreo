@@ -5,19 +5,13 @@ import { useState } from 'react';
 import { Content, TabContent } from './styles/SinglePlayground';
 
 // COMPONENTS
-import Amenities from './components/Amenities';
-import Comments from './components/Comments';
-import ErrorState from './components/ErrorState';
-import Header from './components/Header';
-import Info from './components/Info';
-import LoadingSpinner from 'components/LoadingSpinner';
-import Preview from './components/Preview';
-import Tabs from 'components/Tabs';
+import { Amenities, Comments, ErrorState, Header, Info, Preview } from './sections';
+import { LoadingSpinner, Tabs } from 'components';
 
 // HOOKS
 import { usePlayground } from 'hooks/usePlayground';
 
-const SinglePlayground = (): JSX.Element => {
+export const SinglePlayground = (): JSX.Element => {
   const tabOptions = [
     { label: 'Images', name: 'images' },
     { label: 'Features', name: 'features' },
@@ -50,5 +44,3 @@ const SinglePlayground = (): JSX.Element => {
     </Content>
   );
 };
-
-export default SinglePlayground;

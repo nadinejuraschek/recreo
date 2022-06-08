@@ -2,23 +2,16 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // COMPONENTS
-import Navbar from 'components/Navbar';
-import Footer from 'components/Footer';
+import { Footer, Navbar } from 'components';
 
 // LAYOUTS
-import DefaultLayout from 'layouts/DefaultLayout';
-import ImageLayout from 'layouts/ImageLayout';
-import MapLayout from 'layouts/MapLayout';
+import { DefaultLayout, ImageLayout, MapLayout } from 'layouts';
 
 // VIEWS
-import Login from 'views/Login';
-import Playgrounds from 'views/Playgrounds';
-import Register from 'views/Register';
-import SinglePlayground from 'views/SinglePlayground';
+import { Login, Playgrounds, Register, SinglePlayground } from 'views';
 
 // CONTEXT
-import { PlaygroundProvider } from 'context/PlaygroundContext';
-import { UserProvider } from 'context/UserContext';
+import { PlaygroundProvider, UserProvider } from 'context';
 
 const App = (): JSX.Element => {
   return (

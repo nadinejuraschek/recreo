@@ -2,20 +2,18 @@
 import { useContext } from 'react';
 
 // COMPONENTS
-import Button from 'components/Button';
-import Card from 'components/Card';
-import Title from 'components/Title';
+import { Button, Card, Title } from 'components';
 
 // STYLED COMPONENTS
-import { ButtonWrapper, Grid, Section } from '../styles/Playgrounds';
+import { ButtonWrapper, Grid, Section } from '../../styles/Playgrounds';
 
 // CONTEXT
 import { UserContext } from 'context/UserContext';
 
 // INTERFACES
-import { PlaygroundsListProps } from '../types';
+import { PlaygroundsListProps } from '../../types';
 
-const PlaygroundsList = ({ playgrounds, setOpenAddPlaygroundModal }: PlaygroundsListProps): JSX.Element => {
+export const PlaygroundsList = ({ playgrounds, setOpenAddPlaygroundModal }: PlaygroundsListProps): JSX.Element => {
   const { user } = useContext(UserContext);
   return (
     <>
@@ -39,5 +37,3 @@ const PlaygroundsList = ({ playgrounds, setOpenAddPlaygroundModal }: Playgrounds
     </>
   );
 };
-
-export default PlaygroundsList;

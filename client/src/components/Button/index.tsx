@@ -4,7 +4,7 @@ import { StyledLink, StyledButton } from './styles/Button';
 // INTERFACES
 import { ButtonProps } from './types';
 
-const Button = ({
+export const Button = ({
   children,
   $disabled = false,
   $filled = true,
@@ -50,5 +50,3 @@ const Button = ({
     </>
   );
 };
-
-export default Button;

@@ -1,30 +1,27 @@
 // DEPENDENCIES
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 // COMPONENTS
-import AddPlaygroundForm from './components/AddPlaygroundForm';
-import ErrorState from './components/ErrorState';
-import LoadingSpinner from 'components/LoadingSpinner';
-import Map from 'components/Map';
-import Toast from 'components/Toast';
-import PlaygroundsList from './components/PlaygroundsList';
+import { AddPlaygroundForm, ErrorState, PlaygroundsList } from './sections';
+import { LoadingSpinner, Map, Toast } from 'components';
 
 // CONTEXT
 import { PlaygroundContext } from 'context/PlaygroundContext';
 import { UserContext } from 'context/UserContext';
-import { useEffect } from 'react';
 
-const Playgrounds = (): JSX.Element => {
+export const Playgrounds = (): JSX.Element => {
   const [openAddPlaygroundModal, setOpenAddPlaygroundModal] = useState<boolean>(false);
   const [showAllPlaygrounds, setShowAllPlaygrounds] = useState<boolean>(false);
-  const { success } = useContext(UserContext);
-  const { isLoading, error, playgrounds = [] } = useContext(PlaygroundContext);
+  const { success: userSuccess } = useContext(UserContext);
+  const { isLoading, error, playgrounds = [], success: playgroundSuccess } = useContext(PlaygroundContext);
 
-  const [showSuccess, setShowSuccess] = useState(false);
+  const [showPlaygroundSuccess, setShowPlaygroundSuccess] = useState(false);
+  const [showUserSuccess, setShowUserSuccess] = useState(false);
 
   useEffect(() => {
-    success ? setShowSuccess(true) : setShowSuccess(false);
-  }, [success]);
+    userSuccess ? setShowUserSuccess(true) : setShowUserSuccess(false);
+    playgroundSuccess ? setShowPlaygroundSuccess(true) : setShowPlaygroundSuccess(false);
+  }, [playgroundSuccess, userSuccess]);
 
   const noPlaygrounds = playgrounds.length === 0;
 
@@ -46,7 +43,8 @@ const Playgrounds = (): JSX.Element => {
     <>
       <Map />
       {/* FILTER DISPLAYS HERE <Section></Section> */}
-      {showSuccess && <Toast open={showSuccess}>{success}</Toast>}
+      {showUserSuccess && <Toast>{userSuccess}</Toast>}
+      {showPlaygroundSuccess && <Toast>{playgroundSuccess}</Toast>}
       {displayError && renderErrorState()}
       {displayPlaygrounds && <PlaygroundsList playgrounds={playgrounds} setOpenAddPlaygroundModal={setOpenAddPlaygroundModal} />}
 
@@ -54,5 +52,3 @@ const Playgrounds = (): JSX.Element => {
     </>
   );
 };
-
-export default Playgrounds;

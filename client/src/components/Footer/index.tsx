@@ -4,7 +4,7 @@ import { Container, Link } from './styles/Footer';
 // INTERFACES
 import { FooterProps } from './types';
 
-const Footer = ({ navFooter = false }: FooterProps): JSX.Element => {
+export const Footer = ({ navFooter = false }: FooterProps): JSX.Element => {
   return (
     <Container navFooter={navFooter}>
       <Link>
@@ -16,5 +16,3 @@ const Footer = ({ navFooter = false }: FooterProps): JSX.Element => {
     </Container>
   );
 };
-
-export default Footer;

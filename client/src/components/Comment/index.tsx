@@ -4,7 +4,7 @@ import { Avatar, Container, Name, Text, TimePosted } from './styles/Comment';
 // INTERFACES
 import { CommentProps } from './types';
 
-const Comment = ({ body = '', username = '' }: CommentProps): JSX.Element => {
+export const Comment = ({ body = '', username = '' }: CommentProps): JSX.Element => {
   // TODO: add time posted
   // TODO: add avatar
 
@@ -24,5 +24,3 @@ const Comment = ({ body = '', username = '' }: CommentProps): JSX.Element => {
     </Container>
   );
 };
-
-export default Comment;

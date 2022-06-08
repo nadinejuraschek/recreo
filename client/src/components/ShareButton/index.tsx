@@ -2,13 +2,13 @@
 import { useState } from 'react';
 
 // COMPONENTS
-import Modal from 'components/Modal';
-import ShareModal from './components/ShareModal';
+import { Modal } from '../Modal';
+import { ShareModal } from './components/ShareModal';
 
 // STYLED COMPONENTS
 import { Icon } from './styles/ShareButton';
 
-const ShareButton = (): JSX.Element => {
+export const ShareButton = (): JSX.Element => {
   const [openModal, setOpenModal] = useState<boolean>(false);
 
   return (
@@ -22,5 +22,3 @@ const ShareButton = (): JSX.Element => {
     </>
   );
 };
-
-export default ShareButton;

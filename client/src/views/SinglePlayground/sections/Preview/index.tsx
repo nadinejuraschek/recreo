@@ -2,15 +2,15 @@
 import { Carousel } from 'react-responsive-carousel';
 
 // STYLED COMPONENTS
-import { Wrapper, ImageActive } from '../styles/Preview';
+import { Wrapper, ImageActive } from '../../styles/Preview';
 
 // STYLES
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 // INTERFACES
-import { PreviewProps } from '../types';
+import { PreviewProps } from '../../types';
 
-const Preview = ({ images = [], name = '' }: PreviewProps): JSX.Element => {
+export const Preview = ({ images = [], name = '' }: PreviewProps): JSX.Element => {
   return (
     <Wrapper>
       <Carousel
@@ -74,5 +74,3 @@ const Preview = ({ images = [], name = '' }: PreviewProps): JSX.Element => {
     </Wrapper>
   );
 };
-
-export default Preview;

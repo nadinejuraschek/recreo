@@ -8,20 +8,16 @@ import verticalWave from 'assets/wave-vertical.svg';
 // INTERFACES
 import { ImageLayoutProps } from './types';
 
-const ImageLayout = ({ children }: ImageLayoutProps): JSX.Element => {
-  return (
-    <>
-      <HorizontalImage />
-      <HorizontalWave>
-        <img src={horizontalWave} alt="Wave" />
-      </HorizontalWave>
-      <VerticalImage />
-      <VerticalWave>
-        <img src={verticalWave} alt="Wave" />
-      </VerticalWave>
-      <Main>{children}</Main>
-    </>
-  );
-};
-
-export default ImageLayout;
+export const ImageLayout = ({ children }: ImageLayoutProps): JSX.Element => (
+  <>
+    <HorizontalImage />
+    <HorizontalWave>
+      <img src={horizontalWave} alt="Wave" />
+    </HorizontalWave>
+    <VerticalImage />
+    <VerticalWave>
+      <img src={verticalWave} alt="Wave" />
+    </VerticalWave>
+    <Main>{children}</Main>
+  </>
+);

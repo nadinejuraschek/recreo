@@ -2,20 +2,18 @@
 import { useContext } from 'react';
 
 // COMPONENTS
-import Button from 'components/Button';
-import InlineLink from 'components/InlineLink';
-import Title from 'components/Title';
+import { Button, InlineLink, Title } from 'components';
 
 // STYLED COMPONENTS
-import { EmptyState, Section } from '../styles/Playgrounds';
+import { EmptyState, Section } from '../../styles/Playgrounds';
 
 // CONTEXT
 import { UserContext } from 'context/UserContext';
 
 // INTERFACES
-import { ErrorStateProps } from '../types';
+import { ErrorStateProps } from '../../types';
 
-const ErrorState = ({ setOpenAddPlaygroundModal, setShowAllPlaygrounds }: ErrorStateProps): JSX.Element => {
+export const ErrorState = ({ setOpenAddPlaygroundModal, setShowAllPlaygrounds }: ErrorStateProps): JSX.Element => {
   const { user } = useContext(UserContext);
 
   return (
@@ -41,5 +39,3 @@ const ErrorState = ({ setOpenAddPlaygroundModal, setShowAllPlaygrounds }: ErrorS
     </Section>
   );
 };
-
-export default ErrorState;

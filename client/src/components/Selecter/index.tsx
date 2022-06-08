@@ -11,7 +11,7 @@ import { SelecterProps } from './types';
 // UTILS
 import { fuzzySearch } from 'utils/fuzzySearch';
 
-const Selecter = ({ label = '', handleChange, options, placeholder }: SelecterProps): JSX.Element => {
+export const Selecter = ({ label = '', handleChange, options, placeholder }: SelecterProps): JSX.Element => {
   return (
     <>
       {label && <Label>{label}</Label>}
@@ -31,5 +31,3 @@ const Selecter = ({ label = '', handleChange, options, placeholder }: SelecterPr
     </>
   );
 };
-
-export default Selecter;

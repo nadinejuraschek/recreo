@@ -4,7 +4,7 @@ import { ExternalLink, InAppLink } from './styles/InlineLink';
 // INTERFACES
 import { InlineLinkProps } from './types';
 
-const InlineLink = ({ children, href, to }: InlineLinkProps): JSX.Element => {
+export const InlineLink = ({ children, href, to }: InlineLinkProps): JSX.Element => {
   return (
     <>
       {href && <ExternalLink href={to}>{children}</ExternalLink>}
@@ -12,5 +12,3 @@ const InlineLink = ({ children, href, to }: InlineLinkProps): JSX.Element => {
     </>
   );
 };
-
-export default InlineLink;

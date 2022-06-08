@@ -4,7 +4,7 @@ import { Container, SpinnerContainer, SpinnerPath, SVG } from './styles/LoadingS
 // INTERFACES
 import { LoadingSpinnerProps } from './types';
 
-const LoadingSpinner = ({ containerHeight = 'auto', containerWidth = 'auto', size = 100 }: LoadingSpinnerProps): JSX.Element => {
+export const LoadingSpinner = ({ containerHeight = 'auto', containerWidth = 'auto', size = 100 }: LoadingSpinnerProps): JSX.Element => {
   return (
     <>
       <Container height={containerHeight} width={containerWidth}>
@@ -30,5 +30,3 @@ const LoadingSpinner = ({ containerHeight = 'auto', containerWidth = 'auto', siz
     </>
   );
 };
-
-export default LoadingSpinner;

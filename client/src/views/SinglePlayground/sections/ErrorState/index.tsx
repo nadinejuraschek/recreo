@@ -1,10 +1,10 @@
 // COMPONENTS
-import Button from 'components/Button';
+import { Button } from 'components';
 
 // STYLED COMPONENTS
-import { Container } from '../styles/ErrorState';
+import { Container } from '../../styles/ErrorState';
 
-const ErrorState = (): JSX.Element => {
+export const ErrorState = (): JSX.Element => {
   return (
     <Container>
       <p>There was a problem loading this playground. Please try again later.</p>
@@ -12,5 +12,3 @@ const ErrorState = (): JSX.Element => {
     </Container>
   );
 };
-
-export default ErrorState;

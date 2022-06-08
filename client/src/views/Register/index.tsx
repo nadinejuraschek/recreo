@@ -7,11 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { FormWrapper, Wrapper } from './styles/Register';
 
 // COMPONENTS
-import Button from 'components/Button';
-import Divider from 'components/Divider';
-import Form from 'components/Form';
-import Input from 'components/Input';
-import Title from 'components/Title';
+import { Button, Divider, Form, Input, Title } from 'components';
 
 // CONTEXT
 import { UserContext } from 'context/UserContext';
@@ -23,7 +19,7 @@ import user from 'assets/user.svg';
 // VALIDATION
 import { registerSchema } from 'schemas';
 
-const Register = (): JSX.Element => {
+export const Register = (): JSX.Element => {
   const { loading, error, registerUser } = useContext(UserContext);
 
   const defaultValues = {
@@ -85,5 +81,3 @@ const Register = (): JSX.Element => {
     </Wrapper>
   );
 };
-
-export default Register;

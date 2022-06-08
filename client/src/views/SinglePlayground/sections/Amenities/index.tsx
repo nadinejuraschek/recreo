@@ -1,10 +1,10 @@
 // COMPONENTS
-import Amenity from 'components/Amenity';
+import { Amenity } from 'components';
 
 // STYLED COMPONENTS
-import { List, Item } from '../styles/Amenities';
+import { List, Item } from '../../styles/Amenities';
 
-const Amenities = (): JSX.Element => {
+export const Amenities = (): JSX.Element => {
   return (
     <List>
       <Item>
@@ -54,5 +54,3 @@ const Amenities = (): JSX.Element => {
     </List>
   );
 };
-
-export default Amenities;

@@ -4,14 +4,10 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 // COMPONENTS
-import Button from 'components/Button';
-import Comment from 'components/Comment';
-import Form from 'components/Form';
-import InlineLink from 'components/InlineLink';
-import Input from 'components/Input';
+import { Button, Comment, Form, InlineLink, Input } from 'components';
 
 // STYLED COMPONENTS
-import { Container, EmptyComments, FormContainer, ButtonWrapper, Rating } from '../styles/Comments';
+import { Container, EmptyComments, FormContainer, ButtonWrapper, Rating } from '../../styles/Comments';
 
 // SCHEMA
 import { commentSchema } from 'schemas';
@@ -20,9 +16,9 @@ import { commentSchema } from 'schemas';
 import { UserContext } from 'context/UserContext';
 
 // INTERFACES
-import { CommentsProps } from '../types';
+import { CommentsProps } from '../../types';
 
-const Comments = ({ reviews = [] }: CommentsProps): JSX.Element => {
+export const Comments = ({ reviews = [] }: CommentsProps): JSX.Element => {
   const { user } = useContext(UserContext);
 
   const defaultValues = {
@@ -77,5 +73,3 @@ const Comments = ({ reviews = [] }: CommentsProps): JSX.Element => {
     </Container>
   );
 };
-
-export default Comments;

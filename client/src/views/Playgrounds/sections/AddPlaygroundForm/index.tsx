@@ -4,17 +4,13 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 // COMPONENTS
-import Button from 'components/Button';
-import Form from 'components/Form';
-import Input from 'components/Input';
-import Modal from 'components/Modal';
-import Selecter from 'components/Selecter';
+import { Button, Form, Input, Modal, Selecter } from 'components';
 
 // STYLED COMPONENTS
 import {
   // MultipleInputWrapper,
   PlaygroundWrapper,
-} from '../styles/AddPlaygroundForm';
+} from '../../styles/AddPlaygroundForm';
 
 // SCHEMA
 import { playgroundSchema } from 'schemas';
@@ -24,7 +20,7 @@ import { PlaygroundContext } from 'context/PlaygroundContext';
 
 // INTERFACES
 import { Amenity } from 'types';
-import { AddPlaygroundInputs, AddPlaygroundFormProps } from '../types';
+import { AddPlaygroundInputs, AddPlaygroundFormProps } from '../../types';
 
 const features: Amenity[] = [
   { name: 'Basketball Court', value: 'basketball' },
@@ -43,7 +39,7 @@ const features: Amenity[] = [
   { name: 'Toddler Safe', value: 'toddlerSafe' },
 ];
 
-const AddPlaygroundForm = ({ setOpenAddPlaygroundModal }: AddPlaygroundFormProps): JSX.Element => {
+export const AddPlaygroundForm = ({ setOpenAddPlaygroundModal }: AddPlaygroundFormProps): JSX.Element => {
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>();
   const { addPlayground } = useContext(PlaygroundContext);
 
@@ -126,5 +122,3 @@ const AddPlaygroundForm = ({ setOpenAddPlaygroundModal }: AddPlaygroundFormProps
     </Form>
   );
 };
-
-export default AddPlaygroundForm;

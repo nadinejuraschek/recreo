@@ -1,5 +1,5 @@
 // DEPENDENCIES
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 // STYLED COMPONENTS
 import { CloseBtn, Container } from './styles/Toast';
@@ -7,13 +7,8 @@ import { CloseBtn, Container } from './styles/Toast';
 // INTERFACES
 import { ToastProps } from './types';
 
-const Toast = ({ children, open = false, type = 'success' }: ToastProps): JSX.Element | null => {
-  const [isOpen, setIsOpen] = useState<boolean>(open);
-
-  useEffect(() => {
-    setIsOpen(open);
-    window.setTimeout(() => setIsOpen(false), 10000);
-  }, [open]);
+export const Toast = ({ children, type = 'success' }: ToastProps): JSX.Element | null => {
+  const [isOpen, setIsOpen] = useState<boolean>(true);
 
   if (!isOpen) {
     return null;
@@ -26,5 +21,3 @@ const Toast = ({ children, open = false, type = 'success' }: ToastProps): JSX.El
     </Container>
   );
 };
-
-export default Toast;

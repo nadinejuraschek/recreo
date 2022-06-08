@@ -2,20 +2,18 @@
 import { useContext } from 'react';
 
 // STYLED COMPONENTS
-import { HeaderWrapper, HeaderLeft, HeaderRight, HeaderTitle } from '../styles/Header';
+import { HeaderWrapper, HeaderLeft, HeaderRight, HeaderTitle } from '../../styles/Header';
 
 // COMPONENTS
-import BackButton from 'components/BackButton';
-import FavoriteButton from 'components/FavoriteButton';
-import ShareButton from 'components/ShareButton';
+import { BackButton, FavoriteButton, ShareButton } from 'components';
 
 // CONTEXT
 import { UserContext } from 'context/UserContext';
 
 // INTERFACES
-import { HeaderProps } from '../types';
+import { HeaderProps } from '../../types';
 
-const Header = ({ name = '' }: HeaderProps): JSX.Element => {
+export const Header = ({ name = '' }: HeaderProps): JSX.Element => {
   const { user } = useContext(UserContext);
 
   return (
@@ -31,5 +29,3 @@ const Header = ({ name = '' }: HeaderProps): JSX.Element => {
     </HeaderWrapper>
   );
 };
-
-export default Header;

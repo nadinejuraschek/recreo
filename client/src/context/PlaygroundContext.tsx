@@ -16,12 +16,14 @@ export type PlaygroundContextType = {
   error: string;
   isLoading: boolean;
   playgrounds: Playground[];
+  success: string;
 };
 
 export const PlaygroundContext = createContext<Partial<PlaygroundContextType>>({});
 
 export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element => {
   const [error, setError] = useState<string>('');
+  const [success, setSuccess] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [playgrounds, setPlaygrounds] = useState<Playground[]>();
 
@@ -46,6 +48,7 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
       .catch((err) => {
         // console.error(err);
         setError(err);
+        setTimeout(() => setError(''), 5000);
         setIsLoading(false);
       });
   };
@@ -75,14 +78,21 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
       .then((res) => {
         setIsLoading(false);
         const addedPlayground = res.data as Playground;
+        setSuccess('Your playground was created successfully!');
+        setTimeout(() => setSuccess(''), 5000);
         history.push(`/playgrounds/${addedPlayground._id}`);
       })
       .catch((error) => {
         setIsLoading(false);
         // console.log('Error: ', error.response);
         setError('Something went wrong. Please try again later.');
+        setTimeout(() => setError(''), 5000);
       });
   };
 
-  return <PlaygroundContext.Provider value={{ addPlayground, error, isLoading, playgrounds }}>{props.children}</PlaygroundContext.Provider>;
+  return (
+    <PlaygroundContext.Provider value={{ addPlayground, error, isLoading, playgrounds, success }}>
+      {props.children}
+    </PlaygroundContext.Provider>
+  );
 };

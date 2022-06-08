@@ -3,7 +3,7 @@ import { useContext } from 'react';
 
 // STYLED COMPONENTS
 import { Container, NavList, NavItem } from '../styles/Sidenav';
-import Footer from 'components/Footer';
+import { Footer } from '../../Footer';
 
 // CONTEXT
 import { UserContext } from 'context/UserContext';
@@ -11,7 +11,7 @@ import { UserContext } from 'context/UserContext';
 // INTERFACES
 import { SidenavProps } from '../types';
 
-const Sidenav = ({ handleClose }: SidenavProps): JSX.Element => {
+export const Sidenav = ({ handleClose }: SidenavProps): JSX.Element => {
   const { logoutUser, user } = useContext(UserContext);
 
   const handleLogout = (): void => {
@@ -46,5 +46,3 @@ const Sidenav = ({ handleClose }: SidenavProps): JSX.Element => {
     </Container>
   );
 };
-
-export default Sidenav;

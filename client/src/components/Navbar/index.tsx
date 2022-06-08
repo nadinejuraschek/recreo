@@ -7,9 +7,9 @@ import { UserContext } from 'context/UserContext';
 // STYLED COMPONENTS
 import { Logo } from './styles/Logo';
 import { Container, NavList, StyledNavLink, MenuBtn } from './styles/Navbar';
-import Sidenav from './components/Sidenav';
+import { Sidenav } from './components/Sidenav';
 
-const Navbar = (): JSX.Element => {
+export const Navbar = (): JSX.Element => {
   const [openSidenav, setOpenSidenav] = useState(false);
 
   const { logoutUser, user } = useContext(UserContext);
@@ -41,5 +41,3 @@ const Navbar = (): JSX.Element => {
     </Container>
   );
 };
-
-export default Navbar;

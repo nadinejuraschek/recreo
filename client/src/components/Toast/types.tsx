@@ -3,7 +3,6 @@ import { ReactNode } from 'react';
 
 export interface ToastProps {
   children: ReactNode;
-  open: boolean;
   type?: 'danger' | 'success';
 }
 

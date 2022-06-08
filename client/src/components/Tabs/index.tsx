@@ -4,7 +4,7 @@ import { Container, Tab } from './styles/Tabs';
 // INTERFACES
 import { TabsProps } from './types';
 
-const Tabs = ({ active, handleClick, options }: TabsProps): JSX.Element => {
+export const Tabs = ({ active, handleClick, options }: TabsProps): JSX.Element => {
   return (
     <Container>
       {options.map((item: any, index: number) => (
@@ -15,5 +15,3 @@ const Tabs = ({ active, handleClick, options }: TabsProps): JSX.Element => {
     </Container>
   );
 };
-
-export default Tabs;

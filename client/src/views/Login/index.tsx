@@ -7,12 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { FormWrapper, Wrapper } from './styles/Login';
 
 // COMPONENTS
-import Button from 'components/Button';
-import Divider from 'components/Divider';
-import Form from 'components/Form';
-import Input from 'components/Input';
-import Title from 'components/Title';
-import Toast from 'components/Toast';
+import { Button, Divider, Form, Input, Title, Toast } from 'components';
 
 // VALIDATION
 import { loginSchema } from 'schemas';
@@ -25,7 +20,7 @@ import lockIcon from 'assets/lock.svg';
 import userIcon from 'assets/user.svg';
 import { useEffect } from 'react';
 
-const Login = (): JSX.Element => {
+export const Login = (): JSX.Element => {
   const { error, loading, loginUser } = useContext(UserContext);
   const [showError, setShowError] = useState(false);
 
@@ -86,13 +81,7 @@ const Login = (): JSX.Element => {
           Register
         </Button>
       </FormWrapper>
-      {showError && (
-        <Toast type="danger" open={showError}>
-          {error}
-        </Toast>
-      )}
+      {showError && <Toast type="danger">{error}</Toast>}
     </Wrapper>
   );
 };
-
-export default Login;

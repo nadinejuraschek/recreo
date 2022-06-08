@@ -4,7 +4,7 @@ import { Container, Icon, Label, StyledInput, StyledTextarea, Validation, Wrappe
 // INTERFACES
 import { InputProps } from './types';
 
-const Input = ({
+export const Input = ({
   error,
   label = undefined,
   icon = undefined,
@@ -62,5 +62,3 @@ const Input = ({
     </Container>
   );
 };
-
-export default Input;
