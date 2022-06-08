@@ -15,13 +15,21 @@ const Button = ({
   link = undefined,
   $outlined = false,
   $rounded = false,
-  $small = true,
+  $small = false,
   type = 'button',
 }: ButtonProps): JSX.Element => {
   return (
     <>
       {link ? (
-        <StyledLink $disabled={$disabled} $filled={$filled} $fullWidth={$fullWidth} $outlined={$outlined} $rounded={$rounded} to={link}>
+        <StyledLink
+          $disabled={$disabled}
+          $filled={$filled}
+          $fullWidth={$fullWidth}
+          $outlined={$outlined}
+          $rounded={$rounded}
+          $small={$small}
+          to={link}
+        >
           {children}
         </StyledLink>
       ) : (

@@ -6,15 +6,25 @@ import AddPlaygroundForm from './components/AddPlaygroundForm';
 import ErrorState from './components/ErrorState';
 import LoadingSpinner from 'components/LoadingSpinner';
 import Map from 'components/Map';
+import Toast from 'components/Toast';
 import PlaygroundsList from './components/PlaygroundsList';
 
 // CONTEXT
 import { PlaygroundContext } from 'context/PlaygroundContext';
+import { UserContext } from 'context/UserContext';
+import { useEffect } from 'react';
 
 const Playgrounds = (): JSX.Element => {
   const [openAddPlaygroundModal, setOpenAddPlaygroundModal] = useState<boolean>(false);
   const [showAllPlaygrounds, setShowAllPlaygrounds] = useState<boolean>(false);
+  const { success } = useContext(UserContext);
   const { isLoading, error, playgrounds = [] } = useContext(PlaygroundContext);
+
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  useEffect(() => {
+    success ? setShowSuccess(true) : setShowSuccess(false);
+  }, [success]);
 
   const noPlaygrounds = playgrounds.length === 0;
 
@@ -36,6 +46,7 @@ const Playgrounds = (): JSX.Element => {
     <>
       <Map />
       {/* FILTER DISPLAYS HERE <Section></Section> */}
+      {showSuccess && <Toast open={showSuccess}>{success}</Toast>}
       {displayError && renderErrorState()}
       {displayPlaygrounds && <PlaygroundsList playgrounds={playgrounds} setOpenAddPlaygroundModal={setOpenAddPlaygroundModal} />}
 

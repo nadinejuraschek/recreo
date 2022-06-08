@@ -1,5 +1,5 @@
 // DEPENDENCIES
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -23,9 +23,11 @@ import { UserContext } from 'context/UserContext';
 // ICONS
 import lockIcon from 'assets/lock.svg';
 import userIcon from 'assets/user.svg';
+import { useEffect } from 'react';
 
 const Login = (): JSX.Element => {
   const { error, loading, loginUser } = useContext(UserContext);
+  const [showError, setShowError] = useState(false);
 
   const {
     register,
@@ -39,6 +41,10 @@ const Login = (): JSX.Element => {
     resolver: yupResolver(loginSchema),
     mode: 'onChange',
   });
+
+  useEffect(() => {
+    error ? setShowError(true) : setShowError(false);
+  }, [error]);
 
   const onSubmit = (formData: { username: string; password: string }) => {
     if (loginUser) {
@@ -80,8 +86,8 @@ const Login = (): JSX.Element => {
           Register
         </Button>
       </FormWrapper>
-      {error && (
-        <Toast type="danger" open={Boolean(error)}>
+      {showError && (
+        <Toast type="danger" open={showError}>
           {error}
         </Toast>
       )}

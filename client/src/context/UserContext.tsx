@@ -14,6 +14,7 @@ export type UserContextType = {
   loginUser: (formData: { username: string; password: string }) => void;
   logoutUser: () => void;
   registerUser: (formData: { username: string; password: string }) => void;
+  success: string;
   user: AuthenticatedUser | null;
 };
 
@@ -21,6 +22,7 @@ export const UserContext = createContext<Partial<UserContextType>>({});
 
 export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
   const [error, setError] = useState<string>('');
+  const [success, setSuccess] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [user, setUser] = useState<AuthenticatedUser>();
 
@@ -41,12 +43,23 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
       .then((res) => {
         setLoading(false);
         setUser(res.data as AuthenticatedUser);
+
         history.push('/playgrounds');
+
+        const { username } = res.data as AuthenticatedUser;
+        setSuccess(`Welcome back, ${username}!`);
+        setTimeout(() => setSuccess(''), 5000);
       })
       .catch((error) => {
         setLoading(false);
-        console.log('Error: ', error.response);
-        setError('Something went wrong. Please try again later.');
+        // console.log('Error: ', error.response);
+        if (error.response.data) {
+          setError(error.response.data);
+          setTimeout(() => setError(''), 5000);
+        } else {
+          setError('Something went wrong. Please try again later.');
+          setTimeout(() => setError(''), 5000);
+        }
       });
   };
 
@@ -62,12 +75,22 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
       .then((res) => {
         setLoading(false);
         setUser(res.data as AuthenticatedUser);
+
         history.push('/playgrounds');
+
+        setSuccess('Successfully registered!');
+        setTimeout(() => setSuccess(''), 5000);
       })
       .catch((error) => {
         setLoading(false);
-        // console.error('Error: ', error.response);
-        setError('Something went wrong. Please try again later.');
+        // console.log('Error: ', error.response);
+        if (error.response.data) {
+          setError(error.response.data);
+          setTimeout(() => setError(''), 5000);
+        } else {
+          setError('Something went wrong. Please try again later.');
+          setTimeout(() => setError(''), 5000);
+        }
       });
   };
 
@@ -79,9 +102,10 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
           history.push('/login');
         }
       })
-      .catch((err) => {
-        // console.error('logout err: ', err);
+      .catch((error) => {
+        // console.error('logout err: ', error);
         setError('Something went wrong. Please try to log out again.');
+        setTimeout(() => setError(''), 5000);
       });
   };
 
@@ -91,12 +115,21 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
       .then((res) => {
         setUser(res.data as AuthenticatedUser);
       })
-      .catch((err) => {
-        // console.error('Error: ', err);
+      .catch((error) => {
+        // console.log('Error: ', error.response);
+        if (error.response.data) {
+          setError(error.response.data);
+          setTimeout(() => setError(''), 5000);
+        } else {
+          setError('Something went wrong. Please try again later.');
+          setTimeout(() => setError(''), 5000);
+        }
       });
   };
 
   return (
-    <UserContext.Provider value={{ error, loading, loginUser, logoutUser, registerUser, user }}>{props.children}</UserContext.Provider>
+    <UserContext.Provider value={{ error, loading, loginUser, logoutUser, registerUser, success, user }}>
+      {props.children}
+    </UserContext.Provider>
   );
 };
