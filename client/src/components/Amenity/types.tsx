@@ -1,3 +1,3 @@
 export interface AmenityProps {
-  icon: string;
+  feature: string;
 }

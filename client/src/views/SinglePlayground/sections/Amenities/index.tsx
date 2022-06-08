@@ -2,55 +2,17 @@
 import { Amenity } from 'components';
 
 // STYLED COMPONENTS
-import { List, Item } from '../../styles/Amenities';
+import { List } from '../../styles/Amenities';
 
-export const Amenities = (): JSX.Element => {
+// INTERFACES
+import { AmenitiesProps } from '../../types';
+
+export const Amenities = ({ features }: AmenitiesProps): JSX.Element => {
   return (
     <List>
-      <Item>
-        <Amenity icon="toddler" />
-        Toddler Safe
-      </Item>
-      <Item>
-        <Amenity icon="slide" />
-        Slide
-      </Item>
-      <Item>
-        <Amenity icon="swing" />
-        Swings
-      </Item>
-      <Item>
-        <Amenity icon="sandbox" />
-        Sandbox
-      </Item>
-      <Item>
-        <Amenity icon="monkeyBars" />
-        Monkey Bars
-      </Item>
-      <Item>
-        <Amenity icon="climbingWall" />
-        Climbing Wall or Structure
-      </Item>
-      <Item>
-        <Amenity icon="bench" />
-        Seating or Picnic Area
-      </Item>
-      <Item>
-        <Amenity icon="sun" />
-        Sun Protection
-      </Item>
-      <Item>
-        <Amenity icon="sprinkler" />
-        Sprinklers
-      </Item>
-      <Item>
-        <Amenity icon="restrooms" />
-        Restrooms
-      </Item>
-      <Item>
-        <Amenity icon="drinkingFountain" />
-        Drinking Fountain
-      </Item>
+      {features.map((feature: string, index: number) => (
+        <Amenity feature={feature} key={index} />
+      ))}
     </List>
   );
 };

@@ -6,6 +6,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 // COMPONENTS
 import { Button, Form, Input, Modal, Selecter } from 'components';
 
+// DATA
+import { features } from 'data';
+
 // STYLED COMPONENTS
 import {
   // MultipleInputWrapper,
@@ -19,25 +22,7 @@ import { playgroundSchema } from 'schemas';
 import { PlaygroundContext } from 'context/PlaygroundContext';
 
 // INTERFACES
-import { Amenity } from 'types';
 import { AddPlaygroundInputs, AddPlaygroundFormProps } from '../../types';
-
-const features: Amenity[] = [
-  { name: 'Basketball Court', value: 'basketball' },
-  { name: 'Climbing Wall or Structure', value: 'climbingWall' },
-  { name: 'Drinking Fountain', value: 'drinkingFountain' },
-  { name: 'Grassy Area', value: 'grass' },
-  { name: 'Monkey Bars', value: 'monkeyBars' },
-  { name: 'Restrooms', value: 'restrooms' },
-  { name: 'Sandbox', value: 'sandbox' },
-  { name: 'Seating or Picnic Area', value: 'seating' },
-  { name: 'Slide', value: 'slide' },
-  { name: 'Soccer Field', value: 'soccer' },
-  { name: 'Sprinklers', value: 'sprinklers' },
-  { name: 'Sun Protection', value: 'sunProtection' },
-  { name: 'Swingset', value: 'swingset' },
-  { name: 'Toddler Safe', value: 'toddlerSafe' },
-];
 
 export const AddPlaygroundForm = ({ setOpenAddPlaygroundModal }: AddPlaygroundFormProps): JSX.Element => {
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>();

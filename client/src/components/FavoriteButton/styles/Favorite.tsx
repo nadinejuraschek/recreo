@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 import { ReactComponent as HeartIcon } from 'assets/heart.svg';
 
 interface HeartProps {
-  active?: boolean;
+  active: boolean;
 }
 
 export const Icon = styled(HeartIcon).attrs(() => ({

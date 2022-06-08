@@ -31,6 +31,8 @@ export const SinglePlayground = (): JSX.Element => {
 
   // TODO: Add Multiple Images
 
+  console.log('playground: ', playground);
+
   return (
     <Content>
       <Header name={playground?.title} />
@@ -38,7 +40,7 @@ export const SinglePlayground = (): JSX.Element => {
       <Tabs active={activeTab} handleClick={setActiveTab} options={tabOptions} />
       <TabContent>
         {activeTab === 'images' && <Preview name={playground?.title} />}
-        {activeTab === 'features' && <Amenities />}
+        {activeTab === 'features' && <Amenities features={playground?.features} />}
         {activeTab === 'reviews' && <Comments reviews={playground?.reviews} />}
       </TabContent>
     </Content>

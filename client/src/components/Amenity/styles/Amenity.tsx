@@ -4,6 +4,15 @@ import styled from 'styled-components';
 export const Container = styled.div.attrs(() => ({
   className: 'amenity-container',
 }))`
+  display: flex;
+  align-items: center;
+
+  padding: 0.5rem 0;
+`;
+
+export const IconWrapper = styled.div.attrs(() => ({
+  className: 'amenity-icon-wrapper',
+}))`
   background-color: var(--orange__opaque);
   border-radius: 0.8rem;
 
@@ -13,6 +22,8 @@ export const Container = styled.div.attrs(() => ({
 
   height: 5rem;
   width: 5rem;
+
+  margin-right: 1rem;
 `;
 
 export const Icon = styled.div.attrs(() => ({

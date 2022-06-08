@@ -24,7 +24,7 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
   const [error, setError] = useState<string>('');
   const [success, setSuccess] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
-  const [user, setUser] = useState<AuthenticatedUser>();
+  const [user, setUser] = useState<AuthenticatedUser | null>();
 
   const history = useHistory();
 
@@ -99,6 +99,7 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
       .get('/api/logout', { withCredentials: true })
       .then((res) => {
         if (res.data === 'Successfully logged out.') {
+          setUser(null);
           history.push('/login');
         }
       })

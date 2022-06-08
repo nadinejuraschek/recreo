@@ -10,16 +10,3 @@ export const List = styled.div.attrs(() => ({
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 `;
-
-export const Item = styled.div.attrs(() => ({
-  className: 'single-playground__amenities-item',
-}))`
-  display: flex;
-  align-items: center;
-
-  padding: 0.5rem 0;
-
-  .amenity-container {
-    margin-right: 1rem;
-  }
-`;

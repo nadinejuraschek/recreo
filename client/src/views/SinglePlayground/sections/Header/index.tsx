@@ -8,7 +8,7 @@ import { HeaderWrapper, HeaderLeft, HeaderRight, HeaderTitle } from '../../style
 import { BackButton, FavoriteButton, ShareButton } from 'components';
 
 // CONTEXT
-import { UserContext } from 'context/UserContext';
+import { UserContext } from 'context';
 
 // INTERFACES
 import { HeaderProps } from '../../types';

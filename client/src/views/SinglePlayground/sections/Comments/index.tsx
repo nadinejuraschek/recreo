@@ -41,7 +41,7 @@ export const Comments = ({ reviews = [] }: CommentsProps): JSX.Element => {
 
   return (
     <Container>
-      {reviews.length === 0 ? (
+      {reviews.length === 0 && !user ? (
         <EmptyComments>
           <InlineLink to="/login">Login</InlineLink> to leave a review.
         </EmptyComments>
