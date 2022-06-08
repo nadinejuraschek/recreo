@@ -47,7 +47,9 @@ export const Register = (): JSX.Element => {
 
   return (
     <Wrapper>
-      <Title size="large">Register</Title>
+      <Title marginBottom={5} size="large">
+        Register
+      </Title>
       <FormWrapper>
         <Form handleSubmit={handleSubmit(onSubmit)}>
           <Input

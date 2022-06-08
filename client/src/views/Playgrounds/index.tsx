@@ -12,11 +12,11 @@ import { UserContext } from 'context/UserContext';
 export const Playgrounds = (): JSX.Element => {
   const [openAddPlaygroundModal, setOpenAddPlaygroundModal] = useState<boolean>(false);
   const [showAllPlaygrounds, setShowAllPlaygrounds] = useState<boolean>(false);
+  const [showPlaygroundSuccess, setShowPlaygroundSuccess] = useState<boolean>(false);
+  const [showUserSuccess, setShowUserSuccess] = useState<boolean>(false);
+
   const { success: userSuccess } = useContext(UserContext);
   const { isLoading, error, playgrounds = [], success: playgroundSuccess } = useContext(PlaygroundContext);
-
-  const [showPlaygroundSuccess, setShowPlaygroundSuccess] = useState(false);
-  const [showUserSuccess, setShowUserSuccess] = useState(false);
 
   useEffect(() => {
     userSuccess ? setShowUserSuccess(true) : setShowUserSuccess(false);

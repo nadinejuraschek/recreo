@@ -1,5 +1,5 @@
 // DEPENDENCIES
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -18,10 +18,10 @@ import { UserContext } from 'context/UserContext';
 // ICONS
 import lockIcon from 'assets/lock.svg';
 import userIcon from 'assets/user.svg';
-import { useEffect } from 'react';
 
 export const Login = (): JSX.Element => {
   const { error, loading, loginUser } = useContext(UserContext);
+
   const [showError, setShowError] = useState(false);
 
   const {

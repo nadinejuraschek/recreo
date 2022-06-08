@@ -15,6 +15,9 @@ import { PlaygroundsListProps } from '../../types';
 
 export const PlaygroundsList = ({ playgrounds, setOpenAddPlaygroundModal }: PlaygroundsListProps): JSX.Element => {
   const { user } = useContext(UserContext);
+
+  console.log('user: ', user);
+
   return (
     <>
       <ButtonWrapper>
