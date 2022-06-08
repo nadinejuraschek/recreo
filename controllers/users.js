@@ -17,7 +17,6 @@ module.exports.login = (req, res, next) => {
 }
 
 module.exports.logout = (req, res) => {
-  console.log('here');
   req.logout((error) => {
     if (error) throw error;
     res.send('Successfully logged out.');

@@ -22,9 +22,13 @@ module.exports.getSinglePlayground = async (req, res) => {
       path: 'reviews',
       populate: {
         path: 'author',
+        select: 'username',
       },
     })
-    .populate('author')
+    .populate({
+      path: 'author',
+      select: 'username',
+    })
     .then(playground => {
       res.status(200).json(playground);
     })
