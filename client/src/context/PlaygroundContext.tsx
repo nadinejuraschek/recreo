@@ -9,10 +9,11 @@ import axios from 'axios';
 import { UserContext } from './UserContext';
 
 // TYPES
-import { Playground } from 'types';
+import { Playground, Review } from 'types';
 
 export type PlaygroundContextType = {
   addPlayground: (formData: any) => void;
+  addReview: (formData: any, playgroundId: string) => void;
   error: string;
   isLoading: boolean;
   playgrounds: Playground[];
@@ -90,8 +91,41 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
       });
   };
 
+  const addReview = (formData: any, playgroundId: string): void => {
+    setIsLoading(true);
+
+    const newFormData = {
+      author: user?.id,
+      body: formData.body,
+      rating: formData.rating,
+    };
+
+    console.log('newFormData: ', newFormData);
+
+    axios({
+      url: `/api/playgrounds/${playgroundId}/review`,
+      method: 'POST',
+      data: newFormData,
+      withCredentials: true,
+    })
+      .then((res) => {
+        setIsLoading(false);
+        const addedReview = res.data as Review;
+        console.log('new review: ', addedReview);
+        setSuccess('Your review was added successfully!');
+        setTimeout(() => setSuccess(''), 5000);
+        // history.push(`/playgrounds/${playgroundId}`);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        // console.log('Error: ', error.response);
+        setError('Something went wrong. Please try again later.');
+        setTimeout(() => setError(''), 5000);
+      });
+  };
+
   return (
-    <PlaygroundContext.Provider value={{ addPlayground, error, isLoading, playgrounds, success }}>
+    <PlaygroundContext.Provider value={{ addPlayground, addReview, error, isLoading, playgrounds, success }}>
       {props.children}
     </PlaygroundContext.Provider>
   );

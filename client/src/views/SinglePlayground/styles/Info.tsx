@@ -11,6 +11,8 @@ export const Wrapper = styled.div.attrs(() => ({
 
   height: 100%;
   width: 100%;
+
+  margin: 2rem 0;
 `;
 
 export const Subtitle = styled.div.attrs(() => ({
@@ -22,7 +24,7 @@ export const Subtitle = styled.div.attrs(() => ({
 
   font-size: 1.8rem;
   line-height: 2rem;
-  margin: 1rem 0;
+  margin-bottom: 2rem;
 `;
 
 export const Location = styled.div.attrs(() => ({
@@ -46,7 +48,6 @@ export const Description = styled.p.attrs(() => ({
 }))`
   font-size: 1.6rem;
   line-height: 2.2rem;
-  margin: 1.5rem 0;
 `;
 
 export const AmenitiesList = styled.div.attrs(() => ({

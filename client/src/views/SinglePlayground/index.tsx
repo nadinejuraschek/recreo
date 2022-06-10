@@ -31,8 +31,6 @@ export const SinglePlayground = (): JSX.Element => {
 
   // TODO: Add Multiple Images
 
-  console.log('playground: ', playground);
-
   return (
     <Content>
       <Header name={playground?.title} />

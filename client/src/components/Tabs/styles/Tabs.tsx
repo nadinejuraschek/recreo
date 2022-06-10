@@ -30,8 +30,12 @@ export const Tab = styled.button.attrs(() => ({
   ${({ isActive }) =>
     isActive &&
     css`
+      background-color: var(--orange__opaque);
       border-bottom: 4px solid var(--orange);
-      color: var(--orange);
       font-weight: bold;
     `}
+
+  &:focus {
+    outline: 1px solid var(--orange);
+  }
 `;

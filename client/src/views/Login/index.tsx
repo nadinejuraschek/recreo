@@ -4,10 +4,13 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 // STYLED COMPONENTS
-import { FormWrapper, Wrapper } from './styles/Login';
+import { ButtonWrapper, FormWrapper, Wrapper } from './styles/Login';
 
 // COMPONENTS
 import { Button, Divider, Form, Input, Title, Toast } from 'components';
+
+// DATA
+import { testUserData } from 'data';
 
 // VALIDATION
 import { loginSchema } from 'schemas';
@@ -47,6 +50,12 @@ export const Login = (): JSX.Element => {
     }
   };
 
+  const onSubmitTestUser = (): void => {
+    if (loginUser) {
+      loginUser(testUserData);
+    }
+  };
+
   return (
     <Wrapper>
       <Title marginBottom={5} size="large">
@@ -77,9 +86,14 @@ export const Login = (): JSX.Element => {
           </Button>
         </Form>
         <Divider text="or" />
-        <Button link="/register" $outlined $fullWidth>
-          Register
-        </Button>
+        <ButtonWrapper>
+          <Button link="/register" $outlined $fullWidth>
+            Register
+          </Button>
+          <Button $outlined $fullWidth handleClick={onSubmitTestUser}>
+            Use Test Account
+          </Button>
+        </ButtonWrapper>
       </FormWrapper>
       {showError && <Toast type="danger">{error}</Toast>}
     </Wrapper>

@@ -13,16 +13,25 @@ import { Container, EmptyComments, FormContainer, ButtonWrapper, Rating } from '
 import { commentSchema } from 'schemas';
 
 // CONTEXT
-import { UserContext } from 'context/UserContext';
+import { PlaygroundContext, UserContext } from 'context';
+
+// HOOKS
+import { usePlayground } from 'hooks/usePlayground';
 
 // INTERFACES
 import { CommentsProps } from '../../types';
 
 export const Comments = ({ reviews = [] }: CommentsProps): JSX.Element => {
+  const { addReview } = useContext(PlaygroundContext);
   const { user } = useContext(UserContext);
 
+  const { playground } = usePlayground();
+
+  console.log('playground: ', playground);
+
   const defaultValues = {
-    text: '',
+    body: '',
+    rating: 0,
   };
 
   const {
@@ -35,26 +44,37 @@ export const Comments = ({ reviews = [] }: CommentsProps): JSX.Element => {
     mode: 'onBlur',
   });
 
-  const onSubmit = (formData: { text: string }): void => {
+  const onSubmit = (formData: { body: string; rating: number }): void => {
     console.log('submitted comment data: ', formData);
+    if (addReview && playground) addReview(formData, playground._id);
   };
 
   return (
     <Container>
-      {reviews.length === 0 && !user ? (
+      {!user ? (
         <EmptyComments>
           <InlineLink to="/login">Login</InlineLink> to leave a review.
         </EmptyComments>
       ) : (
         reviews.map((review) => {
           const { author, body, _id } = review;
-          return <Comment body={body} key={_id} username={author.username} />;
+
+          console.log('review: ', review);
+
+          return (
+            <Comment
+              body={body}
+              key={_id}
+              // username={author.username}
+            />
+          );
         })
       )}
       {user && (
         <FormContainer>
           <Form handleSubmit={handleSubmit(onSubmit)}>
             <Rating>⭐⭐⭐⭐⭐</Rating>
+            <input name="rating" placeholder="Rating" type="number" />
             <Input
               name="text"
               placeholder="Tell us about your playground experience..."
