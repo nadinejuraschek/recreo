@@ -1,3 +1,4 @@
+export * from './AmenitiesList';
 export * from './Amenity';
 export * from './BackButton';
 export * from './Button';

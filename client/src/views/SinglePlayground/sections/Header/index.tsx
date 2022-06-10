@@ -1,20 +1,24 @@
 // DEPENDENCIES
-import { useContext } from 'react';
+// import { useContext } from 'react';
 
 // STYLED COMPONENTS
 import { HeaderWrapper, HeaderLeft, HeaderRight, HeaderTitle } from '../../styles/Header';
 
 // COMPONENTS
-import { BackButton, FavoriteButton, ShareButton } from 'components';
+import {
+  BackButton,
+  // FavoriteButton,
+  ShareButton,
+} from 'components';
 
 // CONTEXT
-import { UserContext } from 'context';
+// import { UserContext } from 'context';
 
 // INTERFACES
 import { HeaderProps } from '../../types';
 
 export const Header = ({ name = '' }: HeaderProps): JSX.Element => {
-  const { user } = useContext(UserContext);
+  // const { user } = useContext(UserContext);
 
   return (
     <HeaderWrapper>
@@ -23,7 +27,7 @@ export const Header = ({ name = '' }: HeaderProps): JSX.Element => {
         <HeaderTitle>{name}</HeaderTitle>
       </HeaderLeft>
       <HeaderRight>
-        {user && <FavoriteButton />}
+        {/* {user && <FavoriteButton />} */}
         <ShareButton />
       </HeaderRight>
     </HeaderWrapper>

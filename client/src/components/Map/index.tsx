@@ -1,6 +1,38 @@
+// DEPENDENCIES
+import { useRef } from 'react';
+import ReactMapGL, { MapboxMap } from 'react-map-gl';
+
 // STYLED COMPONENTS
 import { Wrapper } from './styles/Map';
 
-export const Map = (): JSX.Element => {
-  return <Wrapper />;
+// COMPONENTS
+import { MapMarker } from './MapMarker';
+
+// TYPES
+import { MapProps } from './types';
+
+export const Map = ({ markers = [] }: MapProps): JSX.Element => {
+  const mapRef = useRef<MapboxMap | null>(null);
+
+  const renderMarkers = () =>
+    markers?.map((marker, index: number) => {
+      const { latitude, longitude, title } = marker;
+      return <MapMarker latitude={latitude} longitude={longitude} key={index} title={title} />;
+    });
+
+  return (
+    <Wrapper>
+      <ReactMapGL
+        initialViewState={{ latitude: 48.78, longitude: 9.18, zoom: 15 }}
+        mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        mapStyle="mapbox://styles/mapbox/streets-v11"
+        // @ts-ignore
+        ref={mapRef}
+        reuseMaps
+        style={{ height: '100%', width: '100%' }}
+      >
+        {markers && renderMarkers()}
+      </ReactMapGL>
+    </Wrapper>
+  );
 };

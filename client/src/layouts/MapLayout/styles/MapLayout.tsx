@@ -6,6 +6,9 @@ export const Main = styled.main.attrs(() => ({
 }))`
   min-height: calc(100vh - 8rem);
 
+  display: flex;
+  flex-direction: column;
+
   @media only screen and (min-width: 900px) {
     display: grid;
     grid-template-columns: 70% 30%;
@@ -18,6 +21,13 @@ export const Main = styled.main.attrs(() => ({
 export const Content = styled.div.attrs(() => ({
   className: 'map-layout__content',
 }))`
+  width: 100%;
+
+  order: 2;
+
+  background-color: var(--white);
+  border: 1px solid var(--white);
+  border-radius: 4rem 4rem 0 0;
   padding: 2.4rem;
 
   @media only screen and (min-width: 900px) {
@@ -31,6 +41,8 @@ export const Content = styled.div.attrs(() => ({
 export const MapWrapper = styled.div.attrs(() => ({
   className: 'map-layout__map-wrapper',
 }))`
+  order: 1;
+
   @media only screen and (min-width: 900px) {
     grid-column: 2 / 3;
     grid-row: 1 / 2;

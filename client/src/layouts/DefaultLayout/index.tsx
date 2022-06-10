@@ -4,4 +4,6 @@ import { Main } from './styles/DefaultLayout';
 // INTERFACES
 import { DefaultLayoutProps } from './types';
 
-export const DefaultLayout = ({ children }: DefaultLayoutProps): JSX.Element => <Main>{children}</Main>;
+export const DefaultLayout = ({ children, withMainPadding = true }: DefaultLayoutProps): JSX.Element => (
+  <Main withMainPadding={withMainPadding}>{children}</Main>
+);

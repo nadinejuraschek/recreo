@@ -1,6 +1,9 @@
 // DEPENDENCIES
 import { useContext, useEffect, useState } from 'react';
 
+// STYLED-COMPONENTS
+import { PlaygroundInfo } from './styles/Playgrounds';
+
 // COMPONENTS
 import { AddPlaygroundForm, ErrorState, PlaygroundsList } from './sections';
 import { LoadingSpinner, Map, Toast } from 'components';
@@ -42,12 +45,13 @@ export const Playgrounds = (): JSX.Element => {
   return (
     <>
       <Map />
-      {/* FILTER DISPLAYS HERE <Section></Section> */}
-      {showUserSuccess && <Toast>{userSuccess}</Toast>}
-      {showPlaygroundSuccess && <Toast>{playgroundSuccess}</Toast>}
-      {displayError && renderErrorState()}
-      {displayPlaygrounds && <PlaygroundsList playgrounds={playgrounds} setOpenAddPlaygroundModal={setOpenAddPlaygroundModal} />}
-
+      <PlaygroundInfo>
+        {/* FILTER DISPLAYS HERE <Section></Section> */}
+        {showUserSuccess && <Toast>{userSuccess}</Toast>}
+        {showPlaygroundSuccess && <Toast>{playgroundSuccess}</Toast>}
+        {displayError && renderErrorState()}
+        {displayPlaygrounds && <PlaygroundsList playgrounds={playgrounds} setOpenAddPlaygroundModal={setOpenAddPlaygroundModal} />}
+      </PlaygroundInfo>
       {openAddPlaygroundModal && <AddPlaygroundForm setOpenAddPlaygroundModal={setOpenAddPlaygroundModal} />}
     </>
   );

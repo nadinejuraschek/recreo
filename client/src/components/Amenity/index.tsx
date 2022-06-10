@@ -23,7 +23,7 @@ import { ReactComponent as Sun } from 'assets/sun.svg';
 import { ReactComponent as Swing } from 'assets/swing.svg';
 import { ReactComponent as Toddler } from 'assets/toddler.svg';
 
-export const Amenity = ({ feature }: AmenityProps): JSX.Element => {
+export const Amenity = ({ feature, small }: AmenityProps): JSX.Element => {
   const selectedFeature = features.find((item: AmenityType) => item.value === feature);
 
   let iconToDisplay;
@@ -79,10 +79,10 @@ export const Amenity = ({ feature }: AmenityProps): JSX.Element => {
 
   return (
     <Container>
-      <IconWrapper>
-        <Icon>{iconToDisplay}</Icon>
+      <IconWrapper small={small}>
+        <Icon small={small}>{iconToDisplay}</Icon>
       </IconWrapper>
-      {selectedFeature?.name}
+      {small ? null : selectedFeature?.name}
     </Container>
   );
 };

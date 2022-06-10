@@ -12,26 +12,23 @@ export const Container = styled.div.attrs(() => ({
 
 export const IconWrapper = styled.div.attrs(() => ({
   className: 'amenity-icon-wrapper',
-}))`
+}))<{ small: boolean }>`
   background-color: var(--orange__opaque);
   border-radius: 0.8rem;
+  margin-right: 1rem;
+  padding: ${({ small }) => (small ? '0.5rem' : '0.75rem')};
 
   display: flex;
   align-items: center;
   justify-content: center;
-
-  height: 5rem;
-  width: 5rem;
-
-  margin-right: 1rem;
 `;
 
 export const Icon = styled.div.attrs(() => ({
   className: 'amenity-icon',
-}))`
+}))<{ small: boolean }>`
   color: var(--orange);
-  height: 3.5rem;
-  width: 3.5rem;
+  height: ${({ small }) => (small ? '2rem' : '3.5rem')};
+  width: ${({ small }) => (small ? '2rem' : '3.5rem')};
 
   svg {
     object-fit: contain;

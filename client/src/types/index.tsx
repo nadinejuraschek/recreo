@@ -10,7 +10,7 @@ export type Author = {
 };
 
 export type Geometry = {
-  coordinates: number[];
+  coordinates: [number, number];
   type: string;
 };
 

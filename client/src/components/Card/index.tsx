@@ -1,7 +1,8 @@
 // STYLED COMPONENTS
-import { Amenities, Body, Container, Image, Location, Name } from './styles/Card';
+import { Body, Container, Image, Location, Name } from './styles/Card';
 
 // COMPONENTS
+import { AmenitiesList } from '../AmenitiesList';
 import { Divider } from '../Divider';
 import { Rating } from '../Rating';
 
@@ -12,7 +13,7 @@ import { usePlayground } from 'hooks/usePlayground';
 import { CardProps } from './types';
 
 export const Card = ({ id, imageSrc = '', location = '', name = '' }: CardProps): JSX.Element => {
-  const { rating } = usePlayground(id);
+  const { playground, rating } = usePlayground(id);
 
   return (
     <Container to={`/playgrounds/${id}`}>
@@ -21,7 +22,7 @@ export const Card = ({ id, imageSrc = '', location = '', name = '' }: CardProps)
         <Location>{location}</Location>
         <Name>{name}</Name>
         <Divider color="var(--blue__opaque)" />
-        <Amenities />
+        <AmenitiesList features={playground?.features || []} small />
         <Rating rating={rating} />
       </Body>
     </Container>

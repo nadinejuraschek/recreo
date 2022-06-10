@@ -13,6 +13,9 @@ import { Login, Playgrounds, Register, SinglePlayground } from 'views';
 // CONTEXT
 import { PlaygroundProvider, UserProvider } from 'context';
 
+// STYLES
+import 'mapbox-gl/dist/mapbox-gl.css';
+
 const App = (): JSX.Element => {
   return (
     <Router>
@@ -37,7 +40,7 @@ const App = (): JSX.Element => {
         {/* Home */}
         <PlaygroundProvider>
           <Route exact path="/playgrounds">
-            <DefaultLayout>
+            <DefaultLayout withMainPadding={false}>
               <Playgrounds />
             </DefaultLayout>
           </Route>

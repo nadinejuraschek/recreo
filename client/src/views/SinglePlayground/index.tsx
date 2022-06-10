@@ -5,7 +5,8 @@ import { useState } from 'react';
 import { Content, TabContent } from './styles/SinglePlayground';
 
 // COMPONENTS
-import { Amenities, Comments, ErrorState, Header, Info, Preview } from './sections';
+import { AmenitiesList } from 'components';
+import { Comments, ErrorState, Header, Info, Preview } from './sections';
 import { LoadingSpinner, Tabs } from 'components';
 
 // HOOKS
@@ -38,7 +39,7 @@ export const SinglePlayground = (): JSX.Element => {
       <Tabs active={activeTab} handleClick={setActiveTab} options={tabOptions} />
       <TabContent>
         {activeTab === 'images' && <Preview name={playground?.title} />}
-        {activeTab === 'features' && <Amenities features={playground?.features} />}
+        {activeTab === 'features' && <AmenitiesList features={playground?.features} />}
         {activeTab === 'reviews' && <Comments reviews={playground?.reviews} />}
       </TabContent>
     </Content>

@@ -1,4 +1,3 @@
-export * from './Amenities';
 export * from './Comments';
 export * from './ErrorState';
 export * from './Header';

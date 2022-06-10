@@ -19,7 +19,3 @@ export interface PreviewProps {
 export interface CommentsProps {
   reviews?: Review[];
 }
-
-export interface AmenitiesProps {
-  features?: any;
-}
