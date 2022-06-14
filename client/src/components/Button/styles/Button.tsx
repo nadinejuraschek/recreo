@@ -11,6 +11,7 @@ type ButtonProps = {
   $outlined?: boolean;
   $rounded?: boolean;
   $small?: boolean;
+  $underlined?: boolean;
 };
 
 export const StyledLink = styled(Link).attrs(() => ({
@@ -86,6 +87,23 @@ export const StyledLink = styled(Link).attrs(() => ({
       width: 100%;
     `}
 
+  ${({ $underlined }) =>
+    $underlined &&
+    css`
+      background-color: transparent;
+      border: none;
+      color: var(--orange);
+      text-decoration: underline;
+    `}
+
+  &:focus {
+    ${({ $underlined }) =>
+      $underlined &&
+      css`
+        outline: none;
+      `}
+  }
+
   &:hover {
     cursor: pointer;
 
@@ -107,6 +125,12 @@ export const StyledLink = styled(Link).attrs(() => ({
       css`
         box-shadow: 0 3px 8px var(--shadow__lg);
         color: var(--orange);
+      `}
+
+    ${({ $underlined }) =>
+      $underlined &&
+      css`
+        box-shadow: none;
       `}
   }
 `;
@@ -193,6 +217,23 @@ export const StyledButton = styled.button.attrs(() => ({
       width: 100%;
     `}
 
+  ${({ $underlined }) =>
+    $underlined &&
+    css`
+      background-color: transparent;
+      border: none;
+      color: var(--orange);
+      text-decoration: underline;
+    `}
+
+  &:focus {
+    ${({ $underlined }) =>
+      $underlined &&
+      css`
+        outline: none;
+      `}
+  }
+
   &:hover {
     cursor: pointer;
 
@@ -214,6 +255,12 @@ export const StyledButton = styled.button.attrs(() => ({
       css`
         box-shadow: 3px 3px 6px var(--shadow__lg);
         transform: translateX(-2px) translateY(-2px);
+      `}
+
+    ${({ $underlined }) =>
+      $underlined &&
+      css`
+        box-shadow: none;
       `}
   }
 `;

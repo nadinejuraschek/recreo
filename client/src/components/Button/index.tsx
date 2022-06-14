@@ -17,6 +17,7 @@ export const Button = ({
   $rounded = false,
   $small = false,
   type = 'button',
+  $underlined = false,
 }: ButtonProps): JSX.Element => {
   return (
     <>
@@ -29,6 +30,7 @@ export const Button = ({
           $rounded={$rounded}
           $small={$small}
           to={link}
+          $underlined={$underlined}
         >
           {children}
         </StyledLink>
@@ -43,6 +45,7 @@ export const Button = ({
           $rounded={$rounded}
           $small={$small}
           type={type}
+          $underlined={$underlined}
         >
           {loading ? 'Loading...' : children}
         </StyledButton>

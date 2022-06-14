@@ -90,7 +90,7 @@ export const Login = (): JSX.Element => {
           <Button link="/register" $outlined $fullWidth>
             Register
           </Button>
-          <Button $outlined $fullWidth handleClick={onSubmitTestUser}>
+          <Button $underlined $fullWidth handleClick={onSubmitTestUser}>
             Use Test Account
           </Button>
         </ButtonWrapper>

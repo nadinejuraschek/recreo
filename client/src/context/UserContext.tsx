@@ -64,7 +64,6 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
   };
 
   const registerUser = (formData: { username: string; password: string }): void => {
-    console.log('formData in registerUser: ', formData);
     setLoading(true);
     axios({
       url: '/api/register',
