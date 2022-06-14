@@ -1,4 +1,5 @@
 export interface MapProps {
+  isLoading?: boolean;
   markers?: MapMarkerProps[];
 }
 

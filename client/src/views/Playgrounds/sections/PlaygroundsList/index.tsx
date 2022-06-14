@@ -2,7 +2,7 @@
 import { useContext } from 'react';
 
 // COMPONENTS
-import { Button, Card, Title } from 'components';
+import { Button, Card } from 'components';
 
 // STYLED COMPONENTS
 import { ButtonWrapper, Grid, Section } from '../../styles/Playgrounds';
@@ -29,7 +29,6 @@ export const PlaygroundsList = ({ playgrounds, setOpenAddPlaygroundModal }: Play
         <Grid>
           {playgrounds.map((playground) => {
             const { _id, image, location, title } = playground;
-            console.log('playground: ', playground);
             return <Card id={_id} imageSrc={image} key={_id} location={location} name={title} />;
           })}
         </Grid>

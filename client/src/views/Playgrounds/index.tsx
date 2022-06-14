@@ -44,7 +44,7 @@ export const Playgrounds = (): JSX.Element => {
 
   return (
     <>
-      <Map />
+      <Map isLoading={isLoading} />
       <PlaygroundInfo>
         {/* FILTER DISPLAYS HERE <Section></Section> */}
         {showUserSuccess && <Toast>{userSuccess}</Toast>}

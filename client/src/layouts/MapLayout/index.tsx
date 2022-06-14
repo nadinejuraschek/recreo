@@ -1,5 +1,5 @@
 // COMPONENTS
-import { Map } from 'components';
+import { LoadingSpinner, Map } from 'components';
 
 // STYLED COMPONENTS
 import { Content, Main, MapWrapper } from './styles/MapLayout';
@@ -11,11 +11,10 @@ import { usePlayground } from 'hooks/usePlayground';
 import { MapLayoutProps } from './types';
 
 export const MapLayout = ({ children }: MapLayoutProps): JSX.Element => {
-  const { playground } = usePlayground();
+  const { isLoading, playground } = usePlayground();
 
   const marker = {
-    latitude: playground?.geometry?.coordinates[0] as number,
-    longitude: playground?.geometry?.coordinates[1] as number,
+    ...playground?.geometry,
     title: playground?.title || '',
   };
 
@@ -23,7 +22,7 @@ export const MapLayout = ({ children }: MapLayoutProps): JSX.Element => {
     <Main>
       <Content>{children}</Content>
       <MapWrapper>
-        <Map markers={[marker]} />
+        <Map isLoading={isLoading} markers={[marker]} />
       </MapWrapper>
     </Main>
   );

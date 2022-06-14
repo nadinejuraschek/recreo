@@ -39,6 +39,10 @@ export const usePlayground = (id?: string): Props => {
         isNaN(totalRating) ? setRating(0) : setRating(totalRating);
         setPlayground({
           ...res.data,
+          geometry: {
+            latitude: res.data.geometry.coordinates[0],
+            longitude: res.data.geometry.coordinates[1],
+          },
           rating: isNaN(totalRating) ? 0 : totalRating,
         });
         setIsLoading(false);
