@@ -1,14 +1,7 @@
-export interface FormProps {
-  comment?: boolean;
-  initialValues: any;
-  login?: boolean;
-  playground?: boolean;
-  register?: boolean;
-  validationSchema: any;
-}
+// REACT
+import { ReactNode } from 'react';
 
-export interface InnerFormProps {
-  errors: any;
-  isValid: boolean;
-  setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
+export interface FormProps {
+  children: ReactNode;
+  handleSubmit: any;
 }

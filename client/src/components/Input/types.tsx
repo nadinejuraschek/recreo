@@ -1,9 +1,12 @@
 export interface InputProps {
   error: any;
-  handleChange: any;
   label?: string | undefined;
   icon?: string | undefined;
   iconName?: string;
+  maxChars?: number;
+  name: string;
   placeholder?: string;
+  register: any;
+  step?: string;
   type?: string;
 }

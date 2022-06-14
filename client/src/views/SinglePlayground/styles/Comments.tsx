@@ -20,6 +20,31 @@ export const FormContainer = styled.div.attrs(() => ({
   }
 `;
 
+export const Rating = styled.div.attrs(() => ({
+  className: 'comment-form-rating',
+}))`
+  font-size: 2rem;
+  padding-top: 1rem;
+  width: 100%;
+`;
+
+export const ButtonWrapper = styled.div.attrs(() => ({
+  className: 'comment-form-button-wrapper',
+}))`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  width: 100%;
+`;
+
+export const EmptyComments = styled.div.attrs(() => ({
+  className: 'single-playground__comments-empty',
+}))`
+  font-size: 1.8rem;
+  margin: 2.4rem 0;
+`;
+
 export const Name = styled.div.attrs(() => ({
   className: 'single-playground__comments-name',
 }))``;

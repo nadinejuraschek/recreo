@@ -1,16 +1,23 @@
+// DEPENDENCIES
+import { useState } from 'react';
+
 // STYLED COMPONENTS
 import { CloseBtn, Container } from './styles/Toast';
 
 // INTERFACES
 import { ToastProps } from './types';
 
-const Toast = ({ children, danger = false, handleClose, success = true }: ToastProps): JSX.Element => {
+export const Toast = ({ children, type = 'success' }: ToastProps): JSX.Element | null => {
+  const [isOpen, setIsOpen] = useState<boolean>(true);
+
+  if (!isOpen) {
+    return null;
+  }
+
   return (
-    <Container danger={danger} success={success}>
-      <CloseBtn onClick={handleClose} />
+    <Container type={type}>
       {children}
+      <CloseBtn onClick={() => setIsOpen(false)} />
     </Container>
   );
 };
-
-export default Toast;

@@ -4,8 +4,38 @@ import styled from 'styled-components';
 export const Section = styled.section.attrs(() => ({
   className: 'playgrounds-section',
 }))`
-  margin: 3rem 0;
+  margin: 1rem 0 3rem;
   width: 100%;
+`;
+
+export const ButtonWrapper = styled.section.attrs(() => ({
+  className: 'playgrounds-section-button',
+}))`
+  margin: 0 0 3rem;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const PlaygroundInfo = styled.div.attrs(() => ({
+  className: 'playgrounds-info',
+}))`
+  background-color: var(--white);
+  border: 1px solid var(--white);
+  border-radius: 4rem 4rem 0 0;
+  padding: 2.4rem;
+
+  @media only screen and (min-width: 900px) {
+    padding: 4rem;
+  }
+
+  &:hover {
+    ${ButtonWrapper} {
+      display: flex;
+    }
+  }
 `;
 
 export const Grid = styled.div.attrs(() => ({

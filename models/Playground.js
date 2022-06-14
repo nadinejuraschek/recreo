@@ -17,8 +17,8 @@ const PlaygroundSchema = new Schema({
       required: true,
     },
   },
-  price: Number,
   description: String,
+  features: [String],
   location: String,
   author: {
     type: Schema.Types.ObjectId,

@@ -45,7 +45,6 @@ export const ImageActive = styled.div.attrs(() => ({
   className: 'single-playground__preview-image-active',
 }))`
   border: none;
-  border-radius: 2.4rem;
   margin-bottom: 1rem;
   overflow: hidden;
 

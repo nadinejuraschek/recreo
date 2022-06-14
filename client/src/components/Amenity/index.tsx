@@ -1,8 +1,12 @@
 // STYLED COMPONENTS
-import { Icon, Container } from './styles/Amenity';
+import { Container, Icon, IconWrapper } from './styles/Amenity';
 
 // INTERFACES
+import { Amenity as AmenityType } from 'types';
 import { AmenityProps } from './types';
+
+// DATA
+import { features } from 'data';
 
 // ICONS
 import { ReactComponent as Bench } from 'assets/bench.svg';
@@ -19,9 +23,14 @@ import { ReactComponent as Sun } from 'assets/sun.svg';
 import { ReactComponent as Swing } from 'assets/swing.svg';
 import { ReactComponent as Toddler } from 'assets/toddler.svg';
 
-const Amenity = ({ icon }: AmenityProps): JSX.Element => {
+export const Amenity = ({ feature, small }: AmenityProps): JSX.Element => {
+  const selectedFeature = features.find((item: AmenityType) => item.value === feature);
+
   let iconToDisplay;
-  switch (icon) {
+  switch (feature) {
+    case 'basketball':
+      iconToDisplay = null;
+      break;
     case 'bench':
       iconToDisplay = <Bench />;
       break;
@@ -31,11 +40,14 @@ const Amenity = ({ icon }: AmenityProps): JSX.Element => {
     case 'drinkingFountain':
       iconToDisplay = <DrinkingFountain />;
       break;
-    case 'field':
-      iconToDisplay = <Field />;
+    case 'grass':
+      iconToDisplay = null;
       break;
     case 'monkeyBars':
       iconToDisplay = <MonkeyBars />;
+      break;
+    case 'playStructure':
+      iconToDisplay = <Playground />;
       break;
     case 'restrooms':
       iconToDisplay = <Restrooms />;
@@ -46,16 +58,19 @@ const Amenity = ({ icon }: AmenityProps): JSX.Element => {
     case 'slide':
       iconToDisplay = <Slide />;
       break;
-    case 'sprinkler':
+    case 'sprinklers':
       iconToDisplay = <Sprinkler />;
       break;
-    case 'sun':
+    case 'soccer':
+      iconToDisplay = <Field />;
+      break;
+    case 'sunProtection':
       iconToDisplay = <Sun />;
       break;
-    case 'swing':
+    case 'swingset':
       iconToDisplay = <Swing />;
       break;
-    case 'toddler':
+    case 'toddlerSafe':
       iconToDisplay = <Toddler />;
       break;
     default:
@@ -64,9 +79,10 @@ const Amenity = ({ icon }: AmenityProps): JSX.Element => {
 
   return (
     <Container>
-      <Icon>{iconToDisplay}</Icon>
+      <IconWrapper small={small}>
+        <Icon small={small}>{iconToDisplay}</Icon>
+      </IconWrapper>
+      {small ? null : selectedFeature?.name}
     </Container>
   );
 };
-
-export default Amenity;

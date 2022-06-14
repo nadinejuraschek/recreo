@@ -1,5 +1,5 @@
 // COMPONENTS
-import ModalHeader from './components/ModalHeader';
+import { ModalHeader } from './components/ModalHeader';
 
 // STYLED COMPONENTS
 import { Body, Container, Footer, Overlay } from './styles/Modal';
@@ -7,7 +7,7 @@ import { Body, Container, Footer, Overlay } from './styles/Modal';
 // INTERFACES
 import { ModalProps } from './types';
 
-const Modal = ({ children, closeButton = true, footer = false, title = undefined, toggleModal }: ModalProps): JSX.Element => {
+export const Modal = ({ children, closeButton = true, footer = false, title = undefined, toggleModal }: ModalProps): JSX.Element => {
   return (
     <Overlay>
       <Container>
@@ -18,5 +18,3 @@ const Modal = ({ children, closeButton = true, footer = false, title = undefined
     </Overlay>
   );
 };
-
-export default Modal;

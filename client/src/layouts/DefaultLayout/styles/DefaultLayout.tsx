@@ -3,15 +3,15 @@ import styled from 'styled-components';
 
 export const Main = styled.main.attrs(() => ({
   className: 'default__main',
-}))`
+}))<{ withMainPadding: boolean }>`
   min-height: calc(100vh - 8rem);
   margin: 0 auto;
   max-width: 140rem;
 
-  padding: 2.4rem;
+  padding: ${({ withMainPadding }) => (withMainPadding ? '2.4rem' : '0')};
 
   @media only screen and (min-width: 900px) {
     min-height: calc(100vh - 11rem);
-    padding: 4rem;
+    padding: ${({ withMainPadding }) => (withMainPadding ? '4rem' : '0')};
   }
 `;

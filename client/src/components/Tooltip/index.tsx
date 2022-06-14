@@ -7,7 +7,7 @@ import { HoverItem, Wrapper } from './styles/Tooltip';
 // INTERFACES
 import { TooltipProps } from './types';
 
-const Tooltip = ({ children, text = '' }: TooltipProps): JSX.Element => {
+export const Tooltip = ({ children, text = '' }: TooltipProps): JSX.Element => {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -17,5 +17,3 @@ const Tooltip = ({ children, text = '' }: TooltipProps): JSX.Element => {
     </Wrapper>
   );
 };
-
-export default Tooltip;

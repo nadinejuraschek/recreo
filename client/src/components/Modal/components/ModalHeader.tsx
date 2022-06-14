@@ -4,7 +4,7 @@ import { CloseButton, Header, Title } from '../styles/ModalHeader';
 // INTERFACES
 import { ModalHeaderProps } from '../types';
 
-const ModalHeader = ({ close, handleClose, title = undefined }: ModalHeaderProps): JSX.Element => {
+export const ModalHeader = ({ close, handleClose, title = undefined }: ModalHeaderProps): JSX.Element => {
   return (
     <Header>
       <Title>{title}</Title>
@@ -12,5 +12,3 @@ const ModalHeader = ({ close, handleClose, title = undefined }: ModalHeaderProps
     </Header>
   );
 };
-
-export default ModalHeader;

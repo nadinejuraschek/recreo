@@ -5,12 +5,12 @@ import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 type ButtonProps = {
-  disabled?: boolean;
-  filled?: boolean;
-  fullWidth?: boolean;
-  outlined?: boolean;
-  rounded?: boolean;
-  small?: boolean;
+  $disabled?: boolean;
+  $filled?: boolean;
+  $fullWidth?: boolean;
+  $outlined?: boolean;
+  $rounded?: boolean;
+  $small?: boolean;
 };
 
 export const StyledLink = styled(Link).attrs(() => ({
@@ -44,44 +44,44 @@ export const StyledLink = styled(Link).attrs(() => ({
     min-width: 16rem;
   }
 
-  ${({ small }) =>
-    small &&
+  ${({ $small }) =>
+    $small &&
     css`
       font-size: 1.6rem;
       height: 4rem;
       min-width: 12rem;
     `}
 
-  ${({ disabled }) =>
-    disabled &&
+  ${({ $disabled }) =>
+    $disabled &&
     css`
       opacity: 0.4;
     `}
 
-  ${({ filled }) =>
-    filled &&
+  ${({ $filled }) =>
+    $filled &&
     css`
       background-color: var(--orange);
       border: 2px solid var(--orange);
       color: var(--white);
     `}
 
-  ${({ outlined }) =>
-    outlined &&
+  ${({ $outlined }) =>
+    $outlined &&
     css`
       background-color: var(--white);
       border: 2px solid var(--orange);
       color: var(--orange);
     `}
 
-  ${({ rounded }) =>
-    rounded &&
+  ${({ $rounded }) =>
+    $rounded &&
     css`
       border-radius: 40px;
     `}
 
-  ${({ fullWidth }) =>
-    fullWidth &&
+  ${({ $fullWidth }) =>
+    $fullWidth &&
     css`
       width: 100%;
     `}
@@ -89,21 +89,21 @@ export const StyledLink = styled(Link).attrs(() => ({
   &:hover {
     cursor: pointer;
 
-    ${({ disabled }) =>
-      disabled &&
+    ${({ $disabled }) =>
+      $disabled &&
       css`
         cursor: not-allowed;
       `}
 
-    ${({ filled }) =>
-      filled &&
+    ${({ $filled }) =>
+      $filled &&
       css`
         box-shadow: 0 3px 8px var(--shadow__lg);
         color: var(--white);
       `}
 
-    ${({ outlined }) =>
-      outlined &&
+    ${({ $outlined }) =>
+      $outlined &&
       css`
         box-shadow: 0 3px 8px var(--shadow__lg);
         color: var(--orange);
@@ -141,8 +141,8 @@ export const StyledButton = styled.button.attrs(() => ({
     min-width: 16rem;
   }
 
-  ${({ small }) =>
-    small &&
+  ${({ $small }) =>
+    $small &&
     css`
       font-size: 1.4rem;
       padding: 0.5rem 1rem;
@@ -159,36 +159,36 @@ export const StyledButton = styled.button.attrs(() => ({
       }
     `}
 
-  ${({ disabled }) =>
-    disabled &&
+  ${({ $disabled }) =>
+    $disabled &&
     css`
       opacity: 0.4;
     `}
 
-  ${({ filled }) =>
-    filled &&
+  ${({ $filled }) =>
+    $filled &&
     css`
       background-color: var(--orange);
       border: 2px solid var(--orange);
       color: var(--white);
     `}
 
-  ${({ outlined }) =>
-    outlined &&
+  ${({ $outlined }) =>
+    $outlined &&
     css`
       background-color: var(--white);
       border: 2px solid var(--orange);
       color: var(--orange);
     `}
 
-  ${({ rounded }) =>
-    rounded &&
+  ${({ $rounded }) =>
+    $rounded &&
     css`
       border-radius: 40px;
     `}
 
-  ${({ fullWidth }) =>
-    fullWidth &&
+  ${({ $fullWidth }) =>
+    $fullWidth &&
     css`
       width: 100%;
     `}
@@ -196,21 +196,21 @@ export const StyledButton = styled.button.attrs(() => ({
   &:hover {
     cursor: pointer;
 
-    ${({ disabled }) =>
-      disabled &&
+    ${({ $disabled }) =>
+      $disabled &&
       css`
         cursor: not-allowed;
       `}
 
-    ${({ filled }) =>
-      filled &&
+    ${({ $filled }) =>
+      $filled &&
       css`
         box-shadow: 3px 3px 6px var(--shadow__lg);
         transform: translateX(-2px) translateY(-2px);
       `}
 
-    ${({ outlined }) =>
-      outlined &&
+    ${({ $outlined }) =>
+      $outlined &&
       css`
         box-shadow: 3px 3px 6px var(--shadow__lg);
         transform: translateX(-2px) translateY(-2px);

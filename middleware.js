@@ -4,16 +4,6 @@ const ExpressError = require('./utils/ExpressError'),
   Review = require('./models/Review');
 const { playgroundSchema, reviewSchema } = require('./schemas.js');
 
-// CHECK IF USER IS LOGGED IN
-module.exports.isLoggedIn = (req, res, next) => {
-  if (!req.isAuthenticated()) {
-    req.session.returnTo = req.originalUrl;
-    req.flash('error', 'You must log in to use this feature.');
-    return res.redirect('/login');
-  };
-  next();
-};
-
 // ERROR HANDLING
 module.exports.validatePlayground = (req, res, next) => {
   const { error } = playgroundSchema.validate(req.body);
@@ -40,12 +30,10 @@ module.exports.isAuthor = async (req, res, next) => {
   const { id } = req.params;
   const playground = await Playground.findById(id);
   if (!playground) {
-    req.flash('error', 'Sorry, this playground could not be found.');
-    return res.redirect('/playgrounds');
+    return res.send('error', 'Sorry, this playground could not be found.');
   }
   if (!playground.author.equals(req.user._id)) {
-    req.flash('error', 'You do not have permission to edit this playground.');
-    return res.redirect(`/playgrounds/${id}`);
+    return res.send('error', 'You do not have permission to edit this playground.');
   }
   next();
 };
@@ -54,8 +42,7 @@ module.exports.isReviewAuthor = async (req, res, next) => {
   const { id, reviewid } = req.params;
   const review = await Review.findById(reviewid);
   if (!review.author.equals(req.user._id)) {
-    req.flash('error', 'You do not have permission to edit this review.');
-    return res.redirect(`/playgrounds/${id}`);
+    return res.send('error', 'You do not have permission to edit this review.');
   }
   next();
 };

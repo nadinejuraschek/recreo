@@ -3,7 +3,13 @@ import { ReactNode } from 'react';
 
 export interface ToastProps {
   children: ReactNode;
-  danger?: boolean;
-  handleClose: () => void;
-  success?: boolean;
+  type?: 'danger' | 'success';
+}
+
+export interface ContainerProps {
+  type: 'danger' | 'success';
+}
+
+export interface TimeoutBarProps {
+  width: number;
 }

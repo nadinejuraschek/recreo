@@ -2,39 +2,60 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // COMPONENTS
-import Navbar from 'components/Navbar';
-import Footer from 'components/Footer';
+import { Footer, Navbar } from 'components';
 
 // LAYOUTS
-import DefaultLayout from 'layouts/DefaultLayout';
-import ImageLayout from 'layouts/ImageLayout';
+import { DefaultLayout, ImageLayout, MapLayout } from 'layouts';
 
 // VIEWS
-import Login from 'views/Login';
-import Playgrounds from 'views/Playgrounds';
-import Register from 'views/Register';
-import SinglePlayground from 'views/SinglePlayground';
+import { Login, Playgrounds, Register, SinglePlayground } from 'views';
+
+// CONTEXT
+import { PlaygroundProvider, UserProvider } from 'context';
+
+// STYLES
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 const App = (): JSX.Element => {
   return (
     <Router>
-      <Navbar />
+      <UserProvider>
+        <Navbar />
 
-      {/* Landing */}
-      <Route exact path="/" component={ImageLayout} />
+        {/* Landing */}
+        <Route exact path="/" component={ImageLayout} />
 
-      {/* Auth */}
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/register" component={Register} />
+        {/* Auth */}
+        <Route exact path="/login">
+          <ImageLayout>
+            <Login />
+          </ImageLayout>
+        </Route>
+        <Route exact path="/register">
+          <ImageLayout>
+            <Register />
+          </ImageLayout>
+        </Route>
 
-      {/* Home */}
-      <Route exact path="/playgrounds" component={Playgrounds} />
+        {/* Home */}
+        <PlaygroundProvider>
+          <Route exact path="/playgrounds">
+            <DefaultLayout withMainPadding={false}>
+              <Playgrounds />
+            </DefaultLayout>
+          </Route>
 
-      {/* Single Playground */}
-      <Route exact path="/playgrounds/:id" component={SinglePlayground} />
-      <Route exact path="/playgrounds/:id/edit" component={DefaultLayout} />
+          {/* Single Playground */}
+          <Route exact path="/playgrounds/:id">
+            <MapLayout>
+              <SinglePlayground />
+            </MapLayout>
+          </Route>
+          <Route exact path="/playgrounds/:id/edit" component={DefaultLayout} />
+        </PlaygroundProvider>
 
-      <Footer />
+        <Footer />
+      </UserProvider>
     </Router>
   );
 };

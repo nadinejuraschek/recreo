@@ -1,16 +1,29 @@
+// COMPONENTS
+import { Map } from 'components';
+
 // STYLED COMPONENTS
 import { Content, Main, MapWrapper } from './styles/MapLayout';
+
+// HOOKS
+import { usePlayground } from 'hooks/usePlayground';
 
 // INTERFACES
 import { MapLayoutProps } from './types';
 
-const MapLayout = ({ children }: MapLayoutProps): JSX.Element => {
+export const MapLayout = ({ children }: MapLayoutProps): JSX.Element => {
+  const { isLoading, playground } = usePlayground();
+
+  const marker = {
+    ...playground?.geometry,
+    title: playground?.title || '',
+  };
+
   return (
     <Main>
       <Content>{children}</Content>
-      <MapWrapper />
+      <MapWrapper>
+        <Map isLoading={isLoading} markers={[marker]} />
+      </MapWrapper>
     </Main>
   );
 };
-
-export default MapLayout;

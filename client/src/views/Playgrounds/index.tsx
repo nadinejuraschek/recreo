@@ -1,62 +1,58 @@
 // DEPENDENCIES
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
-// STYLED COMPONENTS
-import { EmptyState, Grid, Section } from './styles/Playgrounds';
-
-// LAYOUT
-import DefaultLayout from 'layouts/DefaultLayout';
+// STYLED-COMPONENTS
+import { PlaygroundInfo } from './styles/Playgrounds';
 
 // COMPONENTS
-import Button from 'components/Button';
-import Card from 'components/Card';
-import Form from 'components/Form';
-import Map from 'components/Map';
-import Modal from 'components/Modal';
-import Title from 'components/Title';
+import { AddPlaygroundForm, ErrorState, PlaygroundsList } from './sections';
+import { LoadingSpinner, Map, Toast } from 'components';
 
-const Playgrounds = (): JSX.Element => {
+// CONTEXT
+import { PlaygroundContext } from 'context/PlaygroundContext';
+import { UserContext } from 'context/UserContext';
+
+export const Playgrounds = (): JSX.Element => {
   const [openAddPlaygroundModal, setOpenAddPlaygroundModal] = useState<boolean>(false);
+  const [showAllPlaygrounds, setShowAllPlaygrounds] = useState<boolean>(false);
+  const [showPlaygroundSuccess, setShowPlaygroundSuccess] = useState<boolean>(false);
+  const [showUserSuccess, setShowUserSuccess] = useState<boolean>(false);
+
+  const { success: userSuccess } = useContext(UserContext);
+  const { isLoading, error, playgrounds = [], success: playgroundSuccess } = useContext(PlaygroundContext);
+
+  useEffect(() => {
+    userSuccess ? setShowUserSuccess(true) : setShowUserSuccess(false);
+    playgroundSuccess ? setShowPlaygroundSuccess(true) : setShowPlaygroundSuccess(false);
+  }, [playgroundSuccess, userSuccess]);
+
+  const noPlaygrounds = playgrounds.length === 0;
+
+  const displayError = (error && !showAllPlaygrounds) || noPlaygrounds;
+  const displayPlaygrounds = !displayError || showAllPlaygrounds;
+
+  if (isLoading) {
+    return <LoadingSpinner containerHeight="100%" containerWidth="100%" />;
+  }
+
+  const renderErrorState = () => {
+    if (noPlaygrounds) {
+      return <ErrorState setOpenAddPlaygroundModal={setOpenAddPlaygroundModal} />;
+    }
+    return <ErrorState setOpenAddPlaygroundModal={setOpenAddPlaygroundModal} setShowAllPlaygrounds={setShowAllPlaygrounds} />;
+  };
 
   return (
-    <DefaultLayout>
-      <Map />
-      <Section>Filter</Section>
-      <Section>
-        <Title>Playgrounds Near You</Title>
-        <EmptyState>
-          <p>We couldn&apos;t find any playgrounds near you.</p>
-          <Button filled handleClick={() => setOpenAddPlaygroundModal(true)}>
-            Add a Playground
-          </Button>
-        </EmptyState>
-      </Section>
-      <Section>
-        <Title>All Playgrounds</Title>
-        <Grid>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-        </Grid>
-      </Section>
-
-      {openAddPlaygroundModal && (
-        <Modal
-          closeButton
-          footer={
-            <Button filled small>
-              Add Playground
-            </Button>
-          }
-          title="New Playground"
-          toggleModal={setOpenAddPlaygroundModal}
-        >
-          <Form playground initialValues={{}} validationSchema={{}} />
-        </Modal>
-      )}
-    </DefaultLayout>
+    <>
+      <Map isLoading={isLoading} />
+      <PlaygroundInfo>
+        {/* FILTER DISPLAYS HERE <Section></Section> */}
+        {showUserSuccess && <Toast>{userSuccess}</Toast>}
+        {showPlaygroundSuccess && <Toast>{playgroundSuccess}</Toast>}
+        {displayError && renderErrorState()}
+        {displayPlaygrounds && <PlaygroundsList playgrounds={playgrounds} setOpenAddPlaygroundModal={setOpenAddPlaygroundModal} />}
+      </PlaygroundInfo>
+      {openAddPlaygroundModal && <AddPlaygroundForm setOpenAddPlaygroundModal={setOpenAddPlaygroundModal} />}
+    </>
   );
 };
-
-export default Playgrounds;

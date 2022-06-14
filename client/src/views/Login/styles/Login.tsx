@@ -21,6 +21,14 @@ export const Wrapper = styled.div.attrs(() => ({
   }
 `;
 
+export const ButtonWrapper = styled.div.attrs(() => ({
+  className: 'login-form-button-wrapper',
+}))`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
 export const FormWrapper = styled.div.attrs(() => ({
   className: 'login-form-wrapper',
 }))`
