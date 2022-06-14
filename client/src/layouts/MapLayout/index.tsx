@@ -1,5 +1,5 @@
 // COMPONENTS
-import { LoadingSpinner, Map } from 'components';
+import { Map } from 'components';
 
 // STYLED COMPONENTS
 import { Content, Main, MapWrapper } from './styles/MapLayout';
