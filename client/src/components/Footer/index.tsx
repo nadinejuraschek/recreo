@@ -10,7 +10,7 @@ export const Footer = ({ navFooter = false }: FooterProps): JSX.Element => {
       <Link>
         © {new Date().getFullYear()}{' '}
         <a href="https://github.com/nadinejuraschek" rel="noreferrer" target="_blank">
-          Nadine Juraschek
+          Nadine Pesso
         </a>
       </Link>
     </Container>

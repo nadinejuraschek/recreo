@@ -3,8 +3,8 @@ Review = require('../models/Review');
 
 module.exports.create = async (req, res) => {
   const playground = await Playground.findById(req.params.id);
-  const review = new Review(req.body);
-  review.author = req.author;
+  const review = new Review({...req.body, postedOn: new Date()});
+  review.author = req.body.author;
   playground.reviews.push(review);
   await review.save();
   await playground.save();

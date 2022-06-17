@@ -7,7 +7,7 @@ export const HorizontalImage = styled.div.attrs(() => ({
   position: absolute;
   bottom: 0;
 
-  height: 37%;
+  height: 34%;
   width: 100vw;
   z-index: -2;
 
@@ -27,7 +27,7 @@ export const HorizontalWave = styled.div.attrs(() => ({
   position: absolute;
   bottom: 0;
 
-  height: 38%;
+  height: 35%;
   width: 100vw;
   z-index: -2;
 

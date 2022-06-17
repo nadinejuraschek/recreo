@@ -59,7 +59,7 @@ export const usePlayground = (id?: string): Props => {
     for (let i = 0; i < ratings.length; i++) {
       sum = sum + ratings[i];
     }
-    return Math.round(sum / ratings.length);
+    return sum / ratings.length;
   };
 
   return {

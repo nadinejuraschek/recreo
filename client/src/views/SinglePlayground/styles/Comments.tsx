@@ -9,6 +9,12 @@ export const Container = styled.div.attrs(() => ({
   height: 100%;
 `;
 
+export const SummaryContainer = styled.div.attrs(() => ({
+  className: 'single-playground__comments-summary',
+}))`
+  padding: 4rem 0 2rem;
+`;
+
 export const Avatar = styled.div.attrs(() => ({
   className: 'single-playground__comments-avatar',
 }))``;
@@ -20,12 +26,22 @@ export const FormContainer = styled.div.attrs(() => ({
   }
 `;
 
-export const Rating = styled.div.attrs(() => ({
-  className: 'comment-form-rating',
+export const RaterWrapper = styled.div.attrs(() => ({
+  className: 'comment-form-rating-wrapper',
 }))`
-  font-size: 2rem;
-  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+
+  padding: 2rem 0 1rem;
+
   width: 100%;
+`;
+
+export const RaterLabel = styled.span.attrs(() => ({
+  className: 'comment-form-rating-label',
+}))`
+  font-size: 1.6rem;
+  margin-right: 1.5rem;
 `;
 
 export const ButtonWrapper = styled.div.attrs(() => ({

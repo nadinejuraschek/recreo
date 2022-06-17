@@ -2,11 +2,12 @@
 import { useContext, useEffect, useState } from 'react';
 
 // STYLED-COMPONENTS
+import { StyledMap } from './styles/Map';
 import { PlaygroundInfo } from './styles/Playgrounds';
 
 // COMPONENTS
 import { AddPlaygroundForm, ErrorState, PlaygroundsList } from './sections';
-import { LoadingSpinner, Map, Toast } from 'components';
+import { LoadingSpinner, Toast } from 'components';
 
 // CONTEXT
 import { PlaygroundContext } from 'context/PlaygroundContext';
@@ -44,7 +45,7 @@ export const Playgrounds = (): JSX.Element => {
 
   return (
     <>
-      <Map isLoading={isLoading} />
+      <StyledMap isLoading={isLoading} />
       <PlaygroundInfo>
         {/* FILTER DISPLAYS HERE <Section></Section> */}
         {showUserSuccess && <Toast>{userSuccess}</Toast>}

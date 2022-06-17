@@ -9,7 +9,7 @@ import axios from 'axios';
 import { UserContext } from './UserContext';
 
 // TYPES
-import { Playground, Review } from 'types';
+import { Playground } from 'types';
 
 export type PlaygroundContextType = {
   addPlayground: (formData: any) => void;
@@ -96,11 +96,9 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
 
     const newFormData = {
       author: user?.id,
-      body: formData.body,
+      body: formData.text,
       rating: formData.rating,
     };
-
-    console.log('newFormData: ', newFormData);
 
     axios({
       url: `/api/playgrounds/${playgroundId}/review`,
@@ -110,11 +108,10 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
     })
       .then((res) => {
         setIsLoading(false);
-        const addedReview = res.data as Review;
-        console.log('new review: ', addedReview);
-        setSuccess('Your review was added successfully!');
+        const addedReview = res.data;
+        setSuccess(addedReview);
         setTimeout(() => setSuccess(''), 5000);
-        // history.push(`/playgrounds/${playgroundId}`);
+        getPlaygrounds();
       })
       .catch((error) => {
         setIsLoading(false);

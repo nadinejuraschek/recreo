@@ -14,7 +14,7 @@ export const Info = ({ description = '', location = '', rating }: InfoProps): JS
         <Location>
           <LocationIcon /> {location}, 18km
         </Location>
-        {rating ? <Rating rating={rating} /> : null}
+        {rating ? <Rating rating={rating} withValue /> : null}
       </Subtitle>
       <Description>{description}</Description>
     </Wrapper>

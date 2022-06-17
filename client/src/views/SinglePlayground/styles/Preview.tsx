@@ -13,7 +13,7 @@ export const Wrapper = styled.section.attrs(() => ({
     height: 10rem;
     width: 10rem;
 
-    border-radius: 2rem;
+    border-radius: 1.2rem;
 
     &.selected {
       border: 3px solid var(--orange);
@@ -28,7 +28,7 @@ export const Wrapper = styled.section.attrs(() => ({
       height: 100%;
       width: 100%;
 
-      border-radius: 1.7rem;
+      border-radius: 0.8rem;
     }
   }
 

@@ -7,12 +7,12 @@ import { Wrapper } from './styles/Map';
 
 // COMPONENTS
 import { MapMarker } from './MapMarker';
-import { LoadingSpinner } from '../LoadingSpinner';
+import { LoadingContent } from 'components';
 
 // TYPES
 import { MapProps } from './types';
 
-export const Map = ({ isLoading = false, markers = [] }: MapProps): JSX.Element => {
+export const Map = ({ className = '', isLoading = false, markers = [] }: MapProps): JSX.Element => {
   const mapRef = useRef<MapboxMap | null>(null);
 
   const renderMarkers = () =>
@@ -21,10 +21,16 @@ export const Map = ({ isLoading = false, markers = [] }: MapProps): JSX.Element 
       return <MapMarker latitude={latitude} longitude={longitude} key={index} title={title} />;
     });
 
-  if (isLoading) return <LoadingSpinner />;
+  if (isLoading) {
+    return (
+      <Wrapper className={`map-wrapper ${className}`}>
+        <LoadingContent />
+      </Wrapper>
+    );
+  }
 
   return (
-    <Wrapper>
+    <Wrapper className={`map-wrapper ${className}`}>
       <ReactMapGL
         initialViewState={{ latitude: 48.78, longitude: 9.18, zoom: 15 }}
         mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}

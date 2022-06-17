@@ -32,6 +32,7 @@ export type Playground = {
 export type Review = {
   author: Author;
   body: string;
+  postedOn: Date;
   rating: number;
   _id: string;
   __v?: number;

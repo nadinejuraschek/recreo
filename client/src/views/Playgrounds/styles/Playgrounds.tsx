@@ -17,6 +17,10 @@ export const ButtonWrapper = styled.section.attrs(() => ({
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media only screen and (min-width: 900px) {
+    margin: 0 0 5rem;
+  }
 `;
 
 export const PlaygroundInfo = styled.div.attrs(() => ({

@@ -12,6 +12,9 @@ export const Container = styled.div.attrs(() => ({
   display: flex;
   align-items: center;
 
+  border-radius: 0.8rem 0.8rem 0 0;
+  overflow: hidden;
+
   height: 5rem;
   width: 100%;
 `;
@@ -19,7 +22,7 @@ export const Container = styled.div.attrs(() => ({
 export const Tab = styled.button.attrs(() => ({
   className: 'tabs-button',
 }))<TabProps>`
-  background-color: transparent;
+  background-color: var(--white__off);
   border: none;
   border-bottom: 4px solid var(--blue__opaque);
   font-size: 1.6rem;
@@ -36,6 +39,6 @@ export const Tab = styled.button.attrs(() => ({
     `}
 
   &:focus {
-    outline: 1px solid var(--orange);
+    outline: none;
   }
 `;

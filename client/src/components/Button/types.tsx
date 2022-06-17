@@ -14,4 +14,5 @@ export interface ButtonProps {
   $rounded?: boolean;
   $small?: boolean;
   type?: 'button' | 'submit' | 'reset';
+  $underlined?: boolean;
 }

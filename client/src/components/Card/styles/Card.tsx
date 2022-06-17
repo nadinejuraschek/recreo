@@ -7,7 +7,7 @@ export const Container = styled(Link).attrs(() => ({
 }))`
   background-color: var(--white__off);
   border: none;
-  border-radius: 2.4rem;
+  border-radius: 0.8rem;
   box-shadow: 0 2px 6px var(--shadow__sm);
   color: var(--blue__dark);
   overflow: hidden;
@@ -52,6 +52,12 @@ export const Body = styled.div.attrs(() => ({
     height: 100%;
     margin: 0;
   }
+`;
+
+export const Headline = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const Name = styled.h3.attrs(() => ({

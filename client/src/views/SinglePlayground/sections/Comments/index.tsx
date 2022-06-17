@@ -1,13 +1,15 @@
 // DEPENDENCIES
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import RaterNew from 'react-rating';
 
 // COMPONENTS
-import { Button, Comment, Form, InlineLink, Input } from 'components';
+import { Button, Comment, Form, InlineLink, Input, Title } from 'components';
 
 // STYLED COMPONENTS
-import { Container, EmptyComments, FormContainer, ButtonWrapper, Rating } from '../../styles/Comments';
+import { Container, EmptyComments, FormContainer, ButtonWrapper, RaterLabel, RaterWrapper, SummaryContainer } from '../../styles/Comments';
+import { RatingIcon } from 'components/Rating/styles/Rating';
 
 // SCHEMA
 import { commentSchema } from 'schemas';
@@ -21,16 +23,22 @@ import { usePlayground } from 'hooks/usePlayground';
 // INTERFACES
 import { CommentsProps } from '../../types';
 
+// STYLING
+
 export const Comments = ({ reviews = [] }: CommentsProps): JSX.Element => {
+  const [rating, setRating] = useState(0); // initial rating value
+
   const { addReview } = useContext(PlaygroundContext);
   const { user } = useContext(UserContext);
 
   const { playground } = usePlayground();
 
-  console.log('playground: ', playground);
+  const handleRating = (rate: number): void => {
+    setRating(rate);
+  };
 
   const defaultValues = {
-    body: '',
+    text: '',
     rating: 0,
   };
 
@@ -44,37 +52,43 @@ export const Comments = ({ reviews = [] }: CommentsProps): JSX.Element => {
     mode: 'onBlur',
   });
 
-  const onSubmit = (formData: { body: string; rating: number }): void => {
-    console.log('submitted comment data: ', formData);
-    if (addReview && playground) addReview(formData, playground._id);
+  const onSubmit = (formData: { body: string }): void => {
+    if (addReview && playground) addReview({ ...formData, rating }, playground._id);
   };
+
+  console.log('rating: ', rating);
 
   return (
     <Container>
+      {playground?.rating && (
+        <SummaryContainer>
+          <Title>{playground?.reviews.length} Reviews</Title>
+        </SummaryContainer>
+      )}
       {!user ? (
         <EmptyComments>
           <InlineLink to="/login">Login</InlineLink> to leave a review.
         </EmptyComments>
       ) : (
         reviews.map((review) => {
-          const { author, body, _id } = review;
+          const { author, body, postedOn, _id, rating } = review;
 
-          console.log('review: ', review);
-
-          return (
-            <Comment
-              body={body}
-              key={_id}
-              // username={author.username}
-            />
-          );
+          return <Comment body={body} key={_id} postedOn={postedOn} rating={rating} username={author.username} />;
         })
       )}
       {user && (
         <FormContainer>
-          <Form handleSubmit={handleSubmit(onSubmit)}>
-            <Rating>⭐⭐⭐⭐⭐</Rating>
-            <input name="rating" placeholder="Rating" type="number" />
+          <Form handleSubmit={handleSubmit(onSubmit)} alignLeft>
+            <RaterWrapper>
+              <RaterLabel>Your Rating: </RaterLabel>
+              <RaterNew
+                emptySymbol={<RatingIcon color="var(--blue__opaque)" />}
+                fullSymbol={<RatingIcon />}
+                initialRating={rating}
+                onClick={handleRating}
+                stop={5}
+              />
+            </RaterWrapper>
             <Input
               name="text"
               placeholder="Tell us about your playground experience..."

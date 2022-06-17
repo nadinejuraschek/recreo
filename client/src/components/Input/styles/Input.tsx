@@ -76,7 +76,7 @@ export const StyledInput = styled.input.attrs(() => ({
   }
 `;
 
-export const StyledTextarea = styled.input.attrs(() => ({
+export const StyledTextarea = styled.textarea.attrs(() => ({
   className: 'textarea',
 }))`
   background-color: #f8f8f880;
@@ -86,13 +86,7 @@ export const StyledTextarea = styled.input.attrs(() => ({
   font-size: 1.6rem;
   font-weight: normal;
   margin-bottom: 0.75rem;
-  padding: 0 0 0 0.75rem;
-
-  height: 12rem;
-
-  @media only screen and (min-width: 900px) {
-    height: 12rem;
-  }
+  padding: 1.5rem 0.75rem 0.75rem;
 
   &::placeholder {
     color: var(--blue__medium);
