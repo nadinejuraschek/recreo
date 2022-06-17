@@ -2,13 +2,14 @@
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Rating as Rater } from 'react-simple-star-rating';
+import RaterNew from 'react-rating';
 
 // COMPONENTS
 import { Button, Comment, Form, InlineLink, Input, Title } from 'components';
 
 // STYLED COMPONENTS
 import { Container, EmptyComments, FormContainer, ButtonWrapper, RaterLabel, RaterWrapper, SummaryContainer } from '../../styles/Comments';
+import { RatingIcon } from 'components/Rating/styles/Rating';
 
 // SCHEMA
 import { commentSchema } from 'schemas';
@@ -33,7 +34,7 @@ export const Comments = ({ reviews = [] }: CommentsProps): JSX.Element => {
   const { playground } = usePlayground();
 
   const handleRating = (rate: number): void => {
-    setRating(rate * 0.05);
+    setRating(rate);
   };
 
   const defaultValues = {
@@ -54,6 +55,8 @@ export const Comments = ({ reviews = [] }: CommentsProps): JSX.Element => {
   const onSubmit = (formData: { body: string }): void => {
     if (addReview && playground) addReview({ ...formData, rating }, playground._id);
   };
+
+  console.log('rating: ', rating);
 
   return (
     <Container>
@@ -78,7 +81,13 @@ export const Comments = ({ reviews = [] }: CommentsProps): JSX.Element => {
           <Form handleSubmit={handleSubmit(onSubmit)} alignLeft>
             <RaterWrapper>
               <RaterLabel>Your Rating: </RaterLabel>
-              <Rater allowHalfIcon onClick={handleRating} ratingValue={rating} />
+              <RaterNew
+                emptySymbol={<RatingIcon color="var(--blue__opaque)" />}
+                fullSymbol={<RatingIcon />}
+                initialRating={rating}
+                onClick={handleRating}
+                stop={5}
+              />
             </RaterWrapper>
             <Input
               name="text"

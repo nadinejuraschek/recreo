@@ -93,7 +93,13 @@ export const StyledLink = styled(Link).attrs(() => ({
       background-color: transparent;
       border: none;
       color: var(--orange);
+      font-size: 1.4rem;
+      height: auto;
       text-decoration: underline;
+
+      @media only screen and (min-width: 900px) {
+        font-size: 1.6rem;
+      }
     `}
 
   &:focus {
@@ -145,10 +151,10 @@ export const StyledButton = styled.button.attrs(() => ({
   border-radius: 0.5rem;
   font-size: 1.6rem;
   font-weight: 700;
-  padding: 0.5rem 1rem;
+  padding: 1rem 1.75rem;
 
   height: 5rem;
-  min-width: 120px;
+  min-width: 12rem;
 
   transition: all 0.3s;
 
@@ -223,7 +229,13 @@ export const StyledButton = styled.button.attrs(() => ({
       background-color: transparent;
       border: none;
       color: var(--orange);
+      font-size: 1.4rem;
+      height: auto;
       text-decoration: underline;
+
+      @media only screen and (min-width: 900px) {
+        font-size: 1.6rem;
+      }
     `}
 
   &:focus {

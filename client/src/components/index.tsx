@@ -10,6 +10,7 @@ export * from './Footer';
 export * from './Form';
 export * from './InlineLink';
 export * from './Input';
+export * from './LoadingContent';
 export * from './LoadingSpinner';
 export * from './Map';
 export * from './Modal';

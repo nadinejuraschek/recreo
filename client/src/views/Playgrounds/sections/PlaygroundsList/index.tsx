@@ -19,13 +19,13 @@ export const PlaygroundsList = ({ playgrounds, setOpenAddPlaygroundModal }: Play
   return (
     <>
       <Section>
-        <ButtonWrapper>
-          {user ? (
+        {user && (
+          <ButtonWrapper>
             <Button $filled handleClick={() => setOpenAddPlaygroundModal(true)}>
               Add a Playground
             </Button>
-          ) : null}
-        </ButtonWrapper>
+          </ButtonWrapper>
+        )}
         <Grid>
           {playgrounds.map((playground) => {
             const { _id, image, location, title } = playground;

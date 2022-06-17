@@ -1,33 +1,38 @@
 // DEPENDENCIES
+import { useState } from 'react';
 import { formatDistance } from 'date-fns';
 
 // COMPONENTS
 import { Rating } from 'components';
 
 // STYLED COMPONENTS
-import { Avatar, Container, Header, Name, PostDetails, Text, TimePosted, VerticalDivider } from './styles/Comment';
+import { Container, Header, Name, PostDetails, ReadMore, TextContainer, TimePosted, VerticalDivider } from './styles/Comment';
+
+// UTILS
+import { trimBodyAtWordEnd } from 'utils';
 
 // INTERFACES
 import { CommentProps } from './types';
 
 export const Comment = ({ body = '', postedOn, rating = 0, username = '' }: CommentProps): JSX.Element => {
-  // TODO: add time posted
-  // TODO: add avatar
+  const [showFullComment, setShowFullComment] = useState(false);
 
   const timePosted = formatDistance(new Date(postedOn), new Date(), { addSuffix: true });
+
+  const onReadMore = (): void => setShowFullComment(!showFullComment);
+
+  const trimmedBody = (
+    <>
+      <p>{trimBodyAtWordEnd(body.substring(0, 120))}</p> <ReadMore onClick={onReadMore}>Read More</ReadMore>
+    </>
+  );
 
   return (
     <Container>
       <Header>
-        <Avatar>
-          <img
-            src="https://images.unsplash.com/photo-1445633629932-0029acc44e88?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
-            alt={username}
-          />
-        </Avatar>
         <Rating rating={rating} />
       </Header>
-      <Text>{body}</Text>
+      <TextContainer>{showFullComment || body.length <= 120 ? body : trimmedBody}</TextContainer>
       <PostDetails>
         <Name>by {username}</Name>
         <VerticalDivider>∙</VerticalDivider>

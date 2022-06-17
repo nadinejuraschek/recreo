@@ -1,4 +1,5 @@
 export interface MapProps {
+  className?: string;
   isLoading?: boolean;
   markers?: MapMarkerProps[];
 }

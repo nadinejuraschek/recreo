@@ -21,6 +21,7 @@ export const Subtitle = styled.div.attrs(() => ({
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1.5rem;
 
   font-size: 1.8rem;
   line-height: 2rem;

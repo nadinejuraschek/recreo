@@ -21,7 +21,7 @@ export const Input = ({
   const renderInput = () => {
     switch (type) {
       case 'textarea':
-        return <StyledTextarea maxlength={maxChars} placeholder={placeholder} rows={5} {...register(name)} type="textarea" />;
+        return <StyledTextarea maxlength={maxChars} placeholder={placeholder} rows={5} {...register(name)} />;
       case 'number':
         return (
           <Wrapper>

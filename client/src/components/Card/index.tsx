@@ -1,5 +1,5 @@
 // STYLED COMPONENTS
-import { Body, Container, Image, Location, Name } from './styles/Card';
+import { Body, Container, Headline, Image, Location, Name } from './styles/Card';
 
 // COMPONENTS
 import { AmenitiesList } from '../AmenitiesList';
@@ -20,10 +20,12 @@ export const Card = ({ id, imageSrc = '', location = '', name = '' }: CardProps)
       <Image src={imageSrc} alt={name} />
       <Body>
         <Location>{location}</Location>
-        <Name>{name}</Name>
+        <Headline>
+          <Name>{name}</Name>
+          <Rating rating={rating} withValue />
+        </Headline>
         <Divider color="var(--blue__opaque)" />
         <AmenitiesList features={playground?.features || []} small />
-        <Rating rating={rating} />
       </Body>
     </Container>
   );
