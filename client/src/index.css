@@ -17,10 +17,16 @@
   --blue__opaque: #3d405b50;
 
   --red: #e0685f;
-  --red__light: #e0685f50;
+  --red__light: #e98e88;
 
   --green: #81b29a;
-  --green__light: #81b29a50;
+  --green__light: #c8f8e1;
+
+  --danger: #b12c1c;
+  --danger__light: #ffe4e4;
+
+  --success: #4b7053;
+  --success__light: #d7e7df;
 
   --shadow__sm: #3d405b25;
   --shadow__lg: #3d405b50;
