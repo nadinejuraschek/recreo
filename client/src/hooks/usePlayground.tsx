@@ -13,6 +13,7 @@ interface Props {
   isLoading: boolean;
   playground: Playground | undefined;
   rating: number;
+  reviews: Review[] | undefined;
 }
 
 export const usePlayground = (id?: string): Props => {
@@ -67,5 +68,6 @@ export const usePlayground = (id?: string): Props => {
     isLoading,
     playground,
     rating,
+    reviews: playground?.reviews,
   };
 };

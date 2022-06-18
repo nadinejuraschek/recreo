@@ -61,7 +61,6 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
       .catch((err) => {
         // console.error(err);
         setError(err);
-        setTimeout(() => setError(''), 5000);
         setIsLoading(false);
       });
   };
@@ -87,8 +86,7 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
       .then((res) => {
         setIsLoading(false);
         const addedPlayground = res.data as Playground;
-        setSuccess('Your playground was created successfully!');
-        setTimeout(() => setSuccess(''), 5000);
+        setTimeout(() => setSuccess('Your playground was created successfully!'), 5000);
         history.push(`/playgrounds/${addedPlayground._id}`);
       })
       .catch((error) => {
@@ -117,15 +115,13 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
       .then((res) => {
         setIsLoading(false);
         const addedReview = res.data;
-        setSuccess(addedReview);
-        setTimeout(() => setSuccess(''), 5000);
+        setTimeout(() => setSuccess(addedReview), 5000);
         getPlaygrounds();
       })
       .catch((error) => {
         setIsLoading(false);
         // console.log('Error: ', error.response);
         setError('Something went wrong. Please try again later.');
-        setTimeout(() => setError(''), 5000);
       });
   };
 
