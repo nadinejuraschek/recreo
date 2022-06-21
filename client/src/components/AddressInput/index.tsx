@@ -19,7 +19,7 @@ export const AddressInput = ({ error, handleSelect, label = true, placeholder = 
     <Container>
       {label && <Label>Location</Label>}
       <Wrapper>
-        <GeoapifyContext apiKey="">
+        <GeoapifyContext apiKey={process.env.REACT_APP_GEOAPIFY_TOKEN}>
           <GeoapifyGeocoderAutocomplete
             lang="en"
             limit={3}
