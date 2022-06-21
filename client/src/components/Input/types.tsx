@@ -8,5 +8,5 @@ export interface InputProps {
   placeholder?: string;
   register: any;
   step?: string;
-  type?: string;
+  type?: 'password' | 'number' | 'text' | 'textarea';
 }

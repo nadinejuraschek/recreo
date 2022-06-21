@@ -22,6 +22,7 @@ import { PlaygroundContext } from 'context/PlaygroundContext';
 import { AddPlaygroundInputs, AddPlaygroundFormProps } from '../../types';
 
 export const AddPlaygroundForm = ({ setOpenAddPlaygroundModal }: AddPlaygroundFormProps): JSX.Element => {
+  const [location, setLocation] = useState<string>('');
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>();
   const { addPlayground } = useContext(PlaygroundContext);
 
@@ -41,6 +42,8 @@ export const AddPlaygroundForm = ({ setOpenAddPlaygroundModal }: AddPlaygroundFo
     mode: 'onChange',
   });
 
+  console.log(register);
+
   const onSubmit = (formData: AddPlaygroundInputs): void => {
     if (addPlayground) addPlayground({ ...formData, features: selectedFeatures });
   };
@@ -57,9 +60,9 @@ export const AddPlaygroundForm = ({ setOpenAddPlaygroundModal }: AddPlaygroundFo
         title="New Playground"
         toggleModal={setOpenAddPlaygroundModal}
       >
-        <AddressInput />
         <PlaygroundWrapper>
           <Input label="Name" name="name" placeholder="Name" type="text" register={register} error={errors?.name?.message} />
+          <AddressInput handleSelect={register('location').onChange} placeholder="Location" value={location} />
           <Input
             label="Location"
             name="location"

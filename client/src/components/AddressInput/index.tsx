@@ -1,25 +1,34 @@
-import { useState } from 'react';
+// DEPENDENCIES
 import { GeoapifyGeocoderAutocomplete, GeoapifyContext } from '@geoapify/react-geocoder-autocomplete';
 import '@geoapify/geocoder-autocomplete/styles/minimal.css';
 
-export const AddressInput = (): JSX.Element => {
-  const [place, setPlace] = useState('');
+// STYLED COMPONENTS
+import { Container, Label, Validation } from '../Input/styles/Input';
 
-  const onPlaceSelect = (value: any) => {
-    setPlace(value.properties.formatted);
+// INTERFACE
+import { AddressInputProps } from './types';
+
+export const AddressInput = ({ error, handleSelect, label = true, placeholder = '', value }: AddressInputProps): JSX.Element => {
+  const onPlaceSelect = (value: any): void => {
+    const event = { target: { name: 'location', value: value.properties.formatted } };
+    handleSelect(event);
   };
 
   return (
-    <GeoapifyContext apiKey="">
-      <GeoapifyGeocoderAutocomplete
-        placeholder="Enter address here"
-        type="street"
-        lang="en"
-        limit={3}
-        value={place}
-        // @ts-ignore
-        placeSelect={onPlaceSelect}
-      />
-    </GeoapifyContext>
+    <Container>
+      {label && <Label>Location</Label>}
+      <GeoapifyContext apiKey="">
+        <GeoapifyGeocoderAutocomplete
+          lang="en"
+          limit={3}
+          placeholder={placeholder}
+          // @ts-ignore
+          placeSelect={onPlaceSelect}
+          type="street"
+          value={value}
+        />
+      </GeoapifyContext>
+      {error && <Validation>{error}</Validation>}
+    </Container>
   );
 };
