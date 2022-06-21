@@ -1,3 +1,6 @@
+// COMPONENTS
+import { AddressInput } from '../AddressInput';
+
 // STYLED COMPONENTS
 import { Container, Icon, Label, StyledInput, StyledTextarea, Validation, Wrapper } from './styles/Input';
 
@@ -37,6 +40,8 @@ export const Input = ({
             />
           </Wrapper>
         );
+      case 'address':
+        return <AddressInput />;
       default:
         return (
           <Wrapper>
