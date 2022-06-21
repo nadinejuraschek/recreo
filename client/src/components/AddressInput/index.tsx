@@ -4,11 +4,12 @@ import '@geoapify/geocoder-autocomplete/styles/minimal.css';
 
 // STYLED COMPONENTS
 import { Container, Label, Validation } from '../Input/styles/Input';
+import { Wrapper } from './styles';
 
 // INTERFACE
 import { AddressInputProps } from './types';
 
-export const AddressInput = ({ error, handleSelect, label = true, placeholder = '', value }: AddressInputProps): JSX.Element => {
+export const AddressInput = ({ error, handleSelect, label = true, placeholder = '' }: AddressInputProps): JSX.Element => {
   const onPlaceSelect = (value: any): void => {
     const event = { target: { name: 'location', value: value.properties.formatted } };
     handleSelect(event);
@@ -17,17 +18,17 @@ export const AddressInput = ({ error, handleSelect, label = true, placeholder = 
   return (
     <Container>
       {label && <Label>Location</Label>}
-      <GeoapifyContext apiKey="">
-        <GeoapifyGeocoderAutocomplete
-          lang="en"
-          limit={3}
-          placeholder={placeholder}
-          // @ts-ignore
-          placeSelect={onPlaceSelect}
-          type="street"
-          value={value}
-        />
-      </GeoapifyContext>
+      <Wrapper>
+        <GeoapifyContext apiKey="">
+          <GeoapifyGeocoderAutocomplete
+            lang="en"
+            limit={3}
+            placeholder={placeholder}
+            // @ts-ignore
+            placeSelect={onPlaceSelect}
+          />
+        </GeoapifyContext>
+      </Wrapper>
       {error && <Validation>{error}</Validation>}
     </Container>
   );
