@@ -30,13 +30,13 @@ export const SinglePlayground = (): JSX.Element => {
     return <ErrorState />;
   }
 
-  const { description, features, location, rating, reviews, title, _id } = playground;
+  const { description, favorites, features, location, rating, reviews, title, _id } = playground;
 
   // TODO: Add Multiple Images
 
   return (
     <Content>
-      <Header name={title} />
+      <Header favorites={favorites} name={title} playgroundId={_id} />
       <Info description={description} location={location} rating={rating} />
       <Tabs active={activeTab} handleClick={setActiveTab} options={tabOptions} />
       <TabContent>

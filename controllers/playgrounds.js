@@ -49,7 +49,6 @@ module.exports.create = async (req, res, next) => {
 
   await playground.save();
   res.json(playground);
-
 };
 
 module.exports.edit = async (req, res) => {
@@ -57,7 +56,34 @@ module.exports.edit = async (req, res) => {
   const editedPlayground = await Playground.findByIdAndUpdate(id, {
     ...req.body.playground,
   });
+
   res.send('success', 'Successfully updated this playground!');
+};
+
+module.exports.handleFavorite = async (req, res) => {
+  const { id } = req.params;
+
+  const userId = req.body.userId;
+
+  const currentPlayground = await Playground.findById(id);
+
+  const isUserFavorite = currentPlayground.favorites.includes(userId);
+
+  if (isUserFavorite) {
+    const newFavorites = currentPlayground.favorites.filter(user => user !== userId);
+    const editedPlayground = await Playground.findByIdAndUpdate(id, {
+      ...currentPlayground,
+      favorites: newFavorites,
+    });
+  } else {
+    const newFavorites = currentPlayground.favorites.push(userId);
+    const editedPlayground = await Playground.findByIdAndUpdate(id, {
+      ...currentPlayground,
+      favorites: newFavorites,
+    });
+  }
+
+  res.status(200).send('Successfully updated this playground!');
 };
 
 module.exports.delete = async (req, res) => {

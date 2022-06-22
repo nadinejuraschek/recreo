@@ -15,6 +15,7 @@ export type PlaygroundContextType = {
   addPlayground: (formData: PlaygroundFormData) => void;
   addReview: (formData: ReviewFormData, playgroundId: string) => void;
   error: string;
+  handleFavorite: (playgroundId: string, userId: string) => void;
   isLoading: boolean;
   playgrounds: Playground[];
   success: string;
@@ -71,6 +72,7 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
     const newFormData = {
       author: user?.id,
       description: formData.description,
+      favorites: [],
       features: formData.features,
       image: 'https://images.pexels.com/photos/571249/pexels-photo-571249.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
       location: formData.location,
@@ -88,6 +90,27 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
         const addedPlayground = res.data as Playground;
         setTimeout(() => setSuccess('Your playground was created successfully!'), 5000);
         history.push(`/playgrounds/${addedPlayground._id}`);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        // console.log('Error: ', error.response);
+        setError('Something went wrong. Please try again later.');
+        setTimeout(() => setError(''), 5000);
+      });
+  };
+
+  const handleFavorite = (playgroundId: string, userId: string): void => {
+    setIsLoading(true);
+
+    axios({
+      url: `/api/playgrounds/${playgroundId}/favorite`,
+      method: 'PUT',
+      data: { userId },
+      withCredentials: true,
+    })
+      .then((res) => {
+        setIsLoading(false);
+        setTimeout(() => setSuccess(res.data), 5000);
       })
       .catch((error) => {
         setIsLoading(false);
@@ -126,7 +149,7 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
   };
 
   return (
-    <PlaygroundContext.Provider value={{ addPlayground, addReview, error, isLoading, playgrounds, success }}>
+    <PlaygroundContext.Provider value={{ addPlayground, addReview, error, handleFavorite, isLoading, playgrounds, success }}>
       {props.children}
     </PlaygroundContext.Provider>
   );

@@ -18,6 +18,7 @@ const PlaygroundSchema = new Schema({
     },
   },
   description: String,
+  favorites: [String],
   features: [String],
   location: String,
   author: {

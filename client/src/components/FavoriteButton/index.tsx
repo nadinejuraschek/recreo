@@ -1,11 +1,24 @@
 // DEPENDENCIES
-import { useState } from 'react';
+import { useContext } from 'react';
 
 // STYLED COMPONENTS
 import { Icon } from './styles/Favorite';
 
-export const FavoriteButton = (): JSX.Element => {
-  const [active, setActive] = useState<boolean>(false);
+// ICONS
+import { ReactComponent as HeartIcon } from 'assets/heart.svg';
 
-  return <Icon active={active} onClick={() => setActive(!active)} />;
+// CONTEXT
+import { PlaygroundContext } from 'context';
+
+// INTERFACES
+import { FavoriteButtonProps } from './types';
+
+export const FavoriteButton = ({ isFavorite = false, playgroundId, userId }: FavoriteButtonProps): JSX.Element => {
+  const { handleFavorite } = useContext(PlaygroundContext);
+
+  return (
+    <Icon isFavorite={isFavorite} onClick={() => handleFavorite?.(playgroundId, userId)}>
+      <HeartIcon />
+    </Icon>
+  );
 };

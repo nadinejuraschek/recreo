@@ -23,4 +23,10 @@ router
   )
   .delete(isAuthor, playgroundController.delete);
 
+router
+  .route('/:id/favorite')
+  .put(
+    playgroundController.handleFavorite
+  );
+
 module.exports = router;

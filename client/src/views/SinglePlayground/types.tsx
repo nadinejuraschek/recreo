@@ -1,8 +1,7 @@
-// TYPES
-import { Review } from 'types';
-
 export interface HeaderProps {
+  favorites: string[];
   name?: string;
+  playgroundId: string;
 }
 
 export interface InfoProps {

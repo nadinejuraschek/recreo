@@ -17,6 +17,7 @@ export type Geometry = {
 export type Playground = {
   author: Author;
   description: string;
+  favorites: string[];
   features: string[];
   geometry: Geometry;
   image: string;
