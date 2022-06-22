@@ -1,5 +1,5 @@
 // STYLED COMPONENTS
-import { Container, Tab } from './styles/Tabs';
+import { Container, Tab } from './styles';
 
 // INTERFACES
 import { TabsProps } from './types';

@@ -5,13 +5,14 @@ import { useContext } from 'react';
 import { Button, InlineLink, Title } from 'components';
 
 // STYLED COMPONENTS
-import { EmptyState, Section } from '../../styles/Playgrounds';
+import { EmptyState } from './styles';
+import { Section } from '../../styles';
 
 // CONTEXT
 import { UserContext } from 'context/UserContext';
 
 // INTERFACES
-import { ErrorStateProps } from '../../types';
+import { ErrorStateProps } from './types';
 
 export const ErrorState = ({ setOpenAddPlaygroundModal, setShowAllPlaygrounds }: ErrorStateProps): JSX.Element => {
   const { user } = useContext(UserContext);

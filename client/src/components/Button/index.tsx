@@ -1,5 +1,5 @@
 // STYLED COMPONENTS
-import { StyledLink, StyledButton } from './styles/Button';
+import { StyledLink, StyledButton } from './styles';
 
 // INTERFACES
 import { ButtonProps } from './types';

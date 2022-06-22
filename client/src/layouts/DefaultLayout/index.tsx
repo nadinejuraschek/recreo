@@ -1,5 +1,5 @@
 // STYLED COMPONENTS
-import { Main } from './styles/DefaultLayout';
+import { Main } from './styles';
 
 // INTERFACES
 import { DefaultLayoutProps } from './types';

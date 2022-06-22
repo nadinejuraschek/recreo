@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import ReactMapGL, { MapboxMap } from 'react-map-gl';
 
 // STYLED COMPONENTS
-import { Wrapper } from './styles/Map';
+import { Wrapper } from './styles';
 
 // COMPONENTS
 import { MapMarker } from './MapMarker';

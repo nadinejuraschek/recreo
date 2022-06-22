@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 // STYLED COMPONENTS
-import { Content, TabContent } from './styles/SinglePlayground';
+import { Content, TabContent } from './styles';
 
 // COMPONENTS
 import { AmenitiesList } from 'components';

@@ -1,5 +1,5 @@
 // STYLED COMPONENTS
-import { Container } from './styles/Form';
+import { Container } from './styles';
 
 // INTERFACE
 import { FormProps } from './types';

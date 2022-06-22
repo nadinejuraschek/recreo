@@ -10,3 +10,7 @@ export interface InputProps {
   step?: string;
   type?: 'password' | 'number' | 'text' | 'textarea';
 }
+
+export interface StyledInputProps {
+  withIcon: boolean;
+}

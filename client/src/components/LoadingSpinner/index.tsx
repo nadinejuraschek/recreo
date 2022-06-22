@@ -1,5 +1,5 @@
 // STYLED COMPONENTS
-import { Container, SpinnerContainer, SpinnerPath, SVG } from './styles/LoadingSpinner';
+import { Container, SpinnerContainer, SpinnerPath, SVG } from './styles';
 
 // INTERFACES
 import { LoadingSpinnerProps } from './types';

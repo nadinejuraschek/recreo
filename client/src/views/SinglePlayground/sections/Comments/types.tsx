@@ -5,7 +5,3 @@ export interface CommentsProps {
   rating?: number;
   reviews: Review[];
 }
-
-export interface CommentFormProps {
-  playgroundId: string;
-}

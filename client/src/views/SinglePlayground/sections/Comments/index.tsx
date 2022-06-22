@@ -3,10 +3,10 @@ import { useContext } from 'react';
 
 // COMPONENTS
 import { Comment, InlineLink, Title } from 'components';
-import { CommentForm } from './CommentForm';
+import { CommentForm } from './components/CommentForm';
 
 // STYLED COMPONENTS
-import { Container, EmptyComments, SummaryContainer } from '../../styles/Comments';
+import { Container, EmptyComments, SummaryContainer } from './styles';
 
 // CONTEXT
 import { UserContext } from 'context';

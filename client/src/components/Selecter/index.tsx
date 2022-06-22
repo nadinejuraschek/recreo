@@ -2,8 +2,8 @@
 import SelectSearch from 'react-select-search';
 
 // STYLED COMPONENTS
-import { Label } from '../Input/styles/Input';
-import { StyledSelectSearch } from './styles/Selecter';
+import { Label } from '../Input/styles';
+import { StyledSelectSearch } from './styles';
 
 // INTERFACES
 import { SelecterProps } from './types';

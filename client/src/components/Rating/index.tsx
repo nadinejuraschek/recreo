@@ -1,5 +1,5 @@
 // STYLED COMPONENTS
-import { NumberRating, RatingWrapper, RatingIcon, RatingValue } from './styles/Rating';
+import { NumberRating, RatingWrapper, RatingIcon, RatingValue } from './styles';
 
 // INTERFACES
 import { RatingProps } from './types';

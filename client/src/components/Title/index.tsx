@@ -1,5 +1,5 @@
 // STYLED COMPONENTS
-import { StyledTitle } from './styles/Title';
+import { StyledTitle } from './styles';
 
 // INTERFACES
 import { TitleProps } from './types';

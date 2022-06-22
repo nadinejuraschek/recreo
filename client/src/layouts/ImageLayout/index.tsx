@@ -1,5 +1,5 @@
 // STYLED COMPONENTS
-import { HorizontalImage, HorizontalWave, VerticalImage, VerticalWave, Main } from './styles/ImageLayout';
+import { HorizontalImage, HorizontalWave, VerticalImage, VerticalWave, Main } from './styles';
 
 // ICONS, IMAGES
 import horizontalWave from 'assets/wave-horizontal.svg';

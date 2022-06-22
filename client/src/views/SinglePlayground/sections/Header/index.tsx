@@ -2,7 +2,7 @@
 // import { useContext } from 'react';
 
 // STYLED COMPONENTS
-import { HeaderWrapper, HeaderLeft, HeaderRight, HeaderTitle } from '../../styles/Header';
+import { HeaderWrapper, HeaderLeft, HeaderRight, HeaderTitle } from './styles';
 
 // COMPONENTS
 import {
@@ -15,7 +15,7 @@ import {
 // import { UserContext } from 'context';
 
 // INTERFACES
-import { HeaderProps } from '../../types';
+import { HeaderProps } from './types';
 
 export const Header = ({ name = '' }: HeaderProps): JSX.Element => {
   // const { user } = useContext(UserContext);

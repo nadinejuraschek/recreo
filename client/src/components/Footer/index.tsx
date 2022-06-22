@@ -1,5 +1,5 @@
 // STYLED COMPONENTS
-import { Container, Link } from './styles/Footer';
+import { Container, Link } from './styles';
 
 // INTERFACES
 import { FooterProps } from './types';

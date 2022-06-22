@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 // STYLED COMPONENTS
-import { FormWrapper, Wrapper } from './styles/Register';
+import { FormWrapper, Wrapper } from './styles';
 
 // COMPONENTS
 import { Button, Divider, Form, Input, Title } from 'components';
