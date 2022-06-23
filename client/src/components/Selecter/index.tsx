@@ -11,23 +11,21 @@ import { SelecterProps } from './types';
 // UTILS
 import { fuzzySearch } from 'utils/fuzzySearch';
 
-export const Selecter = ({ label = '', handleChange, options, placeholder }: SelecterProps): JSX.Element => {
-  return (
-    <>
-      {label && <Label>{label}</Label>}
-      <StyledSelectSearch>
-        <SelectSearch
-          closeOnSelect
-          emptyMessage="Not found"
-          filterOptions={fuzzySearch}
-          multiple
-          onChange={handleChange}
-          options={options}
-          placeholder={placeholder}
-          printOptions="on-focus"
-          search
-        />
-      </StyledSelectSearch>
-    </>
-  );
-};
+export const Selecter = ({ label = '', handleChange, options, placeholder }: SelecterProps): JSX.Element => (
+  <>
+    {label && <Label>{label}</Label>}
+    <StyledSelectSearch>
+      <SelectSearch
+        closeOnSelect
+        emptyMessage="Not found"
+        filterOptions={fuzzySearch}
+        multiple
+        onChange={handleChange}
+        options={options}
+        placeholder={placeholder}
+        printOptions="on-focus"
+        search
+      />
+    </StyledSelectSearch>
+  </>
+);
