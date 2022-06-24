@@ -1,6 +1,6 @@
 // REACT
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 // AXIOS
 import axios from 'axios';
@@ -41,6 +41,9 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
   const [playgrounds, setPlaygrounds] = useState<Playground[]>();
 
   const history = useHistory();
+  const { search } = useLocation();
+
+  const pagination = search.replace(/^\D+/g, '');
 
   const { user } = useContext(UserContext);
 
@@ -51,7 +54,7 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
   const getPlaygrounds = () => {
     setIsLoading(true);
     axios({
-      url: '/api/playgrounds',
+      url: `/api/playgrounds?page=${pagination}`,
       method: 'GET',
     })
       .then((res: any): void => {
