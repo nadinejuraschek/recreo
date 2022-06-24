@@ -27,6 +27,11 @@ const App = (): JSX.Element => (
             <Home />
           </ImageLayout>
         </Route>
+        <Route exact path="/logout">
+          <ImageLayout>
+            <Home />
+          </ImageLayout>
+        </Route>
 
         {/* Auth */}
         <Route exact path="/login">
