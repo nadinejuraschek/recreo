@@ -24,12 +24,19 @@ module.exports.getPlaygrounds = async (req, res) => {
 };
 
 module.exports.getSinglePlayground = async (req, res) => {
+  const page = req.query.page || 0;
+  const reviewsPerPage = 6;
+
   await Playground.findById(req.params.id)
     .populate({
       path: 'reviews',
       populate: {
         path: 'author',
         select: 'username',
+      },
+      options: {
+        skip: page * reviewsPerPage,
+        limit : reviewsPerPage,
       },
     })
     .populate({

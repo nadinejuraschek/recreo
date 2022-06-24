@@ -1,6 +1,6 @@
 // REACT
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 // AXIOS
 import axios from 'axios';
@@ -24,6 +24,10 @@ export const usePlayground = (id?: string): Props => {
   const [playground, setPlayground] = useState<Playground>();
   const [rating, setRating] = useState<number>(0);
 
+  const { search } = useLocation();
+
+  const pagination = search.replace(/^\D+/g, '');
+
   // GET
   useEffect(() => {
     getSinglePlayground();
@@ -32,7 +36,7 @@ export const usePlayground = (id?: string): Props => {
   const getSinglePlayground = (): void => {
     setIsLoading(true);
     axios({
-      url: `/api/playgrounds/${id || paramId}`,
+      url: `/api/playgrounds/${id || paramId}?page=${pagination}`,
       method: 'GET',
     })
       .then((res: any): void => {
