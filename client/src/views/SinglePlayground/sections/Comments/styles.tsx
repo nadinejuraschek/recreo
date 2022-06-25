@@ -7,12 +7,8 @@ export const Container = styled.div.attrs(() => ({
   grid-row: 1 / 2;
 
   height: 100%;
-`;
 
-export const SummaryContainer = styled.div.attrs(() => ({
-  className: 'single-playground__comments-summary',
-}))`
-  padding: 4rem 0 2rem;
+  padding: 4rem 0 0;
 `;
 
 export const EmptyComments = styled.div.attrs(() => ({

@@ -42,7 +42,7 @@ export const SinglePlayground = (): JSX.Element => {
       <TabContent>
         {activeTab === 'images' && <Preview name={title} />}
         {activeTab === 'features' && <AmenitiesList features={features} />}
-        {activeTab === 'reviews' && <Comments playgroundId={_id} rating={rating} reviews={reviews} />}
+        {activeTab === 'reviews' && <Comments playgroundId={_id} reviews={reviews} />}
       </TabContent>
     </Content>
   );

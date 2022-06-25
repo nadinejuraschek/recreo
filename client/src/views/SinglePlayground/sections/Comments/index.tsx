@@ -2,11 +2,11 @@
 import { useContext } from 'react';
 
 // COMPONENTS
-import { Comment, InlineLink, Title } from 'components';
+import { Comment, InlineLink } from 'components';
 import { CommentForm } from './components/CommentForm';
 
 // STYLED COMPONENTS
-import { Container, EmptyComments, SummaryContainer } from './styles';
+import { Container, EmptyComments } from './styles';
 
 // CONTEXT
 import { UserContext } from 'context';
@@ -14,7 +14,7 @@ import { UserContext } from 'context';
 // INTERFACES
 import { CommentsProps } from './types';
 
-export const Comments = ({ playgroundId, rating, reviews = [] }: CommentsProps): JSX.Element => {
+export const Comments = ({ playgroundId, reviews = [] }: CommentsProps): JSX.Element => {
   const { user } = useContext(UserContext);
 
   const logInToViewComments = (
@@ -22,12 +22,6 @@ export const Comments = ({ playgroundId, rating, reviews = [] }: CommentsProps):
       <InlineLink to="/login">Login</InlineLink> to leave a review.
     </EmptyComments>
   );
-
-  const title = rating ? (
-    <SummaryContainer>
-      <Title>{reviews.length} Reviews</Title>
-    </SummaryContainer>
-  ) : null;
 
   const renderComments = (): JSX.Element[] | null => {
     if (reviews.length === 0) return null;
@@ -41,7 +35,6 @@ export const Comments = ({ playgroundId, rating, reviews = [] }: CommentsProps):
 
   return (
     <Container>
-      {title}
       {!user && logInToViewComments}
       {renderComments()}
       {user && <CommentForm playgroundId={playgroundId} />}
