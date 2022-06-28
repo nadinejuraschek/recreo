@@ -15,7 +15,7 @@
     "mapbox-gl": "^2.9.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-hook-form": "^7.34.0",
+    "react-hook-form": "^7.34.2",
     "react-map-gl": "^7.0.18",
     "react-rating": "^2.0.5",
     "react-responsive-carousel": "^3.2.23",
