@@ -2,14 +2,15 @@
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import Rater from 'react-rating';
+// TODO: Find rating library that is compatible with React 18
+// import Rater from 'react-rating';
 
 // COMPONENTS
 import { Button, Form, Input } from 'components';
 
 // STYLED COMPONENTS
 import { FormContainer, ButtonWrapper, RaterLabel, RaterWrapper } from './styles';
-import { RatingIcon } from 'components/Rating/styles';
+// import { RatingIcon } from 'components/Rating/styles';
 
 // SCHEMA
 import { commentSchema } from 'schemas';
@@ -23,9 +24,9 @@ export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => 
 
   const { addReview } = useContext(PlaygroundContext);
 
-  const handleRating = (rate: number): void => {
+  /* const handleRating = (rate: number): void => {
     setRating(rate);
-  };
+  }; */
 
   const defaultValues = {
     text: '',
@@ -55,13 +56,14 @@ export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => 
       <Form handleSubmit={handleSubmit(onSubmit)} alignLeft>
         <RaterWrapper>
           <RaterLabel>Your Rating: </RaterLabel>
-          <Rater
+          {/* RATING COMPONENT GOES HERE */}
+          {/* <Rater
             emptySymbol={<RatingIcon color="var(--blue__opaque)" />}
             fullSymbol={<RatingIcon />}
             initialRating={rating}
             onClick={handleRating}
             stop={5}
-          />
+          /> */}
         </RaterWrapper>
         <Input
           name="text"

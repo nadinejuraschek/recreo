@@ -1,6 +1,6 @@
 // REACT
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // AXIOS
 import axios from 'axios';
@@ -40,7 +40,7 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [playgrounds, setPlaygrounds] = useState<Playground[]>();
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const { user } = useContext(UserContext);
 
@@ -87,7 +87,7 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
         setIsLoading(false);
         const addedPlayground = res.data as Playground;
         setTimeout(() => setSuccess('Your playground was created successfully!'), 5000);
-        history.push(`/playgrounds/${addedPlayground._id}`);
+        navigate(`/playgrounds/${addedPlayground._id}`);
       })
       .catch((error) => {
         setIsLoading(false);

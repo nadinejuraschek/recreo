@@ -1,5 +1,5 @@
 // DEPENDENCIES
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // STYLED COMPONENTS
 import { Wrapper, Icon, Label } from './styles';
@@ -8,10 +8,10 @@ import { Wrapper, Icon, Label } from './styles';
 import { BackButtonProps } from './types';
 
 export const BackButton = ({ label = false }: BackButtonProps): JSX.Element => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
-    <Wrapper onClick={() => history.goBack()}>
+    <Wrapper onClick={() => navigate(-1)}>
       <Icon />
       {label && <Label>Go Back</Label>}
     </Wrapper>

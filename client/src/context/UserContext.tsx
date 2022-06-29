@@ -1,6 +1,6 @@
 // REACT
 import { createContext, PropsWithChildren, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // AXIOS
 import axios from 'axios';
@@ -31,7 +31,7 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
   const [loading, setLoading] = useState<boolean>(false);
   const [user, setUser] = useState<AuthenticatedUser | null>();
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getUser();
@@ -49,7 +49,7 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
         setLoading(false);
         setUser(res.data as AuthenticatedUser);
 
-        history.push('/playgrounds');
+        navigate('/playgrounds');
 
         const { username } = res.data as AuthenticatedUser;
         setSuccess(`Welcome back, ${username}!`);
@@ -80,7 +80,7 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
         setLoading(false);
         setUser(res.data as AuthenticatedUser);
 
-        history.push('/playgrounds');
+        navigate('/playgrounds');
 
         setSuccess('Successfully registered!');
         setTimeout(() => setSuccess(''), 5000);
@@ -104,7 +104,7 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
       .then((res) => {
         if (res.data === 'Successfully logged out.') {
           setUser(null);
-          history.push('/login');
+          navigate('/login');
         }
       })
       .catch((error) => {
