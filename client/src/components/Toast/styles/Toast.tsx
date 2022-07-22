@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 import { ReactComponent as CloseSvg } from 'assets/close.svg';
 
 // INTERFACES
-import { ContainerProps, TimeoutBarProps } from '../types';
+import { ContainerProps } from '../types';
 
 export const Container = styled.div.attrs(() => ({
   className: 'toast-container',
@@ -15,53 +15,53 @@ export const Container = styled.div.attrs(() => ({
   box-shadow: 0 3px 8px var(--shadow__sm);
   color: var(--blue__dark);
   font-size: 1.4rem;
-  margin: 10px;
+  margin: 1rem;
   padding: 1rem;
 
   height: 6rem;
-  width: auto;
+  width: calc(100% - 2rem);
   z-index: 100;
 
   display: flex;
-  gap: 10px;
+  gap: 1rem;
   align-items: center;
   justify-content: space-between;
 
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 8rem;
+  left: 0;
 
   ${({ type }) =>
     type === 'danger'
       ? css`
-          background-color: #ffe4e4;
-          border-color: #b12c1c;
-          color: #b12c1c;
+          background-color: var(--danger__light);
+          border-color: var(--danger);
+          color: var(--danger);
 
           .toast-close-button {
-            stroke: #b12c1c;
+            stroke: var(--danger);
           }
 
           .toast-timeout-bar {
-            background-color: #b12c1c;
+            background-color: var(--danger);
           }
         `
       : css`
-          background-color: #d7e7df;
-          border-color: #4b7053;
-          color: #4b7053;
+          background-color: var(--success__light);
+          border-color: var(--success);
+          color: var(--success);
 
           .toast-close-button {
-            stroke: #4b7053;
+            stroke: var(--success);
           }
 
           .toast-timeout-bar {
-            background-color: #4b7053;
+            background-color: var(--success);
           }
         `};
 
   @media screen and (min-width: 900px) {
-    margin-bottom: 40px;
+    top: 6rem;
   }
 `;
 

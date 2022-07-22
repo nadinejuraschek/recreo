@@ -12,12 +12,24 @@ import { UserContext } from './UserContext';
 import { Playground } from 'types';
 
 export type PlaygroundContextType = {
-  addPlayground: (formData: any) => void;
-  addReview: (formData: any, playgroundId: string) => void;
+  addPlayground: (formData: PlaygroundFormData) => void;
+  addReview: (formData: ReviewFormData, playgroundId: string) => void;
   error: string;
   isLoading: boolean;
   playgrounds: Playground[];
   success: string;
+};
+
+export type PlaygroundFormData = {
+  description: string;
+  features?: string[];
+  location: string;
+  name: string;
+};
+
+export type ReviewFormData = {
+  rating: number;
+  text: string;
 };
 
 export const PlaygroundContext = createContext<Partial<PlaygroundContextType>>({});
@@ -49,22 +61,17 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
       .catch((err) => {
         // console.error(err);
         setError(err);
-        setTimeout(() => setError(''), 5000);
         setIsLoading(false);
       });
   };
 
-  const addPlayground = (formData: any): void => {
+  const addPlayground = (formData: PlaygroundFormData): void => {
     setIsLoading(true);
 
     const newFormData = {
       author: user?.id,
       description: formData.description,
       features: formData.features,
-      // geometry: {
-      //   type: 'Point',
-      //   coordinates: [formData.longitude, formData.latitude],
-      // },
       image: 'https://images.pexels.com/photos/571249/pexels-photo-571249.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
       location: formData.location,
       title: formData.name,
@@ -79,8 +86,7 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
       .then((res) => {
         setIsLoading(false);
         const addedPlayground = res.data as Playground;
-        setSuccess('Your playground was created successfully!');
-        setTimeout(() => setSuccess(''), 5000);
+        setTimeout(() => setSuccess('Your playground was created successfully!'), 5000);
         history.push(`/playgrounds/${addedPlayground._id}`);
       })
       .catch((error) => {
@@ -91,7 +97,7 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
       });
   };
 
-  const addReview = (formData: any, playgroundId: string): void => {
+  const addReview = (formData: ReviewFormData, playgroundId: string): void => {
     setIsLoading(true);
 
     const newFormData = {
@@ -109,15 +115,13 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
       .then((res) => {
         setIsLoading(false);
         const addedReview = res.data;
-        setSuccess(addedReview);
-        setTimeout(() => setSuccess(''), 5000);
+        setTimeout(() => setSuccess(addedReview), 5000);
         getPlaygrounds();
       })
       .catch((error) => {
         setIsLoading(false);
         // console.log('Error: ', error.response);
         setError('Something went wrong. Please try again later.');
-        setTimeout(() => setError(''), 5000);
       });
   };
 

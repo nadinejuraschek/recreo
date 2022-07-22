@@ -11,11 +11,16 @@ import { AuthenticatedUser } from 'types';
 export type UserContextType = {
   error: string;
   loading: boolean;
-  loginUser: (formData: { username: string; password: string }) => void;
+  loginUser: (formData: UserFormData) => void;
   logoutUser: () => void;
-  registerUser: (formData: { username: string; password: string }) => void;
+  registerUser: (formData: UserFormData) => void;
   success: string;
   user: AuthenticatedUser | null;
+};
+
+export type UserFormData = {
+  password: string;
+  username: string;
 };
 
 export const UserContext = createContext<Partial<UserContextType>>({});
@@ -32,7 +37,7 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
     getUser();
   }, []);
 
-  const loginUser = (formData: { username: string; password: string }): void => {
+  const loginUser = (formData: UserFormData): void => {
     setLoading(true);
     axios({
       url: '/api/login',
@@ -63,7 +68,7 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
       });
   };
 
-  const registerUser = (formData: { username: string; password: string }): void => {
+  const registerUser = (formData: UserFormData): void => {
     setLoading(true);
     axios({
       url: '/api/register',

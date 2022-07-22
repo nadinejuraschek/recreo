@@ -26,21 +26,23 @@ export const SinglePlayground = (): JSX.Element => {
     return <LoadingSpinner containerHeight="100%" containerWidth="100%" />;
   }
 
-  if (error) {
+  if (error || !playground) {
     return <ErrorState />;
   }
+
+  const { description, features, location, rating, reviews, title, _id } = playground;
 
   // TODO: Add Multiple Images
 
   return (
     <Content>
-      <Header name={playground?.title} />
-      <Info description={playground?.description} location={playground?.location} rating={playground?.rating} />
+      <Header name={title} />
+      <Info description={description} location={location} rating={rating} />
       <Tabs active={activeTab} handleClick={setActiveTab} options={tabOptions} />
       <TabContent>
-        {activeTab === 'images' && <Preview name={playground?.title} />}
-        {activeTab === 'features' && <AmenitiesList features={playground?.features} />}
-        {activeTab === 'reviews' && <Comments reviews={playground?.reviews} />}
+        {activeTab === 'images' && <Preview name={title} />}
+        {activeTab === 'features' && <AmenitiesList features={features} />}
+        {activeTab === 'reviews' && <Comments playgroundId={_id} rating={rating} reviews={reviews} />}
       </TabContent>
     </Content>
   );

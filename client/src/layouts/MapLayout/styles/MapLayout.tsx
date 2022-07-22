@@ -14,7 +14,10 @@ export const Main = styled.main.attrs(() => ({
     grid-template-columns: 70% 30%;
     grid-template-rows: 1fr;
 
-    min-height: calc(100vh - 11rem);
+    height: calc(100vh - 11rem);
+    max-height: calc(100vh - 11rem);
+    min-height: unset;
+    overflow: hidden;
   }
 `;
 
@@ -35,6 +38,7 @@ export const Content = styled.div.attrs(() => ({
     grid-row: 1 / 2;
 
     padding: 1.2rem 4rem 0;
+    overflow-y: scroll;
   }
 `;
 

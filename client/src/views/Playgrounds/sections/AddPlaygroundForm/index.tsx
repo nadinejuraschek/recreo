@@ -10,10 +10,7 @@ import { Button, Form, Input, Modal, Selecter } from 'components';
 import { features } from 'data';
 
 // STYLED COMPONENTS
-import {
-  // MultipleInputWrapper,
-  PlaygroundWrapper,
-} from '../../styles/AddPlaygroundForm';
+import { PlaygroundWrapper } from '../../styles/AddPlaygroundForm';
 
 // SCHEMA
 import { playgroundSchema } from 'schemas';
@@ -31,8 +28,6 @@ export const AddPlaygroundForm = ({ setOpenAddPlaygroundModal }: AddPlaygroundFo
   const defaultValues = {
     description: '',
     location: '',
-    // lat: 0.000001,
-    // long: 0.000001,
     name: '',
   };
 
@@ -72,26 +67,6 @@ export const AddPlaygroundForm = ({ setOpenAddPlaygroundModal }: AddPlaygroundFo
             register={register}
             error={errors?.location?.message}
           />
-          {/* <MultipleInputWrapper>
-            <Input
-              label="Latitude"
-              name="lat"
-              placeholder="Latitude"
-              step="0.000001"
-              type="number"
-              register={register}
-              error={errors?.lat?.message}
-            />
-            <Input
-              label="Longitude"
-              name="long"
-              placeholder="Longitude"
-              step="0.000001"
-              type="number"
-              register={register}
-              error={errors?.long?.message}
-            />
-          </MultipleInputWrapper> */}
           <Input
             label="Description"
             name="description"

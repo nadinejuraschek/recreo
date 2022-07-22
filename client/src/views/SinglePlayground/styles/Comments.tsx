@@ -22,6 +22,7 @@ export const Avatar = styled.div.attrs(() => ({
 export const FormContainer = styled.div.attrs(() => ({
   className: 'single-playground__comments-form',
 }))`
+  margin-bottom: 3rem;
   @media only screen and (min-width: 900px) {
   }
 `;

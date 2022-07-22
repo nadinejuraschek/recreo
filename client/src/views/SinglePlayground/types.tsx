@@ -15,7 +15,3 @@ export interface PreviewProps {
   images?: any[];
   name?: string;
 }
-
-export interface CommentsProps {
-  reviews?: Review[];
-}
