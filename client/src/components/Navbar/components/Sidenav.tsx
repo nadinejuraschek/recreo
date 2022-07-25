@@ -23,14 +23,9 @@ export const Sidenav = ({ handleClose }: SidenavProps): JSX.Element => {
     <Container>
       <NavList>
         {!user && (
-          <>
-            <NavItem to="/login" onClick={handleClose}>
-              Login
-            </NavItem>
-            <NavItem to="/register" onClick={handleClose}>
-              Register
-            </NavItem>
-          </>
+          <NavItem to="/login" onClick={handleClose}>
+            Login
+          </NavItem>
         )}
         <NavItem to="/playgrounds" onClick={handleClose}>
           Playgrounds

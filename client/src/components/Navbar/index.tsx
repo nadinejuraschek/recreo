@@ -22,12 +22,7 @@ export const Navbar = (): JSX.Element => {
     <Container>
       <Logo>recreo</Logo>
       <NavList>
-        {!user && (
-          <>
-            <StyledNavLink to="/login">Login</StyledNavLink>
-            <StyledNavLink to="/register">Register</StyledNavLink>
-          </>
-        )}
+        {!user && <StyledNavLink to="/login">Login</StyledNavLink>}
         <StyledNavLink to="/playgrounds">Playgrounds</StyledNavLink>
         {user && (
           <StyledNavLink onClick={handleLogout} to="/logout">

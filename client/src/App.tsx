@@ -8,7 +8,7 @@ import { Footer, Navbar } from 'components';
 import { DefaultLayout, ImageLayout, MapLayout } from 'layouts';
 
 // VIEWS
-import { Login, Playgrounds, Register, SinglePlayground } from 'views';
+import { Home, Login, Playgrounds, Register, SinglePlayground } from 'views';
 
 // CONTEXT
 import { PlaygroundProvider, UserProvider } from 'context';
@@ -23,7 +23,11 @@ const App = (): JSX.Element => {
         <Navbar />
 
         {/* Landing */}
-        <Route exact path="/" component={ImageLayout} />
+        <Route exact path="/">
+          <ImageLayout>
+            <Home />
+          </ImageLayout>
+        </Route>
 
         {/* Auth */}
         <Route exact path="/login">
