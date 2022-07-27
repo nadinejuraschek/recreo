@@ -1,3 +1,4 @@
+export * from './AddressInput';
 export * from './AmenitiesList';
 export * from './Amenity';
 export * from './BackButton';

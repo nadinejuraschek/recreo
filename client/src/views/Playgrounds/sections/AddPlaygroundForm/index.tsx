@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 // COMPONENTS
-import { Button, Form, Input, Modal, Selecter } from 'components';
+import { AddressInput, Button, Form, Input, Modal, Selecter } from 'components';
 
 // DATA
 import { features } from 'data';
@@ -59,14 +59,7 @@ export const AddPlaygroundForm = ({ setOpenAddPlaygroundModal }: AddPlaygroundFo
       >
         <PlaygroundWrapper>
           <Input label="Name" name="name" placeholder="Name" type="text" register={register} error={errors?.name?.message} />
-          <Input
-            label="Location"
-            name="location"
-            placeholder="Location"
-            type="text"
-            register={register}
-            error={errors?.location?.message}
-          />
+          <AddressInput error={errors?.location?.message} handleSelect={register('location').onChange} placeholder="Location" />
           <Input
             label="Description"
             name="description"
