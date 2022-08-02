@@ -1,5 +1,5 @@
 // ROUTER
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // COMPONENTS
 import { Footer, Navbar } from 'components';
@@ -8,7 +8,7 @@ import { Footer, Navbar } from 'components';
 import { DefaultLayout, ImageLayout, MapLayout } from 'layouts';
 
 // VIEWS
-import { Home, Login, Playgrounds, Register, SinglePlayground } from 'views';
+import { Home, Login, NotFound, Playgrounds, Register, SinglePlayground } from 'views';
 
 // CONTEXT
 import { PlaygroundProvider, UserProvider } from 'context';
@@ -16,12 +16,11 @@ import { PlaygroundProvider, UserProvider } from 'context';
 // STYLES
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-const App = (): JSX.Element => {
-  return (
-    <Router>
-      <UserProvider>
-        <Navbar />
-
+const App = (): JSX.Element => (
+  <Router>
+    <UserProvider>
+      <Navbar />
+      <Switch>
         {/* Landing */}
         <Route exact path="/">
           <ImageLayout>
@@ -42,26 +41,37 @@ const App = (): JSX.Element => {
         </Route>
 
         {/* Home */}
-        <PlaygroundProvider>
-          <Route exact path="/playgrounds">
+        <Route exact path="/playgrounds">
+          <PlaygroundProvider>
             <DefaultLayout withMainPadding={false}>
               <Playgrounds />
             </DefaultLayout>
-          </Route>
+          </PlaygroundProvider>
+        </Route>
 
-          {/* Single Playground */}
-          <Route exact path="/playgrounds/:id">
+        {/* Single Playground */}
+        <Route exact path="/playgrounds/:id">
+          <PlaygroundProvider>
             <MapLayout>
               <SinglePlayground />
             </MapLayout>
-          </Route>
-          <Route exact path="/playgrounds/:id/edit" component={DefaultLayout} />
-        </PlaygroundProvider>
+          </PlaygroundProvider>
+        </Route>
+        {/*
+            <Route exact path="/playgrounds/:id/edit">
+              <PlaygroundProvider>
+                <DefaultLayout />
+              </PlaygroundProvider>
+            /Route>
+          */}
 
-        <Footer />
-      </UserProvider>
-    </Router>
-  );
-};
+        {/* Not Found */}
+        <Route path="*" component={NotFound} />
+      </Switch>
+
+      <Footer />
+    </UserProvider>
+  </Router>
+);
 
 export default App;
