@@ -2,7 +2,7 @@
 import { useHistory } from 'react-router-dom';
 
 // STYLED COMPONENTS
-import { Wrapper, Icon, Label } from './styles/BackButton';
+import { Wrapper, Icon, Label } from './styles';
 
 // INTERFACES
 import { BackButtonProps } from './types';

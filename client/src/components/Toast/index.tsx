@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 // STYLED COMPONENTS
-import { CloseBtn, Container } from './styles/Toast';
+import { CloseBtn, Container } from './styles';
 
 // INTERFACES
 import { ToastProps } from './types';

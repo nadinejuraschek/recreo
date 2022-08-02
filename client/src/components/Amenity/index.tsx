@@ -1,5 +1,5 @@
 // STYLED COMPONENTS
-import { Container, Icon, IconWrapper } from './styles/Amenity';
+import { Container, Icon, IconWrapper } from './styles';
 
 // INTERFACES
 import { Amenity as AmenityType } from 'types';

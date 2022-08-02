@@ -2,7 +2,7 @@
 import { Map } from 'components';
 
 // STYLED COMPONENTS
-import { Content, Main, MapWrapper } from './styles/MapLayout';
+import { Content, Main, MapWrapper } from './styles';
 
 // HOOKS
 import { usePlayground } from 'hooks/usePlayground';

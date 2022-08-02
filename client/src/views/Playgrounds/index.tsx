@@ -2,8 +2,7 @@
 import { useContext, useEffect, useState } from 'react';
 
 // STYLED-COMPONENTS
-import { StyledMap } from './styles/Map';
-import { PlaygroundInfo } from './styles/Playgrounds';
+import { PlaygroundInfo, StyledMap } from './styles';
 
 // COMPONENTS
 import { AddPlaygroundForm, ErrorState, PlaygroundsList } from './sections';

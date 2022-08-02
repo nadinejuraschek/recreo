@@ -1,5 +1,5 @@
 // STYLED COMPONENTS
-import { Container, Icon, Label, StyledInput, StyledTextarea, Validation, Wrapper } from './styles/Input';
+import { Container, Icon, Label, StyledInput, StyledTextarea, Validation, Wrapper } from './styles';
 
 // INTERFACES
 import { InputProps } from './types';

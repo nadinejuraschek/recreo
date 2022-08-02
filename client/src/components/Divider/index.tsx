@@ -1,5 +1,5 @@
 // STYLED COMPONENTS
-import { Line, Text, Wrapper } from './styles/Divider';
+import { Line, Text, Wrapper } from './styles';
 
 // INTERFACES
 import { DividerProps } from './types';

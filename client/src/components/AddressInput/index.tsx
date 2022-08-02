@@ -3,7 +3,7 @@ import { GeoapifyGeocoderAutocomplete, GeoapifyContext } from '@geoapify/react-g
 import '@geoapify/geocoder-autocomplete/styles/minimal.css';
 
 // STYLED COMPONENTS
-import { Container, Label, Validation } from '../Input/styles/Input';
+import { Container, Label, Validation } from '../Input/styles';
 import { Wrapper } from './styles';
 
 // INTERFACE

@@ -6,7 +6,7 @@ import { formatDistance } from 'date-fns';
 import { Rating } from 'components';
 
 // STYLED COMPONENTS
-import { Container, Header, Name, PostDetails, ReadMore, TextContainer, TimePosted, VerticalDivider } from './styles/Comment';
+import { Container, Header, Name, PostDetails, ReadMore, TextContainer, TimePosted, VerticalDivider } from './styles';
 
 // UTILS
 import { trimBodyAtWordEnd } from 'utils';

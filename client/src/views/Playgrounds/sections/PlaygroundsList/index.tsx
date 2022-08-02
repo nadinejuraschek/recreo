@@ -5,13 +5,14 @@ import { useContext } from 'react';
 import { Button, Card } from 'components';
 
 // STYLED COMPONENTS
-import { ButtonWrapper, Grid, Section } from '../../styles/Playgrounds';
+import { ButtonWrapper, Grid } from './styles';
+import { Section } from '../../styles';
 
 // CONTEXT
 import { UserContext } from 'context/UserContext';
 
 // INTERFACES
-import { PlaygroundsListProps } from '../../types';
+import { PlaygroundsListProps } from './types';
 
 export const PlaygroundsList = ({ playgrounds, setOpenAddPlaygroundModal }: PlaygroundsListProps): JSX.Element => {
   const { user } = useContext(UserContext);

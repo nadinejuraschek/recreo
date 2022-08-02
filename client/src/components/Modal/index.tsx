@@ -2,7 +2,7 @@
 import { ModalHeader } from './components/ModalHeader';
 
 // STYLED COMPONENTS
-import { Body, Container, Footer, Overlay } from './styles/Modal';
+import { Body, Container, Footer, Overlay } from './styles';
 
 // INTERFACES
 import { ModalProps } from './types';

@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 // STYLED COMPONENTS
-import { HoverItem, Wrapper } from './styles/Tooltip';
+import { HoverItem, Wrapper } from './styles';
 
 // INTERFACES
 import { TooltipProps } from './types';

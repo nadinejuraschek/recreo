@@ -1,5 +1,5 @@
 // STYLED COMPONENTS
-import { Body, Container, Headline, Image, Location, Name } from './styles/Card';
+import { Body, Container, Headline, Image, Location, Name } from './styles';
 
 // COMPONENTS
 import { AmenitiesList } from '../AmenitiesList';

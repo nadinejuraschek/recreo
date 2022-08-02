@@ -1,5 +1,5 @@
 // STYLED COMPONENTS
-import { ExternalLink, InAppLink } from './styles/InlineLink';
+import { ExternalLink, InAppLink } from './styles';
 
 // INTERFACES
 import { InlineLinkProps } from './types';

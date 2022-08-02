@@ -10,7 +10,7 @@ import { AddressInput, Button, Form, Input, Modal, Selecter } from 'components';
 import { features } from 'data';
 
 // STYLED COMPONENTS
-import { PlaygroundWrapper } from '../../styles/AddPlaygroundForm';
+import { PlaygroundWrapper } from './styles';
 
 // SCHEMA
 import { playgroundSchema } from 'schemas';
@@ -19,7 +19,7 @@ import { playgroundSchema } from 'schemas';
 import { PlaygroundContext } from 'context/PlaygroundContext';
 
 // INTERFACES
-import { AddPlaygroundInputs, AddPlaygroundFormProps } from '../../types';
+import { AddPlaygroundInputs, AddPlaygroundFormProps } from './types';
 
 export const AddPlaygroundForm = ({ setOpenAddPlaygroundModal }: AddPlaygroundFormProps): JSX.Element => {
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>();
