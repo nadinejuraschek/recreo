@@ -1,9 +1,7 @@
 // DEPENDENCIES
 import styled from 'styled-components';
 
-export const Wrapper = styled.section.attrs(() => ({
-  className: 'single-playground__preview-wrapper',
-}))`
+export const Wrapper = styled.section`
   grid-row: 3 / 4;
 
   display: flex;
@@ -37,13 +35,9 @@ export const Wrapper = styled.section.attrs(() => ({
   }
 `;
 
-export const EmptyState = styled.div.attrs(() => ({
-  className: 'single-playground__preview-empty',
-}))``;
+export const EmptyState = styled.div``;
 
-export const ImageActive = styled.div.attrs(() => ({
-  className: 'single-playground__preview-image-active',
-}))`
+export const ImageActive = styled.div`
   border: none;
   margin-bottom: 1rem;
   overflow: hidden;

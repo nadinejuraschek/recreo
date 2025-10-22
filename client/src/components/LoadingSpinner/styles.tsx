@@ -1,4 +1,5 @@
 // DEPENDENCIES
+import { ReactNode } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const spinner = keyframes`
@@ -11,6 +12,7 @@ const spinner = keyframes`
 `;
 
 export const Container = styled.div<{
+  children: ReactNode;
   readonly height: string;
   readonly width: string;
 }>`
@@ -27,6 +29,7 @@ export const SpinnerContainer = styled.div`
 `;
 
 export const SpinnerPath = styled.div<{
+  children: ReactNode;
   size: number;
 }>`
   height: ${({ size }) => `${size}px`};

@@ -1,9 +1,7 @@
 // DEPENDENCIES
 import styled from 'styled-components';
 
-export const ButtonWrapper = styled.section.attrs(() => ({
-  className: 'playgrounds-section-button',
-}))`
+export const ButtonWrapper = styled.section`
   margin: 0 0 3rem;
   width: 100%;
 
@@ -16,9 +14,7 @@ export const ButtonWrapper = styled.section.attrs(() => ({
   }
 `;
 
-export const Grid = styled.div.attrs(() => ({
-  className: 'playgrounds-grid',
-}))`
+export const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;

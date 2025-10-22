@@ -7,6 +7,7 @@ export interface ToastProps {
 }
 
 export interface ContainerProps {
+  children: ReactNode;
   type: 'danger' | 'success';
 }
 

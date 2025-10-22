@@ -4,9 +4,7 @@ import styled from 'styled-components';
 // INTERFACES
 import { StyledInputProps } from './types';
 
-export const Container = styled.div.attrs(() => ({
-  className: 'input-container',
-}))`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,24 +13,18 @@ export const Container = styled.div.attrs(() => ({
   width: 100%;
 `;
 
-export const Wrapper = styled.div.attrs(() => ({
-  className: 'input-wrapper',
-}))`
+export const Wrapper = styled.div`
   position: relative;
   width: 100%;
 `;
 
-export const Label = styled.label.attrs(() => ({
-  className: 'input-label',
-}))`
+export const Label = styled.label`
   font-size: 1.6rem;
   font-weight: bold;
   margin-bottom: 0.75rem;
 `;
 
-export const Icon = styled.img.attrs(() => ({
-  className: 'input-icon',
-}))`
+export const Icon = styled.img`
   position: absolute;
   margin-left: 1rem;
   margin-top: 1rem;
@@ -46,9 +38,7 @@ export const Icon = styled.img.attrs(() => ({
   width: 2rem;
 `;
 
-export const StyledInput = styled.input.attrs(() => ({
-  className: 'input',
-}))<StyledInputProps>`
+export const StyledInput = styled.input<StyledInputProps>`
   background-color: #f8f8f880;
   border: none;
   border-radius: 8px 8px 0 0;
@@ -75,9 +65,7 @@ export const StyledInput = styled.input.attrs(() => ({
   }
 `;
 
-export const StyledTextarea = styled.textarea.attrs(() => ({
-  className: 'textarea',
-}))`
+export const StyledTextarea = styled.textarea`
   background-color: #f8f8f880;
   border: none;
   border-radius: 8px 8px 0 0;
@@ -97,9 +85,7 @@ export const StyledTextarea = styled.textarea.attrs(() => ({
   }
 `;
 
-export const Validation = styled.div.attrs(() => ({
-  className: 'input-validation',
-}))`
+export const Validation = styled.div`
   color: var(--red);
   font-size: 1rem;
 `;

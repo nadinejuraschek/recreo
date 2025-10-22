@@ -1,9 +1,7 @@
 // DEPENDENCIES
 import styled from 'styled-components';
 
-export const EmptyState = styled.div.attrs(() => ({
-  className: 'playgrounds-empty',
-}))`
+export const EmptyState = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

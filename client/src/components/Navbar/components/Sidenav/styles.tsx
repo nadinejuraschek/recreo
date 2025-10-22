@@ -4,9 +4,7 @@ import styled from 'styled-components';
 // COMPONENTS
 import { NavLink } from 'react-router-dom';
 
-export const Container = styled.div.attrs(() => ({
-  className: 'sidenav-container',
-}))`
+export const Container = styled.div`
   position: absolute;
   top: 80px;
   left: 0;
@@ -22,16 +20,12 @@ export const Container = styled.div.attrs(() => ({
   box-shadow: 0 3px 9px var(--shadow__lg);
 `;
 
-export const NavList = styled.ul.attrs(() => ({
-  className: 'sidenav-list',
-}))`
+export const NavList = styled.ul`
   padding: 0;
   width: 100vw;
 `;
 
-export const NavItem = styled(NavLink).attrs(() => ({
-  className: 'sidenav-item',
-}))`
+export const NavItem = styled(NavLink)`
   background-color: var(--white);
   border-bottom: 1px solid var(--shadow__lg);
   box-shadow: 0 2px 6px var(--shadow__sm);

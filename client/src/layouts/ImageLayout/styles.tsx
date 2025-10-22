@@ -1,9 +1,7 @@
 // DEPENDENCIES
 import styled from 'styled-components';
 
-export const HorizontalImage = styled.div.attrs(() => ({
-  className: 'bg-image__horizontal',
-}))`
+export const HorizontalImage = styled.div`
   position: absolute;
   bottom: 0;
 
@@ -21,9 +19,7 @@ export const HorizontalImage = styled.div.attrs(() => ({
   }
 `;
 
-export const HorizontalWave = styled.div.attrs(() => ({
-  className: 'bg-image__horizontal',
-}))`
+export const HorizontalWave = styled.div`
   position: absolute;
   bottom: 0;
 
@@ -41,9 +37,7 @@ export const HorizontalWave = styled.div.attrs(() => ({
   }
 `;
 
-export const VerticalImage = styled.div.attrs(() => ({
-  className: 'bg-wave__vertical',
-}))`
+export const VerticalImage = styled.div`
   display: none;
   position: absolute;
   top: 0;
@@ -63,9 +57,7 @@ export const VerticalImage = styled.div.attrs(() => ({
   }
 `;
 
-export const VerticalWave = styled.div.attrs(() => ({
-  className: 'bg-wave__vertical',
-}))`
+export const VerticalWave = styled.div`
   display: none;
 
   position: absolute;
@@ -86,9 +78,7 @@ export const VerticalWave = styled.div.attrs(() => ({
   }
 `;
 
-export const Main = styled.main.attrs(() => ({
-  className: 'with-image__main',
-}))`
+export const Main = styled.main`
   // max-height: 55%;
   max-width: 100%;
   height: calc(100vh - 8rem);

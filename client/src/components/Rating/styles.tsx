@@ -4,9 +4,7 @@ import styled from 'styled-components';
 // ICONS
 import { ReactComponent as RatingSvg } from 'assets/star.svg';
 
-export const NumberRating = styled.div.attrs(() => ({
-  className: 'card-rating',
-}))`
+export const NumberRating = styled.div`
   font-size: 1.6rem;
   line-height: 2.25rem;
 
@@ -14,16 +12,12 @@ export const NumberRating = styled.div.attrs(() => ({
   align-items: center;
 `;
 
-export const RatingValue = styled.span.attrs(() => ({
-  className: 'card-rating',
-}))`
+export const RatingValue = styled.span`
   color: var(--blue__dark);
   font-weight: bold;
 `;
 
-export const RatingWrapper = styled.p.attrs(() => ({
-  className: 'card-rating',
-}))`
+export const RatingWrapper = styled.p`
   display: flex;
   align-items: center;
 
@@ -35,9 +29,7 @@ export const RatingWrapper = styled.p.attrs(() => ({
   }
 `;
 
-export const RatingIcon = styled(RatingSvg).attrs(() => ({
-  className: 'card-rating-icon',
-}))<{ color?: string }>`
+export const RatingIcon = styled(RatingSvg)<{ color?: string }>`
   color: ${({ color }) => (color ? color : 'var(--yellow)')};
   margin-right: 0.7rem;
 

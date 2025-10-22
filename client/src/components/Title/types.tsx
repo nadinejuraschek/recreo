@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface TitleProps {
   children: React.ReactNode;
   color?: string;
@@ -6,6 +8,7 @@ export interface TitleProps {
 }
 
 export interface StyledTitleProps {
+  children: ReactNode;
   color: string;
   marginBottom: number;
   size: 'large' | 'medium' | 'small';

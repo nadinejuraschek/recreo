@@ -1,15 +1,11 @@
 // DEPENDENCIES
 import styled from 'styled-components';
 
-export const Wrapper = styled.div.attrs(() => ({
-  className: 'tooltip-wrapper',
-}))`
+export const Wrapper = styled.div`
   position: relative;
 `;
 
-export const HoverItem = styled.div.attrs(() => ({
-  className: 'tooltip-hover-item',
-}))`
+export const HoverItem = styled.div`
   position: absolute;
   top: 0.5rem;
   left: 0.5rem;

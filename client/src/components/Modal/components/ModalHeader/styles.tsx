@@ -4,9 +4,7 @@ import styled from 'styled-components';
 // ICONS
 import { ReactComponent as CloseIcon } from 'assets/close.svg';
 
-export const Header = styled.div.attrs(() => ({
-  className: 'modal-header',
-}))`
+export const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -17,15 +15,11 @@ export const Header = styled.div.attrs(() => ({
   padding: 0 2.4rem;
 `;
 
-export const Title = styled.div.attrs(() => ({
-  className: 'modal-title',
-}))`
+export const Title = styled.div`
   font-size: 2rem;
   font-weight: bold;
 `;
 
-export const CloseButton = styled(CloseIcon).attrs(() => ({
-  className: 'modal-close',
-}))`
+export const CloseButton = styled(CloseIcon)`
   cursor: pointer;
 `;

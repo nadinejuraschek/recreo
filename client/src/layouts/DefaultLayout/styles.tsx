@@ -1,9 +1,8 @@
 // DEPENDENCIES
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
-export const Main = styled.main.attrs(() => ({
-  className: 'default__main',
-}))<{ withMainPadding: boolean }>`
+export const Main = styled.main<{ children: ReactNode; withMainPadding: boolean }>`
   min-height: calc(100vh - 8rem);
   margin: 0 auto;
   max-width: 140rem;

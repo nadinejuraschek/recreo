@@ -1,9 +1,7 @@
 // STYLED COMPONENTS
 import styled from 'styled-components';
 
-export const Container = styled.div.attrs(() => ({
-  className: 'single-playground-error-state',
-}))`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

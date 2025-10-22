@@ -1,9 +1,7 @@
 // DEPENDENCIES
 import styled from 'styled-components';
 
-export const Overlay = styled.div.attrs(() => ({
-  className: 'modal-overlay',
-}))`
+export const Overlay = styled.div`
   position: fixed;
   top: 0;
   bottom: 0;
@@ -19,9 +17,7 @@ export const Overlay = styled.div.attrs(() => ({
   background-color: var(--blue__overlay);
 `;
 
-export const Container = styled.div.attrs(() => ({
-  className: 'modal-container',
-}))`
+export const Container = styled.div`
   background-color: var(--white);
   border: none;
   border-radius: 2.4rem;
@@ -41,16 +37,12 @@ export const Container = styled.div.attrs(() => ({
   }
 `;
 
-export const Body = styled.div.attrs(() => ({
-  className: 'modal-body',
-}))`
+export const Body = styled.div`
   height: 100%;
   padding: 0;
 `;
 
-export const Footer = styled.div.attrs(() => ({
-  className: 'modal-footer',
-}))`
+export const Footer = styled.div`
   border: none;
   height: 8rem;
   padding: 0 2.4rem;

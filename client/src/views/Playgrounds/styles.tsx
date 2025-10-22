@@ -7,9 +7,7 @@ import { Map } from 'components';
 // STYLED COMPONENTS
 import { ButtonWrapper } from './sections/PlaygroundsList/styles';
 
-export const PlaygroundInfo = styled.div.attrs(() => ({
-  className: 'playgrounds-info',
-}))`
+export const PlaygroundInfo = styled.div`
   background-color: var(--white);
   border: 1px solid var(--white);
   border-radius: 4rem 4rem 0 0;
@@ -26,9 +24,7 @@ export const PlaygroundInfo = styled.div.attrs(() => ({
   }
 `;
 
-export const Section = styled.section.attrs(() => ({
-  className: 'playgrounds-section',
-}))`
+export const Section = styled.section`
   margin: 1rem 0 3rem;
   width: 100%;
 `;

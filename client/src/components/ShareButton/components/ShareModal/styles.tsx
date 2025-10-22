@@ -7,9 +7,7 @@ import { ReactComponent as Mail } from 'assets/mail.svg';
 import { ReactComponent as Twitter } from 'assets/twitter.svg';
 import { ReactComponent as Whatsapp } from 'assets/whatsapp.svg';
 
-export const Content = styled.div.attrs(() => ({
-  className: 'share-modal-content',
-}))`
+export const Content = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -18,9 +16,7 @@ export const Content = styled.div.attrs(() => ({
   padding: 2.4rem 0;
 `;
 
-export const FacebookIcon = styled(Facebook).attrs(() => ({
-  className: 'share-facebook-icon',
-}))`
+export const FacebookIcon = styled(Facebook)`
   color: #4267b2;
   cursor: pointer;
 
@@ -32,9 +28,7 @@ export const FacebookIcon = styled(Facebook).attrs(() => ({
   }
 `;
 
-export const MailIcon = styled(Mail).attrs(() => ({
-  className: 'share-mail-icon',
-}))`
+export const MailIcon = styled(Mail)`
   color: var(--yellow);
   cursor: pointer;
 
@@ -46,9 +40,7 @@ export const MailIcon = styled(Mail).attrs(() => ({
   }
 `;
 
-export const TwitterIcon = styled(Twitter).attrs(() => ({
-  className: 'share-twitter-icon',
-}))`
+export const TwitterIcon = styled(Twitter)`
   color: #1da1f2;
   cursor: pointer;
 
@@ -60,9 +52,7 @@ export const TwitterIcon = styled(Twitter).attrs(() => ({
   }
 `;
 
-export const WhatsappIcon = styled(Whatsapp).attrs(() => ({
-  className: 'share-whatsapp-icon',
-}))`
+export const WhatsappIcon = styled(Whatsapp)`
   color: #25d366;
   cursor: pointer;
 

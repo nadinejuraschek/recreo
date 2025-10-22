@@ -1,21 +1,15 @@
 // DEPENDENCIES
 import styled from 'styled-components';
 
-export const Avatar = styled.div.attrs(() => ({
-  className: 'single-playground__comments-avatar',
-}))``;
+export const Avatar = styled.div``;
 
-export const FormContainer = styled.div.attrs(() => ({
-  className: 'single-playground__comments-form',
-}))`
+export const FormContainer = styled.div`
   margin-bottom: 3rem;
   @media only screen and (min-width: 900px) {
   }
 `;
 
-export const RaterWrapper = styled.div.attrs(() => ({
-  className: 'comment-form-rating-wrapper',
-}))`
+export const RaterWrapper = styled.div`
   display: flex;
   align-items: center;
 
@@ -24,16 +18,12 @@ export const RaterWrapper = styled.div.attrs(() => ({
   width: 100%;
 `;
 
-export const RaterLabel = styled.span.attrs(() => ({
-  className: 'comment-form-rating-label',
-}))`
+export const RaterLabel = styled.span`
   font-size: 1.6rem;
   margin-right: 1.5rem;
 `;
 
-export const ButtonWrapper = styled.div.attrs(() => ({
-  className: 'comment-form-button-wrapper',
-}))`
+export const ButtonWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -41,14 +31,8 @@ export const ButtonWrapper = styled.div.attrs(() => ({
   width: 100%;
 `;
 
-export const Name = styled.div.attrs(() => ({
-  className: 'single-playground__comments-name',
-}))``;
+export const Name = styled.div``;
 
-export const TimePosted = styled.div.attrs(() => ({
-  className: 'single-playground__comments-time-posted',
-}))``;
+export const TimePosted = styled.div``;
 
-export const Text = styled.div.attrs(() => ({
-  className: 'single-playground__comments-text',
-}))``;
+export const Text = styled.div``;

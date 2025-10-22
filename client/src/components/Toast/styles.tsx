@@ -35,9 +35,7 @@ const successStyling = css`
   }
 `;
 
-export const Container = styled.div.attrs(() => ({
-  className: 'toast-container',
-}))<ContainerProps>`
+export const Container = styled.div<ContainerProps>`
   border: 1px solid;
   border-radius: 0.5rem;
   box-shadow: 0 3px 8px var(--shadow__sm);
@@ -66,9 +64,7 @@ export const Container = styled.div.attrs(() => ({
   }
 `;
 
-export const CloseBtn = styled(CloseSvg).attrs(() => ({
-  className: 'toast-close-button',
-}))`
+export const CloseBtn = styled(CloseSvg)`
   stroke: var(--blue__dark);
 
   &:hover {

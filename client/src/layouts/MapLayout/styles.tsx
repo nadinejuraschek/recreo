@@ -1,9 +1,7 @@
 // DEPENDENCIES
 import styled from 'styled-components';
 
-export const Main = styled.main.attrs(() => ({
-  className: 'map-layout__main',
-}))`
+export const Main = styled.main`
   min-height: calc(100vh - 8rem);
 
   display: flex;
@@ -21,9 +19,7 @@ export const Main = styled.main.attrs(() => ({
   }
 `;
 
-export const Content = styled.div.attrs(() => ({
-  className: 'map-layout__content',
-}))`
+export const Content = styled.div`
   width: 100%;
 
   order: 2;
@@ -42,9 +38,7 @@ export const Content = styled.div.attrs(() => ({
   }
 `;
 
-export const MapWrapper = styled.div.attrs(() => ({
-  className: 'map-layout__map-wrapper',
-}))`
+export const MapWrapper = styled.div`
   order: 1;
 
   @media only screen and (min-width: 900px) {

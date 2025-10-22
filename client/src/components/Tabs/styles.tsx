@@ -4,9 +4,7 @@ import styled, { css } from 'styled-components';
 // INTERFACES
 import { StyledTabProps } from './types';
 
-export const Container = styled.div.attrs(() => ({
-  className: 'tabs-container',
-}))`
+export const Container = styled.div`
   display: flex;
   align-items: center;
 
@@ -17,9 +15,7 @@ export const Container = styled.div.attrs(() => ({
   width: 100%;
 `;
 
-export const Tab = styled.button.attrs(() => ({
-  className: 'tabs-button',
-}))<StyledTabProps>`
+export const Tab = styled.button<StyledTabProps>`
   background-color: var(--white__off);
   border: none;
   border-bottom: 4px solid var(--blue__opaque);

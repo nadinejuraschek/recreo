@@ -7,9 +7,7 @@ import { NavLink } from 'react-router-dom';
 // ICONS
 import { ReactComponent as MenuIcon } from 'assets/menu.svg';
 
-export const Container = styled.nav.attrs(() => ({
-  className: 'nav-container',
-}))`
+export const Container = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -27,9 +25,7 @@ export const Container = styled.nav.attrs(() => ({
   }
 `;
 
-export const NavList = styled.div.attrs(() => ({
-  className: 'nav-list',
-}))`
+export const NavList = styled.div`
   display: none;
 
   @media screen and (min-width: 900px) {
@@ -38,9 +34,7 @@ export const NavList = styled.div.attrs(() => ({
   }
 `;
 
-export const StyledNavLink = styled(NavLink).attrs(() => ({
-  className: 'nav-link',
-}))`
+export const StyledNavLink = styled(NavLink)`
   color: var(--blue__dark);
   font-size: 1.6rem;
   font-weight: 600;
@@ -59,9 +53,7 @@ export const StyledNavLink = styled(NavLink).attrs(() => ({
   }
 `;
 
-export const MenuBtn = styled(MenuIcon).attrs(() => ({
-  className: 'nav-menu-button',
-}))`
+export const MenuBtn = styled(MenuIcon)`
   height: 5rem;
   width: 5rem;
 

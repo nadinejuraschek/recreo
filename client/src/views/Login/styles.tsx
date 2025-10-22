@@ -1,9 +1,7 @@
 // DEPENDENCIES
 import styled from 'styled-components';
 
-export const Wrapper = styled.div.attrs(() => ({
-  className: 'login-wrapper',
-}))`
+export const Wrapper = styled.div`
   margin: 0 auto;
   width: 300px;
 
@@ -21,16 +19,12 @@ export const Wrapper = styled.div.attrs(() => ({
   }
 `;
 
-export const ButtonWrapper = styled.div.attrs(() => ({
-  className: 'login-form-button-wrapper',
-}))`
+export const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
 `;
 
-export const FormWrapper = styled.div.attrs(() => ({
-  className: 'login-form-wrapper',
-}))`
+export const FormWrapper = styled.div`
   width: 100%;
 `;

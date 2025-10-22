@@ -47,9 +47,7 @@ const sizeStyling = (size: 'large' | 'medium' | 'small') => {
   }
 };
 
-export const StyledTitle = styled.h1.attrs(() => ({
-  className: 'title',
-}))<StyledTitleProps>`
+export const StyledTitle = styled.h1<StyledTitleProps>`
   font-weight: bold;
   color: ${({ color }) => color};
 

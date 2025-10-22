@@ -1,9 +1,7 @@
 // DEPENDENCIES
 import styled from 'styled-components';
 
-export const HeaderWrapper = styled.div.attrs(() => ({
-  className: 'single-playground__header',
-}))`
+export const HeaderWrapper = styled.div`
   grid-row: 1 / 2;
 
   display: flex;
@@ -13,9 +11,7 @@ export const HeaderWrapper = styled.div.attrs(() => ({
   height: 100%;
 `;
 
-export const HeaderLeft = styled.div.attrs(() => ({
-  className: 'single-playground__header-left',
-}))`
+export const HeaderLeft = styled.div`
   display: flex;
   align-items: center;
 
@@ -27,9 +23,7 @@ export const HeaderLeft = styled.div.attrs(() => ({
   }
 `;
 
-export const HeaderRight = styled.div.attrs(() => ({
-  className: 'single-playground__header-right',
-}))`
+export const HeaderRight = styled.div`
   display: flex;
   align-items: center;
 
@@ -40,9 +34,7 @@ export const HeaderRight = styled.div.attrs(() => ({
   }
 `;
 
-export const HeaderTitle = styled.h3.attrs(() => ({
-  className: 'single-playground__header-title',
-}))`
+export const HeaderTitle = styled.h3`
   font-size: 3rem;
   font-weight: bold;
   margin-left: 1rem;

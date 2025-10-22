@@ -1,9 +1,7 @@
 // DEPENDENCIES
 import styled from 'styled-components';
 
-export const StyledSelectSearch = styled.div.attrs(() => ({
-  className: 'selecter',
-}))`
+export const StyledSelectSearch = styled.div`
   /**
  * Main wrapper
  */

@@ -1,9 +1,7 @@
 // DEPENDENCIES
 import styled from 'styled-components';
 
-export const Content = styled.div.attrs(() => ({
-  className: 'single-playground__content',
-}))`
+export const Content = styled.div`
   @media only screen and (min-width: 900px) {
     display: grid;
     grid-template-columns: 100%;
@@ -15,8 +13,6 @@ export const Content = styled.div.attrs(() => ({
   }
 `;
 
-export const TabContent = styled.section.attrs(() => ({
-  className: 'single-playground__tab-content',
-}))`
+export const TabContent = styled.section`
   grid-row: 4 / 5;
 `;

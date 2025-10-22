@@ -1,9 +1,7 @@
 // DEPENDENCIES
 import styled from 'styled-components';
 
-export const Wrapper = styled.div.attrs(() => ({
-  className: 'home-wrapper',
-}))`
+export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,9 +31,7 @@ export const Wrapper = styled.div.attrs(() => ({
   }
 `;
 
-export const HomeTitle = styled.h1.attrs(() => ({
-  className: 'home-title',
-}))`
+export const HomeTitle = styled.h1`
   font-size: 5.5rem;
   line-height: 1.25;
   margin-bottom: 4rem;
@@ -60,9 +56,7 @@ export const HomeTitle = styled.h1.attrs(() => ({
   }
 `;
 
-export const Highlighted = styled.span.attrs(() => ({
-  className: 'home-title-highlighted',
-}))`
+export const Highlighted = styled.span`
   position: relative;
 
   &::after {
