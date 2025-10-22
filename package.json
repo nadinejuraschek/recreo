@@ -6,11 +6,12 @@
   "scripts": {
     "build": "cd client && npm run build",
     "server": "nodemon app.js --ignore client",
+    "server_prod": "node app.js --ignore client",
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "npm start --prefix client",
     "dev": "concurrently -n 'server, client' -c 'green, blue' \"npm run server\" \"npm run client\"",
-    "install-client": "cd client && npm install",
-    "heroku-postbuild": "npm run install-client && npm run build"
+    "prod": "concurrently -n 'server, client' -c 'green, blue' \"npm run server_prod\" \"npm run client\"",
+    "install-client": "cd client && npm install"
   },
   "repository": {
     "type": "git",
