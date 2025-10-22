@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
-  origin: 'https://localhost:3000',
+  origin: 'https://localhost:3001',
   credentials: true,
 }));
 
@@ -92,7 +92,7 @@ app.use(
 // SESSION ===============================================================
 const sessionConfig = {
   name: 'welcome',
-  secret: process.env.SECRET,
+  secret: process.env.APP_SECRET,
   resave: false,
   saveUninitialized: true,
 };

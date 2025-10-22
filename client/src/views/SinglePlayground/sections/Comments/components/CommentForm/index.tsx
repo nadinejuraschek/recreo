@@ -1,5 +1,5 @@
 // DEPENDENCIES
-import { useContext, useState } from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 // TODO: Find rating library that is compatible with React 18
@@ -23,10 +23,6 @@ export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => 
   const [rating, setRating] = useState(0); // initial rating value
 
   const { addReview } = useContext(PlaygroundContext);
-
-  /* const handleRating = (rate: number): void => {
-    setRating(rate);
-  }; */
 
   const defaultValues = {
     text: '',
@@ -56,6 +52,13 @@ export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => 
       <Form handleSubmit={handleSubmit(onSubmit)} alignLeft>
         <RaterWrapper>
           <RaterLabel>Your Rating: </RaterLabel>
+          <select onChange={(e: ChangeEvent<HTMLSelectElement>) => setRating(+e.target?.value)}>
+            <option value={1}>⭐️</option>
+            <option value={2}>⭐️⭐️</option>
+            <option value={3}>⭐️⭐️⭐️</option>
+            <option value={4}>⭐️⭐️⭐️⭐️</option>
+            <option value={5}>⭐️⭐️⭐️⭐️⭐️</option>
+          </select>
           {/* RATING COMPONENT GOES HERE */}
           {/* <Rater
             emptySymbol={<RatingIcon color="var(--blue__opaque)" />}
@@ -73,7 +76,7 @@ export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => 
           error={errors?.text?.message}
         />
         <ButtonWrapper>
-          <Button $disabled={isValid || isSubmitting} $filled loading={isSubmitting} $small type="submit">
+          <Button $disabled={!isValid || isSubmitting} $filled loading={isSubmitting} $small type="submit">
             Add Comment
           </Button>
         </ButtonWrapper>
