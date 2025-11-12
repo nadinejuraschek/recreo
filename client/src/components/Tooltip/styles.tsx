@@ -1,7 +1,8 @@
 // DEPENDENCIES
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ children: ReactNode; onMouseOver: any; onMouseOut: any }>`
   position: relative;
 `;
 

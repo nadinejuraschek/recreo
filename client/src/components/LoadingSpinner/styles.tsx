@@ -80,6 +80,6 @@ export const SpinnerPath = styled.div<{
   }
 `;
 
-export const SVG = styled.svg`
+export const SVG = styled.svg<{ children: ReactNode; xmlns: string }>`
   display: none;
 `;

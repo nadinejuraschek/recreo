@@ -1,12 +1,10 @@
-// DEPENDENCIES
 import styled from 'styled-components';
-
-// ICONS
 import { ReactComponent as ArrowLeft } from 'assets/arrow-left.svg';
 
-export const Wrapper = styled.button.attrs(() => ({
-  className: 'back-button__wrapper',
-}))`
+export const StyledButton = styled.button<{
+  children: React.ReactNode;
+  onClick: () => void;
+}>`
   display: flex;
   align-items: center;
 
@@ -22,9 +20,7 @@ export const Wrapper = styled.button.attrs(() => ({
   }
 `;
 
-export const Icon = styled(ArrowLeft).attrs(() => ({
-  className: 'back-button__icon',
-}))`
+export const Icon = styled(ArrowLeft)`
   height: 2rem;
   width: 2rem;
 
@@ -33,9 +29,7 @@ export const Icon = styled(ArrowLeft).attrs(() => ({
   }
 `;
 
-export const Label = styled.label.attrs(() => ({
-  className: 'back-button__label',
-}))`
+export const Label = styled.label`
   font-size: 1.6rem;
   font-weight: 600;
   margin-left: 1.25rem;

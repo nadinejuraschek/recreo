@@ -1,12 +1,8 @@
-// DEPENDENCIES
 import styled, { css } from 'styled-components';
-
-// TYPES
 import { ContainerProps } from './types';
+import { ReactNode } from 'react';
 
-export const Container = styled.footer.attrs(() => ({
-  className: 'footer',
-}))<ContainerProps>`
+export const Container = styled.footer<ContainerProps>`
   display: none;
   align-items: center;
   justify-content: space-between;
@@ -39,9 +35,7 @@ export const Container = styled.footer.attrs(() => ({
     `}
 `;
 
-export const Link = styled.div.attrs(() => ({
-  className: 'footer-link',
-}))`
+export const Link = styled.div<{ className?: string; children: ReactNode }>`
   color: var(--blue__dark);
   font-size: 1.4rem;
 

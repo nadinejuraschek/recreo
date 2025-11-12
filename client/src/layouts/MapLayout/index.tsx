@@ -1,13 +1,6 @@
-// COMPONENTS
 import { Map } from 'components';
-
-// STYLED COMPONENTS
 import { Content, Main, MapWrapper } from './styles';
-
-// HOOKS
 import { usePlayground } from 'hooks/usePlayground';
-
-// INTERFACES
 import { MapLayoutProps } from './types';
 
 export const MapLayout = ({ children }: MapLayoutProps): JSX.Element => {
@@ -21,9 +14,9 @@ export const MapLayout = ({ children }: MapLayoutProps): JSX.Element => {
   return (
     <Main>
       <Content>{children}</Content>
-      <MapWrapper>
+      {/* <MapWrapper>
         <Map isLoading={isLoading} markers={[marker]} />
-      </MapWrapper>
+      </MapWrapper> */}
     </Main>
   );
 };

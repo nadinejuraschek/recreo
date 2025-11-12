@@ -58,17 +58,18 @@ export const AddPlaygroundForm = ({ setOpenAddPlaygroundModal }: AddPlaygroundFo
         toggleModal={setOpenAddPlaygroundModal}
       >
         <PlaygroundWrapper>
-          <Input label="Name" name="name" placeholder="Name" type="text" register={register} error={errors?.name?.message} />
-          <AddressInput error={errors?.location?.message} handleSelect={register('location').onChange} placeholder="Location" />
+          <Input label="Name" name="name" placeholder="Name" required type="text" register={register} error={errors?.name?.message} />
+          <AddressInput error={errors?.location?.message} handleSelect={register('location').onChange} placeholder="Location" required />
           <Input
             label="Description"
             name="description"
             placeholder="Description"
             type="textarea"
             register={register}
+            required={false}
             error={errors?.description?.message}
           />
-          <Selecter handleChange={setSelectedFeatures} label="Features" options={features} placeholder="Features" />
+          <Selecter handleChange={setSelectedFeatures} label="Features" options={features} placeholder="Features" required />
           {/* IMAGE UPLOAD HERE */}
         </PlaygroundWrapper>
       </Modal>

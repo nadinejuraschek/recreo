@@ -9,7 +9,7 @@ import { Wrapper } from './styles';
 // INTERFACE
 import { AddressInputProps } from './types';
 
-export const AddressInput = ({ error, handleSelect, label = true, placeholder = '' }: AddressInputProps): JSX.Element => {
+export const AddressInput = ({ error, handleSelect, label = true, placeholder = '', required = false }: AddressInputProps): JSX.Element => {
   const onPlaceSelect = (value: any): void => {
     const event = { target: { name: 'location', value: value.properties.formatted } };
     handleSelect(event);
@@ -17,7 +17,7 @@ export const AddressInput = ({ error, handleSelect, label = true, placeholder = 
 
   return (
     <Container>
-      {label && <Label>Location</Label>}
+      {label && <Label>Location {required ? '*' : ''}</Label>}
       <Wrapper>
         <GeoapifyContext apiKey={process.env.REACT_APP_GEOAPIFY_TOKEN}>
           <GeoapifyGeocoderAutocomplete

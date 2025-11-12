@@ -24,7 +24,7 @@ export const Label = styled.label`
   margin-bottom: 0.75rem;
 `;
 
-export const Icon = styled.img`
+export const Icon = styled.img<{ alt: string; src: string }>`
   position: absolute;
   margin-left: 1rem;
   margin-top: 1rem;

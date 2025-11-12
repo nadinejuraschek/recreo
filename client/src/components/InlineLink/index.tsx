@@ -1,7 +1,4 @@
-// STYLED COMPONENTS
 import { ExternalLink, InAppLink } from './styles';
-
-// INTERFACES
 import { InlineLinkProps } from './types';
 
 export const InlineLink = ({ children, href, to }: InlineLinkProps): JSX.Element => (

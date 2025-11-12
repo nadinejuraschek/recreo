@@ -17,11 +17,11 @@ export const Card = ({ id, imageSrc = '', location = '', name = '' }: CardProps)
 
   return (
     <Container to={`/playgrounds/${id}`}>
-      <Image src={imageSrc} alt={name} />
-      <Body>
-        <Location>{location}</Location>
+      <Image className="card-image" src={imageSrc} alt={name} />
+      <Body className="card-body">
+        <Location className="card-location">{location}</Location>
         <Headline>
-          <Name>{name}</Name>
+          <Name className="card-name">{name}</Name>
           <Rating rating={rating} withValue />
         </Headline>
         <Divider color="var(--blue__opaque)" />

@@ -3,4 +3,5 @@ export interface AddressInputProps {
   handleSelect: any;
   label?: boolean;
   placeholder?: string;
+  required?: boolean;
 }

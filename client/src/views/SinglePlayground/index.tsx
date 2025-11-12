@@ -1,15 +1,8 @@
-// DEPENDENCIES
 import { useState } from 'react';
-
-// STYLED COMPONENTS
 import { Content, TabContent } from './styles';
-
-// COMPONENTS
 import { AmenitiesList } from 'components';
 import { Comments, ErrorState, Header, Info, Preview } from './sections';
 import { LoadingSpinner, Tabs } from 'components';
-
-// HOOKS
 import { usePlayground } from 'hooks/usePlayground';
 
 export const SinglePlayground = (): JSX.Element => {

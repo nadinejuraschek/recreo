@@ -6,4 +6,5 @@ export interface SelecterProps {
   label?: string;
   options: Amenity[];
   placeholder: string;
+  required?: boolean;
 }

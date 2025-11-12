@@ -1,12 +1,8 @@
-// DEPENDENCIES
 import styled from 'styled-components';
-
-// INTERFACES
 import { DividerProps } from './types';
+import { ReactNode } from 'react';
 
-export const Wrapper = styled.div.attrs(() => ({
-  className: 'divider-wrapper',
-}))`
+export const Wrapper = styled.div<{ className?: string; children: ReactNode }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,9 +35,7 @@ export const Line = styled.span.attrs(() => ({
   }
 `;
 
-export const Text = styled.span.attrs(() => ({
-  className: 'divider-text',
-}))`
+export const Text = styled.span<{ className?: string; children: ReactNode }>`
   background-color: var(--white);
   font-size: 1.4rem;
   line-height: 2rem;

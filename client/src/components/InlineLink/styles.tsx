@@ -3,10 +3,9 @@ import styled from 'styled-components';
 
 // COMPONENTS
 import { Link } from 'react-router-dom';
+import { ReactNode } from 'react';
 
-export const InAppLink = styled(Link).attrs(() => ({
-  className: 'inlineLink-inAppLink',
-}))`
+export const InAppLink = styled(Link)<{ to: string }>`
   color: var(--orange);
   font-family: inherit;
   font-size: inherit;
@@ -19,9 +18,7 @@ export const InAppLink = styled(Link).attrs(() => ({
   }
 `;
 
-export const ExternalLink = styled.a.attrs(() => ({
-  className: 'inlineLink-inAppLink',
-}))`
+export const ExternalLink = styled.a<{ children: ReactNode; href?: string; target?: string }>`
   color: var(--orange);
   font-family: inherit;
   font-size: inherit;

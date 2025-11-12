@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div.attrs(() => ({
-  className: 'address-input-wrapper',
-}))`
+export const Wrapper = styled.div`
   .geoapify-autocomplete-input {
     background-color: #f8f8f880;
     border: none;

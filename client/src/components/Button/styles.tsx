@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 
 // COMPONENTS
 import { Link } from 'react-router-dom';
+import { ReactNode } from 'react';
 
 type ButtonProps = {
   $disabled?: boolean;
@@ -12,11 +13,13 @@ type ButtonProps = {
   $rounded?: boolean;
   $small?: boolean;
   $underlined?: boolean;
+  children: ReactNode;
+  onClick?: () => void;
+  onSubmit?: () => void;
+  type?: 'button' | 'submit' | 'reset';
 };
 
-export const StyledLink = styled(Link).attrs(() => ({
-  className: 'button-link',
-}))<ButtonProps>`
+export const StyledLink = styled(Link)<ButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -141,9 +144,7 @@ export const StyledLink = styled(Link).attrs(() => ({
   }
 `;
 
-export const StyledButton = styled.button.attrs(() => ({
-  className: 'button',
-}))<ButtonProps>`
+export const StyledButton = styled.button<ButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;

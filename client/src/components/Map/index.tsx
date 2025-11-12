@@ -1,15 +1,8 @@
-// DEPENDENCIES
 import { useRef } from 'react';
-import ReactMapGL, { MapboxMap } from 'react-map-gl';
-
-// STYLED COMPONENTS
+import ReactMapGL, { MapboxMap, NavigationControl } from 'react-map-gl';
 import { Wrapper } from './styles';
-
-// COMPONENTS
 import { MapMarker } from './MapMarker';
 import { LoadingContent } from 'components';
-
-// TYPES
 import { MapProps } from './types';
 
 export const Map = ({ className = '', isLoading = false, markers = [] }: MapProps): JSX.Element => {
@@ -32,7 +25,7 @@ export const Map = ({ className = '', isLoading = false, markers = [] }: MapProp
   return (
     <Wrapper className={`map-wrapper ${className}`}>
       <ReactMapGL
-        initialViewState={{ latitude: 48.78, longitude: 9.18, zoom: 15 }}
+        initialViewState={{ latitude: 30.51, longitude: -97.67, zoom: 10 }}
         mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         mapStyle="mapbox://styles/mapbox/streets-v11"
         // @ts-ignore
@@ -40,6 +33,7 @@ export const Map = ({ className = '', isLoading = false, markers = [] }: MapProp
         style={{ height: '100%', width: '100%' }}
       >
         {markers && renderMarkers()}
+        <NavigationControl />
       </ReactMapGL>
     </Wrapper>
   );

@@ -1,16 +1,13 @@
 // DEPENDENCIES
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
-export const ListWrapper = styled.div.attrs(() => ({
-  className: 'single-playground__amenities-list-wrapper',
-}))`
+export const ListWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
 
-export const List = styled.div.attrs(() => ({
-  className: 'single-playground__amenities-list',
-}))<{ small: boolean }>`
+export const List = styled.div<{ children: ReactNode; small: boolean }>`
   font-size: 1.4rem;
   margin-top: ${({ small }) => (small ? '0' : '1rem')};
   width: ${({ small }) => (small ? '16rem' : 'auto')};
@@ -19,8 +16,6 @@ export const List = styled.div.attrs(() => ({
   grid-template-columns: ${({ small }) => (small ? 'repeat(4, 1fr)' : 'repeat(2, 1fr)')};
 `;
 
-export const MoreText = styled.div.attrs(() => ({
-  className: 'single-playground__amenities-list-more',
-}))`
+export const MoreText = styled.div`
   font-size: 1.6rem;
 `;

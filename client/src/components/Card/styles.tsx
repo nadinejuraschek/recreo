@@ -1,4 +1,5 @@
 // DEPENDENCIES
+import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -30,9 +31,7 @@ export const Container = styled(Link).attrs(() => ({
   }
 `;
 
-export const Image = styled.img.attrs(() => ({
-  className: 'card-image',
-}))`
+export const Image = styled.img<{ alt: string; className?: string; src: string }>`
   object-fit: cover;
   height: 10rem;
   width: 100%;
@@ -43,9 +42,7 @@ export const Image = styled.img.attrs(() => ({
   }
 `;
 
-export const Body = styled.div.attrs(() => ({
-  className: 'card-body',
-}))`
+export const Body = styled.div<{ className?: string; children: ReactNode }>`
   padding: 2rem;
 
   @media only screen and (min-width: 600px) {
@@ -60,9 +57,7 @@ export const Headline = styled.div`
   justify-content: space-between;
 `;
 
-export const Name = styled.h3.attrs(() => ({
-  className: 'card-name',
-}))`
+export const Name = styled.h3<{ className?: string; children: ReactNode }>`
   font-size: 2rem;
   font-weight: bold;
 
@@ -71,9 +66,7 @@ export const Name = styled.h3.attrs(() => ({
   }
 `;
 
-export const Location = styled.p.attrs(() => ({
-  className: 'card-location',
-}))`
+export const Location = styled.p<{ className?: string; children: ReactNode }>`
   display: flex;
   align-items: center;
 

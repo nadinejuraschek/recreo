@@ -1,19 +1,8 @@
-// ROUTER
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
-// COMPONENTS
 import { Footer, Navbar } from 'components';
-
-// LAYOUTS
 import { DefaultLayout, ImageLayout, MapLayout } from 'layouts';
-
-// VIEWS
 import { Home, Login, NotFound, Playgrounds, Register, SinglePlayground } from 'views';
-
-// CONTEXT
 import { PlaygroundProvider, UserProvider } from 'context';
-
-// STYLES
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 const App = (): JSX.Element => (

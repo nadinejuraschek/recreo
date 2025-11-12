@@ -7,6 +7,7 @@ export interface InputProps {
   name: string;
   placeholder?: string;
   register: any;
+  required?: boolean;
   step?: string;
   type?: 'password' | 'number' | 'text' | 'textarea';
 }

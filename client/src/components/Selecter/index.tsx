@@ -11,9 +11,13 @@ import { SelecterProps } from './types';
 // UTILS
 import { fuzzySearch } from 'utils/fuzzySearch';
 
-export const Selecter = ({ label = '', handleChange, options, placeholder }: SelecterProps): JSX.Element => (
+export const Selecter = ({ label = '', handleChange, options, placeholder, required = false }: SelecterProps): JSX.Element => (
   <>
-    {label && <Label>{label}</Label>}
+    {label && (
+      <Label>
+        {label} {required ? '*' : ''}
+      </Label>
+    )}
     <StyledSelectSearch>
       <SelectSearch
         closeOnSelect

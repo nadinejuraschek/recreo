@@ -13,6 +13,7 @@ export const Input = ({
   name,
   placeholder = '',
   register,
+  required = false,
   step = '',
   type = 'text',
 }: InputProps): JSX.Element => {
@@ -21,7 +22,7 @@ export const Input = ({
   const renderInput = () => {
     switch (type) {
       case 'textarea':
-        return <StyledTextarea maxlength={maxChars} placeholder={placeholder} rows={5} {...register(name)} />;
+        return <StyledTextarea maxlength={maxChars} placeholder={placeholder} required={required} rows={5} {...register(name)} />;
       case 'number':
         return (
           <Wrapper>
@@ -30,6 +31,7 @@ export const Input = ({
               autoComplete="off"
               inputmode="decimal"
               placeholder={placeholder}
+              required={required}
               step={step}
               type="number"
               {...register(name)}
@@ -45,6 +47,7 @@ export const Input = ({
               autoComplete="off"
               maxlength={maxChars}
               placeholder={placeholder}
+              required={required}
               type="text"
               {...register(name)}
               withIcon={withIcon}
@@ -56,7 +59,11 @@ export const Input = ({
 
   return (
     <Container>
-      {label && <Label>{label}</Label>}
+      {label && (
+        <Label>
+          {label} {required ? '*' : ''}
+        </Label>
+      )}
       {renderInput()}
       {error && <Validation>{error}</Validation>}
     </Container>

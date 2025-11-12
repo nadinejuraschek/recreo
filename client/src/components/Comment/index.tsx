@@ -1,17 +1,8 @@
-// DEPENDENCIES
 import { useState } from 'react';
 import { formatDistance } from 'date-fns';
-
-// COMPONENTS
 import { Rating } from 'components';
-
-// STYLED COMPONENTS
 import { Container, Header, Name, PostDetails, ReadMore, TextContainer, TimePosted, VerticalDivider } from './styles';
-
-// UTILS
 import { trimBodyAtWordEnd } from 'utils';
-
-// INTERFACES
 import { CommentProps } from './types';
 
 export const Comment = ({ body = '', postedOn, rating = 0, username = '' }: CommentProps): JSX.Element => {
@@ -23,20 +14,23 @@ export const Comment = ({ body = '', postedOn, rating = 0, username = '' }: Comm
 
   const trimmedBody = (
     <>
-      <p>{trimBodyAtWordEnd(body.substring(0, 120))}</p> <ReadMore onClick={onReadMore}>Read More</ReadMore>
+      <p>{trimBodyAtWordEnd(body.substring(0, 120))}</p>{' '}
+      <ReadMore className="comments-read-more" onClick={onReadMore}>
+        Read More
+      </ReadMore>
     </>
   );
 
   return (
-    <Container>
-      <Header>
+    <Container className="comments-item">
+      <Header className="comments-header">
         <Rating rating={rating} />
       </Header>
-      <TextContainer>{showFullComment || body.length <= 120 ? body : trimmedBody}</TextContainer>
-      <PostDetails>
-        <Name>by {username}</Name>
-        <VerticalDivider>∙</VerticalDivider>
-        <TimePosted>{timePosted}</TimePosted>
+      <TextContainer className="comments-text">{showFullComment || body.length <= 120 ? body : trimmedBody}</TextContainer>
+      <PostDetails className="comments-post-details">
+        <Name className="comments-name">by {username}</Name>
+        <VerticalDivider className="comments-vertical-divider">∙</VerticalDivider>
+        <TimePosted className="comments-time-posted">{timePosted}</TimePosted>
       </PostDetails>
     </Container>
   );

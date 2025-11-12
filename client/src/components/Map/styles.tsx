@@ -1,7 +1,7 @@
-// DEPENDENCIES
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ className?: string; children: ReactNode }>`
   height: 30rem;
   width: 100%;
   z-index: -1;

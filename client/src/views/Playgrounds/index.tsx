@@ -1,14 +1,7 @@
-// DEPENDENCIES
 import { useContext, useEffect, useState } from 'react';
-
-// STYLED-COMPONENTS
 import { PlaygroundInfo, StyledMap } from './styles';
-
-// COMPONENTS
 import { AddPlaygroundForm, ErrorState, PlaygroundsList } from './sections';
 import { LoadingSpinner, Toast } from 'components';
-
-// CONTEXT
 import { PlaygroundContext } from 'context/PlaygroundContext';
 import { UserContext } from 'context/UserContext';
 
