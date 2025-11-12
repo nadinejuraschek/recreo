@@ -107,7 +107,7 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
           navigate('/login');
         }
       })
-      .catch((error) => {
+      .catch(() => {
         // console.error('logout err: ', error);
         setError('Something went wrong. Please try to log out again.');
         setTimeout(() => setError(''), 5000);

@@ -84,12 +84,13 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
       withCredentials: true,
     })
       .then((res) => {
-        setIsLoading(false);
         const addedPlayground = res.data as Playground;
         setTimeout(() => setSuccess('Your playground was created successfully!'), 5000);
+        getPlaygrounds();
+        setIsLoading(false);
         navigate(`/playgrounds/${addedPlayground._id}`);
       })
-      .catch((error) => {
+      .catch(() => {
         setIsLoading(false);
         // console.log('Error: ', error.response);
         setError('Something went wrong. Please try again later.');
@@ -118,7 +119,7 @@ export const PlaygroundProvider = (props: PropsWithChildren<any>): JSX.Element =
         setTimeout(() => setSuccess(addedReview), 5000);
         getPlaygrounds();
       })
-      .catch((error) => {
+      .catch(() => {
         setIsLoading(false);
         // console.log('Error: ', error.response);
         setError('Something went wrong. Please try again later.');

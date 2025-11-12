@@ -48,7 +48,7 @@ export const playgroundSchema = Yup.object().shape({
   location: Yup.string().required("Please enter the playground's location."),
   // lat: Yup.number(),
   // long: Yup.number(),
-  description: Yup.string().max(120, 'Description can not exceed 120 characters.').required('Description can not be empty.'),
+  description: Yup.string().max(120, 'Description can not exceed 120 characters.'),
   features: Yup.array().of(Yup.string().oneOf(features)),
 });
 
