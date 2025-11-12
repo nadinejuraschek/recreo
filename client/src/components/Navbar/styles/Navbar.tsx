@@ -39,6 +39,7 @@ export const StyledNavLink = styled(NavLink)`
   font-size: 1.6rem;
   font-weight: 600;
   padding: 0 1.5rem;
+  text-decoration: none;
 
   &:hover {
     color: var(--yellow);
