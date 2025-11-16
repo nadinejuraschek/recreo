@@ -12,7 +12,6 @@ export const Header = styled.div`
   height: 6rem;
 
   color: var(--blue__dark);
-  padding: 0 2.4rem;
 `;
 
 export const Title = styled.div`

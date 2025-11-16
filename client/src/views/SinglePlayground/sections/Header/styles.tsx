@@ -1,4 +1,3 @@
-// DEPENDENCIES
 import styled from 'styled-components';
 
 export const HeaderWrapper = styled.div`
@@ -26,6 +25,7 @@ export const HeaderLeft = styled.div`
 export const HeaderRight = styled.div`
   display: flex;
   align-items: center;
+  gap: 0.8rem;
 
   height: 100%;
 

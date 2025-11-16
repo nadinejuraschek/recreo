@@ -2,7 +2,7 @@ import { HeaderWrapper, HeaderLeft, HeaderRight, HeaderTitle } from './styles';
 import { BackButton, ShareButton } from 'components';
 import { HeaderProps } from './types';
 
-export const Header = ({ name = '' }: HeaderProps): JSX.Element => {
+export const Header = ({ id, name = '' }: HeaderProps): JSX.Element => {
   return (
     <HeaderWrapper>
       <HeaderLeft>

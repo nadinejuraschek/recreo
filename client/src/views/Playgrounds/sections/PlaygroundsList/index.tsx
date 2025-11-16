@@ -1,18 +1,10 @@
-// DEPENDENCIES
 import { useContext } from 'react';
-
-// COMPONENTS
 import { Button, Card } from 'components';
-
-// STYLED COMPONENTS
 import { ButtonWrapper, Grid } from './styles';
 import { Section } from '../../styles';
-
-// CONTEXT
 import { UserContext } from 'context/UserContext';
-
-// INTERFACES
 import { PlaygroundsListProps } from './types';
+import playgroundPlaceholder from 'assets/placeholder_playground.png';
 
 export const PlaygroundsList = ({ playgrounds, setOpenAddPlaygroundModal }: PlaygroundsListProps): JSX.Element => {
   const { user } = useContext(UserContext);
@@ -29,8 +21,8 @@ export const PlaygroundsList = ({ playgrounds, setOpenAddPlaygroundModal }: Play
         )}
         <Grid>
           {playgrounds.map((playground) => {
-            const { _id, image, location, title } = playground;
-            return <Card id={_id} imageSrc={image} key={_id} location={location} name={title} />;
+            const { _id, images, location, title } = playground;
+            return <Card id={_id} imageSrc={images[0] ?? playgroundPlaceholder} key={_id} location={location} name={title} />;
           })}
         </Grid>
         {/* PAGINATION DISPLAYS HERE */}

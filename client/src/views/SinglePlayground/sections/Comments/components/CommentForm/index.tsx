@@ -1,28 +1,30 @@
-// DEPENDENCIES
 import { ChangeEvent, useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 // TODO: Find rating library that is compatible with React 18
 // import Rater from 'react-rating';
-
-// COMPONENTS
 import { Button, Form, Input } from 'components';
-
-// STYLED COMPONENTS
 import { FormContainer, ButtonWrapper, RaterLabel, RaterWrapper } from './styles';
 // import { RatingIcon } from 'components/Rating/styles';
-
-// SCHEMA
 import { commentSchema } from 'schemas';
-
-// CONTEXT
-import { PlaygroundContext, ReviewFormData } from 'context';
+import { UserContext } from 'context';
 import { CommentFormProps } from './types';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { createReview } from 'api';
 
 export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => {
   const [rating, setRating] = useState(0); // initial rating value
 
-  const { addReview } = useContext(PlaygroundContext);
+  const { user } = useContext(UserContext);
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: createReview,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['playground'] });
+      // TODO: success toast
+    },
+  });
 
   const defaultValues = {
     text: '',
@@ -40,11 +42,12 @@ export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => 
   });
 
   const onSubmit = (formData: { text: string }): void => {
-    const newFormData: ReviewFormData = {
+    const newFormData = {
+      author: user?.id,
+      body: formData.text,
       rating,
-      text: formData.text,
     };
-    if (addReview) addReview(newFormData, playgroundId);
+    mutate({ ...newFormData, playgroundId });
   };
 
   return (

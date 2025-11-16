@@ -1,4 +1,5 @@
 // DEPENDENCIES
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 export const Wrapper = styled.section`
@@ -37,7 +38,7 @@ export const Wrapper = styled.section`
 
 export const EmptyState = styled.div``;
 
-export const ImageActive = styled.div`
+export const ImageActive = styled.div<{ children: ReactNode; key?: string }>`
   border: none;
   margin-bottom: 1rem;
   overflow: hidden;

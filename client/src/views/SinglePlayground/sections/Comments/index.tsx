@@ -1,18 +1,10 @@
-// DEPENDENCIES
-import { useContext } from 'react';
-
-// COMPONENTS
+// DEPENDENCIESimport { useContext } from 'react';
 import { Comment, InlineLink, Title } from 'components';
 import { CommentForm } from './components/CommentForm';
-
-// STYLED COMPONENTS
 import { Container, EmptyComments, SummaryContainer } from './styles';
-
-// CONTEXT
 import { UserContext } from 'context';
-
-// INTERFACES
 import { CommentsProps } from './types';
+import { useContext } from 'react';
 
 export const Comments = ({ playgroundId, rating, reviews = [] }: CommentsProps): JSX.Element => {
   const { user } = useContext(UserContext);

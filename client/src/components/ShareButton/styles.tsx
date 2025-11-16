@@ -1,7 +1,4 @@
-// DEPENDENCIES
 import styled from 'styled-components';
-
-// ICONS
 import { ReactComponent as ShareIcon } from 'assets/share.svg';
 
 export const Icon = styled(ShareIcon).attrs(() => ({

@@ -1,11 +1,9 @@
-// STYLED COMPONENTS
 import { StyledLink, StyledButton } from './styles';
-
-// INTERFACES
 import { ButtonProps } from './types';
 
 export const Button = ({
   children,
+  className = '',
   $disabled = false,
   $filled = true,
   $fullWidth = false,
@@ -23,6 +21,7 @@ export const Button = ({
     <>
       {link ? (
         <StyledLink
+          className={className}
           $disabled={$disabled}
           $filled={$filled}
           $fullWidth={$fullWidth}
@@ -36,6 +35,7 @@ export const Button = ({
         </StyledLink>
       ) : (
         <StyledButton
+          className={className}
           $disabled={$disabled}
           $filled={$filled}
           $fullWidth={$fullWidth}

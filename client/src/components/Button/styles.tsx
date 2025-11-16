@@ -1,11 +1,9 @@
-// DEPENDENCIES
 import styled, { css } from 'styled-components';
-
-// COMPONENTS
 import { Link } from 'react-router-dom';
 import { ReactNode } from 'react';
 
 type ButtonProps = {
+  className?: string;
   $disabled?: boolean;
   $filled?: boolean;
   $fullWidth?: boolean;

@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const PlaygroundSchema = new Schema({
   title: String,
-  image: String,
+  images: [String],
   geometry: {
     type: {
       type: String,

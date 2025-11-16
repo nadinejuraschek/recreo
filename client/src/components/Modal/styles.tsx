@@ -25,7 +25,11 @@ export const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+  gap: 1.2rem;
 
+  padding: 2.4rem;
+
+  max-height: 90vh;
   width: 90vw;
 
   @media only screen and (min-width: 768px) {
@@ -38,12 +42,17 @@ export const Container = styled.div`
 `;
 
 export const Body = styled.div`
-  height: 100%;
-  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+  overflow: auto;
 `;
 
 export const Footer = styled.div`
-  border: none;
-  height: 8rem;
-  padding: 0 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  height: 6rem;
 `;

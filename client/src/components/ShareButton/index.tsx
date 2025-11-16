@@ -1,11 +1,6 @@
-// DEPENDENCIES
 import { useState } from 'react';
-
-// COMPONENTS
 import { Modal } from '../Modal';
 import { ShareModal } from './components/ShareModal';
-
-// STYLED COMPONENTS
 import { Icon } from './styles';
 
 export const ShareButton = (): JSX.Element => {

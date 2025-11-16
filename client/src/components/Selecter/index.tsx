@@ -12,7 +12,7 @@ import { SelecterProps } from './types';
 import { fuzzySearch } from 'utils/fuzzySearch';
 
 export const Selecter = ({ label = '', handleChange, options, placeholder, required = false }: SelecterProps): JSX.Element => (
-  <>
+  <div>
     {label && (
       <Label>
         {label} {required ? '*' : ''}
@@ -31,5 +31,5 @@ export const Selecter = ({ label = '', handleChange, options, placeholder, requi
         search
       />
     </StyledSelectSearch>
-  </>
+  </div>
 );

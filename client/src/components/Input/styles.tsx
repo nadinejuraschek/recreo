@@ -9,7 +9,6 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  margin: 1rem 0 2rem;
   width: 100%;
 `;
 
