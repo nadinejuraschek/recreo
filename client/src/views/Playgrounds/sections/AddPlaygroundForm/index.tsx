@@ -18,7 +18,7 @@ export const AddPlaygroundForm = ({ setOpenAddPlaygroundModal }: AddPlaygroundFo
 
   const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
 
-  const { mutate } = useMutation({
+  const { mutateAsync, isPending } = useMutation({
     mutationFn: createPlayground,
     onError: () => {
       toast.error('The playground could not be saved. Please try again later.');
@@ -26,6 +26,7 @@ export const AddPlaygroundForm = ({ setOpenAddPlaygroundModal }: AddPlaygroundFo
     onSuccess: (res) => {
       queryClient.invalidateQueries({ queryKey: ['playgrounds'] });
       toast.success('Your playground was created successfully!');
+      setOpenAddPlaygroundModal(false);
       navigate(`/playgrounds/${res.data._id}`);
     },
   });
@@ -47,17 +48,24 @@ export const AddPlaygroundForm = ({ setOpenAddPlaygroundModal }: AddPlaygroundFo
     mode: 'onChange',
   });
 
-  const onSubmit = (formData: AddPlaygroundInputs): void => {
+  const onSubmit = (formData: AddPlaygroundInputs) => {
+    if (!user) {
+      toast.error('You must be logged in to add a playground.');
+      return;
+    }
+
+    const imagesArray = (formData.images || '').split(',').map((img) => img.trim());
+
     const newFormData = {
       author: user?.id,
       description: formData.description,
       features: selectedFeatures,
-      images: formData.images,
+      images: imagesArray,
       location: formData.location,
       title: formData.name,
     };
 
-    mutate(newFormData);
+    mutateAsync(newFormData);
   };
 
   return (
@@ -65,7 +73,7 @@ export const AddPlaygroundForm = ({ setOpenAddPlaygroundModal }: AddPlaygroundFo
       <Modal
         closeButton
         footer={
-          <Button $disabled={!isValid || isSubmitting} $filled loading={isSubmitting} $small type="submit">
+          <Button disabled={!isValid || isSubmitting || isPending} $filled loading={isSubmitting} $small type="submit">
             Add Playground
           </Button>
         }

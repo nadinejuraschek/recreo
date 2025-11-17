@@ -5,12 +5,25 @@ import { Rating } from '../Rating';
 import { CardProps } from './types';
 import { getSinglePlayground } from 'api';
 import { useQuery } from '@tanstack/react-query';
+import { Playground } from 'types';
 
-export const Card = ({ id, imageSrc = '', location = '', name = '' }: CardProps): JSX.Element => {
-  const { data: playground } = useQuery({
-    queryKey: ['playground'],
+export const Card = ({ id, imageSrc = '', location = '', name = '' }: CardProps) => {
+  const {
+    data: playground,
+    // TODO: add error and loading UI
+    // isError,
+    // isLoading,
+  } = useQuery<Playground, Error>({
+    queryKey: ['playground', id],
     queryFn: () => getSinglePlayground(id),
+    enabled: !!id,
+    staleTime: 1000 * 60 * 5,
+    retry: 1,
   });
+
+  if (!id) {
+    return null;
+  }
 
   return (
     <Container to={`/playgrounds/${id}`}>

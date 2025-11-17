@@ -12,6 +12,7 @@ import { CommentFormProps } from './types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createReview } from 'api';
 import toast from 'react-hot-toast';
+import { Rating as RatingComp } from '@smastrom/react-rating';
 
 export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => {
   const [rating, setRating] = useState(0); // initial rating value
@@ -21,8 +22,11 @@ export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => 
 
   const { mutate } = useMutation({
     mutationFn: createReview,
+    onError: () => {
+      toast.error('Your review could not be submitted. Please try again later.');
+    },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['playground'] });
+      queryClient.invalidateQueries({ queryKey: ['playground', playgroundId] });
       toast.success('Your review has been saved.');
     },
   });
@@ -43,12 +47,18 @@ export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => 
   });
 
   const onSubmit = (formData: { text: string }): void => {
+    if (!user) {
+      toast.error('You must be logged in to submit a review.');
+      return;
+    }
+
     const newFormData = {
       author: user?.id,
       body: formData.text,
       rating,
+      playgroundId,
     };
-    mutate({ ...newFormData, playgroundId });
+    mutate(newFormData);
   };
 
   return (
@@ -63,6 +73,7 @@ export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => 
             <option value={4}>⭐️⭐️⭐️⭐️</option>
             <option value={5}>⭐️⭐️⭐️⭐️⭐️</option>
           </select>
+          <RatingComp isRequired onChange={setRating} style={{ maxWidth: 180 }} value={rating} />
           {/* RATING COMPONENT GOES HERE */}
           {/* <Rater
             emptySymbol={<RatingIcon color="var(--blue__opaque)" />}
@@ -80,7 +91,7 @@ export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => 
           error={errors?.text?.message}
         />
         <ButtonWrapper>
-          <Button $disabled={!isValid || isSubmitting} $filled loading={isSubmitting} $small type="submit">
+          <Button disabled={!isValid || isSubmitting} $filled loading={isSubmitting} $small type="submit">
             Add Comment
           </Button>
         </ButtonWrapper>

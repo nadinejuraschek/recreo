@@ -14,7 +14,7 @@ export const PlaygroundsList = ({ playgrounds, setOpenAddPlaygroundModal }: Play
       <Section>
         {user && (
           <ButtonWrapper>
-            <Button $filled handleClick={() => setOpenAddPlaygroundModal(true)}>
+            <Button $filled onClick={() => setOpenAddPlaygroundModal(true)}>
               Add a Playground
             </Button>
           </ButtonWrapper>

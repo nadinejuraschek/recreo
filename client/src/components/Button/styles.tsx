@@ -1,37 +1,20 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-import { ReactNode } from 'react';
+import { ButtonProps } from './types';
 
-type ButtonProps = {
-  className?: string;
-  $disabled?: boolean;
-  $filled?: boolean;
-  $fullWidth?: boolean;
-  $outlined?: boolean;
-  $rounded?: boolean;
-  $small?: boolean;
-  $underlined?: boolean;
-  children: ReactNode;
-  onClick?: () => void;
-  onSubmit?: () => void;
-  type?: 'button' | 'submit' | 'reset';
-};
-
-export const StyledLink = styled(Link)<ButtonProps>`
-  display: flex;
+const buttonBase = css<ButtonProps>`
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
 
   border-radius: 0.8rem;
-  font-size: 1.6rem;
   font-weight: 700;
   padding: 1rem 1.75rem;
+  min-height: 5rem;
+  min-width: 12rem;
   text-decoration: none;
-
-  height: 5rem;
-  min-width: 12rem;
-
-  transition: all 0.3s;
+  transition: all 0.2s ease;
 
   @media only screen and (min-width: 768px) {
     font-size: 1.8rem;
@@ -41,131 +24,7 @@ export const StyledLink = styled(Link)<ButtonProps>`
 
   @media only screen and (min-width: 900px) {
     font-size: 2rem;
-    height: 6rem;
-    padding: 1rem 3rem;
-    min-width: 16rem;
-  }
-
-  ${({ $small }) =>
-    $small &&
-    css`
-      font-size: 1.6rem;
-      height: 4rem;
-      min-width: 12rem;
-    `}
-
-  ${({ $disabled }) =>
-    $disabled &&
-    css`
-      opacity: 0.4;
-    `}
-
-  ${({ $filled }) =>
-    $filled &&
-    css`
-      background-color: var(--orange);
-      border: 2px solid var(--orange);
-      color: var(--white);
-    `}
-
-  ${({ $outlined }) =>
-    $outlined &&
-    css`
-      background-color: var(--white);
-      border: 2px solid var(--orange);
-      color: var(--orange);
-    `}
-
-  ${({ $rounded }) =>
-    $rounded &&
-    css`
-      border-radius: 40px;
-    `}
-
-  ${({ $fullWidth }) =>
-    $fullWidth &&
-    css`
-      width: 100%;
-    `}
-
-  ${({ $underlined }) =>
-    $underlined &&
-    css`
-      background-color: transparent;
-      border: none;
-      color: var(--orange);
-      font-size: 1.4rem;
-      height: auto;
-      text-decoration: underline;
-
-      @media only screen and (min-width: 900px) {
-        font-size: 1.6rem;
-      }
-    `}
-
-  &:focus {
-    ${({ $underlined }) =>
-      $underlined &&
-      css`
-        outline: none;
-      `}
-  }
-
-  &:hover {
-    cursor: pointer;
-
-    ${({ $disabled }) =>
-      $disabled &&
-      css`
-        cursor: not-allowed;
-      `}
-
-    ${({ $filled }) =>
-      $filled &&
-      css`
-        box-shadow: 0 3px 8px var(--shadow__lg);
-        color: var(--white);
-      `}
-
-    ${({ $outlined }) =>
-      $outlined &&
-      css`
-        box-shadow: 0 3px 8px var(--shadow__lg);
-        color: var(--orange);
-      `}
-
-    ${({ $underlined }) =>
-      $underlined &&
-      css`
-        box-shadow: none;
-      `}
-  }
-`;
-
-export const StyledButton = styled.button<ButtonProps>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 0.5rem;
-  font-size: 1.6rem;
-  font-weight: 700;
-  padding: 1rem 1.75rem;
-
-  height: 5rem;
-  min-width: 12rem;
-
-  transition: all 0.3s;
-
-  @media only screen and (min-width: 768px) {
-    font-size: 1.8rem;
-    padding: 1rem 2.25rem;
-    min-width: 14rem;
-  }
-
-  @media only screen and (min-width: 900px) {
-    font-size: 2rem;
-    height: 6rem;
+    min-height: 6rem;
     padding: 1rem 3rem;
     min-width: 16rem;
   }
@@ -175,23 +34,12 @@ export const StyledButton = styled.button<ButtonProps>`
     css`
       font-size: 1.4rem;
       padding: 0.5rem 1rem;
-
-      height: 4rem;
+      min-height: 4rem;
       min-width: 100px;
 
       @media only screen and (min-width: 900px) {
         font-size: 1.6rem;
-        padding: 0.5rem 1rem;
-
-        height: 4rem;
-        min-width: 100px;
       }
-    `}
-
-  ${({ $disabled }) =>
-    $disabled &&
-    css`
-      opacity: 0.4;
     `}
 
   ${({ $filled }) =>
@@ -200,6 +48,7 @@ export const StyledButton = styled.button<ButtonProps>`
       background-color: var(--orange);
       border: 2px solid var(--orange);
       color: var(--white);
+      box-shadow: none;
     `}
 
   ${({ $outlined }) =>
@@ -229,47 +78,51 @@ export const StyledButton = styled.button<ButtonProps>`
       border: none;
       color: var(--orange);
       font-size: 1.4rem;
-      height: auto;
+      min-height: auto;
       text-decoration: underline;
-
-      @media only screen and (min-width: 900px) {
-        font-size: 1.6rem;
-      }
     `}
 
-  &:focus {
+  &:hover {
     ${({ $underlined }) =>
-      $underlined &&
+      !$underlined &&
       css`
-        outline: none;
+        box-shadow: 0 3px 8px var(--shadow__lg);
       `}
   }
 
-  &:hover {
-    cursor: pointer;
+  &:focus-visible {
+    outline: 3px solid rgba(255, 165, 0, 0.25);
+    outline-offset: 2px;
+  }
+`;
 
-    ${({ $disabled }) =>
-      $disabled &&
-      css`
-        cursor: not-allowed;
-      `}
+export const StyledLink = styled(Link)<ButtonProps>`
+  ${buttonBase}
 
-    ${({ $filled }) =>
-      $filled &&
-      css`
-        box-shadow: 3px 3px 6px var(--shadow__lg);
-      `}
+  display: inline-flex;
 
-    ${({ $outlined }) =>
-      $outlined &&
-      css`
-        box-shadow: 3px 3px 6px var(--shadow__lg);
-      `}
+  &[aria-disabled='true'] {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
 
-    ${({ $underlined }) =>
-      $underlined &&
-      css`
-        box-shadow: none;
-      `}
+  ${({ $underlined }) =>
+    $underlined &&
+    css`
+      height: auto;
+      padding: 0;
+    `}
+`;
+
+export const StyledButton = styled.button<ButtonProps>`
+  ${buttonBase}
+
+  border-radius: 0.5rem;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
   }
 `;

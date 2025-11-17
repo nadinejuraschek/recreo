@@ -14,7 +14,7 @@ export const ErrorState = ({ setOpenAddPlaygroundModal, setShowAllPlaygrounds }:
       <EmptyState>
         <p>We couldn&apos;t find any playgrounds near you.</p>
         {user ? (
-          <Button $filled handleClick={() => setOpenAddPlaygroundModal(true)}>
+          <Button $filled onClick={() => setOpenAddPlaygroundModal(true)}>
             Add a Playground
           </Button>
         ) : (
@@ -23,7 +23,7 @@ export const ErrorState = ({ setOpenAddPlaygroundModal, setShowAllPlaygrounds }:
           </p>
         )}
         {setShowAllPlaygrounds && (
-          <Button $filled handleClick={() => setShowAllPlaygrounds(true)}>
+          <Button $filled onClick={() => setShowAllPlaygrounds(true)}>
             Browse All Playgrounds
           </Button>
         )}

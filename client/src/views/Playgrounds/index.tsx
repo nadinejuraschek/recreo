@@ -4,6 +4,7 @@ import { AddPlaygroundForm, ErrorState, PlaygroundsList } from './sections';
 import { LoadingSpinner } from 'components';
 import { getPlaygrounds } from 'api';
 import { useQuery } from '@tanstack/react-query';
+import { Playground } from 'types';
 
 export const Playgrounds = (): JSX.Element => {
   const [openAddPlaygroundModal, setOpenAddPlaygroundModal] = useState<boolean>(false);
@@ -12,10 +13,14 @@ export const Playgrounds = (): JSX.Element => {
   const {
     data: playgrounds,
     error,
+    // TODO: display error
+    // isError,
     isLoading,
-  } = useQuery({
+  } = useQuery<Playground[], Error>({
     queryKey: ['playgrounds'],
     queryFn: getPlaygrounds,
+    staleTime: 1000 * 60 * 5,
+    retry: 1,
   });
 
   const noPlaygrounds = playgrounds?.length === 0;

@@ -17,7 +17,7 @@ export const Auth = ({ mode = AUTH_MODE.LOGIN }: AuthProps): JSX.Element => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting, isValid },
-  } = useForm<any>({
+  } = useForm<{ username: string; password: string }>({
     defaultValues: {
       password: '',
       username: '',
@@ -27,26 +27,22 @@ export const Auth = ({ mode = AUTH_MODE.LOGIN }: AuthProps): JSX.Element => {
   });
 
   const onSubmit = useCallback(
-    (formData: { username: string; password: string }) => {
-      if (!loginUser || !registerUser) {
-        // TODO: error message here
-        return;
-      }
-
+    async (formData: { username: string; password: string }) => {
       if (mode === AUTH_MODE.REGISTER) {
-        registerUser(formData);
+        if (!registerUser) return;
+        await registerUser(formData);
         return;
       }
 
-      loginUser(formData);
+      if (!loginUser) return;
+      await loginUser(formData);
     },
     [loginUser, mode, registerUser]
   );
 
-  const onSubmitTestUser = useCallback(() => {
-    if (loginUser) {
-      loginUser(testUserData);
-    }
+  const onSubmitTestUser = useCallback(async () => {
+    if (!loginUser) return;
+    await loginUser(testUserData);
   }, [loginUser, testUserData]);
 
   return (
@@ -74,16 +70,16 @@ export const Auth = ({ mode = AUTH_MODE.LOGIN }: AuthProps): JSX.Element => {
             register={register}
             error={errors?.password?.message}
           />
-          <Button $disabled={!isValid || isSubmitting} $filled $fullWidth loading={isSubmitting || loading} type="submit">
+          <Button disabled={!isValid || isSubmitting} $filled $fullWidth loading={isSubmitting || loading} type="submit">
             {mode === AUTH_MODE.REGISTER ? 'Register' : 'Log In'}
           </Button>
         </Form>
         <Divider text="or" />
         <ButtonWrapper>
-          <Button link="/register" $outlined $fullWidth>
+          <Button link={mode === AUTH_MODE.REGISTER ? '/login' : '/register'} $outlined $fullWidth>
             {mode === AUTH_MODE.REGISTER ? 'Log In' : 'Register'}
           </Button>
-          <Button $underlined $fullWidth handleClick={onSubmitTestUser}>
+          <Button $underlined $fullWidth onClick={onSubmitTestUser}>
             Use Test Account
           </Button>
         </ButtonWrapper>

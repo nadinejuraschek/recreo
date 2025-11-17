@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useState } from 'react';
+import { createContext, PropsWithChildren, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { AuthenticatedUser } from 'types';
@@ -7,10 +7,10 @@ import axios from 'axios';
 
 export type UserContextType = {
   loading: boolean;
-  loginUser: UseMutateFunction<void, Error, UserFormData, unknown>;
-  logoutUser: () => void;
-  registerUser: UseMutateFunction<void, Error, UserFormData, unknown>;
-  user: AuthenticatedUser | null;
+  loginUser: UseMutateFunction<AuthenticatedUser, Error, UserFormData, unknown>;
+  logoutUser: UseMutateFunction<string | void, Error, void, unknown>;
+  registerUser: UseMutateFunction<AuthenticatedUser, Error, UserFormData, unknown>;
+  user: AuthenticatedUser | null | undefined;
 };
 
 export type UserFormData = {
@@ -21,87 +21,96 @@ export type UserFormData = {
 export const UserContext = createContext<Partial<UserContextType>>({});
 
 export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
-  const [user, setUser] = useState<AuthenticatedUser | null>();
+  const [user, setUser] = useState<AuthenticatedUser | null | undefined>(undefined);
 
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { mutate: loginUser, isPending: isPendingLogin } = useMutation({
-    mutationFn: async (formData: UserFormData) =>
-      await axios
-        .post('/api/login', formData)
-        .then(({ data }) => {
-          queryClient.invalidateQueries({ queryKey: ['user'] });
-          setUser(data as AuthenticatedUser);
-
-          navigate('/playgrounds');
-
-          const { username } = data as AuthenticatedUser;
-          toast.success(`Welcome back, ${username}!`);
-        })
-        .catch((isError) => {
-          if (isError.message) {
-            toast.error(isError.message);
-          } else {
-            toast.error('Something went wrong. Please try again later.');
-          }
-        }),
+  const { mutate: loginUser, isPending: isLoadingLogin } = useMutation<AuthenticatedUser, Error, UserFormData>({
+    mutationFn: async (formData) => {
+      const { data } = await axios.post('/api/login', formData);
+      return data as AuthenticatedUser;
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['user'] });
+      setUser(data);
+      navigate('/playgrounds');
+      toast.success(`Welcome back, ${data.username}!`);
+    },
+    onError: (err: any) => {
+      toast.error(err?.message ?? 'Something went wrong. Please try again later.');
+      throw err;
+    },
   });
 
-  const { mutate: registerUser, isPending: isPendingRegister } = useMutation({
-    mutationFn: async (formData: UserFormData) =>
-      await axios
-        .post('/api/register', formData)
-        .then(({ data }) => {
-          queryClient.invalidateQueries({ queryKey: ['user'] });
-          setUser(data as AuthenticatedUser);
-
-          navigate('/playgrounds');
-
-          toast.success('Successfully registered!');
-        })
-        .catch((isError) => {
-          if (isError.message) {
-            toast.error(isError.message);
-          } else {
-            toast.error('Something went wrong. Please try again later.');
-          }
-        }),
+  const { mutate: registerUser, isPending: isLoadingRegister } = useMutation<AuthenticatedUser, Error, UserFormData>({
+    mutationFn: async (formData) => {
+      const { data } = await axios.post('/api/register', formData);
+      return data as AuthenticatedUser;
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['user'] });
+      setUser(data);
+      navigate('/playgrounds');
+      toast.success('Successfully registered!');
+    },
+    onError: (err: any) => {
+      toast.error(err?.message ?? 'Something went wrong. Please try again later.');
+      throw err;
+    },
   });
 
-  const { mutate: logoutUser, isPending: isPendingLogout } = useMutation({
-    mutationFn: async () =>
-      await axios
-        .get('/api/logout')
-        .then(({ data }) => {
-          queryClient.invalidateQueries({ queryKey: ['user'] });
-
-          if (data !== 'Successfully logged out.') {
-            toast.error('Something went wrong. Please try to log out again.');
-          }
-
-          setUser(null);
-          toast.success('Successfully logged out.');
-          navigate('/login');
-        })
-        .catch(() => {
-          toast.error('Something went wrong. Please try to log out again.');
-        }),
+  const { mutate: logoutUser, isPending: isLoadingLogout } = useMutation<string | void, Error, void>({
+    mutationFn: async () => {
+      const { data } = await axios.get('/api/logout');
+      return data as string | void;
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['user'] });
+      if (data && data !== 'Successfully logged out.') {
+        toast.error('Something went wrong. Please try to log out again.');
+      } else {
+        toast.success('Successfully logged out.');
+      }
+      setUser(null);
+      navigate('/login');
+    },
+    onError: () => {
+      toast.error('Something went wrong. Please try to log out again.');
+    },
   });
 
-  const { isLoading: isLoadingUser } = useQuery({
+  const {
+    data: userData,
+    isError: isErrorGetUser,
+    isLoading: isLoadingUser,
+    isSuccess: isSuccessGetUser,
+  } = useQuery<AuthenticatedUser | null, Error>({
     queryKey: ['user'],
-    queryFn: async () =>
-      await axios.get('/api/user').then((res) => {
-        setUser(res.data);
-      }),
-    enabled: !user,
+    queryFn: async (): Promise<AuthenticatedUser | null> => {
+      const res = await axios.get('/api/user');
+      // return null explicitly if no user
+      return (res.data as AuthenticatedUser) ?? null;
+    },
+    enabled: user === undefined,
+    retry: false,
   });
+
+  useEffect(() => {
+    if (isSuccessGetUser && userData) {
+      setUser(userData ?? null);
+    }
+
+    if (isErrorGetUser) {
+      toast.error("There was an error fetching the user's data. Please try again later.");
+      setUser(null);
+    }
+  }, [isErrorGetUser, isSuccessGetUser, userData]);
 
   return (
     <UserContext.Provider
       value={{
-        loading: isPendingLogin || isPendingRegister || isPendingLogout || isLoadingUser,
+        loading: isLoadingLogin || isLoadingRegister || isLoadingLogout || isLoadingUser,
         loginUser,
         logoutUser,
         registerUser,

@@ -4,11 +4,11 @@ import { ButtonProps } from './types';
 export const Button = ({
   children,
   className = '',
-  $disabled = false,
+  disabled = false,
   $filled = true,
   $fullWidth = false,
-  handleClick,
-  handleSubmit,
+  onClick,
+  onSubmit,
   loading = false,
   link = undefined,
   $outlined = false,
@@ -17,12 +17,14 @@ export const Button = ({
   type = 'button',
   $underlined = false,
 }: ButtonProps): JSX.Element => {
+  const isDisabled = disabled || loading;
+
   return (
     <>
       {link ? (
         <StyledLink
           className={className}
-          $disabled={$disabled}
+          disabled={isDisabled}
           $filled={$filled}
           $fullWidth={$fullWidth}
           $outlined={$outlined}
@@ -30,17 +32,21 @@ export const Button = ({
           $small={$small}
           to={link}
           $underlined={$underlined}
+          aria-busy={loading}
+          aria-disabled={isDisabled}
+          tabIndex={isDisabled ? -1 : undefined}
         >
-          {children}
+          {loading ? 'Loading...' : children}
         </StyledLink>
       ) : (
         <StyledButton
+          aria-busy={loading}
           className={className}
-          $disabled={$disabled}
+          disabled={isDisabled}
           $filled={$filled}
           $fullWidth={$fullWidth}
-          onClick={handleClick}
-          onSubmit={handleSubmit}
+          onClick={onClick}
+          onSubmit={onSubmit}
           $outlined={$outlined}
           $rounded={$rounded}
           $small={$small}

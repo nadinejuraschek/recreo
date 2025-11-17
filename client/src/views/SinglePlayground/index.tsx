@@ -6,9 +6,14 @@ import { LoadingSpinner, Tabs } from 'components';
 import { useQuery } from '@tanstack/react-query';
 import { getSinglePlayground } from 'api';
 import { useParams } from 'react-router-dom';
+import { Playground } from 'types';
 
 export const SinglePlayground = (): JSX.Element => {
   const { id: paramId = '' } = useParams<{ id: string }>();
+
+  if (!paramId) {
+    return <ErrorState />;
+  }
 
   const tabOptions = [
     { label: 'Images', name: 'images' },
@@ -21,9 +26,12 @@ export const SinglePlayground = (): JSX.Element => {
     data: playground,
     error,
     isLoading,
-  } = useQuery({
-    queryKey: ['playground'],
+  } = useQuery<Playground, Error>({
+    queryKey: ['playground', paramId],
     queryFn: () => getSinglePlayground(paramId),
+    enabled: !!paramId,
+    staleTime: 1000 * 60 * 5,
+    retry: 1,
   });
 
   if (isLoading) {
