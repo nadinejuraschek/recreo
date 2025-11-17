@@ -9,6 +9,8 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
 
+  margin-bottom: 1.25rem;
+
   width: 100%;
 `;
 
@@ -87,4 +89,6 @@ export const StyledTextarea = styled.textarea`
 export const Validation = styled.div`
   color: var(--red);
   font-size: 1rem;
+
+  height: 1rem;
 `;

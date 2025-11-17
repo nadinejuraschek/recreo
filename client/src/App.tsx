@@ -1,10 +1,11 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Footer, Navbar } from 'components';
 import { DefaultLayout, ImageLayout, MapLayout } from 'layouts';
-import { Home, Login, NotFound, Playgrounds, Register, SinglePlayground } from 'views';
+import { Auth, Home, NotFound, Playgrounds, SinglePlayground } from 'views';
 import { UserProvider } from 'context';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { AUTH_MODE } from 'views/Auth/types';
 
 const App = (): JSX.Element => {
   const queryClient = new QueryClient();
@@ -37,7 +38,7 @@ const App = (): JSX.Element => {
               path="/login"
               element={
                 <ImageLayout>
-                  <Login />
+                  <Auth mode={AUTH_MODE.LOGIN} />
                 </ImageLayout>
               }
             />
@@ -45,7 +46,7 @@ const App = (): JSX.Element => {
               path="/register"
               element={
                 <ImageLayout>
-                  <Register />
+                  <Auth mode={AUTH_MODE.REGISTER} />
                 </ImageLayout>
               }
             />
