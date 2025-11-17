@@ -1,7 +1,4 @@
-// DEPENDENCIES
 import styled, { css } from 'styled-components';
-
-// INTERFACES
 import { StyledTabProps } from './types';
 
 export const Container = styled.div`
@@ -31,6 +28,10 @@ export const Tab = styled.button<StyledTabProps>`
       border-bottom: 4px solid var(--orange);
       font-weight: bold;
     `}
+
+  &:hover {
+    border-bottom: 4px solid var(--orange);
+  }
 
   &:focus {
     outline: none;

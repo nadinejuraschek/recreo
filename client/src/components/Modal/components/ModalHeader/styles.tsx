@@ -1,7 +1,4 @@
-// DEPENDENCIES
 import styled from 'styled-components';
-
-// ICONS
 import { ReactComponent as CloseIcon } from 'assets/close.svg';
 
 export const Header = styled.div`

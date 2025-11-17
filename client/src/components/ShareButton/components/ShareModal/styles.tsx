@@ -1,7 +1,4 @@
-// DEPENDENCIES
 import styled from 'styled-components';
-
-// ICONS
 import { ReactComponent as Facebook } from 'assets/facebook.svg';
 import { ReactComponent as Mail } from 'assets/mail.svg';
 import { ReactComponent as Twitter } from 'assets/twitter.svg';

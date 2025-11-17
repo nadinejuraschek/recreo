@@ -1,7 +1,4 @@
-// STYLED COMPONENTS
 import { NumberRating, RatingWrapper, RatingIcon, RatingValue } from './styles';
-
-// INTERFACES
 import { RatingProps } from './types';
 
 export const Rating = ({ rating = 0, withValue = false }: RatingProps): JSX.Element => {

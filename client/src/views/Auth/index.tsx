@@ -1,8 +1,8 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ButtonWrapper, FormWrapper, Wrapper } from './styles';
-import { Button, Divider, Form, Input, Title, Toast } from 'components';
+import { Button, Divider, Form, Input, Title } from 'components';
 import { testUserData } from 'data';
 import { loginSchema } from 'schemas';
 import { UserContext } from 'context/UserContext';
@@ -11,9 +11,7 @@ import userIcon from 'assets/user.svg';
 import { AUTH_MODE, AuthProps } from './types';
 
 export const Auth = ({ mode = AUTH_MODE.LOGIN }: AuthProps): JSX.Element => {
-  const { error, loading, loginUser, registerUser } = useContext(UserContext);
-
-  const [showError, setShowError] = useState(false);
+  const { loading, loginUser, registerUser } = useContext(UserContext);
 
   const {
     register,
@@ -27,10 +25,6 @@ export const Auth = ({ mode = AUTH_MODE.LOGIN }: AuthProps): JSX.Element => {
     resolver: yupResolver(loginSchema),
     mode: 'onChange',
   });
-
-  useEffect(() => {
-    error ? setShowError(true) : setShowError(false);
-  }, [error]);
 
   const onSubmit = useCallback(
     (formData: { username: string; password: string }) => {
@@ -94,7 +88,6 @@ export const Auth = ({ mode = AUTH_MODE.LOGIN }: AuthProps): JSX.Element => {
           </Button>
         </ButtonWrapper>
       </FormWrapper>
-      {showError && <Toast type="danger">{error}</Toast>}
     </Wrapper>
   );
 };

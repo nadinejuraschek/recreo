@@ -1,4 +1,3 @@
-// DEPENDENCIES
 import { ReactNode } from 'react';
 import styled, { keyframes } from 'styled-components';
 

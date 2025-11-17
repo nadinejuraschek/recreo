@@ -1,16 +1,15 @@
 import { createContext, PropsWithChildren, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import { AuthenticatedUser } from 'types';
 import { UseMutateFunction, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 
 export type UserContextType = {
-  error: string;
   loading: boolean;
   loginUser: UseMutateFunction<void, Error, UserFormData, unknown>;
   logoutUser: () => void;
   registerUser: UseMutateFunction<void, Error, UserFormData, unknown>;
-  success: string;
   user: AuthenticatedUser | null;
 };
 
@@ -22,8 +21,6 @@ export type UserFormData = {
 export const UserContext = createContext<Partial<UserContextType>>({});
 
 export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
-  const [error, setError] = useState<string>('');
-  const [success, setSuccess] = useState<string>('');
   const [user, setUser] = useState<AuthenticatedUser | null>();
 
   const navigate = useNavigate();
@@ -40,18 +37,14 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
           navigate('/playgrounds');
 
           const { username } = data as AuthenticatedUser;
-          setSuccess(`Welcome back, ${username}!`);
-          setTimeout(() => setSuccess(''), 5000);
+          toast.success(`Welcome back, ${username}!`);
         })
         .catch((isError) => {
-          console.log('LOG error: ', isError);
-          /* if (error.response.data) {
-        setError(error.response.data);
-        setTimeout(() => setError(''), 5000);
-      } else {
-        setError('Something went wrong. Please try again later.');
-        setTimeout(() => setError(''), 5000);
-      } */
+          if (isError.message) {
+            toast.error(isError.message);
+          } else {
+            toast.error('Something went wrong. Please try again later.');
+          }
         }),
   });
 
@@ -65,18 +58,14 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
 
           navigate('/playgrounds');
 
-          setSuccess('Successfully registered!');
-          setTimeout(() => setSuccess(''), 5000);
+          toast.success('Successfully registered!');
         })
         .catch((isError) => {
-          console.log('LOG error: ', isError);
-          /* if (error.response.data) {
-          setError(error.response.data);
-          setTimeout(() => setError(''), 5000);
-        } else {
-          setError('Something went wrong. Please try again later.');
-          setTimeout(() => setError(''), 5000);
-        } */
+          if (isError.message) {
+            toast.error(isError.message);
+          } else {
+            toast.error('Something went wrong. Please try again later.');
+          }
         }),
   });
 
@@ -86,17 +75,17 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
         .get('/api/logout')
         .then(({ data }) => {
           queryClient.invalidateQueries({ queryKey: ['user'] });
+
           if (data !== 'Successfully logged out.') {
-            setError('Something went wrong. Please try to log out again.');
-            setTimeout(() => setError(''), 5000);
+            toast.error('Something went wrong. Please try to log out again.');
           }
 
           setUser(null);
+          toast.success('Successfully logged out.');
           navigate('/login');
         })
         .catch(() => {
-          setError('Something went wrong. Please try to log out again.');
-          setTimeout(() => setError(''), 5000);
+          toast.error('Something went wrong. Please try to log out again.');
         }),
   });
 
@@ -112,12 +101,10 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
   return (
     <UserContext.Provider
       value={{
-        error,
         loading: isPendingLogin || isPendingRegister || isPendingLogout || isLoadingUser,
         loginUser,
         logoutUser,
         registerUser,
-        success,
         user,
       }}
     >

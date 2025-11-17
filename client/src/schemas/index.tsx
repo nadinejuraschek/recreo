@@ -1,4 +1,3 @@
-// DEPENDENCIES
 import * as Yup from 'yup';
 
 const features = [

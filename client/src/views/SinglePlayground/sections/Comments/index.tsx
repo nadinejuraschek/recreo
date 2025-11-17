@@ -1,4 +1,3 @@
-// DEPENDENCIESimport { useContext } from 'react';
 import { Comment, InlineLink, Title } from 'components';
 import { CommentForm } from './components/CommentForm';
 import { Container, EmptyComments, SummaryContainer } from './styles';

@@ -1,4 +1,3 @@
-// DEPENDENCIES
 import { ReactNode } from 'react';
 
 export interface TooltipProps {

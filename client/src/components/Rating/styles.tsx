@@ -1,7 +1,4 @@
-// DEPENDENCIES
 import styled from 'styled-components';
-
-// ICONS
 import { ReactComponent as RatingSvg } from 'assets/star.svg';
 
 export const NumberRating = styled.div`

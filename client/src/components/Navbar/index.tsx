@@ -1,10 +1,5 @@
-// REACT
 import { useContext, useState } from 'react';
-
-// CONTEXT
 import { UserContext } from 'context/UserContext';
-
-// STYLED COMPONENTS
 import { Logo } from './styles/Logo';
 import { Container, NavList, StyledNavLink, MenuBtn } from './styles/Navbar';
 import { Sidenav } from './components/Sidenav';

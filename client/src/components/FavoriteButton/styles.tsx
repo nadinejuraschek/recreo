@@ -1,10 +1,5 @@
-// DEPENDENCIES
 import styled, { css } from 'styled-components';
-
-// ICONS
 import { ReactComponent as HeartIcon } from 'assets/heart.svg';
-
-// INTERFACES
 import { HeartProps } from './types';
 
 export const Icon = styled(HeartIcon).attrs(() => ({

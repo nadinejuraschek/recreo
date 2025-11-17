@@ -1,14 +1,7 @@
-// REACT
 import { useContext } from 'react';
-
-// STYLED COMPONENTS
 import { Container, NavList, NavItem } from './styles';
 import { Footer } from '../../../Footer';
-
-// CONTEXT
 import { UserContext } from 'context/UserContext';
-
-// INTERFACES
 import { SidenavProps } from './types';
 
 export const Sidenav = ({ handleClose }: SidenavProps): JSX.Element => {

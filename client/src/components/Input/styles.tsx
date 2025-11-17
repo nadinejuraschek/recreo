@@ -1,7 +1,4 @@
-// DEPENDENCIES
 import styled from 'styled-components';
-
-// INTERFACES
 import { StyledInputProps } from './types';
 
 export const Container = styled.div`

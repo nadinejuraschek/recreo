@@ -11,6 +11,7 @@ import { UserContext } from 'context';
 import { CommentFormProps } from './types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createReview } from 'api';
+import toast from 'react-hot-toast';
 
 export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => {
   const [rating, setRating] = useState(0); // initial rating value
@@ -22,7 +23,7 @@ export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => 
     mutationFn: createReview,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['playground'] });
-      // TODO: success toast
+      toast.success('Your review has been saved.');
     },
   });
 

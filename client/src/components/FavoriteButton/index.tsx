@@ -1,7 +1,4 @@
-// DEPENDENCIES
 import { useState } from 'react';
-
-// STYLED COMPONENTS
 import { Icon } from './styles';
 
 export const FavoriteButton = (): JSX.Element => {

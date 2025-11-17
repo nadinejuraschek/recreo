@@ -1,7 +1,4 @@
-// DEPENDENCIES
 import styled from 'styled-components';
-
-// COMPONENTS
 import { Link } from 'react-router-dom';
 import { ReactNode } from 'react';
 

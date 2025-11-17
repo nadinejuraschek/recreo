@@ -1,4 +1,3 @@
-// DEPENDENCIES
 import styled from 'styled-components';
 
 export const StyledSelectSearch = styled.div`

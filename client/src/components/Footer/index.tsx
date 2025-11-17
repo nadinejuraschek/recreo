@@ -1,7 +1,4 @@
-// STYLED COMPONENTS
 import { Container, Link } from './styles';
-
-// INTERFACES
 import { FooterProps } from './types';
 
 export const Footer = ({ navFooter = false }: FooterProps): JSX.Element => (

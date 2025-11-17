@@ -258,14 +258,12 @@ export const StyledButton = styled.button<ButtonProps>`
       $filled &&
       css`
         box-shadow: 3px 3px 6px var(--shadow__lg);
-        transform: translateX(-2px) translateY(-2px);
       `}
 
     ${({ $outlined }) =>
       $outlined &&
       css`
         box-shadow: 3px 3px 6px var(--shadow__lg);
-        transform: translateX(-2px) translateY(-2px);
       `}
 
     ${({ $underlined }) =>

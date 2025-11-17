@@ -9,6 +9,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createPlayground } from 'api';
 import { UserContext } from 'context';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 export const AddPlaygroundForm = ({ setOpenAddPlaygroundModal }: AddPlaygroundFormProps): JSX.Element => {
   const { user } = useContext(UserContext);
@@ -19,10 +20,12 @@ export const AddPlaygroundForm = ({ setOpenAddPlaygroundModal }: AddPlaygroundFo
 
   const { mutate } = useMutation({
     mutationFn: createPlayground,
+    onError: () => {
+      toast.error('The playground could not be saved. Please try again later.');
+    },
     onSuccess: (res) => {
       queryClient.invalidateQueries({ queryKey: ['playgrounds'] });
-      // TODO: display toast
-      // setTimeout(() => setSuccess('Your playground was created successfully!'), 5000);
+      toast.success('Your playground was created successfully!');
       navigate(`/playgrounds/${res.data._id}`);
     },
   });

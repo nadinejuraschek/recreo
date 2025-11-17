@@ -1,7 +1,4 @@
-// DEPENDENCIES
 import { FacebookShareButton, TwitterShareButton, WhatsappShareButton, EmailShareButton } from 'react-share';
-
-// STYLED COMPONENTS
 import { Content, FacebookIcon, MailIcon, TwitterIcon, WhatsappIcon } from './styles';
 
 export const ShareModal = (): JSX.Element => (

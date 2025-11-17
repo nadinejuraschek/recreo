@@ -1,10 +1,5 @@
-// DEPENDENCIES
 import styled from 'styled-components';
-
-// COMPONENTS
 import { NavLink } from 'react-router-dom';
-
-// ICONS
 import { ReactComponent as MenuIcon } from 'assets/menu.svg';
 
 export const Container = styled.nav`

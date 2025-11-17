@@ -1,7 +1,4 @@
-// DEPENDENCIES
 import styled from 'styled-components';
-
-// COMPONENTS
 import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
