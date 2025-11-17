@@ -1,14 +1,5 @@
 import axios from 'axios';
-import { Playground, Review } from 'types';
-
-const getRating = (reviews: Review[]): number => {
-  const ratings = reviews.map((review) => review.rating);
-  let sum = 0;
-  for (let i = 0; i < ratings.length; i++) {
-    sum = sum + ratings[i];
-  }
-  return sum / ratings.length;
-};
+import { Playground } from 'types';
 
 export async function getPlaygrounds() {
   return await axios.get<Playground[]>('/api/playgrounds').then((res) => res.data.sort((a, b) => a.title.localeCompare(b.title)));
@@ -42,21 +33,9 @@ export async function createReview({
   rating: number;
   playgroundId: string;
 }) {
-  return await axios
-    .post(`/api/playgrounds/${playgroundId}/review`, {
-      author,
-      body,
-      rating,
-    })
-    .then((res) => {
-      const totalRating = getRating(res.data.reviews);
-      return {
-        ...res.data,
-        geometry: {
-          latitude: res.data.geometry.coordinates[0],
-          longitude: res.data.geometry.coordinates[1],
-        },
-        rating: isNaN(totalRating) ? 0 : totalRating,
-      };
-    });
+  return await axios.post(`/api/playgrounds/${playgroundId}/review`, {
+    author,
+    body,
+    rating,
+  });
 }

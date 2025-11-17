@@ -3,39 +3,42 @@ import { AmenitiesList } from '../AmenitiesList';
 import { Divider } from '../Divider';
 import { Rating } from '../Rating';
 import { CardProps } from './types';
-import { getSinglePlayground } from 'api';
-import { useQuery } from '@tanstack/react-query';
-import { Playground } from 'types';
+import { Review } from 'types';
+import playgroundPlaceholder from 'assets/placeholder_playground.png';
 
-export const Card = ({ id, imageSrc = '', location = '', name = '' }: CardProps) => {
-  const {
-    data: playground,
-    // TODO: add error and loading UI
-    // isError,
-    // isLoading,
-  } = useQuery<Playground, Error>({
-    queryKey: ['playground', id],
-    queryFn: () => getSinglePlayground(id),
-    enabled: !!id,
-    staleTime: 1000 * 60 * 5,
-    retry: 1,
-  });
+const getRating = (reviews?: Review[]): number => {
+  if (!reviews || reviews.length === 0) {
+    return 0;
+  }
 
-  if (!id) {
+  if (reviews.length === 1) {
+    return reviews[0].rating;
+  }
+
+  const ratings = reviews.map((review) => review.rating);
+  let sum = 0;
+  for (let i = 0; i < ratings.length; i++) {
+    sum = sum + ratings[i];
+  }
+  return sum / ratings.length;
+};
+
+export const Card = ({ playground }: CardProps) => {
+  if (!playground || !playground?._id) {
     return null;
   }
 
   return (
-    <Container to={`/playgrounds/${id}`}>
-      <Image className="card-image" src={imageSrc} alt={name} />
+    <Container to={`/playgrounds/${playground?._id}`}>
+      <Image className="card-image" src={playground?.images[0] ?? playgroundPlaceholder} alt={playground?.title ?? ''} />
       <Body className="card-body">
-        <Location className="card-location">{location}</Location>
+        <Location className="card-location">{playground?.location}</Location>
         <Headline>
-          <Name className="card-name">{name}</Name>
-          <Rating rating={playground?.rating} withValue />
+          <Name className="card-name">{playground?.title ?? ''}</Name>
+          <Rating rating={getRating(playground?.reviews)} withValue />
         </Headline>
         <Divider color="var(--blue__opaque)" />
-        <AmenitiesList features={playground?.features || []} small />
+        <AmenitiesList features={playground?.features} small />
       </Body>
     </Container>
   );

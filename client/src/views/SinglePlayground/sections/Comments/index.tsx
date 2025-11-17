@@ -3,7 +3,7 @@ import { CommentForm } from './components/CommentForm';
 import { Container, EmptyComments, SummaryContainer } from './styles';
 import { UserContext } from 'context';
 import { CommentsProps } from './types';
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 
 export const Comments = ({ playgroundId, rating, reviews = [] }: CommentsProps): JSX.Element => {
   const { user } = useContext(UserContext);
@@ -20,7 +20,7 @@ export const Comments = ({ playgroundId, rating, reviews = [] }: CommentsProps):
     </SummaryContainer>
   ) : null;
 
-  const renderComments = (): JSX.Element[] | null => {
+  const renderComments = useMemo((): JSX.Element[] | null => {
     if (reviews.length === 0) return null;
 
     return reviews.map((review) => {
@@ -28,13 +28,13 @@ export const Comments = ({ playgroundId, rating, reviews = [] }: CommentsProps):
 
       return <Comment body={body} key={_id} postedOn={postedOn} rating={rating} username={author.username} />;
     });
-  };
+  }, [reviews]);
 
   return (
     <Container>
       {title}
       {!user && logInToViewComments}
-      {renderComments()}
+      {renderComments}
       {user && <CommentForm playgroundId={playgroundId} />}
     </Container>
   );

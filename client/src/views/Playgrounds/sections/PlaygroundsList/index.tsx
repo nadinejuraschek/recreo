@@ -4,7 +4,6 @@ import { ButtonWrapper, Grid } from './styles';
 import { Section } from '../../styles';
 import { UserContext } from 'context/UserContext';
 import { PlaygroundsListProps } from './types';
-import playgroundPlaceholder from 'assets/placeholder_playground.png';
 
 export const PlaygroundsList = ({ playgrounds, setOpenAddPlaygroundModal }: PlaygroundsListProps): JSX.Element => {
   const { user } = useContext(UserContext);
@@ -20,10 +19,9 @@ export const PlaygroundsList = ({ playgrounds, setOpenAddPlaygroundModal }: Play
           </ButtonWrapper>
         )}
         <Grid>
-          {playgrounds.map((playground) => {
-            const { _id, images, location, title } = playground;
-            return <Card id={_id} imageSrc={images[0] ?? playgroundPlaceholder} key={_id} location={location} name={title} />;
-          })}
+          {playgrounds.map((playground) => (
+            <Card key={playground._id} playground={playground} />
+          ))}
         </Grid>
         {/* PAGINATION DISPLAYS HERE */}
       </Section>

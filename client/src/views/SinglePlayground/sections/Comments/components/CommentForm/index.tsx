@@ -1,11 +1,8 @@
 import { ChangeEvent, useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-// TODO: Find rating library that is compatible with React 18
-// import Rater from 'react-rating';
 import { Button, Form, Input } from 'components';
 import { FormContainer, ButtonWrapper, RaterLabel, RaterWrapper } from './styles';
-// import { RatingIcon } from 'components/Rating/styles';
 import { commentSchema } from 'schemas';
 import { UserContext } from 'context';
 import { CommentFormProps } from './types';
@@ -22,7 +19,8 @@ export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => 
 
   const { mutate } = useMutation({
     mutationFn: createReview,
-    onError: () => {
+    onError: (error) => {
+      console.log('LOG error: ', error);
       toast.error('Your review could not be submitted. Please try again later.');
     },
     onSuccess: () => {
