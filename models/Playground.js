@@ -24,6 +24,7 @@ const PlaygroundSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
+  rating: Number,
   reviews: [
     {
       type: Schema.Types.ObjectId,

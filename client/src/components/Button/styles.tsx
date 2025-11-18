@@ -8,6 +8,7 @@ const buttonBase = css<ButtonProps>`
   justify-content: center;
   box-sizing: border-box;
 
+  font-size: 1.6rem;
   border-radius: 0.8rem;
   font-weight: 700;
   padding: 1rem 1.75rem;
@@ -49,6 +50,10 @@ const buttonBase = css<ButtonProps>`
       border: 2px solid var(--orange);
       color: var(--white);
       box-shadow: none;
+
+      &:hover {
+        color: var(--white);
+      }
     `}
 
   ${({ $outlined }) =>
@@ -57,6 +62,10 @@ const buttonBase = css<ButtonProps>`
       background-color: var(--white);
       border: 2px solid var(--orange);
       color: var(--orange);
+
+      &:hover {
+        color: var(--orange);
+      }
     `}
 
   ${({ $rounded }) =>
@@ -80,6 +89,10 @@ const buttonBase = css<ButtonProps>`
       font-size: 1.4rem;
       min-height: auto;
       text-decoration: underline;
+
+      &:hover {
+        color: var(--orange);
+      }
     `}
 
   &:hover {

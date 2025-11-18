@@ -1,10 +1,14 @@
 import { NumberRating, RatingWrapper, RatingIcon, RatingValue } from './styles';
 import { RatingProps } from './types';
 
-export const Rating = ({ rating = 0, withValue = false }: RatingProps): JSX.Element => {
+export const Rating = ({ rating, withValue = false }: RatingProps) => {
+  if (!rating) {
+    return null;
+  }
+
   const displayRating = () => {
     const roundedRating = Math.round(rating);
-    return [...Array(roundedRating)].map((element, index) => <RatingIcon key={index} />);
+    return [...Array(roundedRating)].map((_element, index) => <RatingIcon key={index} />);
   };
 
   if (withValue) {

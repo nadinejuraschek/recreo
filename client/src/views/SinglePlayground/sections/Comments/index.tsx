@@ -34,8 +34,8 @@ export const Comments = ({ playgroundId, rating, reviews = [] }: CommentsProps):
     <Container>
       {title}
       {!user && logInToViewComments}
-      {renderComments}
       {user && <CommentForm playgroundId={playgroundId} />}
+      {renderComments}
     </Container>
   );
 };
