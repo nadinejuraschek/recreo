@@ -2,16 +2,18 @@ import axios from 'axios';
 import { Playground } from 'types';
 
 export async function getPlaygrounds() {
-  return await axios.get<Playground[]>('/api/playgrounds').then((res) => res.data.sort((a, b) => a.title.localeCompare(b.title)));
+  return await axios
+    .get<Playground[]>(`${process.env.REACT_APP_API}api/playgrounds`)
+    .then((res) => res.data.sort((a, b) => a.title.localeCompare(b.title)));
 }
 
 export async function getSinglePlayground(id: string) {
-  return await axios.get(`/api/playgrounds/${id}`).then((res) => res.data);
+  return await axios.get(`${process.env.REACT_APP_API}api/playgrounds/${id}`).then((res) => res.data);
 }
 
 // TODO: fix type
 export async function createPlayground(newPlayground: any) {
-  return await axios.post('/api/playgrounds', newPlayground);
+  return await axios.post(`${process.env.REACT_APP_API}api/playgrounds`, newPlayground);
 }
 
 /* export async function editPlayground() {
@@ -33,7 +35,7 @@ export async function createReview({
   rating: number;
   playgroundId: string;
 }) {
-  return await axios.post(`/api/playgrounds/${playgroundId}/review`, {
+  return await axios.post(`${process.env.REACT_APP_API}api/playgrounds/${playgroundId}/review`, {
     author,
     body,
     rating,

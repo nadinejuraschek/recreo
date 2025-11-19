@@ -27,13 +27,27 @@ db.once('open', () => {
 const app = express();
 
 // MIDDLEWARE ==============================================================
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'https://localhost:3000',
+  'https://localhost:3001',
+  process.env.FRONTEND_URL,
+].filter(Boolean);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
-  origin: 'https://localhost:3001',
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    return callback(new Error('CORS policy: origin not allowed'), false);
+  },
   credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
 
 // SECURITY ================================================================
