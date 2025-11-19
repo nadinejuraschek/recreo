@@ -19,7 +19,7 @@ export type Playground = {
   description: string;
   features: string[];
   geometry: Geometry;
-  image: string;
+  images: string[];
   location: string;
   price: number;
   rating?: number;

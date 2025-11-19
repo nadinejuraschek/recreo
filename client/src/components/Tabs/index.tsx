@@ -1,7 +1,4 @@
-// STYLED COMPONENTS
 import { Container, Tab } from './styles';
-
-// INTERFACES
 import { TabsProps } from './types';
 
 export const Tabs = ({ active, handleClick, options }: TabsProps): JSX.Element => (

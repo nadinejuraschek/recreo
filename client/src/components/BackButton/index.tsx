@@ -1,10 +1,5 @@
-// DEPENDENCIES
 import { useNavigate } from 'react-router-dom';
-
-// STYLED COMPONENTS
 import { StyledButton, Icon, Label } from './styles';
-
-// INTERFACES
 import { BackButtonProps } from './types';
 
 export const BackButton = ({ label = false }: BackButtonProps): JSX.Element => {

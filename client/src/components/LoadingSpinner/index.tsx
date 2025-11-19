@@ -1,7 +1,4 @@
-// STYLED COMPONENTS
 import { Container, SpinnerContainer, SpinnerPath, SVG } from './styles';
-
-// INTERFACES
 import { LoadingSpinnerProps } from './types';
 
 export const LoadingSpinner = ({ containerHeight = 'auto', containerWidth = 'auto', size = 100 }: LoadingSpinnerProps): JSX.Element => (

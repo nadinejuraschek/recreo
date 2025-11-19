@@ -1,18 +1,9 @@
-// DEPENDENCIES
-import { useContext } from 'react';
-
-// COMPONENTS
-import { Comment, InlineLink, Title } from 'components';
+import { Comment, InlineLink } from 'components';
 import { CommentForm } from './components/CommentForm';
-
-// STYLED COMPONENTS
-import { Container, EmptyComments, SummaryContainer } from './styles';
-
-// CONTEXT
+import { Container, EmptyComments, StyledTitle } from './styles';
 import { UserContext } from 'context';
-
-// INTERFACES
 import { CommentsProps } from './types';
+import { useContext, useMemo } from 'react';
 
 export const Comments = ({ playgroundId, rating, reviews = [] }: CommentsProps): JSX.Element => {
   const { user } = useContext(UserContext);
@@ -23,13 +14,9 @@ export const Comments = ({ playgroundId, rating, reviews = [] }: CommentsProps):
     </EmptyComments>
   );
 
-  const title = rating ? (
-    <SummaryContainer>
-      <Title>{reviews.length} Reviews</Title>
-    </SummaryContainer>
-  ) : null;
+  const title = rating ? <StyledTitle size="small">{reviews.length} Reviews</StyledTitle> : null;
 
-  const renderComments = (): JSX.Element[] | null => {
+  const renderComments = useMemo((): JSX.Element[] | null => {
     if (reviews.length === 0) return null;
 
     return reviews.map((review) => {
@@ -37,13 +24,13 @@ export const Comments = ({ playgroundId, rating, reviews = [] }: CommentsProps):
 
       return <Comment body={body} key={_id} postedOn={postedOn} rating={rating} username={author.username} />;
     });
-  };
+  }, [reviews]);
 
   return (
     <Container>
       {title}
       {!user && logInToViewComments}
-      {renderComments()}
+      {renderComments}
       {user && <CommentForm playgroundId={playgroundId} />}
     </Container>
   );

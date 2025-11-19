@@ -1,279 +1,97 @@
-// DEPENDENCIES
 import styled, { css } from 'styled-components';
-
-// COMPONENTS
 import { Link } from 'react-router-dom';
-import { ReactNode } from 'react';
+import { StyledButtonProps } from './types';
 
-type ButtonProps = {
-  $disabled?: boolean;
-  $filled?: boolean;
-  $fullWidth?: boolean;
-  $outlined?: boolean;
-  $rounded?: boolean;
-  $small?: boolean;
-  $underlined?: boolean;
-  children: ReactNode;
-  onClick?: () => void;
-  onSubmit?: () => void;
-  type?: 'button' | 'submit' | 'reset';
-};
-
-export const StyledLink = styled(Link)<ButtonProps>`
-  display: flex;
+const buttonBase = css<StyledButtonProps>`
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
 
-  border-radius: 0.8rem;
+  cursor: pointer;
+
   font-size: 1.6rem;
+  border-radius: 0.8rem;
   font-weight: 700;
   padding: 1rem 1.75rem;
-  text-decoration: none;
-
-  height: 5rem;
+  min-height: 4rem;
   min-width: 12rem;
-
-  transition: all 0.3s;
-
-  @media only screen and (min-width: 768px) {
-    font-size: 1.8rem;
-    padding: 1rem 2.25rem;
-    min-width: 14rem;
-  }
-
-  @media only screen and (min-width: 900px) {
-    font-size: 2rem;
-    height: 6rem;
-    padding: 1rem 3rem;
-    min-width: 16rem;
-  }
-
-  ${({ $small }) =>
-    $small &&
-    css`
-      font-size: 1.6rem;
-      height: 4rem;
-      min-width: 12rem;
-    `}
-
-  ${({ $disabled }) =>
-    $disabled &&
-    css`
-      opacity: 0.4;
-    `}
-
-  ${({ $filled }) =>
-    $filled &&
-    css`
-      background-color: var(--orange);
-      border: 2px solid var(--orange);
-      color: var(--white);
-    `}
-
-  ${({ $outlined }) =>
-    $outlined &&
-    css`
-      background-color: var(--white);
-      border: 2px solid var(--orange);
-      color: var(--orange);
-    `}
-
-  ${({ $rounded }) =>
-    $rounded &&
-    css`
-      border-radius: 40px;
-    `}
+  max-width: 20rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
 
   ${({ $fullWidth }) =>
     $fullWidth &&
     css`
+      min-width: unset;
+      max-width: unset;
       width: 100%;
     `}
 
-  ${({ $underlined }) =>
-    $underlined &&
-    css`
-      background-color: transparent;
-      border: none;
-      color: var(--orange);
-      font-size: 1.4rem;
-      height: auto;
-      text-decoration: underline;
+  ${({ $variant }) => {
+    if ($variant === 'secondary') {
+      return css`
+        background-color: var(--white);
+        border: 1px solid var(--orange_500);
+        color: var(--orange_500);
 
-      @media only screen and (min-width: 900px) {
-        font-size: 1.6rem;
+        &:hover {
+          border-color: var(--orange_600);
+          color: var(--orange_600);
+        }
+      `;
+    }
+
+    if ($variant === 'tertiary') {
+      return css`
+        background-color: transparent;
+        border: 1px solid transparent;
+        font-weight: 400;
+
+        &:hover {
+          background-color: var(--orange_50);
+          border-color: var(--orange_50);
+        }
+      `;
+    }
+
+    return css`
+      background-color: var(--orange_500);
+      border: 1px solid var(--orange_500);
+      color: var(--white);
+
+      &:hover {
+        background-color: var(--orange_600);
+        border-color: var(--orange_600);
       }
-    `}
+    `;
+  }}
 
-  &:focus {
-    ${({ $underlined }) =>
-      $underlined &&
-      css`
-        outline: none;
-      `}
-  }
-
-  &:hover {
-    cursor: pointer;
-
-    ${({ $disabled }) =>
-      $disabled &&
-      css`
-        cursor: not-allowed;
-      `}
-
-    ${({ $filled }) =>
-      $filled &&
-      css`
-        box-shadow: 0 3px 8px var(--shadow__lg);
-        color: var(--white);
-      `}
-
-    ${({ $outlined }) =>
-      $outlined &&
-      css`
-        box-shadow: 0 3px 8px var(--shadow__lg);
-        color: var(--orange);
-      `}
-
-    ${({ $underlined }) =>
-      $underlined &&
-      css`
-        box-shadow: none;
-      `}
+  &:focus, &:focus-visible {
+    outline: 4px solid var(--orange_200);
   }
 `;
 
-export const StyledButton = styled.button<ButtonProps>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+export const StyledLink = styled(Link)<StyledButtonProps>`
+  ${buttonBase}
+
+  display: inline-flex;
+
+  &[aria-disabled='true'] {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+`;
+
+export const StyledButton = styled.button<StyledButtonProps>`
+  ${buttonBase}
 
   border-radius: 0.5rem;
-  font-size: 1.6rem;
-  font-weight: 700;
-  padding: 1rem 1.75rem;
 
-  height: 5rem;
-  min-width: 12rem;
-
-  transition: all 0.3s;
-
-  @media only screen and (min-width: 768px) {
-    font-size: 1.8rem;
-    padding: 1rem 2.25rem;
-    min-width: 14rem;
-  }
-
-  @media only screen and (min-width: 900px) {
-    font-size: 2rem;
-    height: 6rem;
-    padding: 1rem 3rem;
-    min-width: 16rem;
-  }
-
-  ${({ $small }) =>
-    $small &&
-    css`
-      font-size: 1.4rem;
-      padding: 0.5rem 1rem;
-
-      height: 4rem;
-      min-width: 100px;
-
-      @media only screen and (min-width: 900px) {
-        font-size: 1.6rem;
-        padding: 0.5rem 1rem;
-
-        height: 4rem;
-        min-width: 100px;
-      }
-    `}
-
-  ${({ $disabled }) =>
-    $disabled &&
-    css`
-      opacity: 0.4;
-    `}
-
-  ${({ $filled }) =>
-    $filled &&
-    css`
-      background-color: var(--orange);
-      border: 2px solid var(--orange);
-      color: var(--white);
-    `}
-
-  ${({ $outlined }) =>
-    $outlined &&
-    css`
-      background-color: var(--white);
-      border: 2px solid var(--orange);
-      color: var(--orange);
-    `}
-
-  ${({ $rounded }) =>
-    $rounded &&
-    css`
-      border-radius: 40px;
-    `}
-
-  ${({ $fullWidth }) =>
-    $fullWidth &&
-    css`
-      width: 100%;
-    `}
-
-  ${({ $underlined }) =>
-    $underlined &&
-    css`
-      background-color: transparent;
-      border: none;
-      color: var(--orange);
-      font-size: 1.4rem;
-      height: auto;
-      text-decoration: underline;
-
-      @media only screen and (min-width: 900px) {
-        font-size: 1.6rem;
-      }
-    `}
-
-  &:focus {
-    ${({ $underlined }) =>
-      $underlined &&
-      css`
-        outline: none;
-      `}
-  }
-
-  &:hover {
-    cursor: pointer;
-
-    ${({ $disabled }) =>
-      $disabled &&
-      css`
-        cursor: not-allowed;
-      `}
-
-    ${({ $filled }) =>
-      $filled &&
-      css`
-        box-shadow: 3px 3px 6px var(--shadow__lg);
-        transform: translateX(-2px) translateY(-2px);
-      `}
-
-    ${({ $outlined }) =>
-      $outlined &&
-      css`
-        box-shadow: 3px 3px 6px var(--shadow__lg);
-        transform: translateX(-2px) translateY(-2px);
-      `}
-
-    ${({ $underlined }) =>
-      $underlined &&
-      css`
-        box-shadow: none;
-      `}
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
   }
 `;

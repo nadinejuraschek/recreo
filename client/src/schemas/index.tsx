@@ -1,4 +1,3 @@
-// DEPENDENCIES
 import * as Yup from 'yup';
 
 const features = [
@@ -45,6 +44,9 @@ export const playgroundSchema = Yup.object().shape({
     .min(3, 'Name has to be at least 3 characters long.')
     .max(50, 'Name can not exceed 50 characters.')
     .required("Please enter the playground's name."),
+  images: Yup.string()
+    .min(3, 'Name has to be at least 3 characters long.')
+    .required('Please provide at least one url to an image of the playground.'),
   location: Yup.string().required("Please enter the playground's location."),
   // lat: Yup.number(),
   // long: Yup.number(),

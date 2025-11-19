@@ -1,37 +1,23 @@
-// DEPENDENCIES
-import { useContext, useEffect, useState } from 'react';
+import { useCallback, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-
-// STYLED COMPONENTS
 import { ButtonWrapper, FormWrapper, Wrapper } from './styles';
-
-// COMPONENTS
-import { Button, Divider, Form, Input, Title, Toast } from 'components';
-
-// DATA
+import { Button, Divider, Form, Input, Title } from 'components';
 import { testUserData } from 'data';
-
-// VALIDATION
 import { loginSchema } from 'schemas';
-
-// CONTEXT
 import { UserContext } from 'context/UserContext';
-
-// ICONS
 import lockIcon from 'assets/lock.svg';
 import userIcon from 'assets/user.svg';
+import { AUTH_MODE, AuthProps } from './types';
 
-export const Login = (): JSX.Element => {
-  const { error, loading, loginUser } = useContext(UserContext);
-
-  const [showError, setShowError] = useState(false);
+export const Auth = ({ mode = AUTH_MODE.LOGIN }: AuthProps): JSX.Element => {
+  const { loading, loginUser, registerUser } = useContext(UserContext);
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting, isValid },
-  } = useForm<any>({
+  } = useForm<{ username: string; password: string }>({
     defaultValues: {
       password: '',
       username: '',
@@ -40,26 +26,29 @@ export const Login = (): JSX.Element => {
     mode: 'onChange',
   });
 
-  useEffect(() => {
-    error ? setShowError(true) : setShowError(false);
-  }, [error]);
+  const onSubmit = useCallback(
+    async (formData: { username: string; password: string }) => {
+      if (mode === AUTH_MODE.REGISTER) {
+        if (!registerUser) return;
+        await registerUser(formData);
+        return;
+      }
 
-  const onSubmit = (formData: { username: string; password: string }) => {
-    if (loginUser) {
-      loginUser(formData);
-    }
-  };
+      if (!loginUser) return;
+      await loginUser(formData);
+    },
+    [loginUser, mode, registerUser]
+  );
 
-  const onSubmitTestUser = (): void => {
-    if (loginUser) {
-      loginUser(testUserData);
-    }
-  };
+  const onSubmitTestUser = useCallback(async () => {
+    if (!loginUser) return;
+    await loginUser(testUserData);
+  }, [loginUser, testUserData]);
 
   return (
     <Wrapper>
-      <Title marginBottom={5} size="large">
-        Log In
+      <Title marginBottom={2.5} size="large">
+        {mode === AUTH_MODE.REGISTER ? 'Register' : 'Log In'}
       </Title>
       <FormWrapper>
         <Form handleSubmit={handleSubmit(onSubmit)}>
@@ -81,21 +70,20 @@ export const Login = (): JSX.Element => {
             register={register}
             error={errors?.password?.message}
           />
-          <Button $disabled={!isValid || isSubmitting} $filled $fullWidth loading={isSubmitting || loading} type="submit">
-            Log In
+          <Button disabled={!isValid || isSubmitting} fullWidth loading={isSubmitting || loading} type="submit">
+            {mode === AUTH_MODE.REGISTER ? 'Register' : 'Log In'}
           </Button>
         </Form>
         <Divider text="or" />
         <ButtonWrapper>
-          <Button link="/register" $outlined $fullWidth>
-            Register
+          <Button link={mode === AUTH_MODE.REGISTER ? '/login' : '/register'} fullWidth variant="secondary">
+            {mode === AUTH_MODE.REGISTER ? 'Log In' : 'Register'}
           </Button>
-          <Button $underlined $fullWidth handleClick={onSubmitTestUser}>
+          <Button fullWidth onClick={onSubmitTestUser} variant="tertiary">
             Use Test Account
           </Button>
         </ButtonWrapper>
       </FormWrapper>
-      {showError && <Toast type="danger">{error}</Toast>}
     </Wrapper>
   );
 };

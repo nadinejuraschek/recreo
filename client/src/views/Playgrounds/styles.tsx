@@ -1,10 +1,5 @@
-// DEPENDENCIES
 import styled from 'styled-components';
-
-// COMPONENTS
 import { Map } from 'components';
-
-// STYLED COMPONENTS
 import { ButtonWrapper } from './sections/PlaygroundsList/styles';
 
 export const PlaygroundInfo = styled.div`

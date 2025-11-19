@@ -1,7 +1,6 @@
-// DEPENDENCIES
 import styled from 'styled-components';
 
-export const ButtonWrapper = styled.section`
+export const ButtonWrapper = styled.div`
   margin: 0 0 3rem;
   width: 100%;
 
@@ -10,6 +9,7 @@ export const ButtonWrapper = styled.section`
   justify-content: center;
 
   @media only screen and (min-width: 900px) {
+    justify-content: flex-end;
     margin: 0 0 5rem;
   }
 `;

@@ -1,51 +1,45 @@
-// STYLED COMPONENTS
 import { StyledLink, StyledButton } from './styles';
-
-// INTERFACES
 import { ButtonProps } from './types';
 
 export const Button = ({
   children,
-  $disabled = false,
-  $filled = true,
-  $fullWidth = false,
-  handleClick,
-  handleSubmit,
+  className = '',
+  disabled = false,
+  fullWidth = false,
+  onClick,
+  onSubmit,
   loading = false,
   link = undefined,
-  $outlined = false,
-  $rounded = false,
-  $small = false,
   type = 'button',
-  $underlined = false,
+  variant = 'primary',
 }: ButtonProps): JSX.Element => {
+  const isDisabled = disabled || loading;
+
   return (
     <>
       {link ? (
         <StyledLink
-          $disabled={$disabled}
-          $filled={$filled}
-          $fullWidth={$fullWidth}
-          $outlined={$outlined}
-          $rounded={$rounded}
-          $small={$small}
+          className={className}
+          disabled={isDisabled}
+          $fullWidth={fullWidth}
           to={link}
-          $underlined={$underlined}
+          aria-busy={loading}
+          aria-disabled={isDisabled}
+          tabIndex={isDisabled ? -1 : undefined}
+          $variant={variant}
         >
-          {children}
+          {loading ? 'Loading...' : children}
         </StyledLink>
       ) : (
         <StyledButton
-          $disabled={$disabled}
-          $filled={$filled}
-          $fullWidth={$fullWidth}
-          onClick={handleClick}
-          onSubmit={handleSubmit}
-          $outlined={$outlined}
-          $rounded={$rounded}
-          $small={$small}
+          aria-busy={loading}
+          className={className}
+          disabled={isDisabled}
+          $fullWidth={fullWidth}
+          onClick={onClick}
+          onSubmit={onSubmit}
           type={type}
-          $underlined={$underlined}
+          $variant={variant}
         >
           {loading ? 'Loading...' : children}
         </StyledButton>

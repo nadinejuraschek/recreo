@@ -1,7 +1,4 @@
-// DEPENDENCIES
 import styled from 'styled-components';
-
-// INTERFACES
 import { StyledInputProps } from './types';
 
 export const Container = styled.div`
@@ -9,7 +6,8 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  margin: 1rem 0 2rem;
+  margin-bottom: 1.25rem;
+
   width: 100%;
 `;
 
@@ -56,7 +54,7 @@ export const StyledInput = styled.input<StyledInputProps>`
   }
 
   &::placeholder {
-    color: var(--blue__medium);
+    color: var(--blue_500);
   }
 
   &:focus {
@@ -76,7 +74,7 @@ export const StyledTextarea = styled.textarea`
   padding: 1.5rem 0.75rem 0.75rem;
 
   &::placeholder {
-    color: var(--blue__medium);
+    color: var(--blue_500);
   }
 
   &:focus {
@@ -88,4 +86,6 @@ export const StyledTextarea = styled.textarea`
 export const Validation = styled.div`
   color: var(--red);
   font-size: 1rem;
+
+  height: 1rem;
 `;

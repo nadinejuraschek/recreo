@@ -1,10 +1,5 @@
-// COMPONENTS
 import { Amenity } from 'components';
-
-// STYLED COMPONENTS
 import { List, ListWrapper, MoreText } from './styles';
-
-// INTERFACES & TYPES
 import { AmenitiesProps } from './types';
 
 export const AmenitiesList = ({ features, small = false }: AmenitiesProps): JSX.Element | null => {

@@ -4,6 +4,7 @@ export interface AddPlaygroundFormProps {
 
 export type AddPlaygroundInputs = {
   description: string;
+  images: string;
   location: string;
   // lat: number;
   // long: number;

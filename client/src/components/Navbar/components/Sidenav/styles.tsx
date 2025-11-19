@@ -1,7 +1,4 @@
-// DEPENDENCIES
 import styled from 'styled-components';
-
-// COMPONENTS
 import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
@@ -29,7 +26,7 @@ export const NavItem = styled(NavLink)`
   background-color: var(--white);
   border-bottom: 1px solid var(--shadow__lg);
   box-shadow: 0 2px 6px var(--shadow__sm);
-  color: var(--blue__dark);
+  color: var(--blue_700);
   height: 80px;
   font-size: 2rem;
   font-weight: bold;
@@ -44,14 +41,14 @@ export const NavItem = styled(NavLink)`
   }
 
   &:hover {
-    color: var(--blue__dark);
+    color: var(--blue_700);
     cursor: pointer;
   }
 
   &.active {
-    // background-color: var(--orange__light);
-    // color: var(--blue__dark);
+    // background-color: var(--orange_400);
+    // color: var(--blue_700);
     background-color: var(--yellow);
-    color: var(--blue__dark);
+    color: var(--blue_700);
   }
 `;

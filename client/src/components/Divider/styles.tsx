@@ -8,7 +8,7 @@ export const Wrapper = styled.div<{ className?: string; children: ReactNode }>`
   justify-content: center;
 
   position: relative;
-  margin: 0.5rem auto;
+  margin: 1.5rem auto;
 
   height: 2rem;
   width: 100%;

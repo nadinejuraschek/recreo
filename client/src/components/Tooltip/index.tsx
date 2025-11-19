@@ -1,10 +1,5 @@
-// DEPENDENCIES
 import { useState } from 'react';
-
-// STYLED COMPONENTS
 import { HoverItem, Wrapper } from './styles';
-
-// INTERFACES
 import { TooltipProps } from './types';
 
 export const Tooltip = ({ children, text = '' }: TooltipProps): JSX.Element => {

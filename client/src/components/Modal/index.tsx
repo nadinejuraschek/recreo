@@ -1,10 +1,5 @@
-// COMPONENTS
 import { ModalHeader } from './components/ModalHeader';
-
-// STYLED COMPONENTS
 import { Body, Container, Footer, Overlay } from './styles';
-
-// INTERFACES
 import { ModalProps } from './types';
 
 export const Modal = ({ children, closeButton = true, footer = false, title = undefined, toggleModal }: ModalProps): JSX.Element => (

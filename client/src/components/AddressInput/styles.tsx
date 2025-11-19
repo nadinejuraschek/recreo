@@ -18,7 +18,7 @@ export const Wrapper = styled.div`
     }
 
     &::placeholder {
-      color: var(--blue__medium);
+      color: var(--blue_500);
     }
 
     &:focus {

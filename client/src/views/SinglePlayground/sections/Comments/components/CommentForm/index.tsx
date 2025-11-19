@@ -1,28 +1,33 @@
-// DEPENDENCIES
 import { ChangeEvent, useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-// TODO: Find rating library that is compatible with React 18
-// import Rater from 'react-rating';
-
-// COMPONENTS
 import { Button, Form, Input } from 'components';
-
-// STYLED COMPONENTS
-import { FormContainer, ButtonWrapper, RaterLabel, RaterWrapper } from './styles';
-// import { RatingIcon } from 'components/Rating/styles';
-
-// SCHEMA
+import { ButtonWrapper, FormHeader, RaterLabel, RaterWrapper } from './styles';
 import { commentSchema } from 'schemas';
-
-// CONTEXT
-import { PlaygroundContext, ReviewFormData } from 'context';
+import { UserContext } from 'context';
 import { CommentFormProps } from './types';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { createReview } from 'api';
+import toast from 'react-hot-toast';
+import { Rating as RatingComp } from '@smastrom/react-rating';
 
 export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => {
   const [rating, setRating] = useState(0); // initial rating value
 
-  const { addReview } = useContext(PlaygroundContext);
+  const { user } = useContext(UserContext);
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: createReview,
+    onError: (error) => {
+      console.log('LOG error: ', error);
+      toast.error('Your review could not be submitted. Please try again later.');
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['playground', playgroundId] });
+      toast.success('Your review has been saved.');
+    },
+  });
 
   const defaultValues = {
     text: '',
@@ -40,16 +45,23 @@ export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => 
   });
 
   const onSubmit = (formData: { text: string }): void => {
-    const newFormData: ReviewFormData = {
+    if (!user) {
+      toast.error('You must be logged in to submit a review.');
+      return;
+    }
+
+    const newFormData = {
+      author: user?.id,
+      body: formData.text,
       rating,
-      text: formData.text,
+      playgroundId,
     };
-    if (addReview) addReview(newFormData, playgroundId);
+    mutate(newFormData);
   };
 
   return (
-    <FormContainer>
-      <Form handleSubmit={handleSubmit(onSubmit)} alignLeft>
+    <Form handleSubmit={handleSubmit(onSubmit)} alignLeft>
+      <FormHeader>
         <RaterWrapper>
           <RaterLabel>Your Rating: </RaterLabel>
           <select onChange={(e: ChangeEvent<HTMLSelectElement>) => setRating(+e.target?.value)}>
@@ -59,6 +71,7 @@ export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => 
             <option value={4}>⭐️⭐️⭐️⭐️</option>
             <option value={5}>⭐️⭐️⭐️⭐️⭐️</option>
           </select>
+          <RatingComp isRequired onChange={setRating} style={{ maxWidth: 180 }} value={rating} />
           {/* RATING COMPONENT GOES HERE */}
           {/* <Rater
             emptySymbol={<RatingIcon color="var(--blue__opaque)" />}
@@ -68,19 +81,19 @@ export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => 
             stop={5}
           /> */}
         </RaterWrapper>
-        <Input
-          name="text"
-          placeholder="Tell us about your playground experience..."
-          type="textarea"
-          register={register}
-          error={errors?.text?.message}
-        />
         <ButtonWrapper>
-          <Button $disabled={!isValid || isSubmitting} $filled loading={isSubmitting} $small type="submit">
+          <Button disabled={!isValid || isSubmitting} loading={isSubmitting} type="submit">
             Add Comment
           </Button>
         </ButtonWrapper>
-      </Form>
-    </FormContainer>
+      </FormHeader>
+      <Input
+        name="text"
+        placeholder="Tell us about your playground experience..."
+        type="textarea"
+        register={register}
+        error={errors?.text?.message}
+      />
+    </Form>
   );
 };

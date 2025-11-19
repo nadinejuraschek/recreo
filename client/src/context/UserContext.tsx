@@ -1,21 +1,16 @@
-// REACT
 import { createContext, PropsWithChildren, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-// AXIOS
+import toast from 'react-hot-toast';
+import { AuthenticatedUser } from 'types';
+import { UseMutateFunction, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 
-// TYPES
-import { AuthenticatedUser } from 'types';
-
 export type UserContextType = {
-  error: string;
   loading: boolean;
-  loginUser: (formData: UserFormData) => void;
-  logoutUser: () => void;
-  registerUser: (formData: UserFormData) => void;
-  success: string;
-  user: AuthenticatedUser | null;
+  loginUser: UseMutateFunction<AuthenticatedUser, Error, UserFormData, unknown>;
+  logoutUser: UseMutateFunction<string | void, Error, void, unknown>;
+  registerUser: UseMutateFunction<AuthenticatedUser, Error, UserFormData, unknown>;
+  user: AuthenticatedUser | null | undefined;
 };
 
 export type UserFormData = {
@@ -26,114 +21,102 @@ export type UserFormData = {
 export const UserContext = createContext<Partial<UserContextType>>({});
 
 export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
-  const [error, setError] = useState<string>('');
-  const [success, setSuccess] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(false);
-  const [user, setUser] = useState<AuthenticatedUser | null>();
+  const [user, setUser] = useState<AuthenticatedUser | null | undefined>(undefined);
 
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const { mutate: loginUser, isPending: isLoadingLogin } = useMutation<AuthenticatedUser, Error, UserFormData>({
+    mutationFn: async (formData) => {
+      const { data } = await axios.post('/api/login', formData);
+      return data as AuthenticatedUser;
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['user'] });
+      setUser(data);
+      navigate('/playgrounds');
+      toast.success(`Welcome back, ${data.username}!`);
+    },
+    onError: (err: any) => {
+      toast.error(err?.message ?? 'Something went wrong. Please try again later.');
+      throw err;
+    },
+  });
+
+  const { mutate: registerUser, isPending: isLoadingRegister } = useMutation<AuthenticatedUser, Error, UserFormData>({
+    mutationFn: async (formData) => {
+      const { data } = await axios.post('/api/register', formData);
+      return data as AuthenticatedUser;
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['user'] });
+      setUser(data);
+      navigate('/playgrounds');
+      toast.success('Successfully registered!');
+    },
+    onError: (err: any) => {
+      toast.error(err?.message ?? 'Something went wrong. Please try again later.');
+      throw err;
+    },
+  });
+
+  const { mutate: logoutUser, isPending: isLoadingLogout } = useMutation<string | void, Error, void>({
+    mutationFn: async () => {
+      const { data } = await axios.get('/api/logout');
+      return data as string | void;
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['user'] });
+      if (data && data !== 'Successfully logged out.') {
+        toast.error('Something went wrong. Please try to log out again.');
+      } else {
+        toast.success('Successfully logged out.');
+      }
+      setUser(null);
+      navigate('/login');
+    },
+    onError: () => {
+      toast.error('Something went wrong. Please try to log out again.');
+    },
+  });
+
+  const {
+    data: userData,
+    isError: isErrorGetUser,
+    isLoading: isLoadingUser,
+    isSuccess: isSuccessGetUser,
+  } = useQuery<AuthenticatedUser | null, Error>({
+    queryKey: ['user'],
+    queryFn: async (): Promise<AuthenticatedUser | null> => {
+      const res = await axios.get('/api/user');
+      // return null explicitly if no user
+      return (res.data as AuthenticatedUser) ?? null;
+    },
+    enabled: user === undefined,
+    retry: false,
+  });
 
   useEffect(() => {
-    getUser();
-  }, []);
+    if (isSuccessGetUser && userData) {
+      setUser(userData ?? null);
+    }
 
-  const loginUser = (formData: UserFormData): void => {
-    setLoading(true);
-    axios({
-      url: '/api/login',
-      method: 'POST',
-      data: formData,
-      withCredentials: true,
-    })
-      .then((res) => {
-        setLoading(false);
-        setUser(res.data as AuthenticatedUser);
-
-        navigate('/playgrounds');
-
-        const { username } = res.data as AuthenticatedUser;
-        setSuccess(`Welcome back, ${username}!`);
-        setTimeout(() => setSuccess(''), 5000);
-      })
-      .catch((error) => {
-        setLoading(false);
-        // console.log('Error: ', error.response);
-        if (error.response.data) {
-          setError(error.response.data);
-          setTimeout(() => setError(''), 5000);
-        } else {
-          setError('Something went wrong. Please try again later.');
-          setTimeout(() => setError(''), 5000);
-        }
-      });
-  };
-
-  const registerUser = (formData: UserFormData): void => {
-    setLoading(true);
-    axios({
-      url: '/api/register',
-      method: 'POST',
-      data: formData,
-      withCredentials: true,
-    })
-      .then((res) => {
-        setLoading(false);
-        setUser(res.data as AuthenticatedUser);
-
-        navigate('/playgrounds');
-
-        setSuccess('Successfully registered!');
-        setTimeout(() => setSuccess(''), 5000);
-      })
-      .catch((error) => {
-        setLoading(false);
-        // console.log('Error: ', error.response);
-        if (error.response.data) {
-          setError(error.response.data);
-          setTimeout(() => setError(''), 5000);
-        } else {
-          setError('Something went wrong. Please try again later.');
-          setTimeout(() => setError(''), 5000);
-        }
-      });
-  };
-
-  const logoutUser = (): void => {
-    axios
-      .get('/api/logout', { withCredentials: true })
-      .then((res) => {
-        if (res.data === 'Successfully logged out.') {
-          setUser(null);
-          navigate('/login');
-        }
-      })
-      .catch(() => {
-        // console.error('logout err: ', error);
-        setError('Something went wrong. Please try to log out again.');
-        setTimeout(() => setError(''), 5000);
-      });
-  };
-
-  const getUser = (): void => {
-    axios
-      .get('/api/user', { withCredentials: true })
-      .then((res) => {
-        setUser(res.data as AuthenticatedUser);
-      })
-      .catch((error) => {
-        // console.log('Error: ', error.response);
-        if (error.response.data) {
-          setError(error.response.data);
-          setTimeout(() => setError(''), 5000);
-        } else {
-          setError('Something went wrong. Please try again later.');
-          setTimeout(() => setError(''), 5000);
-        }
-      });
-  };
+    if (isErrorGetUser) {
+      toast.error("There was an error fetching the user's data. Please try again later.");
+      setUser(null);
+    }
+  }, [isErrorGetUser, isSuccessGetUser, userData]);
 
   return (
-    <UserContext.Provider value={{ error, loading, loginUser, logoutUser, registerUser, success, user }}>
+    <UserContext.Provider
+      value={{
+        loading: isLoadingLogin || isLoadingRegister || isLoadingLogout || isLoadingUser,
+        loginUser,
+        logoutUser,
+        registerUser,
+        user,
+      }}
+    >
       {props.children}
     </UserContext.Provider>
   );

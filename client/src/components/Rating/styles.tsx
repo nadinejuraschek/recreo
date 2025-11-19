@@ -1,7 +1,4 @@
-// DEPENDENCIES
 import styled from 'styled-components';
-
-// ICONS
 import { ReactComponent as RatingSvg } from 'assets/star.svg';
 
 export const NumberRating = styled.div`
@@ -13,7 +10,7 @@ export const NumberRating = styled.div`
 `;
 
 export const RatingValue = styled.span`
-  color: var(--blue__dark);
+  color: var(--blue_700);
   font-weight: bold;
 `;
 

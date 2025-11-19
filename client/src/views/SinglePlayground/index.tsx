@@ -3,9 +3,18 @@ import { Content, TabContent } from './styles';
 import { AmenitiesList } from 'components';
 import { Comments, ErrorState, Header, Info, Preview } from './sections';
 import { LoadingSpinner, Tabs } from 'components';
-import { usePlayground } from 'hooks/usePlayground';
+import { useQuery } from '@tanstack/react-query';
+import { getSinglePlayground } from 'api';
+import { useParams } from 'react-router-dom';
+import { Playground } from 'types';
 
 export const SinglePlayground = (): JSX.Element => {
+  const { id: paramId = '' } = useParams<{ id: string }>();
+
+  if (!paramId) {
+    return <ErrorState />;
+  }
+
   const tabOptions = [
     { label: 'Images', name: 'images' },
     { label: 'Features', name: 'features' },
@@ -13,7 +22,17 @@ export const SinglePlayground = (): JSX.Element => {
   ];
   const [activeTab, setActiveTab] = useState<string>(tabOptions[0].name);
 
-  const { isLoading, error, playground } = usePlayground();
+  const {
+    data: playground,
+    error,
+    isLoading,
+  } = useQuery<Playground, Error>({
+    queryKey: ['playground', paramId],
+    queryFn: () => getSinglePlayground(paramId),
+    enabled: !!paramId,
+    staleTime: 1000 * 60 * 5,
+    retry: 1,
+  });
 
   if (isLoading) {
     return <LoadingSpinner containerHeight="100%" containerWidth="100%" />;
@@ -23,17 +42,15 @@ export const SinglePlayground = (): JSX.Element => {
     return <ErrorState />;
   }
 
-  const { description, features, location, rating, reviews, title, _id } = playground;
-
-  // TODO: Add Multiple Images
+  const { description, features, location, images, rating, reviews, title, _id } = playground;
 
   return (
     <Content>
-      <Header name={title} />
+      <Header id={_id} name={title} />
       <Info description={description} location={location} rating={rating} />
       <Tabs active={activeTab} handleClick={setActiveTab} options={tabOptions} />
       <TabContent>
-        {activeTab === 'images' && <Preview name={title} />}
+        {activeTab === 'images' && <Preview images={images} name={title} />}
         {activeTab === 'features' && <AmenitiesList features={features} />}
         {activeTab === 'reviews' && <Comments playgroundId={_id} rating={rating} reviews={reviews} />}
       </TabContent>

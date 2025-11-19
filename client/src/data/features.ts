@@ -1,4 +1,3 @@
-// INTERFACES
 import { Amenity } from 'types';
 
 export const features: Amenity[] = [
