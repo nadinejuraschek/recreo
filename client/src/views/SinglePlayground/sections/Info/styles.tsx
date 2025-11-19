@@ -1,7 +1,4 @@
-// DEPENDENCIES
 import styled from 'styled-components';
-
-// ICONS
 import { ReactComponent as PinIcon } from 'assets/location.svg';
 
 export const Wrapper = styled.div`

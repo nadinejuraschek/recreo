@@ -1,7 +1,4 @@
-// DEPENDENCIES
 import styled, { css } from 'styled-components';
-
-// INTERFACES
 import { StyledTitleProps } from './types';
 
 const sizeStyling = (size: 'large' | 'medium' | 'small') => {

@@ -1,7 +1,4 @@
-// DEPENDENCIES
 import styled from 'styled-components';
-
-// ICONS
 import { ReactComponent as CloseIcon } from 'assets/close.svg';
 
 export const Header = styled.div`
@@ -11,8 +8,7 @@ export const Header = styled.div`
 
   height: 6rem;
 
-  color: var(--blue__dark);
-  padding: 0 2.4rem;
+  color: var(--blue_700);
 `;
 
 export const Title = styled.div`

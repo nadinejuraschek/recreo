@@ -1,17 +1,8 @@
-// DEPENDENCIES
 import { useContext } from 'react';
-
-// COMPONENTS
 import { Button, InlineLink, Title } from 'components';
-
-// STYLED COMPONENTS
 import { EmptyState } from './styles';
 import { Section } from '../../styles';
-
-// CONTEXT
 import { UserContext } from 'context/UserContext';
-
-// INTERFACES
 import { ErrorStateProps } from './types';
 
 export const ErrorState = ({ setOpenAddPlaygroundModal, setShowAllPlaygrounds }: ErrorStateProps): JSX.Element => {
@@ -23,19 +14,13 @@ export const ErrorState = ({ setOpenAddPlaygroundModal, setShowAllPlaygrounds }:
       <EmptyState>
         <p>We couldn&apos;t find any playgrounds near you.</p>
         {user ? (
-          <Button $filled handleClick={() => setOpenAddPlaygroundModal(true)}>
-            Add a Playground
-          </Button>
+          <Button onClick={() => setOpenAddPlaygroundModal(true)}>Add a Playground</Button>
         ) : (
           <p>
             <InlineLink to="/login">Login</InlineLink> to add a playground.
           </p>
         )}
-        {setShowAllPlaygrounds && (
-          <Button $filled handleClick={() => setShowAllPlaygrounds(true)}>
-            Browse All Playgrounds
-          </Button>
-        )}
+        {setShowAllPlaygrounds && <Button onClick={() => setShowAllPlaygrounds(true)}>Browse All Playgrounds</Button>}
       </EmptyState>
     </Section>
   );

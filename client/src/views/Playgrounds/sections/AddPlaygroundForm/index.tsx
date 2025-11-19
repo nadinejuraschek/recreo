@@ -1,32 +1,39 @@
-// DEPENDENCIES
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-
-// COMPONENTS
 import { AddressInput, Button, Form, Input, Modal, Selecter } from 'components';
-
-// DATA
 import { features } from 'data';
-
-// STYLED COMPONENTS
-import { PlaygroundWrapper } from './styles';
-
-// SCHEMA
 import { playgroundSchema } from 'schemas';
-
-// CONTEXT
-import { PlaygroundContext } from 'context/PlaygroundContext';
-
-// INTERFACES
 import { AddPlaygroundInputs, AddPlaygroundFormProps } from './types';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { createPlayground } from 'api';
+import { UserContext } from 'context';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 export const AddPlaygroundForm = ({ setOpenAddPlaygroundModal }: AddPlaygroundFormProps): JSX.Element => {
-  const [selectedFeatures, setSelectedFeatures] = useState<string[]>();
-  const { addPlayground } = useContext(PlaygroundContext);
+  const { user } = useContext(UserContext);
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
+
+  const { mutateAsync, isPending } = useMutation({
+    mutationFn: createPlayground,
+    onError: () => {
+      toast.error('The playground could not be saved. Please try again later.');
+    },
+    onSuccess: (res) => {
+      queryClient.invalidateQueries({ queryKey: ['playgrounds'] });
+      toast.success('Your playground was created successfully!');
+      setOpenAddPlaygroundModal(false);
+      navigate(`/playgrounds/${res.data._id}`);
+    },
+  });
 
   const defaultValues = {
     description: '',
+    images: '',
     location: '',
     name: '',
   };
@@ -41,8 +48,24 @@ export const AddPlaygroundForm = ({ setOpenAddPlaygroundModal }: AddPlaygroundFo
     mode: 'onChange',
   });
 
-  const onSubmit = (formData: AddPlaygroundInputs): void => {
-    if (addPlayground) addPlayground({ ...formData, features: selectedFeatures });
+  const onSubmit = (formData: AddPlaygroundInputs) => {
+    if (!user) {
+      toast.error('You must be logged in to add a playground.');
+      return;
+    }
+
+    const imagesArray = (formData.images || '').split(',').map((img) => img.trim());
+
+    const newFormData = {
+      author: user?.id,
+      description: formData.description,
+      features: selectedFeatures,
+      images: imagesArray,
+      location: formData.location,
+      title: formData.name,
+    };
+
+    mutateAsync(newFormData);
   };
 
   return (
@@ -50,28 +73,34 @@ export const AddPlaygroundForm = ({ setOpenAddPlaygroundModal }: AddPlaygroundFo
       <Modal
         closeButton
         footer={
-          <Button $disabled={!isValid || isSubmitting} $filled loading={isSubmitting} $small type="submit">
+          <Button disabled={!isValid || isSubmitting || isPending} loading={isSubmitting} type="submit">
             Add Playground
           </Button>
         }
         title="New Playground"
         toggleModal={setOpenAddPlaygroundModal}
       >
-        <PlaygroundWrapper>
-          <Input label="Name" name="name" placeholder="Name" required type="text" register={register} error={errors?.name?.message} />
-          <AddressInput error={errors?.location?.message} handleSelect={register('location').onChange} placeholder="Location" required />
-          <Input
-            label="Description"
-            name="description"
-            placeholder="Description"
-            type="textarea"
-            register={register}
-            required={false}
-            error={errors?.description?.message}
-          />
-          <Selecter handleChange={setSelectedFeatures} label="Features" options={features} placeholder="Features" required />
-          {/* IMAGE UPLOAD HERE */}
-        </PlaygroundWrapper>
+        <Input label="Name" name="name" placeholder="Name" required type="text" register={register} error={errors?.name?.message} />
+        <AddressInput error={errors?.location?.message} handleSelect={register('location').onChange} placeholder="Location" required />
+        <Selecter handleChange={setSelectedFeatures} label="Features" options={features} placeholder="Features" required />
+        <Input
+          label="Description"
+          name="description"
+          placeholder="Description"
+          type="textarea"
+          register={register}
+          required={false}
+          error={errors?.description?.message}
+        />
+        <Input
+          label="Image(s)"
+          name="images"
+          placeholder="Image URLs (seperated by commas)"
+          type="textarea"
+          register={register}
+          required
+          error={errors?.images?.message}
+        />
       </Modal>
     </Form>
   );

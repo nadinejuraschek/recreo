@@ -1,4 +1,3 @@
-// DEPENDENCIES
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -10,7 +9,7 @@ export const Container = styled(Link).attrs(() => ({
   border: none;
   border-radius: 0.8rem;
   box-shadow: 0 2px 6px var(--shadow__sm);
-  color: var(--blue__dark);
+  color: var(--blue_700);
   overflow: hidden;
   text-decoration: none;
 
@@ -21,7 +20,7 @@ export const Container = styled(Link).attrs(() => ({
 
   &:hover {
     box-shadow: 0 2px 10px var(--shadow__lg);
-    color: var(--blue__dark);
+    color: var(--blue_700);
     cursor: pointer;
   }
 

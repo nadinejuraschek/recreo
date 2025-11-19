@@ -1,14 +1,8 @@
-// STYLED COMPONENTS
 import { Container, Icon, IconWrapper } from './styles';
-
-// INTERFACES
 import { Amenity as AmenityType } from 'types';
 import { AmenityProps } from './types';
-
-// DATA
 import { features } from 'data';
 
-// ICONS
 import { ReactComponent as Bench } from 'assets/bench.svg';
 import { ReactComponent as ClimbingWall } from 'assets/climbingWall.svg';
 import { ReactComponent as DrinkingFountain } from 'assets/drinkingFountain.svg';

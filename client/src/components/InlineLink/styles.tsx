@@ -1,32 +1,29 @@
-// DEPENDENCIES
 import styled from 'styled-components';
-
-// COMPONENTS
 import { Link } from 'react-router-dom';
 import { ReactNode } from 'react';
 
 export const InAppLink = styled(Link)<{ to: string }>`
-  color: var(--orange);
+  color: var(--orange_500);
   font-family: inherit;
   font-size: inherit;
   font-weight: normal;
   text-decoration: none;
 
   &:hover {
-    color: var(--orange);
+    color: var(--orange_500);
     font-weight: bold;
   }
 `;
 
 export const ExternalLink = styled.a<{ children: ReactNode; href?: string; target?: string }>`
-  color: var(--orange);
+  color: var(--orange_500);
   font-family: inherit;
   font-size: inherit;
   font-weight: normal;
   text-decoration: none;
 
   &:hover {
-    color: var(--orange);
+    color: var(--orange_500);
     font-weight: bold;
   }
 `;

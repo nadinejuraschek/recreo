@@ -1,7 +1,4 @@
-// DEPENDENCIES
 import styled from 'styled-components';
-
-// ICONS
 import { ReactComponent as Facebook } from 'assets/facebook.svg';
 import { ReactComponent as Mail } from 'assets/mail.svg';
 import { ReactComponent as Twitter } from 'assets/twitter.svg';
@@ -24,7 +21,7 @@ export const FacebookIcon = styled(Facebook)`
   width: 5rem;
 
   &:hover {
-    color: var(--orange);
+    color: var(--orange_500);
   }
 `;
 
@@ -36,7 +33,7 @@ export const MailIcon = styled(Mail)`
   width: 5rem;
 
   &:hover {
-    color: var(--orange);
+    color: var(--orange_500);
   }
 `;
 
@@ -48,7 +45,7 @@ export const TwitterIcon = styled(Twitter)`
   width: 5rem;
 
   &:hover {
-    color: var(--orange);
+    color: var(--orange_500));
   }
 `;
 
@@ -60,6 +57,6 @@ export const WhatsappIcon = styled(Whatsapp)`
   width: 5rem;
 
   &:hover {
-    color: var(--orange);
+    color: var(--orange_500);
   }
 `;

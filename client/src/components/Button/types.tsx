@@ -1,18 +1,27 @@
-// DEPENDENCIES
 import { ReactNode } from 'react';
 
 export interface ButtonProps {
   children: ReactNode;
-  $disabled?: boolean;
-  $filled?: boolean;
-  $fullWidth?: boolean;
-  handleClick?: () => void;
-  handleSubmit?: () => void;
+  className?: string;
+  disabled?: boolean;
+  fullWidth?: boolean;
   loading?: boolean;
   link?: string | undefined;
-  $outlined?: boolean;
-  $rounded?: boolean;
-  $small?: boolean;
+  onClick?: () => void;
+  onSubmit?: () => void;
   type?: 'button' | 'submit' | 'reset';
-  $underlined?: boolean;
+  variant?: 'primary' | 'secondary' | 'tertiary';
+}
+
+export interface StyledButtonProps {
+  children: ReactNode;
+  className?: string;
+  disabled?: boolean;
+  $fullWidth: boolean;
+  loading?: boolean;
+  link?: string | undefined;
+  onClick?: () => void;
+  onSubmit?: () => void;
+  type?: 'button' | 'submit' | 'reset';
+  $variant: 'primary' | 'secondary' | 'tertiary';
 }

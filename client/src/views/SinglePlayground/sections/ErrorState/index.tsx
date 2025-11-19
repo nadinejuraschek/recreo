@@ -1,7 +1,4 @@
-// COMPONENTS
 import { Button } from 'components';
-
-// STYLED COMPONENTS
 import { Container } from './styles';
 
 export const ErrorState = (): JSX.Element => (

@@ -1,4 +1,3 @@
-// STYLED COMPONENTS
 import { FrameWrapper } from './styles';
 
 export const NotFound = (): JSX.Element => (

@@ -1,7 +1,4 @@
-// STYLED COMPONENTS
 import { Container, Icon, Label, StyledInput, StyledTextarea, Validation, Wrapper } from './styles';
-
-// INTERFACES
 import { InputProps } from './types';
 
 export const Input = ({
@@ -11,47 +8,30 @@ export const Input = ({
   iconName = '',
   maxChars,
   name,
-  placeholder = '',
+  placeholder,
   register,
   required = false,
   step = '',
   type = 'text',
 }: InputProps): JSX.Element => {
-  const withIcon = icon ? true : false;
+  const sharedProps = { autoComplete: 'off', name, placeholder, required, type };
 
   const renderInput = () => {
     switch (type) {
       case 'textarea':
-        return <StyledTextarea maxlength={maxChars} placeholder={placeholder} required={required} rows={5} {...register(name)} />;
+        return <StyledTextarea {...sharedProps} maxlength={maxChars} rows={5} {...register(name)} />;
       case 'number':
         return (
           <Wrapper>
             {icon && <Icon alt={iconName} src={icon} />}
-            <StyledInput
-              autoComplete="off"
-              inputmode="decimal"
-              placeholder={placeholder}
-              required={required}
-              step={step}
-              type="number"
-              {...register(name)}
-              withIcon={withIcon}
-            />
+            <StyledInput {...sharedProps} inputmode="decimal" step={step} {...register(name)} withIcon={!!icon} />
           </Wrapper>
         );
       default:
         return (
           <Wrapper>
             {icon && <Icon alt={iconName} src={icon} />}
-            <StyledInput
-              autoComplete="off"
-              maxlength={maxChars}
-              placeholder={placeholder}
-              required={required}
-              type="text"
-              {...register(name)}
-              withIcon={withIcon}
-            />
+            <StyledInput {...sharedProps} maxlength={maxChars} {...register(name)} withIcon={!!icon} />
           </Wrapper>
         );
     }
@@ -65,7 +45,7 @@ export const Input = ({
         </Label>
       )}
       {renderInput()}
-      {error && <Validation>{error}</Validation>}
+      <Validation>{error ?? ''}</Validation>
     </Container>
   );
 };

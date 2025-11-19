@@ -1,4 +1,3 @@
-// DEPENDENCIES
 import styled, { keyframes } from 'styled-components';
 
 const placeholderAnimate = keyframes`

@@ -1,11 +1,6 @@
-// STYLED COMPONENTS
 import { HorizontalImage, HorizontalWave, VerticalImage, VerticalWave, Main } from './styles';
-
-// ICONS, IMAGES
 import horizontalWave from 'assets/wave-horizontal.svg';
 import verticalWave from 'assets/wave-vertical.svg';
-
-// INTERFACES
 import { ImageLayoutProps } from './types';
 
 export const ImageLayout = ({ children }: ImageLayoutProps): JSX.Element => (

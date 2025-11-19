@@ -1,4 +1,3 @@
-// DEPENDENCIES
 import { ReactNode } from 'react';
 import styled, { keyframes } from 'styled-components';
 
@@ -54,7 +53,7 @@ export const SpinnerPath = styled.div<{
     &:nth-child(1) {
       animation-delay: 0.5s;
       &:after {
-        background: var(--orange);
+        background: var(--orange_500);
       }
     }
 
@@ -74,7 +73,7 @@ export const SpinnerPath = styled.div<{
     &:nth-child(4) {
       animation-delay: 2s;
       &:after {
-        background: var(--blue__medium);
+        background: var(--blue_500);
       }
     }
   }

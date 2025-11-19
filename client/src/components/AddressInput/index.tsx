@@ -1,12 +1,7 @@
-// DEPENDENCIES
 import { GeoapifyGeocoderAutocomplete, GeoapifyContext } from '@geoapify/react-geocoder-autocomplete';
 import '@geoapify/geocoder-autocomplete/styles/minimal.css';
-
-// STYLED COMPONENTS
 import { Container, Label, Validation } from '../Input/styles';
 import { Wrapper } from './styles';
-
-// INTERFACE
 import { AddressInputProps } from './types';
 
 export const AddressInput = ({ error, handleSelect, label = true, placeholder = '', required = false }: AddressInputProps): JSX.Element => {

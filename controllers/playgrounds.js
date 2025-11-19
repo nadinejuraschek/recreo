@@ -43,20 +43,21 @@ module.exports.create = async (req, res, next) => {
     limit: 1,
   }).send();
 
-  const playground = new Playground(req.body);
+  const playground = new Playground({ ...req.body,
+    images: req.body.images.split(',').map((imgSrc) => imgSrc.trim()),
+   });
   playground.location = geoData.body.features[0].place_name;
   playground.geometry = geoData.body.features[0].geometry;
 
   await playground.save();
   res.json(playground);
-
 };
 
 module.exports.edit = async (req, res) => {
-  const { id } = req.params;
+  /* const { id } = req.params;
   const editedPlayground = await Playground.findByIdAndUpdate(id, {
     ...req.body.playground,
-  });
+  }); */
   res.send('success', 'Successfully updated this playground!');
 };
 

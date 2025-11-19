@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const PlaygroundSchema = new Schema({
   title: String,
-  image: String,
+  images: [String],
   geometry: {
     type: {
       type: String,
@@ -24,6 +24,7 @@ const PlaygroundSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
+  rating: Number,
   reviews: [
     {
       type: Schema.Types.ObjectId,

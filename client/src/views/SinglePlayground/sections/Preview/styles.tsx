@@ -1,4 +1,4 @@
-// DEPENDENCIES
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 export const Wrapper = styled.section`
@@ -14,11 +14,11 @@ export const Wrapper = styled.section`
     border-radius: 1.2rem;
 
     &.selected {
-      border: 3px solid var(--orange);
+      border: 3px solid var(--orange_500);
     }
 
     &:hover {
-      border: 3px solid var(--orange);
+      border: 3px solid var(--orange_500);
     }
 
     img {
@@ -37,7 +37,7 @@ export const Wrapper = styled.section`
 
 export const EmptyState = styled.div``;
 
-export const ImageActive = styled.div`
+export const ImageActive = styled.div<{ children: ReactNode; key?: string }>`
   border: none;
   margin-bottom: 1rem;
   overflow: hidden;

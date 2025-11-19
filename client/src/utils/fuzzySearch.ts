@@ -1,4 +1,3 @@
-// DEPENDENCIES
 import Fuse from 'fuse.js';
 
 export const fuzzySearch = (options: any) => {
