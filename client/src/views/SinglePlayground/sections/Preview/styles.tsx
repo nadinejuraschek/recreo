@@ -14,11 +14,11 @@ export const Wrapper = styled.section`
     border-radius: 1.2rem;
 
     &.selected {
-      border: 3px solid var(--orange);
+      border: 3px solid var(--orange_500);
     }
 
     &:hover {
-      border: 3px solid var(--orange);
+      border: 3px solid var(--orange_500);
     }
 
     img {

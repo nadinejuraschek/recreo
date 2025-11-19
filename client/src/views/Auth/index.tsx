@@ -70,16 +70,16 @@ export const Auth = ({ mode = AUTH_MODE.LOGIN }: AuthProps): JSX.Element => {
             register={register}
             error={errors?.password?.message}
           />
-          <Button disabled={!isValid || isSubmitting} $filled $fullWidth loading={isSubmitting || loading} type="submit">
+          <Button disabled={!isValid || isSubmitting} fullWidth loading={isSubmitting || loading} type="submit">
             {mode === AUTH_MODE.REGISTER ? 'Register' : 'Log In'}
           </Button>
         </Form>
         <Divider text="or" />
         <ButtonWrapper>
-          <Button link={mode === AUTH_MODE.REGISTER ? '/login' : '/register'} $outlined $fullWidth>
+          <Button link={mode === AUTH_MODE.REGISTER ? '/login' : '/register'} fullWidth variant="secondary">
             {mode === AUTH_MODE.REGISTER ? 'Log In' : 'Register'}
           </Button>
-          <Button $underlined $fullWidth onClick={onSubmitTestUser}>
+          <Button fullWidth onClick={onSubmitTestUser} variant="tertiary">
             Use Test Account
           </Button>
         </ButtonWrapper>

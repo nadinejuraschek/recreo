@@ -2,7 +2,7 @@ import { ChangeEvent, useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Form, Input } from 'components';
-import { FormContainer, ButtonWrapper, RaterLabel, RaterWrapper } from './styles';
+import { ButtonWrapper, FormHeader, RaterLabel, RaterWrapper } from './styles';
 import { commentSchema } from 'schemas';
 import { UserContext } from 'context';
 import { CommentFormProps } from './types';
@@ -60,8 +60,8 @@ export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => 
   };
 
   return (
-    <FormContainer>
-      <Form handleSubmit={handleSubmit(onSubmit)} alignLeft>
+    <Form handleSubmit={handleSubmit(onSubmit)} alignLeft>
+      <FormHeader>
         <RaterWrapper>
           <RaterLabel>Your Rating: </RaterLabel>
           <select onChange={(e: ChangeEvent<HTMLSelectElement>) => setRating(+e.target?.value)}>
@@ -81,19 +81,19 @@ export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => 
             stop={5}
           /> */}
         </RaterWrapper>
-        <Input
-          name="text"
-          placeholder="Tell us about your playground experience..."
-          type="textarea"
-          register={register}
-          error={errors?.text?.message}
-        />
         <ButtonWrapper>
-          <Button disabled={!isValid || isSubmitting} $filled loading={isSubmitting} $small type="submit">
+          <Button disabled={!isValid || isSubmitting} loading={isSubmitting} type="submit">
             Add Comment
           </Button>
         </ButtonWrapper>
-      </Form>
-    </FormContainer>
+      </FormHeader>
+      <Input
+        name="text"
+        placeholder="Tell us about your playground experience..."
+        type="textarea"
+        register={register}
+        error={errors?.text?.message}
+      />
+    </Form>
   );
 };

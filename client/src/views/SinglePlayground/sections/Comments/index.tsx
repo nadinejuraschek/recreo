@@ -1,6 +1,6 @@
-import { Comment, InlineLink, Title } from 'components';
+import { Comment, InlineLink } from 'components';
 import { CommentForm } from './components/CommentForm';
-import { Container, EmptyComments, SummaryContainer } from './styles';
+import { Container, EmptyComments, StyledTitle } from './styles';
 import { UserContext } from 'context';
 import { CommentsProps } from './types';
 import { useContext, useMemo } from 'react';
@@ -14,11 +14,7 @@ export const Comments = ({ playgroundId, rating, reviews = [] }: CommentsProps):
     </EmptyComments>
   );
 
-  const title = rating ? (
-    <SummaryContainer>
-      <Title>{reviews.length} Reviews</Title>
-    </SummaryContainer>
-  ) : null;
+  const title = rating ? <StyledTitle size="small">{reviews.length} Reviews</StyledTitle> : null;
 
   const renderComments = useMemo((): JSX.Element[] | null => {
     if (reviews.length === 0) return null;
@@ -34,8 +30,8 @@ export const Comments = ({ playgroundId, rating, reviews = [] }: CommentsProps):
     <Container>
       {title}
       {!user && logInToViewComments}
-      {user && <CommentForm playgroundId={playgroundId} />}
       {renderComments}
+      {user && <CommentForm playgroundId={playgroundId} />}
     </Container>
   );
 };

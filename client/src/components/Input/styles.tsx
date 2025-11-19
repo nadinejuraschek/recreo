@@ -54,7 +54,7 @@ export const StyledInput = styled.input<StyledInputProps>`
   }
 
   &::placeholder {
-    color: var(--blue__medium);
+    color: var(--blue_500);
   }
 
   &:focus {
@@ -74,7 +74,7 @@ export const StyledTextarea = styled.textarea`
   padding: 1.5rem 0.75rem 0.75rem;
 
   &::placeholder {
-    color: var(--blue__medium);
+    color: var(--blue_500);
   }
 
   &:focus {

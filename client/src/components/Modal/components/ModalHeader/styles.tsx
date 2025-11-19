@@ -8,7 +8,7 @@ export const Header = styled.div`
 
   height: 6rem;
 
-  color: var(--blue__dark);
+  color: var(--blue_700);
 `;
 
 export const Title = styled.div`

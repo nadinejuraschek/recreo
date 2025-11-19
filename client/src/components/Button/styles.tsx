@@ -1,115 +1,78 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-import { ButtonProps } from './types';
+import { StyledButtonProps } from './types';
 
-const buttonBase = css<ButtonProps>`
+const buttonBase = css<StyledButtonProps>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
 
+  cursor: pointer;
+
   font-size: 1.6rem;
   border-radius: 0.8rem;
   font-weight: 700;
   padding: 1rem 1.75rem;
-  min-height: 5rem;
+  min-height: 4rem;
   min-width: 12rem;
+  max-width: 20rem;
   text-decoration: none;
   transition: all 0.2s ease;
-
-  @media only screen and (min-width: 768px) {
-    font-size: 1.8rem;
-    padding: 1rem 2.25rem;
-    min-width: 14rem;
-  }
-
-  @media only screen and (min-width: 900px) {
-    font-size: 2rem;
-    min-height: 6rem;
-    padding: 1rem 3rem;
-    min-width: 16rem;
-  }
-
-  ${({ $small }) =>
-    $small &&
-    css`
-      font-size: 1.4rem;
-      padding: 0.5rem 1rem;
-      min-height: 4rem;
-      min-width: 100px;
-
-      @media only screen and (min-width: 900px) {
-        font-size: 1.6rem;
-      }
-    `}
-
-  ${({ $filled }) =>
-    $filled &&
-    css`
-      background-color: var(--orange);
-      border: 2px solid var(--orange);
-      color: var(--white);
-      box-shadow: none;
-
-      &:hover {
-        color: var(--white);
-      }
-    `}
-
-  ${({ $outlined }) =>
-    $outlined &&
-    css`
-      background-color: var(--white);
-      border: 2px solid var(--orange);
-      color: var(--orange);
-
-      &:hover {
-        color: var(--orange);
-      }
-    `}
-
-  ${({ $rounded }) =>
-    $rounded &&
-    css`
-      border-radius: 40px;
-    `}
 
   ${({ $fullWidth }) =>
     $fullWidth &&
     css`
+      min-width: unset;
+      max-width: unset;
       width: 100%;
     `}
 
-  ${({ $underlined }) =>
-    $underlined &&
-    css`
-      background-color: transparent;
-      border: none;
-      color: var(--orange);
-      font-size: 1.4rem;
-      min-height: auto;
-      text-decoration: underline;
+  ${({ $variant }) => {
+    if ($variant === 'secondary') {
+      return css`
+        background-color: var(--white);
+        border: 1px solid var(--orange_500);
+        color: var(--orange_500);
+
+        &:hover {
+          border-color: var(--orange_600);
+          color: var(--orange_600);
+        }
+      `;
+    }
+
+    if ($variant === 'tertiary') {
+      return css`
+        background-color: transparent;
+        border: 1px solid transparent;
+        font-weight: 400;
+
+        &:hover {
+          background-color: var(--orange_50);
+          border-color: var(--orange_50);
+        }
+      `;
+    }
+
+    return css`
+      background-color: var(--orange_500);
+      border: 1px solid var(--orange_500);
+      color: var(--white);
 
       &:hover {
-        color: var(--orange);
+        background-color: var(--orange_600);
+        border-color: var(--orange_600);
       }
-    `}
+    `;
+  }}
 
-  &:hover {
-    ${({ $underlined }) =>
-      !$underlined &&
-      css`
-        box-shadow: 0 3px 8px var(--shadow__lg);
-      `}
-  }
-
-  &:focus-visible {
-    outline: 3px solid rgba(255, 165, 0, 0.25);
-    outline-offset: 2px;
+  &:focus, &:focus-visible {
+    outline: 4px solid var(--orange_200);
   }
 `;
 
-export const StyledLink = styled(Link)<ButtonProps>`
+export const StyledLink = styled(Link)<StyledButtonProps>`
   ${buttonBase}
 
   display: inline-flex;
@@ -119,16 +82,9 @@ export const StyledLink = styled(Link)<ButtonProps>`
     pointer-events: none;
     cursor: not-allowed;
   }
-
-  ${({ $underlined }) =>
-    $underlined &&
-    css`
-      height: auto;
-      padding: 0;
-    `}
 `;
 
-export const StyledButton = styled.button<ButtonProps>`
+export const StyledButton = styled.button<StyledButtonProps>`
   ${buttonBase}
 
   border-radius: 0.5rem;

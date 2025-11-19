@@ -25,12 +25,12 @@ export const Tab = styled.button<StyledTabProps>`
     isActive &&
     css`
       background-color: var(--orange__opaque);
-      border-bottom: 4px solid var(--orange);
+      border-bottom: 4px solid var(--orange_500);
       font-weight: bold;
     `}
 
   &:hover {
-    border-bottom: 4px solid var(--orange);
+    border-bottom: 4px solid var(--orange_500);
   }
 
   &:focus {

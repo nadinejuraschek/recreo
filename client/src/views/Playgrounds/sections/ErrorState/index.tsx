@@ -14,19 +14,13 @@ export const ErrorState = ({ setOpenAddPlaygroundModal, setShowAllPlaygrounds }:
       <EmptyState>
         <p>We couldn&apos;t find any playgrounds near you.</p>
         {user ? (
-          <Button $filled onClick={() => setOpenAddPlaygroundModal(true)}>
-            Add a Playground
-          </Button>
+          <Button onClick={() => setOpenAddPlaygroundModal(true)}>Add a Playground</Button>
         ) : (
           <p>
             <InlineLink to="/login">Login</InlineLink> to add a playground.
           </p>
         )}
-        {setShowAllPlaygrounds && (
-          <Button $filled onClick={() => setShowAllPlaygrounds(true)}>
-            Browse All Playgrounds
-          </Button>
-        )}
+        {setShowAllPlaygrounds && <Button onClick={() => setShowAllPlaygrounds(true)}>Browse All Playgrounds</Button>}
       </EmptyState>
     </Section>
   );

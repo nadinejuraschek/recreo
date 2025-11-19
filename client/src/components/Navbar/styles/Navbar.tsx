@@ -30,7 +30,7 @@ export const NavList = styled.div`
 `;
 
 export const StyledNavLink = styled(NavLink)`
-  color: var(--blue__dark);
+  color: var(--blue_700);
   font-size: 1.6rem;
   font-weight: 600;
   padding: 0 1.5rem;

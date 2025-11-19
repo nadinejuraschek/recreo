@@ -36,16 +36,16 @@ export const Container = styled.footer<ContainerProps>`
 `;
 
 export const Link = styled.div<{ className?: string; children: ReactNode }>`
-  color: var(--blue__dark);
+  color: var(--blue_700);
   font-size: 1.4rem;
 
   a {
-    color: var(--blue__dark);
+    color: var(--blue_700);
     text-decoration: none;
   }
 
   a:hover {
-    color: var(--orange);
+    color: var(--orange_500);
     cursor: pointer;
   }
 `;

@@ -50,12 +50,12 @@ export const Name = styled.span<{ className?: string; children: ReactNode }>`
 `;
 
 export const TimePosted = styled.span<{ className?: string; children: ReactNode }>`
-  color: var(--blue__medium);
+  color: var(--blue_500);
 `;
 
 export const ReadMore = styled.span<{ children: ReactNode; className?: string; onClick: () => void }>`
   align-self: flex-end;
-  color: var(--orange);
+  color: var(--orange_500);
   cursor: pointer;
   font-size: 1.4rem;
 

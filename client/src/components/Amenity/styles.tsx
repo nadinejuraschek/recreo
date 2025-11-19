@@ -20,7 +20,7 @@ export const IconWrapper = styled.div<{ children: ReactNode; small: boolean }>`
 `;
 
 export const Icon = styled.div<{ children: ReactNode; small: boolean }>`
-  color: var(--orange);
+  color: var(--orange_500);
   height: ${({ small }) => (small ? '2rem' : '3.5rem')};
   width: ${({ small }) => (small ? '2rem' : '3.5rem')};
 

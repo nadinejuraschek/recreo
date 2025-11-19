@@ -73,7 +73,7 @@ export const AddPlaygroundForm = ({ setOpenAddPlaygroundModal }: AddPlaygroundFo
       <Modal
         closeButton
         footer={
-          <Button disabled={!isValid || isSubmitting || isPending} $filled loading={isSubmitting} $small type="submit">
+          <Button disabled={!isValid || isSubmitting || isPending} loading={isSubmitting} type="submit">
             Add Playground
           </Button>
         }

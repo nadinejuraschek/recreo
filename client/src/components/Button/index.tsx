@@ -5,17 +5,13 @@ export const Button = ({
   children,
   className = '',
   disabled = false,
-  $filled = true,
-  $fullWidth = false,
+  fullWidth = false,
   onClick,
   onSubmit,
   loading = false,
   link = undefined,
-  $outlined = false,
-  $rounded = false,
-  $small = false,
   type = 'button',
-  $underlined = false,
+  variant = 'primary',
 }: ButtonProps): JSX.Element => {
   const isDisabled = disabled || loading;
 
@@ -25,16 +21,12 @@ export const Button = ({
         <StyledLink
           className={className}
           disabled={isDisabled}
-          $filled={$filled}
-          $fullWidth={$fullWidth}
-          $outlined={$outlined}
-          $rounded={$rounded}
-          $small={$small}
+          $fullWidth={fullWidth}
           to={link}
-          $underlined={$underlined}
           aria-busy={loading}
           aria-disabled={isDisabled}
           tabIndex={isDisabled ? -1 : undefined}
+          $variant={variant}
         >
           {loading ? 'Loading...' : children}
         </StyledLink>
@@ -43,15 +35,11 @@ export const Button = ({
           aria-busy={loading}
           className={className}
           disabled={isDisabled}
-          $filled={$filled}
-          $fullWidth={$fullWidth}
+          $fullWidth={fullWidth}
           onClick={onClick}
           onSubmit={onSubmit}
-          $outlined={$outlined}
-          $rounded={$rounded}
-          $small={$small}
           type={type}
-          $underlined={$underlined}
+          $variant={variant}
         >
           {loading ? 'Loading...' : children}
         </StyledButton>

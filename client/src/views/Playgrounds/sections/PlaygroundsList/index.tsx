@@ -9,22 +9,18 @@ export const PlaygroundsList = ({ playgrounds, setOpenAddPlaygroundModal }: Play
   const { user } = useContext(UserContext);
 
   return (
-    <>
-      <Section>
-        {user && (
-          <ButtonWrapper>
-            <Button $filled onClick={() => setOpenAddPlaygroundModal(true)}>
-              Add a Playground
-            </Button>
-          </ButtonWrapper>
-        )}
-        <Grid>
-          {playgrounds.map((playground) => (
-            <Card key={playground._id} playground={playground} />
-          ))}
-        </Grid>
-        {/* PAGINATION DISPLAYS HERE */}
-      </Section>
-    </>
+    <Section>
+      {user && (
+        <ButtonWrapper>
+          <Button onClick={() => setOpenAddPlaygroundModal(true)}>Add a Playground</Button>
+        </ButtonWrapper>
+      )}
+      <Grid>
+        {playgrounds.map((playground) => (
+          <Card key={playground._id} playground={playground} />
+        ))}
+      </Grid>
+      {/* PAGINATION DISPLAYS HERE */}
+    </Section>
   );
 };

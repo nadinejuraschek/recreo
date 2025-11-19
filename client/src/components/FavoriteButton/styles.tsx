@@ -5,7 +5,7 @@ import { HeartProps } from './types';
 export const Icon = styled(HeartIcon).attrs(() => ({
   className: 'favorite-icon',
 }))<HeartProps>`
-  color: var(--blue__dark);
+  color: var(--blue_700);
   cursor: pointer;
 
   height: 2.5rem;
@@ -14,6 +14,6 @@ export const Icon = styled(HeartIcon).attrs(() => ({
   ${({ active }) =>
     active &&
     css`
-      fill: var(--blue__dark);
+      fill: var(--blue_700);
     `}
 `;

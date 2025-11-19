@@ -6,7 +6,7 @@ export const StyledSelectSearch = styled.div`
  */
   .select-search {
     box-sizing: border-box;
-    color: var(--blue__dark);
+    color: var(--blue_700);
     position: relative;
 
     width: 100%;
@@ -40,7 +40,7 @@ export const StyledSelectSearch = styled.div`
  * Input
  */
   .select-search__input {
-    color: var(--blue__dark);
+    color: var(--blue_700);
     display: block;
     height: 4rem;
     width: 100%;
@@ -58,7 +58,7 @@ export const StyledSelectSearch = styled.div`
     -webkit-appearance: none;
 
     &::placeholder {
-      color: var(--blue__medium);
+      color: var(--blue_500);
     }
   }
 
@@ -118,7 +118,7 @@ export const StyledSelectSearch = styled.div`
 
   .select-search__option.is-selected {
     background: var(--yellow);
-    color: var(--blue__dark);
+    color: var(--blue_700);
   }
 
   .select-search__option.is-highlighted,
@@ -129,7 +129,7 @@ export const StyledSelectSearch = styled.div`
   .select-search__option.is-highlighted.is-selected,
   .select-search__option.is-selected:hover {
     background: var(--yellow);
-    color: var(--blue__dark);
+    color: var(--blue_700);
   }
 
   /**
@@ -168,8 +168,8 @@ export const StyledSelectSearch = styled.div`
 
   .select-search:not(.is-loading):not(.select-search--multiple) .select-search__value::after {
     transform: rotate(45deg);
-    border-right: 1px solid var(--blue__dark);
-    border-bottom: 1px solid var(--blue__dark);
+    border-right: 1px solid var(--blue_700);
+    border-bottom: 1px solid var(--blue_700);
     pointer-events: none;
   }
 
@@ -212,6 +212,6 @@ export const StyledSelectSearch = styled.div`
     height: auto;
     padding: 16px;
     text-align: center;
-    color: var(--blue__dark);
+    color: var(--blue_700);
   }
 `;
