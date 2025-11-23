@@ -44,7 +44,7 @@ module.exports.create = async (req, res, next) => {
   }).send();
 
   const playground = new Playground({ ...req.body,
-    images: req.body.images.split(',').map((imgSrc) => imgSrc.trim()),
+    images: req.body.images.length === 1 ? req.body.images : req.body.images.split(',').map((imgSrc) => imgSrc.trim()),
    });
   playground.location = geoData.body.features[0].place_name;
   playground.geometry = geoData.body.features[0].geometry;
@@ -58,11 +58,11 @@ module.exports.edit = async (req, res) => {
   const editedPlayground = await Playground.findByIdAndUpdate(id, {
     ...req.body.playground,
   }); */
-  res.send('success', 'Successfully updated this playground!');
+  res.status(200).send('Successfully updated this playground!');
 };
 
 module.exports.delete = async (req, res) => {
   const { id } = req.params;
   const deletedPlayground = await Playground.findByIdAndDelete(id);
-  res.send('success', 'The playground has been removed.');
+  res.status(200).send('The playground has been removed.');
 };

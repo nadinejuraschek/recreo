@@ -28,7 +28,7 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
 
   const { mutate: loginUser, isPending: isLoadingLogin } = useMutation<AuthenticatedUser, Error, UserFormData>({
     mutationFn: async (formData) => {
-      const { data } = await axios.post(`${process.env.REACT_APP_API}api/login`, formData);
+      const { data } = await axios.post(`${process.env.REACT_APP_API}api/login`, formData, { withCredentials: true });
       return data as AuthenticatedUser;
     },
     onSuccess: (data) => {
@@ -45,7 +45,7 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
 
   const { mutate: registerUser, isPending: isLoadingRegister } = useMutation<AuthenticatedUser, Error, UserFormData>({
     mutationFn: async (formData) => {
-      const { data } = await axios.post(`${process.env.REACT_APP_API}api/register`, formData);
+      const { data } = await axios.post(`${process.env.REACT_APP_API}api/register`, formData, { withCredentials: true });
       return data as AuthenticatedUser;
     },
     onSuccess: (data) => {
@@ -62,7 +62,7 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
 
   const { mutate: logoutUser, isPending: isLoadingLogout } = useMutation<string | void, Error, void>({
     mutationFn: async () => {
-      const { data } = await axios.get(`${process.env.REACT_APP_API}api/logout`);
+      const { data } = await axios.get(`${process.env.REACT_APP_API}api/logout`, { withCredentials: true });
       return data as string | void;
     },
     onSuccess: (data) => {
@@ -88,7 +88,7 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
   } = useQuery<AuthenticatedUser | null, Error>({
     queryKey: ['user'],
     queryFn: async (): Promise<AuthenticatedUser | null> => {
-      const res = await axios.get(`${process.env.REACT_APP_API}api/user`);
+      const res = await axios.get(`${process.env.REACT_APP_API}api/user`, { withCredentials: true });
       // return null explicitly if no user
       return (res.data as AuthenticatedUser) ?? null;
     },

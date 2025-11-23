@@ -30,10 +30,10 @@ module.exports.isAuthor = async (req, res, next) => {
   const { id } = req.params;
   const playground = await Playground.findById(id);
   if (!playground) {
-    return res.send('error', 'Sorry, this playground could not be found.');
+    return res.status(500).send('Sorry, this playground could not be found.');
   }
   if (!playground.author.equals(req.user._id)) {
-    return res.send('error', 'You do not have permission to edit this playground.');
+    return res.status(401).send('You do not have permission to edit this playground.');
   }
   next();
 };
@@ -42,7 +42,7 @@ module.exports.isReviewAuthor = async (req, res, next) => {
   const { id, reviewid } = req.params;
   const review = await Review.findById(reviewid);
   if (!review.author.equals(req.user._id)) {
-    return res.send('error', 'You do not have permission to edit this review.');
+    return res.status(401).send('You do not have permission to edit this review.');
   }
   next();
 };

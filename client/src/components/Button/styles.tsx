@@ -20,6 +20,15 @@ const buttonBase = css<StyledButtonProps>`
   text-decoration: none;
   transition: all 0.2s ease;
 
+  ${({ $icon }) =>
+    $icon &&
+    css`
+      padding: 0;
+      min-width: 4rem;
+      max-width: unset;
+      width: 4rem;
+    `}
+
   ${({ $fullWidth }) =>
     $fullWidth &&
     css`
@@ -63,6 +72,7 @@ const buttonBase = css<StyledButtonProps>`
       &:hover {
         background-color: var(--orange_600);
         border-color: var(--orange_600);
+        color: var(--white);
       }
     `;
   }}

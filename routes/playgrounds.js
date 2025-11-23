@@ -3,7 +3,7 @@ const express = require('express'),
   router = express.Router();
 
 // MIDDLEWARE
-const { isAuthor, validatePlayground } = require('../middleware');
+// const { isAuthor, validatePlayground } = require('../middleware');
 
 router
   .route('/')
@@ -21,6 +21,9 @@ router
     // validatePlayground,
     playgroundController.edit
   )
-  .delete(isAuthor, playgroundController.delete);
+  .delete(
+    // isAuthor,
+    playgroundController.delete
+  );
 
 module.exports = router;

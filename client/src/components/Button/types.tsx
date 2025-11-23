@@ -5,6 +5,7 @@ export interface ButtonProps {
   className?: string;
   disabled?: boolean;
   fullWidth?: boolean;
+  icon?: boolean;
   loading?: boolean;
   link?: string | undefined;
   onClick?: () => void;
@@ -18,6 +19,7 @@ export interface StyledButtonProps {
   className?: string;
   disabled?: boolean;
   $fullWidth: boolean;
+  $icon?: boolean;
   loading?: boolean;
   link?: string | undefined;
   onClick?: () => void;

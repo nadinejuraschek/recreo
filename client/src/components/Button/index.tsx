@@ -6,6 +6,7 @@ export const Button = ({
   className = '',
   disabled = false,
   fullWidth = false,
+  icon = false,
   onClick,
   onSubmit,
   loading = false,
@@ -22,6 +23,7 @@ export const Button = ({
           className={className}
           disabled={isDisabled}
           $fullWidth={fullWidth}
+          $icon={icon}
           to={link}
           aria-busy={loading}
           aria-disabled={isDisabled}
@@ -36,6 +38,7 @@ export const Button = ({
           className={className}
           disabled={isDisabled}
           $fullWidth={fullWidth}
+          $icon={icon}
           onClick={onClick}
           onSubmit={onSubmit}
           type={type}
