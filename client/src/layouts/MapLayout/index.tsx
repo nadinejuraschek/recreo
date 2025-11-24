@@ -25,7 +25,7 @@ export const MapLayout = ({ children }: MapLayoutProps): JSX.Element => {
     <Main>
       <Content>{children}</Content>
       <MapWrapper>
-        <Map isLoading={isLoading} markers={marker ? [marker] : []} />
+        <Map isLoading={isLoading} markers={marker ? [marker] : []} zoom={18} />
       </MapWrapper>
     </Main>
   );
