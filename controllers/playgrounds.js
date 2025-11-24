@@ -54,10 +54,16 @@ module.exports.create = async (req, res, next) => {
 };
 
 module.exports.edit = async (req, res) => {
-  /* const { id } = req.params;
+  const { id } = req.params;
+  const images = req.body.images.length === 1 ? req.body.images : req.body.images.split(',').map((imgSrc) => imgSrc.trim());
   const editedPlayground = await Playground.findByIdAndUpdate(id, {
-    ...req.body.playground,
-  }); */
+      $set: {
+        description: req.body.description,
+        images,
+        title: req.body.title,
+      },
+    },
+    { new: true });
   res.status(200).send('Successfully updated this playground!');
 };
 

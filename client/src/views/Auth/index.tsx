@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { ButtonWrapper, FormWrapper, Wrapper } from './styles';
 import { Button, Divider, Form, Input, Title } from 'components';
 import { testUserData } from 'data';
-import { loginSchema } from 'schemas';
+import { authSchema } from 'schemas';
 import { UserContext } from 'context/UserContext';
 import lockIcon from 'assets/lock.svg';
 import userIcon from 'assets/user.svg';
@@ -22,7 +22,7 @@ export const Auth = ({ mode = AUTH_MODE.LOGIN }: AuthProps): JSX.Element => {
       password: '',
       username: '',
     },
-    resolver: yupResolver(loginSchema),
+    resolver: yupResolver(authSchema),
     mode: 'onChange',
   });
 

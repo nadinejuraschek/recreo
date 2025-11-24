@@ -46,7 +46,7 @@ export const SinglePlayground = (): JSX.Element => {
 
   return (
     <Content>
-      <Header authorId={author?._id} id={_id} name={title} />
+      <Header authorId={author?._id} id={_id} name={title} playground={playground} />
       <Info description={description} location={location} rating={rating} />
       <Tabs active={activeTab} handleClick={setActiveTab} options={tabOptions} />
       <TabContent>

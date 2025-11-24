@@ -16,9 +16,11 @@ export async function createPlayground(newPlayground: any) {
   return await axios.post(`${process.env.REACT_APP_API}api/playgrounds`, newPlayground, { withCredentials: true });
 }
 
-/* export async function editPlayground() {
-  console.log('LOG put');
-} */
+export async function editPlayground(editedPlayground: any) {
+  return await axios.put<{ message?: string }>(`${process.env.REACT_APP_API}api/playgrounds/${editedPlayground._id}`, editedPlayground, {
+    withCredentials: true,
+  });
+}
 
 export async function deletePlayground(id: string) {
   return await axios.delete<{ message?: string }>(`${process.env.REACT_APP_API}api/playgrounds/${id}`, { withCredentials: true });

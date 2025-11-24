@@ -1,8 +1,7 @@
 import { Playground } from 'types';
 
-export interface HeaderProps {
+export interface ButtonEditProps {
   authorId?: string;
   id: string;
-  name?: string;
   playground: Playground;
 }
