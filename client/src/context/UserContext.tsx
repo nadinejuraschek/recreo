@@ -102,7 +102,6 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
     }
 
     if (isErrorGetUser) {
-      toast.error("There was an error fetching the user's data. Please try again later.");
       setUser(null);
     }
   }, [isErrorGetUser, isSuccessGetUser, userData]);

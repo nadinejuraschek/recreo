@@ -28,6 +28,16 @@ export const Playgrounds = (): JSX.Element => {
   const displayError = (error && !showAllPlaygrounds) || noPlaygrounds;
   const displayPlaygrounds = !displayError || showAllPlaygrounds;
 
+  const markers =
+    playgrounds?.map((playground) => {
+      const [longitude, latitude] = playground.geometry.coordinates;
+      return {
+        latitude,
+        longitude,
+        title: playground.title,
+      };
+    }) || [];
+
   if (isLoading) {
     return <LoadingSpinner containerHeight="100%" containerWidth="100%" />;
   }
@@ -41,7 +51,7 @@ export const Playgrounds = (): JSX.Element => {
 
   return (
     <>
-      <StyledMap isLoading={isLoading} />
+      <StyledMap isLoading={isLoading} markers={markers} />
       <PlaygroundInfo>
         {/* FILTER DISPLAYS HERE <Section></Section> */}
         {displayError && renderErrorState()}
