@@ -9,7 +9,7 @@ export const ModalDelete = ({ id, toggleModal }: { id: string; toggleModal: (ope
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { mutate: deletePlayground } = useMutation({
+  const { mutate: deletePlayground, isPending } = useMutation({
     mutationFn: async (id: string) => {
       await deletePlaygroundFn(id);
     },
@@ -28,7 +28,11 @@ export const ModalDelete = ({ id, toggleModal }: { id: string; toggleModal: (ope
   return (
     <Modal
       closeButton
-      footer={<Button onClick={() => deletePlayground(id)}>Confirm</Button>}
+      footer={
+        <Button disabled={isPending} loading={isPending} onClick={() => deletePlayground(id)}>
+          Delete
+        </Button>
+      }
       title="Delete Playground"
       toggleModal={toggleModal}
     >

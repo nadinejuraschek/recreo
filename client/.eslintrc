@@ -15,6 +15,7 @@
     }
   },
   "rules": {
+    "max-len": ["error", { "code": 140 }],
     "prettier/prettier": [
       "error",
       {
@@ -25,7 +26,17 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/ban-ts-comment": "off",
     "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-sort-props": [
+      "error",
+      {
+        "callbacksLast": false,
+        "shorthandFirst": false,
+        "shorthandLast": false,
+        "ignoreCase": true,
+        "noSortAlphabetically": false
+      }
+    ]
   },
   "settings": {
     "react": {
