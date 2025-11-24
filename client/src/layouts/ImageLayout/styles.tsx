@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+const PLAYGROUND_IMAGE_URL =
+  'https://images.unsplash.com/photo-1552537595-b30edb7afd9d?' +
+  'ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D' +
+  '&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80';
+
 export const HorizontalImage = styled.div`
   position: absolute;
   bottom: 0;
@@ -8,8 +13,7 @@ export const HorizontalImage = styled.div`
   width: 100vw;
   z-index: -2;
 
-  background-image: linear-gradient(#ffffff40, #ffffff40),
-    url('https://images.unsplash.com/photo-1552537595-b30edb7afd9d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80');
+  background-image: linear-gradient(#ffffff40, #ffffff40), url(${PLAYGROUND_IMAGE_URL});
   background-size: cover;
   background-position: center 25%;
 
@@ -47,8 +51,7 @@ export const VerticalImage = styled.div`
   width: 60vw;
   z-index: -2;
 
-  background-image: linear-gradient(#ffffff40, #ffffff40),
-    url('https://images.unsplash.com/photo-1552537595-b30edb7afd9d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80');
+  background-image: linear-gradient(#ffffff40, #ffffff40), url(${PLAYGROUND_IMAGE_URL});
   background-position: center 35%;
 
   @media only screen and (min-width: 768px) {

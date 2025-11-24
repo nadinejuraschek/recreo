@@ -10,14 +10,14 @@ export const Preview = ({ images = [], name = '' }: PreviewProps): JSX.Element =
     if (!images || images.length === 0) {
       return [
         <ImageActive key="Image Placeholder">
-          <img src={playgroundPlaceholder} alt="Image Placeholder" />
+          <img alt="Image Placeholder" src={playgroundPlaceholder} />
         </ImageActive>,
       ];
     }
 
     return images.map((imgSrc, index) => (
       <ImageActive key={`Image #${index + 1}`}>
-        <img src={imgSrc} alt={`${name} Image #${index + 1}`} />
+        <img alt={`${name} Image #${index + 1}`} src={imgSrc} />
       </ImageActive>
     ));
   }, [images, playgroundPlaceholder]);

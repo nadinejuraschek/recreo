@@ -19,8 +19,7 @@ export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => 
 
   const { mutate } = useMutation({
     mutationFn: createReview,
-    onError: (error) => {
-      console.log('LOG error: ', error);
+    onError: () => {
       toast.error('Your review could not be submitted. Please try again later.');
     },
     onSuccess: () => {
@@ -36,6 +35,7 @@ export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => 
 
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors, isSubmitting, isValid },
   } = useForm<any>({
@@ -57,10 +57,12 @@ export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => 
       playgroundId,
     };
     mutate(newFormData);
+
+    reset(defaultValues);
   };
 
   return (
-    <Form handleSubmit={handleSubmit(onSubmit)} alignLeft>
+    <Form alignLeft handleSubmit={handleSubmit(onSubmit)}>
       <FormHeader>
         <RaterWrapper>
           <RaterLabel>Your Rating: </RaterLabel>
@@ -88,11 +90,11 @@ export const CommentForm = ({ playgroundId }: CommentFormProps): JSX.Element => 
         </ButtonWrapper>
       </FormHeader>
       <Input
+        error={errors?.text?.message}
         name="text"
         placeholder="Tell us about your playground experience..."
-        type="textarea"
         register={register}
-        error={errors?.text?.message}
+        type="textarea"
       />
     </Form>
   );

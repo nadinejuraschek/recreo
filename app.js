@@ -16,7 +16,13 @@ const express = require('express'),
 dotenv.config();
 
 // DATABASE ================================================================
-mongoose.connect(process.env.MONGO_URI, {});
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).catch(err => {
+  console.error('Database connection error:', err);
+  process.exit(1);
+});
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -108,10 +114,10 @@ const sessionConfig = {
   name: 'welcome',
   secret: process.env.APP_SECRET,
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
 };
 app.use(session(sessionConfig));
-app.use(cookieParser(process.env.SECRET));
+app.use(cookieParser(process.env.APP_SECRET));
 
 // PASSPORT ==============================================================
 app.use(passport.initialize());

@@ -80,26 +80,26 @@ export const AddPlaygroundForm = ({ setOpenAddPlaygroundModal }: AddPlaygroundFo
         title="New Playground"
         toggleModal={setOpenAddPlaygroundModal}
       >
-        <Input label="Name" name="name" placeholder="Name" required type="text" register={register} error={errors?.name?.message} />
+        <Input error={errors?.name?.message} label="Name" name="name" placeholder="Name" register={register} required type="text" />
         <AddressInput error={errors?.location?.message} handleSelect={register('location').onChange} placeholder="Location" required />
         <Selecter handleChange={setSelectedFeatures} label="Features" options={features} placeholder="Features" required />
         <Input
+          error={errors?.description?.message}
           label="Description"
           name="description"
           placeholder="Description"
-          type="textarea"
           register={register}
           required={false}
-          error={errors?.description?.message}
+          type="textarea"
         />
         <Input
+          error={errors?.images?.message}
           label="Image(s)"
           name="images"
           placeholder="Image URLs (seperated by commas)"
-          type="textarea"
           register={register}
           required
-          error={errors?.images?.message}
+          type="textarea"
         />
       </Modal>
     </Form>

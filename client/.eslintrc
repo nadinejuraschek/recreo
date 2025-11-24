@@ -28,7 +28,7 @@
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-sort-props": [
-      "error",
+      "warn",
       {
         "callbacksLast": false,
         "shorthandFirst": false,

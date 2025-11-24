@@ -28,6 +28,8 @@
     "yup": "^0.32.11"
   },
   "scripts": {
+    "lint": "npx eslint",
+    "lint:fix": "npx eslint --fix",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
