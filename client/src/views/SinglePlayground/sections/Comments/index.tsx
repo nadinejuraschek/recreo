@@ -20,9 +20,9 @@ export const Comments = ({ playgroundId, rating, reviews = [] }: CommentsProps):
     if (reviews.length === 0) return null;
 
     return reviews.map((review) => {
-      const { author, body, postedOn, _id, rating } = review;
+      const { _id } = review;
 
-      return <Comment body={body} key={_id} postedOn={postedOn} rating={rating} username={author.username} />;
+      return <Comment key={_id} playgroundId={playgroundId} review={review} />;
     });
   }, [reviews]);
 

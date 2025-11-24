@@ -11,7 +11,7 @@ module.exports.login = (req, res, next) => {
     req.logIn(user, err => {
       if (err) return next(err);
       res.send({
-        id: user._id,
+        id: user.id,
         username: user.username,
       });
     });
@@ -52,7 +52,7 @@ module.exports.register = async (req, res, next) => {
     req.logIn({ id: newUser._id, username: newUser.username }, (err) => {
       if (err) return next(err);
       res.status(201).json({
-        id: newUser._id,
+        id: newUser.id,
         username: newUser.username,
       });
     });
@@ -63,5 +63,5 @@ module.exports.register = async (req, res, next) => {
 
 module.exports.getUser = (req, res) => {
   if (!req.user) return res.status(401).send('Unauthorized');
-  res.send({ id: req.user._id, username: req.user.username });
+  res.send({ id: req.user.id, username: req.user.username });
 };

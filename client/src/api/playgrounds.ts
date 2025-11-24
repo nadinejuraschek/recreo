@@ -47,3 +47,9 @@ export async function createReview({
     { withCredentials: true }
   );
 }
+
+export async function deleteReview({ playgroundId, reviewId }: { playgroundId: string; reviewId: string }) {
+  return await axios.delete<{ message?: string }>(`${process.env.REACT_APP_API}api/playgrounds/${playgroundId}/review/${reviewId}`, {
+    withCredentials: true,
+  });
+}

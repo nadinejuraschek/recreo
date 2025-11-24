@@ -1,6 +1,6 @@
+import { Review } from 'types';
+
 export interface CommentProps {
-  body?: string;
-  rating?: number;
-  postedOn: Date;
-  username?: string;
+  playgroundId: string;
+  review?: Review;
 }

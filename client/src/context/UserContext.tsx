@@ -33,7 +33,10 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['user'] });
-      setUser(data);
+      setUser({
+        id: data.id,
+        username: data.username,
+      });
       navigate('/playgrounds');
       toast.success(`Welcome back, ${data.username}!`);
     },
@@ -50,7 +53,10 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['user'] });
-      setUser(data);
+      setUser({
+        id: data.id,
+        username: data.username,
+      });
       navigate('/playgrounds');
       toast.success('Successfully registered!');
     },
@@ -89,8 +95,13 @@ export const UserProvider = (props: PropsWithChildren<any>): JSX.Element => {
     queryKey: ['user'],
     queryFn: async (): Promise<AuthenticatedUser | null> => {
       const res = await axios.get(`${process.env.REACT_APP_API}api/user`, { withCredentials: true });
+
       // return null explicitly if no user
-      return (res.data as AuthenticatedUser) ?? null;
+      if (!res.data) {
+        return null;
+      }
+
+      return { id: res.data.id, username: res.data.username } as AuthenticatedUser;
     },
     enabled: user === undefined,
     retry: false,

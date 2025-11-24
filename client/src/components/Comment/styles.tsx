@@ -1,5 +1,16 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
+import { ReactComponent as TrashIcon } from 'assets/trash.svg';
+
+export const DeleteIcon = styled(TrashIcon).attrs(() => ({
+  className: 'delete-icon',
+}))`
+  color: var(--blue_700);
+  cursor: pointer;
+
+  height: 2rem;
+  width: 2rem;
+`;
 
 export const Container = styled.div<{ className?: string; children: ReactNode }>`
   display: flex;
@@ -32,7 +43,15 @@ export const TextContainer = styled.div<{ className?: string; children: ReactNod
   gap: 0.5rem;
 `;
 
-export const PostDetails = styled.div<{ className?: string; children: ReactNode }>`
+export const Footer = styled.div<{ className?: string; children: ReactNode }>`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+`;
+
+export const PostDetails = styled.div`
   display: flex;
   font-size: 1.4rem;
   line-height: 1.6rem;
