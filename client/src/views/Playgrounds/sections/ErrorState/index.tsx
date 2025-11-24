@@ -20,7 +20,11 @@ export const ErrorState = ({ setOpenAddPlaygroundModal, setShowAllPlaygrounds }:
             <InlineLink to="/login">Login</InlineLink> to add a playground.
           </p>
         )}
-        {setShowAllPlaygrounds && <Button onClick={() => setShowAllPlaygrounds(true)}>Browse All Playgrounds</Button>}
+        {setShowAllPlaygrounds && (
+          <Button onClick={() => setShowAllPlaygrounds(true)} variant="secondary">
+            Browse All Playgrounds
+          </Button>
+        )}
       </EmptyState>
     </Section>
   );

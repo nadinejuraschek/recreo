@@ -133,7 +133,21 @@ app.use('/api', userRoutes);
 app.use('/api/playgrounds', playgroundRoutes);
 app.use('/api/playgrounds/:id/review', reviewRoutes);
 
-// DEPLOYMENT
+// ERROR HANDLING MIDDLEWARE =============================================
+const ExpressError = require('./utils/ExpressError');
+app.use((err, req, res, next) => {
+  const { statusCode = 500, message = 'Something went wrong!' } = err;
+
+  if (err instanceof ExpressError) {
+    return res.status(statusCode).json({ error: message });
+  }
+
+  // Handle other errors (database errors, etc.)
+  console.error(err);
+  res.status(statusCode).json({ error: message });
+});
+
+// DEPLOYMENT ============================================================
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
@@ -143,7 +157,7 @@ app.use((req, res) =>
   res.sendFile(path.join(__dirname, './client/build/index.html'))
 );
 
-// SERVER
+// SERVER ================================================================
 app.listen(process.env.PORT, () => {
   console.log(`Server is listening on PORT ${process.env.PORT}.`);
 });

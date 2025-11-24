@@ -3,7 +3,7 @@ const express = require('express'),
   router = express.Router({ mergeParams: true });
 
 // MIDDLEWARE
-const { validateReview, isReviewAuthor } = require('../middleware');
+// const { validateReview, isReviewAuthor } = require('../middleware');
 
 router.post('/',
   // validateReview,

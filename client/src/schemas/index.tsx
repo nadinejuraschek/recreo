@@ -17,6 +17,10 @@ const features = [
   'toddlerSafe',
 ];
 
+const urlRegMatch =
+  // eslint-disable-next-line max-len
+  /^((http|https):\/\/)?(www.)?(?!.*(http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+(\/)?\.([\w?[a-zA-Z-_%/@?]+)*([^/\w?[a-zA-Z0-9_-]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/;
+
 export const authSchema = Yup.object().shape({
   username: Yup.string()
     .min(3, 'Username has to be at least 3 characters long.')
@@ -49,6 +53,7 @@ export const editPlaygroundSchema = Yup.object().shape({
     .max(50, 'Name can not exceed 50 characters.')
     .required("Please enter the playground's name."),
   images: Yup.string()
+    .matches(urlRegMatch, 'Image source should be a valid URL.')
     .min(3, 'Name has to be at least 3 characters long.')
     .required('Please provide at least one url to an image of the playground.'),
   description: Yup.string().max(120, 'Description can not exceed 120 characters.'),

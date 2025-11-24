@@ -34,6 +34,7 @@ export const ModalEdit = ({
       queryClient.invalidateQueries({ queryKey: ['playground', id] });
       queryClient.invalidateQueries({ queryKey: ['playgrounds'] });
       toast.success('The playground has been edited successfully.');
+      toggleModal(false);
     },
   });
 

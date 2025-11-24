@@ -5,42 +5,63 @@ const User = require('../models/User');
 
 module.exports.login = (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
-    if (err) throw err;
-    if (!user) return res.status(400).send('User does not exist.');
-    if (user) {
-      req.logIn(user, err => {
-        if (err) throw err;
-        res.send(user);
+    if (err) return next(err);
+    if (!user) return res.status(400).send('Invalid username or password.');
+
+    req.logIn(user, err => {
+      if (err) return next(err);
+      res.send({
+        id: user._id,
+        username: user.username,
       });
-    }
+    });
   })(req, res, next);
 }
 
-module.exports.logout = (req, res) => {
-  req.logout((error) => {
-    if (error) throw error;
+module.exports.logout = (req, res, next) => {
+  req.logout((err) => {
+    if (err) return next(err);
     res.send('Successfully logged out.');
   });
 }
 
-module.exports.register = async (req, res) => {
+module.exports.register = async (req, res, next) => {
+  try {
   const { username, password } = req.body;
-  User.findOne({ username }, async (err, doc) => {
-    if (err) throw err;
-    if (doc) return res.status(400).send('User already exists.');
-    if (!doc) {
-      const hashedPassword = await bcrypt.hash(password, 10);
 
+  // validate input
+    if (!username || !password) {
+      return res.status(400).json({ error: 'Username and password are required' });
+    }
+
+  // check if user already exists
+  const existingUser = await User.findOne({ username });
+  if (existingUser) {
+    return res.status(400).json({ error: 'User already exists' });
+  }
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  // create and save user
       const newUser = new User({
         username,
         password: hashedPassword,
       });
       await newUser.save();
-      res.send('User created.');
-    }
-  });
+
+   // suto-login after registration
+    req.logIn({ id: newUser._id, username: newUser.username }, (err) => {
+      if (err) return next(err);
+      res.status(201).json({
+        id: newUser._id,
+        username: newUser.username,
+      });
+    });
+} catch (err) {
+  next(err);
+}
 };
 
 module.exports.getUser = (req, res) => {
-  res.send(req.user);
+  if (!req.user) return res.status(401).send('Unauthorized');
+  res.send({ id: req.user._id, username: req.user.username });
 };
